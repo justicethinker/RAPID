@@ -17,6 +17,17 @@ interface HeroProps {
   onJoinWaitlist: () => void;
 }
 
+/* Connector trajectories, in the 480×560 floating container's coordinates.
+   Each line starts behind the main card (which paints over the start),
+   touches the globe at a visible dot-field point — the bounce node — and
+   deflects into its card. The SVG renders before the cards, so the card
+   edges cover every line end. */
+const HERO_CONNECTOR_PATHS = [
+  { title: 'Trial signup', from: [190, 120], touch: [315, 150], to: [350, 80] },
+  { title: 'Call requested', from: [190, 255], touch: [330, 185], to: [330, 230] },
+  { title: 'Feedback shared', from: [190, 385], touch: [320, 355], to: [330, 415] },
+] as const;
+
 export function Hero({ onJoinWaitlist }: HeroProps) {
   const { ref: floatingRef, isInView: floatingVisible } = useInView({ threshold: 0.1 });
   const connectorsRef = useRef<SVGSVGElement>(null);
@@ -131,6 +142,7 @@ export function Hero({ onJoinWaitlist }: HeroProps) {
 
               {/* Video tile */}
               <VideoTile
+                eager
                 duration="0:58"
                 label="Sample pitch · 0:58"
                 image="/images/hero-pitch.webp"
@@ -166,7 +178,60 @@ export function Hero({ onJoinWaitlist }: HeroProps) {
             </div>
 
             {/* Floating cards */}
-            <div ref={floatingRef} className="hidden lg:block absolute right-[-32px] top-0 bottom-0 w-[250px]">
+            <div ref={floatingRef} className="hidden lg:block absolute right-[-32px] top-0 h-[560px] w-[480px]">
+              {/* Connector lines: main card → globe bounce → floating card */}
+              <svg
+                ref={connectorsRef}
+                className="absolute inset-0 h-full w-full pointer-events-none overflow-visible"
+                viewBox="0 0 480 560"
+                preserveAspectRatio="none"
+                aria-hidden="true"
+              >
+                {HERO_CONNECTOR_PATHS.map((seg, i) => (
+                  <g key={seg.title}>
+                    <path
+                      d={`M${seg.from[0]} ${seg.from[1]} L${seg.touch[0]} ${seg.touch[1]} L${seg.to[0]} ${seg.to[1]}`}
+                      fill="none"
+                      stroke="#15E6A0"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      style={{
+                        filter: 'drop-shadow(0 0 4px rgba(21,230,160,.5))',
+                        strokeDasharray: 500,
+                        strokeDashoffset: connectorsVisible ? 0 : 500,
+                        transition: `stroke-dashoffset 1.2s ease ${0.5 + i * 0.2}s`,
+                      }}
+                    />
+                    {/* Bounce node where the line touches the globe */}
+                    <g
+                      style={{
+                        opacity: connectorsVisible ? 1 : 0,
+                        transition: `opacity 0.4s ease ${1.3 + i * 0.2}s`,
+                      }}
+                    >
+                      <circle
+                        cx={seg.touch[0]}
+                        cy={seg.touch[1]}
+                        r={9}
+                        fill="none"
+                        stroke="#15E6A0"
+                        strokeOpacity="0.5"
+                        strokeWidth="1"
+                        style={{ animation: 'pulseRing 2.6s ease-out infinite' }}
+                      />
+                      <circle
+                        cx={seg.touch[0]}
+                        cy={seg.touch[1]}
+                        r={3.5}
+                        fill="#15E6A0"
+                        style={{ filter: 'drop-shadow(0 0 5px rgba(21,230,160,.9))' }}
+                      />
+                    </g>
+                  </g>
+                ))}
+              </svg>
+
               {[
                 { icon: <UserPlus size={18} />, title: 'Trial signup', sub: 'Someone requested trial access', top: 30, rightExtra: 0 },
                 { icon: <CalendarDays size={18} />, title: 'Call requested', sub: 'A tester wants to chat', top: 215, rightExtra: -14 },
@@ -198,31 +263,6 @@ export function Hero({ onJoinWaitlist }: HeroProps) {
                 </div>
               ))}
 
-              {/* Connector lines */}
-              <svg
-                ref={connectorsRef}
-                className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-visible"
-                viewBox="0 0 250 560"
-                preserveAspectRatio="none"
-                aria-hidden="true"
-              >
-                {[92, 270, 442].map((y, i) => (
-                  <path
-                    key={i}
-                    d={`M0 ${y} C80 ${y}, 120 ${92 + (y - 92) * 0.3}, 236 ${92 + i * 185}`}
-                    fill="none"
-                    stroke="#15E6A0"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    style={{
-                      filter: 'drop-shadow(0 0 4px rgba(21,230,160,.5))',
-                      strokeDasharray: 400,
-                      strokeDashoffset: connectorsVisible ? 0 : 400,
-                      transition: `stroke-dashoffset 1.2s ease ${0.5 + i * 0.2}s`,
-                    }}
-                  />
-                ))}
-              </svg>
             </div>
 
             {/* Caption */}

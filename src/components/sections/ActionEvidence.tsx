@@ -16,10 +16,11 @@ export function ActionEvidence() {
   const [nextStep, setNextStep] = useState<string>('iterate');
 
   return (
-    <section className="relative overflow-hidden surface-light seam-hairline py-[56px] lg:py-24 on-light">
-      {/* Mint blob */}
+    <section className="cv-auto relative overflow-hidden surface-light seam-hairline py-[56px] lg:py-24 on-light">
+      {/* Mint blob — on its own layer so it is never repainted frame-by-frame
+          while the accordion below animates */}
       <div
-        className="absolute top-1/3 right-[-80px] w-[640px] h-[640px] rounded-full pointer-events-none"
+        className="absolute top-1/3 right-[-80px] w-[640px] h-[640px] rounded-full pointer-events-none will-change-transform"
         style={{ background: 'radial-gradient(circle, rgba(214,201,182,.5), transparent 68%)' }}
       />
 
@@ -68,7 +69,7 @@ export function ActionEvidence() {
                         <ChevronDown size={18} className="text-light-muted transition-transform group-data-[state=open]:rotate-180" />
                       </Accordion.Trigger>
                     </Accordion.Header>
-                    <Accordion.Content className="overflow-hidden data-[state=open]:animate-[accordionOpen_0.3s_ease]">
+                    <Accordion.Content className="overflow-hidden data-[state=open]:animate-[accordionOpen_0.3s_ease] data-[state=closed]:animate-[accordionClose_0.3s_ease]">
                       <div className="px-5 pb-5 pl-[84px]">
                         <p className="text-[17px] text-light-muted leading-relaxed">{item.text}</p>
                       </div>

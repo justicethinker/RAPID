@@ -15,7 +15,7 @@ export function FaqFinalCta({ onJoinWaitlist }: FaqFinalCtaProps) {
   return (
     <>
       {/* FAQ section - light */}
-      <section className="relative overflow-hidden surface-light seam-hairline py-[56px] lg:py-24 on-light">
+      <section className="cv-auto relative overflow-hidden surface-light seam-hairline py-[56px] lg:py-24 on-light">
         <Container className="relative z-10">
           <div className="mx-auto max-w-[760px]">
             {/* Centred header */}
@@ -48,7 +48,7 @@ export function FaqFinalCta({ onJoinWaitlist }: FaqFinalCtaProps) {
                         <p className="text-[17px] font-bold text-ink flex-1">{item.question}</p>
                       </Accordion.Trigger>
                     </Accordion.Header>
-                    <Accordion.Content className="overflow-hidden data-[state=open]:animate-[accordionOpen_0.3s_ease]">
+                    <Accordion.Content className="overflow-hidden data-[state=open]:animate-[accordionOpen_0.3s_ease] data-[state=closed]:animate-[accordionClose_0.3s_ease]">
                       <div className="px-6 pb-6 pl-[68px]">
                         <p className="text-[17px] text-light-muted leading-relaxed">{item.answer}</p>
                       </div>

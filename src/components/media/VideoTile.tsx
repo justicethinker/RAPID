@@ -4,6 +4,8 @@ import { Photo } from '@/components/media/Photo';
 interface VideoTileProps {
   duration?: string;
   label?: string;
+  /** Load at full priority — use for above-the-fold hero media (LCP). */
+  eager?: boolean;
   image?: string;
   onClick?: () => void;
   className?: string;
@@ -19,7 +21,17 @@ export function VideoTile({
   className,
   aspectRatio = '16/10',
   showPlayButton = true,
+  eager = false,
 }: VideoTileProps) {
+  // WCAG "Label in Name": the accessible name must contain every visible
+  // string on the tile (the label pill and the duration badge).
+  const a11yText = [
+    label ?? 'sample pitch video',
+    duration && !(label ?? '').includes(duration) ? duration : '',
+  ]
+    .filter(Boolean)
+    .join(' ');
+
   return (
     <button
       type="button"
@@ -29,14 +41,19 @@ export function VideoTile({
         className
       )}
       style={{ aspectRatio }}
-      aria-label={label ? `Play ${label}` : 'Play sample pitch video'}
+      aria-label={`Play ${a11yText}`}
     >
       {/* Placeholder background with gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-navy-700 via-navy-800 to-navy-900" />
 
       {/* Thumbnail (hides itself if the file is absent, gradient shows through) */}
       {image && (
-        <Photo src={image} className="absolute inset-0 h-full w-full object-cover" />
+        <Photo
+          src={image}
+          loading={eager ? 'eager' : 'lazy'}
+          fetchPriority={eager ? 'high' : undefined}
+          className="absolute inset-0 h-full w-full object-cover"
+        />
       )}
 
       {/* Play button */}

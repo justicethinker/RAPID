@@ -43,6 +43,8 @@ test('waitlist dialog is axe-clean', async ({ page }) => {
 
 test('privacy page is axe-clean', async ({ page }) => {
   await page.goto('/privacy');
+  // the privacy route is lazy-loaded — wait for real content before auditing
+  await expect(page.locator('h1#policy-title')).toBeVisible();
   const results = await new AxeBuilder({ page }).withTags(TAGS).analyze();
   report('PRIVACY', results);
   expect(results.violations.map((v) => v.id)).toEqual([]);

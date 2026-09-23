@@ -15,9 +15,11 @@ test.describe('Home page', () => {
 
   test('header nav links exist', async ({ page }) => {
     await page.goto('/');
-    await expect(page.locator('nav a[href="#how-it-works"]')).toBeVisible();
-    await expect(page.locator('nav a[href="#explore-ideas"]')).toBeVisible();
-    await expect(page.locator('nav a[href="#roles"]')).toBeVisible();
+    const headerNav = page.locator('nav[aria-label="Main navigation"]');
+    await expect(headerNav.locator('a[href="#how-it-works"]')).toBeVisible();
+    await expect(headerNav.locator('a[href="#explore-ideas"]')).toBeVisible();
+    // the header links "For founders" and "For testers" both target #roles
+    await expect(headerNav.locator('a[href="#roles"]').first()).toBeVisible();
   });
 
   test('join waitlist button opens a name + email dialog', async ({ page }) => {

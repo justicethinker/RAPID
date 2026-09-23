@@ -125,6 +125,31 @@ export const ROLE_DEMO = {
   founderReportLabel: 'What you would see',
   openReportCta: 'Open sample report',
   footerNote: 'Switch roles to see what each person gets from RAPID.',
+  /* --- interactive demo states (all local, nothing is sent or booked) --- */
+  testerIdleTitle: 'Preview what happens',
+  testerIdleText: 'Choose Try it, Book a call or Collaborate to preview the next step.',
+  callTitle: 'Book a quick call',
+  callDescription: 'Pick a sample slot to see how booking would work.',
+  callSlots: ['Tue · 11:30', 'Wed · 12:00', 'Thu · 13:00'],
+  collabTitle: 'Collaborate with the founder',
+  collabDescription: 'Preview how you would offer to help shape the product.',
+  collabNote:
+    'I run a student club on campus and can gather 20 testers for the pilot — happy to co-run the first lunch run.',
+  collabPreviewCta: 'Preview collab',
+  trySuccess: 'Request previewed — demo only, nothing was sent.',
+  callSuccess: 'Slot selected — demo only, nothing was booked.',
+  collabSuccess: 'Collaboration previewed — demo only, nothing was sent.',
+  tryAnotherCta: 'Try another',
+  founderInboxLabel: 'Incoming actions',
+  founderUndoCta: 'Undo',
+  founderAccepted: 'Accepted',
+  founderPassed: 'Passed',
+  founderAllHandled: 'All actions handled — demo only, nothing was sent.',
+  founderReportDetails: [
+    { title: 'What worked', text: 'Students liked choosing a pickup time — 18 of 24 picked a slot.' },
+    { title: 'What to test next', text: 'Meal choice had no clear winner. Test again with three fixed options.' },
+    { title: 'Suggested next step', text: 'Iterate on pickup times, simplify meal choice, then re-test.' },
+  ],
 } as const;
 
 export const ACTION_EVIDENCE = {

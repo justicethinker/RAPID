@@ -13,7 +13,7 @@ interface CreatePitchProps {
 
 export function CreatePitch({ onOpenDemo }: CreatePitchProps) {
   return (
-    <section id="how-it-works" className="relative overflow-hidden surface-light surface-light--mist seam-hairline py-[56px] lg:py-24 on-light">
+    <section id="how-it-works" className="cv-auto relative overflow-hidden surface-light surface-light--mist seam-hairline py-[56px] lg:py-24 on-light">
       <Container className="relative z-10">
         {/* Editorial header: headline left, lead + tip right */}
         <div className="grid gap-7 lg:grid-cols-12 lg:gap-12 items-end mb-9 lg:mb-12">

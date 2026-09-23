@@ -14,7 +14,7 @@ export function FeedbackLoop() {
 
   return (
     <>
-      <section className="relative overflow-hidden surface-dark seam-hairline py-[56px] lg:py-24">
+      <section className="cv-auto relative overflow-hidden surface-dark seam-hairline py-[56px] lg:py-24">
         {/* Background glow */}
         <div
           className="orb"

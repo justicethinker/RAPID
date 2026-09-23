@@ -15,7 +15,7 @@ export function RoleDemo() {
   const [role, setRole] = useState('tester');
 
   return (
-    <section className="relative overflow-hidden surface-dark surface-dark--bleed-top seam-hairline py-[56px] lg:py-24">
+    <section className="cv-auto relative overflow-hidden surface-dark surface-dark--bleed-top seam-hairline py-[56px] lg:py-24">
       <Container className="relative z-10">
         {/* Header */}
         <div className="flex items-center justify-between mb-8">

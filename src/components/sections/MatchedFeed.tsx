@@ -56,7 +56,7 @@ export function MatchedFeed({ onOpenDemo }: MatchedFeedProps) {
   };
 
   return (
-    <section id="explore-ideas" className="relative overflow-hidden surface-dark seam-hairline py-[56px] lg:py-24">
+    <section id="explore-ideas" className="cv-auto relative overflow-hidden surface-dark seam-hairline py-[56px] lg:py-24">
       {/* Background glows */}
       <div
         className="orb"

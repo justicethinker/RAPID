@@ -6,8 +6,8 @@ interface LogoProps {
 }
 
 // Extracted from the client's brand JPGs by scripts/process-logo.mjs
-const MARK_SRC = '/images/brand/r-mark.png';
-const WORD_SRC = '/images/brand/rapid-wordmark.png';
+const MARK_SRC = '/images/brand/r-mark.webp';
+const WORD_SRC = '/images/brand/rapid-wordmark.webp';
 const MARK_ASPECT = 1.5152; // width / height of r-mark.png
 const WORD_ASPECT = 5.4299; // width / height of rapid-wordmark.png
 

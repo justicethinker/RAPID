@@ -19,7 +19,7 @@ const MAX_KB = 200; // per README budget
 /** source filename → slot outputs */
 const MAP = {
   'WhatsApp Image 2026-09-22 at 1.45.04 PM (4).jpeg': [
-    { name: 'hero-pitch', aspect: [16, 10], width: 960 },
+    { name: 'hero-pitch', aspect: [16, 10], width: 720 },
   ],
   'WhatsApp Image 2026-09-22 at 1.45.04 PM (3).jpeg': [
     { name: 'create-pitch', aspect: [16, 10], width: 880 },
@@ -31,14 +31,14 @@ const MAP = {
     { name: 'feed-2', aspect: [16, 11], width: 720 },
   ],
   'WhatsApp Image 2026-09-22 at 1.45.04 PM (1).jpeg': [
-    { name: 'profile-1', aspect: [4, 3], width: 560 },
+    { name: 'profile-1', aspect: [4, 3], width: 400 },
   ],
   'WhatsApp Image 2026-09-22 at 1.45.05 PM (2).jpeg': [
-    { name: 'profile-2', aspect: [4, 3], width: 560 },
-    { name: 'feedback-avatar', aspect: [1, 1], width: 240 },
+    { name: 'profile-2', aspect: [4, 3], width: 400 },
+    { name: 'feedback-avatar', aspect: [1, 1], width: 160 },
   ],
   'WhatsApp Image 2026-09-22 at 1.45.05 PM (1).jpeg': [
-    { name: 'profile-3', aspect: [4, 3], width: 560 },
+    { name: 'profile-3', aspect: [4, 3], width: 400 },
   ],
   'WhatsApp Image 2026-09-22 at 1.45.05 PM (3).jpeg': [
     { name: 'feed-3', aspect: [16, 11], width: 720 },

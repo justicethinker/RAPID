@@ -12,7 +12,7 @@ interface RolesValueProps {
 
 export function RolesValue({ onJoinWaitlist }: RolesValueProps) {
   return (
-    <section id="roles" className="relative overflow-hidden surface-light surface-light--mist seam-hairline py-[56px] lg:py-24 on-light">
+    <section id="roles" className="cv-auto relative overflow-hidden surface-light surface-light--mist seam-hairline py-[56px] lg:py-24 on-light">
       <Container className="relative z-10">
         {/* Headline */}
         <h2 className="t-statement text-center text-ink mb-16 max-w-[760px] mx-auto">

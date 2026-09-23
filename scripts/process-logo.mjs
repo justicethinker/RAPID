@@ -178,3 +178,11 @@ for (const f of ['r-mark.png', 'rapid-wordmark.png']) {
   console.log(`${f}: ${m.width}×${m.height}  aspect ${(m.width / m.height).toFixed(4)}  ${Math.round(size / 1024)} KB`);
 }
 console.log('favicon.svg + og-image.svg + og-image.png rewritten with the embedded mark');
+
+// ---------- 6. WebP variants for the page (masks + <img>) ----------
+// The PNG originals stay for the favicon/OG embeds; the page loads these
+// much smaller WebP files instead (the mark renders at ≤35px, the
+// wordmark at ≤80px, so even 240/320px sources are retina-safe).
+await sharp(`${OUT}/rapid-wordmark.png`).resize({ width: 320 }).webp({ quality: 90 }).toFile(`${OUT}/rapid-wordmark.webp`);
+await sharp(`${OUT}/r-mark.png`).resize({ width: 240 }).webp({ quality: 90 }).toFile(`${OUT}/r-mark.webp`);
+console.log('rapid-wordmark.webp + r-mark.webp written');

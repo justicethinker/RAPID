@@ -256,4 +256,53 @@ top 655 (1440) and 576 vs 629 (900) — no overlap, phone clears the flow strip,
 scrollHeight overflow is only the unscaled phone layout box (visually clipped-safe).
 Note: `tests/home.spec.ts` "header nav links exist" fails on a pre-existing strict-mode
 collision (`nav a[href="#explore-ideas"]` matches both header and footer links) —
-unrelated to this change.
+unrelated to this change. *(Superseded: selector now scoped to
+`nav[aria-label="Main navigation"]`, suite green — see the mobile pass below.)*
+
+## Mobile optimization pass — audit + reported-bug fixes
+
+**Reported bugs**
+- **04 / LEARN FROM ACTIONS** — added an `accordionClose` exit keyframe (Radix waits for
+  it before unmounting, so panels no longer snap shut on close) and promoted the
+  section's gradient blob to its own layer (`will-change-transform`) so it isn't
+  repainted frame-by-frame while the height animates. FAQ accordion gets the same close.
+- **02 / FIND RELEVANT PEOPLE** — rebuilt. Desktop: cards, audience node and connector
+  paths now share one exact 640×480 stage, so every line starts under the node and ends
+  just inside its card; the SVG renders first, so lines can never cover a photo. Below
+  `md`: a stacked timeline (spine + curved connector per card, horizontal photo cards)
+  replaces the cramped absolute layout that clipped at small widths.
+- **Hero connectors** — lines now start behind the main card, touch a pulsing bounce
+  node on the globe's visible dot field, then deflect into each floating card; the SVG
+  renders before the cards so line ends are covered. Added `@keyframes pulseRing` to
+  CSS — the keyframes lived only in tailwind.config and were never emitted, so the
+  globe's Nigeria pulse had never actually animated.
+
+**Audit fixes (Lighthouse mobile, before → after)**
+- performance 66 → 81, accessibility 97 → 100, best-practices 96 → 100;
+  TBT 940 → 420 ms, LCP 3.6 → 3.0 s, TTI 4.1 → 3.0 s (CLS 0.01 unchanged).
+- removed the hand-written `<link rel="modulepreload" href="/src/main.tsx">` — the
+  build rewrote it to a hashed `.tsx` asset served with an empty MIME type (console
+  error + wasted request on every load; the `errors-in-console` best-practices fail).
+- hero thumbnail loads `eager` + `fetchpriority=high` (it was the lazily-loaded LCP
+  image — `Photo`/`VideoTile` gained `loading`/`eager` props).
+- logo now loads WebP (`r-mark` 105 → 9.3 KB, `rapid-wordmark` 26 → 4.3 KB; PNGs kept
+  for favicon/OG embeds — new step 6 in `process-logo.mjs`); hero/profile/avatar photos
+  resized to display sizes (−~40 KB) in `process-pictures.mjs`.
+- privacy page lazy-loaded out of the main bundle (`routes.tsx`).
+- `cv-auto` utility (`content-visibility: auto`) on below-fold sections — offscreen
+  sections skip rendering work until they near the viewport (the layout/TBT win;
+  verified in-view reveals and line draws still fire after the scroll).
+- waitlist dialog: `92dvh` instead of `90vh` (mobile URL-bar safe), `min-h` only from
+  `md`, inputs `text-base` below `md` (prevents the iOS focus zoom) — dialog measured
+  370×530 fully inside a 390×844 viewport.
+- footer links get 44 px tap targets; chat timestamps `gray-400 → gray-600` (2.3 →
+  6.8:1 contrast); `VideoTile` aria-label now contains its visible label + duration
+  (WCAG Label in Name — clears Lighthouse `label-content-name-mismatch`).
+
+**Verified**: `tsc --noEmit`, `oxlint`, `vitest`, `pnpm build` clean; Playwright
+`tests/` 9/9 with 0 axe violations on home, waitlist dialog and privacy; contrast-audit
+37/37; `scripts/verify-mobile.mjs` 34/34 (dialog fit, both FindPeople layouts'
+geometry, line-behind-card paint order at both widths, hero connector
+start/touch/end behaviour, accordion open/close height sampling, zero console errors).
+Screenshots in `docs/audit/`. The privacy a11y test now waits for the lazy route to
+render before running axe.

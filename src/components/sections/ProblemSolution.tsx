@@ -10,7 +10,7 @@ export function ProblemSolution() {
   const { ref, isInView } = useInView({ threshold: 0.1 });
 
   return (
-    <section className="relative overflow-hidden surface-light seam-hairline py-[56px] lg:py-24 on-light">
+    <section className="cv-auto relative overflow-hidden surface-light seam-hairline py-[56px] lg:py-24 on-light">
       {/* Neutral warm wash, kept off the accent */}
       <div
         className="absolute top-1/4 right-[-100px] w-[520px] h-[520px] rounded-full pointer-events-none"
@@ -63,11 +63,11 @@ export function ProblemSolution() {
               <div className="absolute right-4 top-8">
                 <div className="bg-gray-100 rounded-2xl px-3 py-2 mb-3 max-w-[140px]">
                   <p className="text-xs text-ink">Interesting idea</p>
-                  <p className="text-[10px] text-gray-400 mt-1">10:24 AM</p>
+                  <p className="text-[10px] text-gray-600 mt-1">10:24 AM</p>
                 </div>
                 <div className="bg-gray-100 rounded-2xl px-3 py-2 ml-6 max-w-[120px]">
                   <p className="text-xs text-ink">Sounds useful</p>
-                  <p className="text-[10px] text-gray-400 mt-1">11:03 AM</p>
+                  <p className="text-[10px] text-gray-600 mt-1">11:03 AM</p>
                 </div>
               </div>
 

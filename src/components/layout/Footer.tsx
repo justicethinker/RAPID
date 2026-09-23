@@ -10,18 +10,18 @@ export function Footer() {
       <Container className="flex flex-col sm:flex-row items-center justify-between gap-4">
         <Logo size={24} />
         <nav className="flex items-center gap-6 text-sm text-dark-muted" aria-label="Footer navigation">
-          <a href="/privacy" className="hover:text-brand-500 transition-colors">
+          <a href="/privacy" className="inline-flex min-h-[44px] items-center hover:text-brand-500 transition-colors">
             {FOOTER.privacy}
           </a>
           {contactEmail && (
             <a
               href={`mailto:${contactEmail}`}
-              className="hover:text-brand-500 transition-colors"
+              className="inline-flex min-h-[44px] items-center hover:text-brand-500 transition-colors"
             >
               {FOOTER.contact}
             </a>
           )}
-          <a href="#explore-ideas" className="hover:text-brand-500 transition-colors">
+          <a href="#explore-ideas" className="inline-flex min-h-[44px] items-center hover:text-brand-500 transition-colors">
             {FOOTER.exploreDemo}
           </a>
         </nav>

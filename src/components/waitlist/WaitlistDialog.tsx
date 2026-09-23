@@ -98,7 +98,7 @@ export default function WaitlistDialog({ open, onClose }: WaitlistDialogProps) {
       <Dialog.Portal>
         <Dialog.Overlay className="fixed inset-0 z-50 bg-navy-950/60 backdrop-blur-sm" />
         <Dialog.Content
-          className="fixed left-1/2 top-1/2 z-50 w-[95vw] max-w-[1100px] -translate-x-1/2 -translate-y-1/2 rounded-[28px] bg-white shadow-xl overflow-hidden max-h-[90vh]"
+          className="fixed left-1/2 top-1/2 z-50 w-[95vw] max-w-[1100px] -translate-x-1/2 -translate-y-1/2 rounded-[28px] bg-white shadow-xl overflow-hidden max-h-[92dvh]"
           aria-label="Join the waitlist"
         >
           <Dialog.Close asChild>
@@ -111,7 +111,7 @@ export default function WaitlistDialog({ open, onClose }: WaitlistDialogProps) {
             </button>
           </Dialog.Close>
 
-          <div className="flex min-h-[500px] max-h-[90vh]" style={{ colorScheme: 'light' }}>
+          <div className="flex min-h-0 max-h-[92dvh] md:min-h-[500px]" style={{ colorScheme: 'light' }}>
             <BrandPanel />
 
             {/* Form panel */}
@@ -144,7 +144,7 @@ export default function WaitlistDialog({ open, onClose }: WaitlistDialogProps) {
                       placeholder={WAITLIST.namePlaceholder}
                       autoComplete="name"
                       className={cn(
-                        'w-full rounded-xl border px-4 py-3 text-sm text-ink placeholder:text-light-muted focus:outline-none focus:ring-2 focus:ring-brand-500/30 focus:border-brand-600 transition-all',
+                        'w-full rounded-xl border px-4 py-3 text-base md:text-sm text-ink placeholder:text-light-muted focus:outline-none focus:ring-2 focus:ring-brand-500/30 focus:border-brand-600 transition-all',
                         errors.name ? 'border-danger' : 'border-[#808F9E]'
                       )}
                     />
@@ -161,7 +161,7 @@ export default function WaitlistDialog({ open, onClose }: WaitlistDialogProps) {
                       placeholder={WAITLIST.emailPlaceholder}
                       autoComplete="email"
                       className={cn(
-                        'w-full rounded-xl border px-4 py-3 text-sm text-ink placeholder:text-light-muted focus:outline-none focus:ring-2 focus:ring-brand-500/30 focus:border-brand-600 transition-all',
+                        'w-full rounded-xl border px-4 py-3 text-base md:text-sm text-ink placeholder:text-light-muted focus:outline-none focus:ring-2 focus:ring-brand-500/30 focus:border-brand-600 transition-all',
                         errors.email ? 'border-danger' : 'border-[#808F9E]'
                       )}
                     />

@@ -232,7 +232,50 @@ const browser = await chromium.launch();
   });
   check('item fully closed after animation', closed === 'false', closed);
 
-  // --- report showcase section screenshot with one panel open ---
+  // --- interactive role demo: every button must do something ---
+  const rd = page.locator('section:has-text("works for you")').first();
+  await rd.scrollIntoViewIfNeeded();
+  await page.waitForTimeout(500);
+
+  check('role demo: idle state prompts for an action', await rd.getByText('Preview what happens').isVisible());
+
+  await rd.locator('button:has-text("Try it")').click();
+  check('role demo: Try it opens the request preview', await rd.getByText('Preview how you could request early access').isVisible());
+  await rd.locator('button:has-text("Preview request")').click();
+  check('role demo: preview ends in success (nothing sent)', await rd.getByText('Request previewed — demo only').isVisible());
+  await rd.locator('button:has-text("Try another")').click();
+
+  await rd.locator('button:has-text("Book a call")').click();
+  check('role demo: Book a call lists sample slots', await rd.locator('button:has-text("Wed")').first().isVisible());
+  await rd.locator('button:has-text("Wed")').first().click();
+  check('role demo: picking a slot ends in success (nothing booked)', await rd.getByText('Slot selected — demo only').isVisible());
+  await rd.locator('button:has-text("Try another")').click();
+
+  await rd.locator('button:has-text("Collaborate")').click();
+  await rd.locator('button:has-text("Preview collab")').click();
+  check('role demo: collab preview ends in success', await rd.getByText('Collaboration previewed — demo only').isVisible());
+  await rd.locator('button:has-text("Try another")').click();
+  check('role demo: Try another returns to the idle state', await rd.getByText('Preview what happens').isVisible());
+
+  // founder tab: accept / undo / expandable report
+  await rd.locator('button[role="tab"]:has-text("Founder")').click();
+  await rd.locator('button[aria-label^="Accept:"]').first().click();
+  check(
+    'role demo: founder accept shows badge + counter',
+    (await rd.getByText('Accepted', { exact: true }).isVisible()) && (await rd.getByText('1/3').isVisible())
+  );
+  await rd.locator('button[aria-label^="Undo decision"]').first().click();
+  check('role demo: undo restores the action buttons', (await rd.locator('button[aria-label^="Accept:"]').count()) === 3);
+
+  await rd.locator('button[aria-label^="Accept:"]').first().click();
+  await rd.locator('button:has-text("Open sample report")').click();
+  check('role demo: sample report expands', await rd.getByText('What worked').isVisible());
+  await rd.screenshot({ path: 'docs/audit/role-demo-1440.png' });
+  await rd.locator('button:has-text("Close")').click();
+  check('role demo: report collapses again', !(await rd.getByText('What worked').isVisible()));
+  await rd.locator('button[aria-label^="Undo decision"]').first().click();
+  check('role demo: demo state fully resets', (await rd.locator('button[aria-label^="Accept:"]').count()) === 3);
+
   check('no console errors (desktop)', errors.length === 0, errors.join(' | '));
   await page.close();
 }

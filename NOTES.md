@@ -306,3 +306,20 @@ geometry, line-behind-card paint order at both widths, hero connector
 start/touch/end behaviour, accordion open/close height sampling, zero console errors).
 Screenshots in `docs/audit/`. The privacy a11y test now waits for the lazy route to
 render before running axe.
+
+## Interactive role demo — section 05 (2026-09-23)
+
+**Reported**: "Pick a role and try it" wasn't interactive for either role.
+- **Tester panel**: Try it / Book a call / Collaborate now drive the right panel —
+  idle prompt → action preview → success state (sample slot picker for calls; every
+  success carries "demo only, nothing was sent/booked" copy). The X, Close and
+  "Try another" buttons all return to idle. Active CTA gets a ring + `aria-pressed`.
+- **Founder panel**: each incoming-action row gets accept / pass round buttons
+  (badge + undo replace them when decided), an n/3 handled counter and an
+  all-handled note; "Open sample report" expands the three report details in place
+  and toggles to Close (`aria-expanded`).
+- New strings live in `ROLE_DEMO` (`src/content/copy.ts`); all state is component-
+  local — nothing is sent, booked or stored.
+- **Verified**: `scripts/verify-mobile.mjs` 46/46 (12 new checks click every tester
+  and founder control end-to-end), Playwright 9/9 with 0 axe violations, contrast
+  37/37, `tsc`/`oxlint`/build clean. Screenshot: `docs/audit/role-demo-1440.png`.

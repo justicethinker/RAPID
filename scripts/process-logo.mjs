@@ -159,10 +159,17 @@ let _wordAspect;
   <image href="data:image/png;base64,${buf.toString('base64')}" x="${mx}" y="${my.toFixed(2)}" width="${mw}" height="${mh.toFixed(2)}"/>
   <text x="440" y="280" font-family="system-ui,sans-serif" font-size="64" font-weight="800" fill="#F2F7FB">Good ideas need</text>
   <text x="440" y="360" font-family="system-ui,sans-serif" font-size="64" font-weight="800" fill="url(#g)">the right people.</text>
-  <text x="440" y="420" font-family="system-ui,sans-serif" font-size="22" fill="#B7C7D5">RAPID — Test your idea with the right people</text>
+  <text x="440" y="420" font-family="system-ui,sans-serif" font-size="22" fill="#B7C7D5">RAPID — Validation that drives traction</text>
 </svg>
 `;
   await writeFile('public/og-image.svg', svg);
+}
+
+// ---------- 5. og-image.png (social scrapers ignore SVG) ----------
+{
+  await sharp('public/og-image.svg')
+    .png({ compressionLevel: 9 })
+    .toFile('public/og-image.png');
 }
 
 for (const f of ['r-mark.png', 'rapid-wordmark.png']) {
@@ -170,4 +177,4 @@ for (const f of ['r-mark.png', 'rapid-wordmark.png']) {
   const { size } = await stat(`${OUT}/${f}`);
   console.log(`${f}: ${m.width}×${m.height}  aspect ${(m.width / m.height).toFixed(4)}  ${Math.round(size / 1024)} KB`);
 }
-console.log('favicon.svg + og-image.svg rewritten with the embedded mark');
+console.log('favicon.svg + og-image.svg + og-image.png rewritten with the embedded mark');

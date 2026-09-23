@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /api/
 
-Sitemap: https://rapid.africa/sitemap.xml
+Sitemap: https://rapid-rouge.vercel.app/sitemap.xml

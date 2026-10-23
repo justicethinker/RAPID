@@ -1,6 +1,118 @@
 # RAPID — Build Notes
 
-## Decisions
+> **October 2026 — the site was rebuilt for the pilot.** Sections 1–7 of
+> `RAPID_Website_PRD_Pilot_v2.docx` (rev. 3) now define the product: a
+> tester-first homepage, two forms, two confirmations, a pilot privacy notice
+> and a useful 404, backed by Google Sheets through an Apps Script endpoint.
+> The notes after the divider describe the superseded marketing site and are
+> kept only as history. Current results live in
+> [`docs/ACCEPTANCE_REPORT.md`](docs/ACCEPTANCE_REPORT.md).
+
+## Decision log — pilot rebuild (23 October 2026)
+
+Each decision was made during the build; the reason and the trade-off are
+recorded so a later reviewer does not have to guess.
+
+1. **Keep Google Sheets + Apps Script as the record store.** The PRD allows a
+   managed form service with a private team interface, and this repo already
+   had a working Apps Script endpoint. Building a database, auth and dashboard
+   would add scope the PRD explicitly excludes. Trade-off: no relational unique
+   constraint, and the script cannot see visitor IPs (see 5).
+2. **Mirror every rule on the client and the server.** The form validates
+   immediately for a good phone experience; the Apps Script re-validates the
+   same required, conditional, age, email-match, selection-count, phone and
+   length rules so a crafted request cannot write invalid records. Field codes
+   are returned by name so the browser can focus the first error.
+3. **Tester dedupe by normalised email, founder dedupe by submission ID.** The
+   PRD treats an email as one application and a founder retry as one request.
+   Normalisation only trims and lowercases (dots and `+` suffixes are kept). A
+   repeat tester application returns the same neutral confirmation and never
+   overwrites answers, status or consent; a new founder request with the same
+   phone is allowed.
+4. **Confirmation only after a confirmed save.** `VITE_SUBMISSIONS_ENDPOINT`
+   unset means the required save-error state, not a fake success. Answers are
+   preserved and the retry reuses the same submission ID, so the server can make
+   the retry idempotent.
+5. **Spam trap plus a contact-level rate limit.** A hidden `website` field
+   acknowledges bots without writing. The PRD's five-per-ten-minutes limit is
+   enforced per normalised email/phone because Apps Script has no visitor IP.
+   A true per-connection limit belongs at the host/WAF layer; this is recorded
+   as a known limit.
+6. **Platform-safe sheet writes (fixed a real defect).** `safeCell_` originally
+   prefixed `+`, `-`, `@` as well as `=` with an apostrophe. Because every
+   international phone number starts with `+`, that wrote `'+234…` into the
+   sheet. Sheet cells are already forced to plain text and only a leading `=`
+   is a formula there, so only `=` (and tab/CR) is escaped when writing. CSV
+   export still neutralises `=`, `+`, `-`, `@`, tab and carriage return, which
+   is where those characters are dangerous (Excel/LibreOffice).
+7. **No custom admin UI.** Statuses are dropdown-backed columns; filtering uses
+   Sheets filter views; exports, suppression and deletion live in a **RAPID**
+   menu. This matches the PRD's managed-service model and avoids building an
+   authenticated dashboard that the pilot does not need. Withdrawn/suppressed
+   testers are excluded from the invitation export.
+8. **Site URL is a build input, not four hardcoded files.** `VITE_SITE_URL` is
+   injected into canonical/OG/JSON-LD tags, and `robots.txt` plus `sitemap.xml`
+   are generated at build time. Changing the domain is one env var instead of
+   edits in HTML, robots and sitemap. The old files in `public/` were removed so
+   they cannot drift.
+9. **Analytics stays privacy-first and optional.** Plausible manual mode is
+   loaded only when `VITE_PLAUSIBLE_DOMAIN` is set. Only paths and field codes
+   are sent; a session receipt dedupes successful saves so duplicate tester
+   applications do not inflate sign-ups. `trackPageview` defensively strips
+   query strings. Consent mode and session counting remain an owner decision
+   before launch.
+10. **Test the backend without a Google account.** `Code.gs` now has a small
+    Apps Script emulator (`integrations/google-apps-script/code-harness.ts`)
+    that exercises real `doPost` calls: validation, duplicates, idempotency,
+    spam trap, rate limit, CSV escaping, suppression and deletion. This is the
+    only way to prove A03/A05/A07 automatically; a live-sheet rehearsal is still
+    listed as a launch check.
+11. **Cross-browser scope is honest.** Playwright runs desktop Chrome, desktop
+    Firefox and Pixel 5 Chrome on every test. WebKit (desktop Safari and iPhone
+    Safari) needs GTK/GStreamer libraries that are absent from this Ubuntu 24
+    environment and installing them needs administrative approval, so those
+    projects are opt-in behind `PLAYWRIGHT_INCLUDE_WEBKIT=1`. Edge is
+    Chromium-based and has no Linux binary here; the Chromium project covers its
+    engine. The gap is reported, not hidden.
+12. **One accent, one typeface, no motion noise.** The PRD fixes white,
+    emerald and a single typeface; Inter is kept and the earlier "AI-default
+    font" debate is closed by the PRD. Decorative section eyebrows that carried
+    no meaning were not reintroduced. Body text is 17 px, focus is visible, and
+    axe runs on every page plus both forms.
+13. **Remove dead old-site code, assets and scripts.** The previous waitlist
+    dialogs, demo sections, generated map, unused photography and their scripts
+    were deleted in the rewrite. `package.json` no longer exposes `gen:map` or
+    `pictures` (their scripts were gone) and no longer depends on `d3-geo`,
+    `topojson-client`, `world-atlas`, `tsx`, `@fontsource/caveat` or the unused
+    Testing Library packages. `sharp` is kept for the logo pipeline.
+14. **Privacy copy was rewritten for the pilot.** The old policy claimed
+    automated/AI matching, which contradicts the marketing copy and the PRD's
+    team-assisted model. The current notice covers tester and founder data,
+    WhatsApp consent, the optional group, retention, removal and analytics. It
+    still needs the owner's legal sign-off and a confirmed retention period.
+15. **Support email defaults to `hello@rapid.africa`.** The PRD requires an
+    approved address before launch; the fallback keeps the footer, confirmations
+    and privacy page coherent until the owner confirms or overrides it with
+    `VITE_CONTACT_EMAIL`.
+16. **Submission IDs are React state, not refs.** Both forms create the ID once
+    per mount with `useState` and reuse it for retries. This keeps retry
+    semantics and removes the React Compiler lint warnings about reading refs
+    during render; lint is now clean (0 warnings, 0 errors).
+
+### Open items from this pass
+
+- Deploy the Apps Script web app, set `VITE_SUBMISSIONS_ENDPOINT`, and run one
+  labelled internal tester and founder request through the live sheet.
+- Confirm the support address, domain, privacy sign-off and retention period.
+- Install WebKit's system libraries and run the Safari projects before launch if
+  iPhone Safari coverage is required by the owner.
+- Agree the analytics consent mode and visitor/session counting method.
+
+---
+
+## Historical notes — superseded marketing site
+
+### Decisions
 
 - **React 19**: Project uses React 19 (not 18 as brief specified). The brief said React 18 but the scaffold defaulted to 19.
 - **Router**: Using `react-router-dom` v7 (v6 API compatible) as installed by pnpm.

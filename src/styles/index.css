@@ -1,77 +1,35 @@
 @import '@fontsource-variable/inter';
-@import '@fontsource/caveat/600.css';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  color-scheme: dark;
-}
-.on-light,
-.section-light {
   color-scheme: light;
 }
 
-/* Hide scrollbar for feed containers */
-.hide-scrollbar::-webkit-scrollbar {
-  display: none;
-}
-.hide-scrollbar {
-  scrollbar-width: none;
-}
-
-/* Step transition animation */
-@keyframes stepSlideIn {
-  from { opacity: 0; transform: translateX(24px); }
-  to { opacity: 1; transform: translateX(0); }
-}
-@keyframes stepSlideBack {
-  from { opacity: 0; transform: translateX(-24px); }
-  to { opacity: 1; transform: translateX(0); }
-}
-.step-enter {
-  animation: stepSlideIn 0.25s ease-out both;
-}
-.step-enter-back {
-  animation: stepSlideBack 0.25s ease-out both;
-}
-
-/* Accordion height animation — open AND close (Radix waits for the exit
-   animation before unmounting, so closing no longer snaps shut). */
-@keyframes accordionOpen {
-  from { height: 0; opacity: 0; }
-  to { height: var(--radix-accordion-content-height); opacity: 1; }
-}
-@keyframes accordionClose {
-  from { height: var(--radix-accordion-content-height); opacity: 1; }
-  to { height: 0; opacity: 0; }
-}
-
-/* Expanding pulse ring — globe Nigeria marker + hero connector bounce nodes.
-   (Defined in tailwind.config.ts too, but keyframes only reach the built CSS
-   when a matching utility class is used — these are applied inline.) */
-@keyframes pulseRing {
-  0% { transform: scale(.4); opacity: .9; }
-  100% { transform: scale(3.2); opacity: 0; }
-}
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 88px;
+  scroll-padding-top: 84px;
   -webkit-text-size-adjust: 100%;
 }
+
 body {
-  @apply bg-navy-950 text-dark-text font-sans antialiased overflow-x-hidden;
+  @apply bg-white text-ink font-sans antialiased;
   font-size: 17px;
   line-height: 1.6;
 }
+
+::selection {
+  background: #c9f7e4;
+  color: #101b26;
+}
+
 :focus-visible {
-  outline: 3px solid #15e6a0;
+  outline: 3px solid #087a56;
   outline-offset: 3px;
-  border-radius: 8px;
+  border-radius: 6px;
 }
-.on-light :focus-visible {
-  outline-color: #0fb37b;
-}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -84,182 +42,56 @@ body {
   }
 }
 
+/* Accordion open and close — Radix waits for the exit animation. */
+@keyframes accordionOpen {
+  from {
+    height: 0;
+    opacity: 0;
+  }
+  to {
+    height: var(--radix-accordion-content-height);
+    opacity: 1;
+  }
+}
+@keyframes accordionClose {
+  from {
+    height: var(--radix-accordion-content-height);
+    opacity: 1;
+  }
+  to {
+    height: 0;
+    opacity: 0;
+  }
+}
+
 @layer utilities {
-  /* One accent colour, no second hue. */
-  .text-grad-dark {
-    color: #15e6a0;
+  .t-statement {
+    font-size: clamp(40px, 6.4vw, 72px);
+    line-height: 1.03;
+    letter-spacing: -0.035em;
+    font-weight: 800;
+    text-wrap: balance;
   }
-  .text-grad-light {
-    color: #0a8a62;
+  .t-section {
+    font-size: clamp(29px, 3.9vw, 44px);
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+    font-weight: 800;
+    text-wrap: balance;
   }
-  .orb {
-    position: absolute;
-    border-radius: 9999px;
-    pointer-events: none;
-  }
-  .section-dark {
-    color-scheme: dark;
-    background: #0b1826;
-    color: #e6edf3;
-    --muted: #9fb0bf;
-  }
-  .section-light {
-    color-scheme: light;
-    background: #faf8f4;
-    color: #101b26;
-    --muted: #55636e;
+  .t-eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 700;
   }
   .lead {
-    font-size: clamp(17px, 1.7vw, 20px);
+    font-size: clamp(17px, 1.6vw, 20px);
     line-height: 1.55;
-    color: var(--muted);
+    color: #55636e;
     max-width: 58ch;
   }
+  .balance {
+    text-wrap: balance;
+  }
 }
-
-/* ============================================================
-   Editorial restraint system
-   One dominant surface per theme, a warm neutral secondary and
-   a single accent. Background washes are NEUTRAL (never the
-   accent), so the accent stays inside its 10% budget.
-   ============================================================ */
-
-/* --- Dominant dark surface: lifted navy, neutral washes --- */
-.surface-dark {
-  position: relative;
-  isolation: isolate;
-  color-scheme: dark;
-  color: #e6edf3;
-  --muted: #9fb0bf;
-  background-color: #0b1826;
-  background-image:
-    radial-gradient(58% 46% at 14% 0%, rgba(255, 255, 255, 0.045), transparent 70%),
-    radial-gradient(52% 50% at 92% 100%, rgba(120, 150, 180, 0.07), transparent 72%),
-    linear-gradient(180deg, #0d1e2e 0%, #0b1826 52%, #0a1622 100%);
-}
-
-/* Dark surface continuing the one above it, so stacked dark
-   sections read as one canvas. Starts at the exact color the
-   section above ends on (#0a1622) so the join has no step. */
-.surface-dark--bleed-top {
-  background-image:
-    radial-gradient(70% 44% at 24% 0%, rgba(255, 255, 255, 0.06), transparent 70%),
-    radial-gradient(48% 50% at 94% 100%, rgba(120, 150, 180, 0.06), transparent 72%),
-    linear-gradient(180deg, #0a1622 0%, #0b1826 46%, #0a1622 100%);
-}
-
-/* --- Dominant light surface: warm paper, sand washes --- */
-.surface-light {
-  position: relative;
-  isolation: isolate;
-  color-scheme: light;
-  color: #101b26;
-  --muted: #55636e;
-  background-color: #faf8f4;
-  background-image:
-    radial-gradient(54% 44% at 88% 0%, rgba(214, 201, 182, 0.34), transparent 70%),
-    radial-gradient(50% 42% at 6% 100%, rgba(231, 223, 210, 0.42), transparent 72%),
-    linear-gradient(180deg, #fbf9f5 0%, #f7f4ee 55%, #fbf9f5 100%);
-}
-
-/* Variants so consecutive light sections are not identical boxes. */
-.surface-light--mist {
-  background-image:
-    radial-gradient(58% 48% at 8% 100%, rgba(214, 201, 182, 0.3), transparent 72%),
-    radial-gradient(50% 42% at 90% 0%, rgba(255, 255, 255, 0.6), transparent 70%),
-    linear-gradient(180deg, #fbfaf7 0%, #f5f2ec 55%, #fbfaf7 100%);
-}
-
-.surface-light--mint {
-  background-image:
-    radial-gradient(60% 50% at 84% 16%, rgba(214, 201, 182, 0.42), transparent 72%),
-    radial-gradient(48% 42% at 4% 94%, rgba(231, 223, 210, 0.5), transparent 72%),
-    linear-gradient(180deg, #f9f6f0 0%, #f3eee5 58%, #f9f6f0 100%);
-}
-
-/* --- Typography tiers: statement / section / eyebrow --- */
-.t-statement {
-  font-size: clamp(40px, 6.2vw, 76px);
-  line-height: 1.02;
-  letter-spacing: -0.03em;
-  font-weight: 800;
-  text-wrap: balance;
-}
-.t-section {
-  font-size: clamp(30px, 3.8vw, 48px);
-  line-height: 1.06;
-  letter-spacing: -0.025em;
-  font-weight: 800;
-  text-wrap: balance;
-}
-.t-eyebrow {
-  font-size: 12px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  font-weight: 600;
-}
-.t-detail {
-  font-size: 13px;
-  letter-spacing: 0;
-  line-height: 1.5;
-}
-
-/* Skip rendering work for offscreen sections until they near the viewport —
-   saves a large share of style/layout work on mobile page load. */
-.cv-auto {
-  content-visibility: auto;
-  contain-intrinsic-size: auto 900px;
-}
-
-/* --- Elevation + glass ------------------------------------- */
-.elev-raised {
-  box-shadow: 0 2px 4px rgba(11, 24, 38, 0.05), 0 16px 36px -22px rgba(11, 24, 38, 0.3);
-}
-.elev-overlay {
-  box-shadow: 0 8px 20px -8px rgba(11, 24, 38, 0.16), 0 40px 90px -40px rgba(11, 24, 38, 0.5);
-}
-.surface-dark .elev-raised {
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.04), 0 24px 55px -28px rgba(0, 0, 0, 0.65);
-}
-.surface-dark .elev-overlay {
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.05), 0 48px 100px -48px rgba(0, 0, 0, 0.75);
-}
-
-.glass-dark {
-  background: rgba(19, 36, 54, 0.62);
-  backdrop-filter: blur(14px) saturate(120%);
-  -webkit-backdrop-filter: blur(14px) saturate(120%);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-}
-.glass-light {
-  background: rgba(255, 255, 255, 0.66);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border: 1px solid rgba(16, 27, 38, 0.07);
-}
-
-/* --- Seams --------------------------------------------------
-   Sections meet crisply: no gradient blend band across the join.
-   The only thing at a seam is the neutral hairline below, which
-   delineates the change of surface without smudging it. Every
-   section keeps the one rhythm: 56 px mobile / 96 px desktop.   */
-
-/* Neutral hairline at each seam — not the accent. */
-.seam-hairline::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  pointer-events: none;
-  z-index: 1;
-}
-.surface-light.seam-hairline::after {
-  background: linear-gradient(90deg, transparent, rgba(16, 27, 38, 0.08), transparent);
-}
-.surface-dark.seam-hairline::after {
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-}
-
-

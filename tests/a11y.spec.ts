@@ -8,7 +8,7 @@ type AxeResults = Awaited<ReturnType<AxeBuilder['analyze']>>;
 function report(label: string, results: AxeResults) {
   console.log(
     `\n=== ${label}: ${results.violations.length} violations, ` +
-      `${results.incomplete.length} needs-review ===`
+      `${results.incomplete.length} needs-review ===`,
   );
   for (const v of results.violations) {
     console.log(
@@ -16,7 +16,7 @@ function report(label: string, results: AxeResults) {
         v.nodes
           .slice(0, 6)
           .map((n) => `  - ${n.target.join(' ')}\n    ${(n.failureSummary ?? '').split('\n')[1] ?? ''}`)
-          .join('\n')
+          .join('\n'),
     );
     if (v.nodes.length > 6) console.log(`  …and ${v.nodes.length - 6} more nodes`);
   }
@@ -25,27 +25,30 @@ function report(label: string, results: AxeResults) {
   }
 }
 
-test('home page is axe-clean', async ({ page }) => {
-  await page.goto('/');
+async function audit(page: import('@playwright/test').Page, label: string, path: string) {
+  await page.goto(path);
+  await expect(page.locator('h1')).toBeVisible();
   const results = await new AxeBuilder({ page }).withTags(TAGS).analyze();
-  report('HOME', results);
+  report(label, results);
   expect(results.violations.map((v) => v.id)).toEqual([]);
+}
+
+test('home page is axe-clean', async ({ page }) => {
+  await audit(page, 'HOME', '/');
 });
 
-test('waitlist dialog is axe-clean', async ({ page }) => {
-  await page.goto('/');
-  await page.locator('button:has-text("Join waitlist")').first().click();
-  await expect(page.locator('[aria-label="Join the waitlist"]')).toBeVisible();
-  const results = await new AxeBuilder({ page }).withTags(TAGS).analyze();
-  report('WAITLIST DIALOG', results);
-  expect(results.violations.map((v) => v.id)).toEqual([]);
+test('tester application is axe-clean', async ({ page }) => {
+  await audit(page, 'JOIN', '/join');
+});
+
+test('founder request is axe-clean', async ({ page }) => {
+  await audit(page, 'FOUNDERS', '/founders');
 });
 
 test('privacy page is axe-clean', async ({ page }) => {
-  await page.goto('/privacy');
-  // the privacy route is lazy-loaded — wait for real content before auditing
-  await expect(page.locator('h1#policy-title')).toBeVisible();
-  const results = await new AxeBuilder({ page }).withTags(TAGS).analyze();
-  report('PRIVACY', results);
-  expect(results.violations.map((v) => v.id)).toEqual([]);
+  await audit(page, 'PRIVACY', '/privacy');
+});
+
+test('404 is axe-clean', async ({ page }) => {
+  await audit(page, '404', '/missing-page');
 });

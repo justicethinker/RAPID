@@ -31,3 +31,6 @@ playwright-report
 *.njsproj
 *.sln
 *.sw?
+
+# Windows download metadata
+*:Zone.Identifier

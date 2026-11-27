@@ -21,7 +21,7 @@ export function databaseUrl(): string {
   if (!value) {
     throw new Error(
       'DATABASE_URL is required for the signed-in Playwright suite. ' +
-        'Add it to .env.local or export it before running pnpm e2e:auth.',
+        'Add it to .env.local or export it before running npm run e2e:auth.',
     );
   }
   return value;

@@ -4,5 +4,5 @@ export const inputBase =
 export function inputBorder(invalid?: boolean): string {
   return invalid
     ? 'border-danger bg-danger-50/40 focus:border-danger focus:ring-danger/15'
-    : 'border-cream-300 focus:border-rapid-600 focus:ring-rapid-500/15';
+    : 'border-cream-500 focus:border-rapid-600 focus:ring-rapid-500/15';
 }

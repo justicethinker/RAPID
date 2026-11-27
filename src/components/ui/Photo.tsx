@@ -15,15 +15,6 @@ const WIDTHS: Record<PhotoName, number[]> = {
   team: [600, 928],
 };
 
-/** Intrinsic size of the largest file, for callers that want the default. */
-export const PHOTO_SIZE: Record<PhotoName, { width: number; height: number }> = {
-  hero: { width: 1920, height: 1072 },
-  founder: { width: 1200, height: 896 },
-  tester: { width: 1200, height: 896 },
-  session: { width: 928, height: 1152 },
-  team: { width: 928, height: 1152 },
-};
-
 interface PhotoProps {
   name: PhotoName;
   alt: string;

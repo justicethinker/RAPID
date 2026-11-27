@@ -7,7 +7,7 @@ import { Container } from '@/components/layout/Container';
 import { buttonStyles } from '@/components/ui/buttonStyles';
 import { cn } from '@/lib/cn';
 
-export const NAV = [
+const NAV = [
   { to: '/founders', label: 'For founders' },
   { to: '/join', label: 'For testers' },
   { to: '/how-it-works', label: 'How it works' },
@@ -37,7 +37,12 @@ export function SiteHeader({ overlay = false }: { overlay?: boolean }) {
   const { pathname } = useLocation();
   const dark = overlay && !scrolled && !open;
 
-  useEffect(() => setOpen(false), [pathname]);
+  // Close the drawer when the route changes (adjusting state during render).
+  const [lastPath, setLastPath] = useState(pathname);
+  if (lastPath !== pathname) {
+    setLastPath(pathname);
+    setOpen(false);
+  }
 
   return (
     <header

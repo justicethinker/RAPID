@@ -267,7 +267,7 @@ export function FieldLabel({
 }
 
 export const inputClass =
-  "mt-2 w-full rounded-xl border border-cream-300 bg-white px-4 py-3 text-base text-ink transition-[border-color,box-shadow] placeholder:text-ink-faint/80 hover:border-ink/40 focus:border-rapid-600 focus:outline-none focus:ring-4 focus:ring-rapid-500/15";
+  "mt-2 w-full rounded-xl border border-cream-500 bg-white px-4 py-3 text-base text-ink transition-[border-color,box-shadow] placeholder:text-ink-faint/80 hover:border-ink/40 focus:border-rapid-600 focus:outline-none focus:ring-4 focus:ring-rapid-500/15";
 
 /**
  * The greeting at the top of a role's overview: deep green, one sentence on

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link, NavLink, Outlet, useLocation, useNavigate } from "react-router-dom";
 import * as Dialog from "@radix-ui/react-dialog";
 import {
@@ -307,7 +307,12 @@ export default function AppLayout() {
   const groups = useNavGroups();
   const [drawer, setDrawer] = useState(false);
 
-  useEffect(() => setDrawer(false), [pathname]);
+  // Close the drawer when the route changes (adjusting state during render).
+  const [lastPath, setLastPath] = useState(pathname);
+  if (lastPath !== pathname) {
+    setLastPath(pathname);
+    setDrawer(false);
+  }
 
   const onSignOut = async () => {
     await signOut();

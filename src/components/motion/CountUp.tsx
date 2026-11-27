@@ -36,10 +36,7 @@ export function CountUp({
   const started = inView || timedOut;
 
   useEffect(() => {
-    if (reducedMotion) {
-      setDisplay(value);
-      return;
-    }
+    if (reducedMotion) return;
     if (!started) return;
 
     const start = performance.now();
@@ -57,7 +54,7 @@ export function CountUp({
 
   return (
     <span ref={ref} className={className}>
-      {display}
+      {reducedMotion ? value : display}
     </span>
   );
 }

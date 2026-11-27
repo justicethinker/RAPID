@@ -1,6 +1,6 @@
 // Brand asset ingest: logoimage/{Rlogo,rapid}.jpg → transparent PNGs + favicon/og embeds.
 //
-//   pnpm exec node scripts/process-logo.mjs
+//   node scripts/process-logo.mjs
 //
 // Rlogo.jpg = official R mark on a dark navy background  → luminance-ramp key
 // rapid.jpg = RAPID wordmark on a dark background        → luminance-ramp key, RGB forced white

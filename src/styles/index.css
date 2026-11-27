@@ -377,12 +377,14 @@ h4 {
   /* Hero scrim: legible copy on the left, the photo breathing on the right. */
   .hero-scrim {
     background:
+      linear-gradient(180deg, rgb(6 41 31 / 0.6) 0%, transparent 20%),
       linear-gradient(90deg, rgb(6 41 31 / 0.92) 0%, rgb(6 41 31 / 0.72) 38%, rgb(6 41 31 / 0.15) 70%, rgb(6 41 31 / 0.05) 100%),
       linear-gradient(0deg, rgb(6 41 31 / 0.75) 0%, transparent 35%);
   }
   @media (max-width: 1023px) {
     .hero-scrim {
       background:
+        linear-gradient(180deg, rgb(6 41 31 / 0.55) 0%, transparent 16%),
         linear-gradient(0deg, rgb(6 41 31 / 0.96) 0%, rgb(6 41 31 / 0.84) 48%, rgb(6 41 31 / 0.35) 78%, rgb(6 41 31 / 0.2) 100%);
     }
   }

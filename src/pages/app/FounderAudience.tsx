@@ -121,7 +121,7 @@ export default function FounderAudience() {
                   onChange={(event) =>
                     setRange(Number(event.target.value) as 7 | 30 | 90)
                   }
-                  className="ml-1 min-h-[36px] rounded-lg border border-cream-300 bg-white px-2 text-xs font-semibold text-ink"
+                  className="ml-1 min-h-[36px] rounded-lg border border-cream-500 bg-white px-2 text-xs font-semibold text-ink"
                 >
                   <option value={7}>7 days</option>
                   <option value={30}>30 days</option>

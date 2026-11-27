@@ -4,6 +4,8 @@ import { Logo } from '@/components/ui/Logo';
 import { Container } from '@/components/layout/Container';
 import { supportEmail, supportEmailHref } from '@/lib/site';
 
+const YEAR = new Date().getFullYear();
+
 const COLUMNS = [
   {
     title: 'Get started',
@@ -80,7 +82,7 @@ export function SiteFooter() {
         </p>
 
         <div className="mt-6 flex flex-col gap-3 border-t border-white/10 pt-6 text-[13px] text-rapid-100 sm:flex-row sm:items-center sm:justify-between">
-          <span>© {new Date().getFullYear()} RAPID · Nigeria pilot</span>
+          <span>© {YEAR} RAPID · Nigeria pilot</span>
           <span>Photos are illustrative and show no real RAPID testers or founders.</span>
         </div>
       </Container>

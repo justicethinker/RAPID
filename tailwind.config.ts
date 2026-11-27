@@ -46,6 +46,8 @@ export default {
           200: '#E8DECB',
           300: '#D6C8AF',
           400: '#B9A88A',
+          // Form-control borders: 3:1 against white and cream (WCAG 1.4.11).
+          500: '#938872',
         },
         ink: {
           DEFAULT: '#16150F',

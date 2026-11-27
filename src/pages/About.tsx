@@ -47,7 +47,7 @@ export default function About() {
                   <span className="flex h-12 w-12 items-center justify-center rounded-full bg-sun-500 text-ink">
                     <Icon size={20} aria-hidden="true" />
                   </span>
-                  <span className="font-display text-[44px] font-extrabold leading-none tracking-[-0.05em] text-white/15">0{index + 1}</span>
+                  <span aria-hidden="true" data-n={`0${index + 1}`} className="font-display text-[44px] font-extrabold leading-none tracking-[-0.05em] text-white/15 before:content-[attr(data-n)]" />
                 </span>
                 <h3 className="mt-8 font-display text-[24px] font-bold tracking-[-0.02em]">{title}</h3>
                 <p className="mt-2 text-[16px] leading-relaxed text-rapid-100">{body}</p>

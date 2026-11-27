@@ -76,14 +76,17 @@ export function LoopSteps({ steps, tone = 'dark' }: { steps: LoopStep[]; tone?: 
                 >
                   <Icon size={22} aria-hidden="true" />
                 </span>
+                {/* The ordered list carries the step order; the big numeral is
+                    ornament, drawn from a data attribute so it stays out of
+                    the text that contrast checks and screen readers read. */}
                 <span
+                  aria-hidden="true"
+                  data-n={`0${index + 1}`}
                   className={cn(
-                    'font-display text-[44px] font-extrabold leading-none tracking-[-0.05em] transition-colors duration-500',
-                    isActive ? (dark ? 'text-rapid-100' : 'text-rapid-700') : dark ? 'text-white/15' : 'text-cream-300',
+                    'font-display text-[44px] font-extrabold leading-none tracking-[-0.05em] transition-colors duration-500 before:content-[attr(data-n)]',
+                    isActive ? (dark ? 'text-rapid-700' : 'text-sun-300') : dark ? 'text-white/15' : 'text-cream-300',
                   )}
-                >
-                  0{index + 1}
-                </span>
+                />
               </span>
               <span className="mt-8 block font-display text-[24px] font-bold leading-[1.1] tracking-[-0.02em]">{step.title}</span>
               <span

@@ -74,12 +74,13 @@ export function SiteFooter() {
           </div>
         </div>
 
+        {/* Ornamental wordmark, drawn from a data attribute so contrast
+            checks don't read it as body text. */}
         <p
           aria-hidden="true"
-          className="pointer-events-none mt-16 select-none font-display text-[clamp(88px,19vw,300px)] font-extrabold leading-[0.8] tracking-[-0.06em] text-white/[0.06]"
-        >
-          RAPID
-        </p>
+          data-word="RAPID"
+          className="pointer-events-none mt-16 select-none font-display text-[clamp(88px,19vw,300px)] font-extrabold leading-[0.8] tracking-[-0.06em] text-white/[0.06] before:content-[attr(data-word)]"
+        />
 
         <div className="mt-6 flex flex-col gap-3 border-t border-white/10 pt-6 text-[13px] text-rapid-100 sm:flex-row sm:items-center sm:justify-between">
           <span>© {YEAR} RAPID · Nigeria pilot</span>

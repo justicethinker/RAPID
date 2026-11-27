@@ -47,8 +47,11 @@ export function SiteHeader({ overlay = false }: { overlay?: boolean }) {
   return (
     <header
       className={cn(
-        'top-0 z-50 w-full transition-[background-color,box-shadow,color] duration-500',
-        overlay ? 'fixed' : 'sticky',
+        // Overlay pages pull the hero up under a sticky bar (negative bottom
+        // margin) rather than fixing it, so the hero is the bar's real
+        // backdrop for layout and for contrast checks.
+        'sticky top-0 z-50 w-full transition-[background-color,box-shadow,color] duration-500',
+        overlay && '-mb-[72px]',
         dark
           ? 'on-dark bg-transparent text-white'
           : 'border-b border-ink/[0.06] bg-cream-50/[0.86] text-ink shadow-[0_8px_30px_-24px_rgba(22,21,15,.35)] backdrop-blur-xl',

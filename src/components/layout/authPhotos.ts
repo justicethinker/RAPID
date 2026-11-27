@@ -8,20 +8,18 @@ export interface AuthPhoto {
   caption?: string;
 }
 
-/** The research-session portrait used on the public sign-in screen. */
+/** A tester at work, used on the public sign-in and sign-up screens. */
 export const SESSION_PHOTO: AuthPhoto = {
   name: 'session',
-  alt: 'Two people reviewing notes during a test session',
-  width: 900,
-  height: 1125,
-  caption: 'Pilot session · illustrative',
+  alt: 'A young woman typing feedback on a laptop in a café',
+  width: 928,
+  height: 1152,
 };
 
-/** Staff reviewing applications together, used on the admin screens. */
+/** The research team reviewing notes, used on the admin screens. */
 export const STAFF_PHOTO: AuthPhoto = {
-  name: 'staff',
-  alt: 'Three colleagues reviewing printed notes around a desk',
-  width: 900,
-  height: 1125,
-  caption: 'Staff review · illustrative',
+  name: 'team',
+  alt: 'Three colleagues reviewing research notes around a table',
+  width: 928,
+  height: 1152,
 };

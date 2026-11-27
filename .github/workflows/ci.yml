@@ -37,43 +37,41 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: pnpm/action-setup@v4
-
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: pnpm
+          cache: npm
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: npm ci
 
       - name: Typecheck app
-        run: pnpm typecheck
+        run: npm run typecheck
 
       - name: Typecheck server
-        run: pnpm typecheck:server
+        run: npm run typecheck:server
 
       - name: Lint
-        run: pnpm lint
+        run: npm run lint
 
       - name: Apply database migrations
-        run: pnpm db:migrate
+        run: npm run db:migrate
 
       - name: Unit and server tests
-        run: pnpm test
+        run: npm run test
 
       - name: Production build
-        run: pnpm build
+        run: npm run build
 
       - name: Install Playwright browsers
-        run: pnpm exec playwright install --with-deps chromium firefox
+        run: npx playwright install --with-deps chromium firefox
 
       # Signed-in coverage migrates and seeds the database itself in global setup.
       - name: Public browser suite
-        run: pnpm e2e
+        run: npm run e2e
 
       - name: Signed-in browser suite
-        run: pnpm e2e:auth
+        run: npm run e2e:auth
 
       - name: Upload browser reports
         if: failure()

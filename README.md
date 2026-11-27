@@ -34,16 +34,16 @@ Payments use server-side Paystack initialization, verification and webhooks when
 
 ## Quick start
 
-Requirements: Node 22+, pnpm 12, and a Postgres 14+ database. The reference
+Requirements: Node 22 (npm 10+) and a Postgres 14+ database. The reference
 environment is Ubuntu 24.04 / WSL2.
 
 ```bash
-pnpm install
+npm install
 cp .env.example .env.local
 # set DATABASE_URL, ALLOW_DEV_AUTH=1 and any long DEV_AUTH_SECRET
-pnpm db:migrate
-pnpm db:seed
-pnpm dev
+npm run db:migrate
+npm run db:seed
+npm run dev
 ```
 
 Open `http://localhost:5173`. With no Clerk key the site runs in **local mode**:
@@ -172,8 +172,8 @@ Never commit `.env.local`. `VITE_*` values are baked in at build time.
 ## Database
 
 ```bash
-pnpm db:migrate   # applies db/migrations/*.sql in order, tracked in schema_migrations
-pnpm db:seed      # local role accounts only
+npm run db:migrate   # applies db/migrations/*.sql in order, tracked in schema_migrations
+npm run db:seed      # local role accounts only
 ```
 
 Migrations cover the pilot application tables plus accounts, tests, invitations,
@@ -229,10 +229,10 @@ sent externally. Delivery failures are logged and never fail the user's action.
 ## Verification
 
 ```bash
-pnpm typecheck && pnpm typecheck:server && pnpm lint && pnpm test && pnpm build
-pnpm e2e          # public site against the static production build
-pnpm e2e:auth     # signed-in flows against Postgres and the dev server
-pnpm e2e:all      # both suites
+npm run typecheck && npm run typecheck:server && npm run lint && npm run test && npm run build
+npm run e2e          # public site against the static production build
+npm run e2e:auth     # signed-in flows against Postgres and the dev server
+npm run e2e:all      # both suites
 ```
 
 CI (`.github/workflows/ci.yml`) runs the same checks plus both browser suites on
@@ -240,10 +240,10 @@ every push and pull request, against a disposable Postgres 16 service.
 
 - Unit tests cover the shared submission schema, analytics, attribution, role/status
   helpers, auth sessions and the legacy Apps Script backend.
-- `pnpm e2e` covers the public routes, the `/sign-up` role picker, responsive
+- `npm run e2e` covers the public routes, the `/sign-up` role picker, responsive
   overflow and axe accessibility on desktop Chrome, desktop Firefox and Pixel 5. It
   uses `vite preview`, so it needs no database and ignores `tests/auth`.
-- `pnpm e2e:auth` is the database-backed account suite. It reads `DATABASE_URL` from
+- `npm run e2e:auth` is the database-backed account suite. It reads `DATABASE_URL` from
   `.env.local` (or the environment), applies migrations, seeds the three local role
   accounts, and starts Vite on port 5181. One serial test walks the whole pilot loop
   through the browser: founder signs up and sees the request, tester signs up and is
@@ -261,8 +261,8 @@ every push and pull request, against a disposable Postgres 16 service.
   Postgres; it is not part of the static preview run.
 
 WebKit (desktop Safari and iPhone Safari) needs GTK/GStreamer libraries that are not
-installed here. Install them with `sudo pnpm exec playwright install-deps webkit` and
-run `PLAYWRIGHT_INCLUDE_WEBKIT=1 pnpm e2e`. Edge is Chromium-based and covered by the
+installed here. Install them with `sudo npx playwright install-deps webkit` and
+run `PLAYWRIGHT_INCLUDE_WEBKIT=1 npm run e2e`. Edge is Chromium-based and covered by the
 Chromium project.
 
 Current results and known limits: [`docs/ACCEPTANCE_REPORT.md`](docs/ACCEPTANCE_REPORT.md).
@@ -270,7 +270,10 @@ Decisions and trade-offs: [`NOTES.md`](NOTES.md).
 
 ## Deployment
 
-1. Provision Postgres (Neon) and run `pnpm db:migrate` with the production
+Step-by-step Vercel instructions, every environment variable and what works with none
+set: [`DEPLOY.md`](DEPLOY.md). In short:
+
+1. Provision Postgres (Neon) and run `npm run db:migrate` with the production
    `DATABASE_URL`.
 2. Create a Clerk application. Enable the sign-in strategies the sign-up page should
    offer — email + password and Google — and require email verification. Set
@@ -279,7 +282,7 @@ Decisions and trade-offs: [`NOTES.md`](NOTES.md).
    allowed origins.
 3. Set `RESEND_API_KEY`, `EMAIL_FROM`, `VITE_SITE_URL` and `VITE_CONTACT_EMAIL`.
    Verify the sending domain (SPF, DKIM, DMARC).
-4. `pnpm build`, deploy to Vercel. `vercel.json` rewrites non-API paths to the SPA and
+4. `npm run build`, deploy to Vercel. `vercel.json` rewrites non-API paths to the SPA and
    sets security headers; `api/[...path].ts` serves the API as a Node function.
 5. Confirm the CSP allows the Clerk and Plausible hosts actually used.
 6. Run one labelled tester and one founder through the live loop, including

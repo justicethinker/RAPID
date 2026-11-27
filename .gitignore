@@ -34,3 +34,6 @@ playwright-report
 
 # Windows download metadata
 *:Zone.Identifier
+
+# Local verification evidence (scripts and logs)
+.planning/rapid-dashboard/verify/

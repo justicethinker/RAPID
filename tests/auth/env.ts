@@ -5,7 +5,7 @@
  * the static preview), because `/api` needs both. They create their own records
  * with a `pw.` email prefix and remove them in global teardown.
  */
-import { expect, type Page } from '@playwright/test';
+import { expect, type Page, type Request } from '@playwright/test';
 
 export function loadLocalEnv(): void {
   try {
@@ -33,21 +33,31 @@ export function runTag(): string {
 
 
 /**
- * Navigate to an app route, reloading once if the app never mounted.
+ * Navigate to an app route, reloading only when a request was cancelled by a
+ * host network change.
  *
  * Chromium aborts every in-flight request — loopback included — whenever any
- * network interface or address appears or disappears on the host, and each
- * Docker container start or WSL adapter change does exactly that. A dev-server
- * page load is a few hundred separate module requests, so a load that overlaps
- * one of those events leaves `#root` empty and never recovers on its own.
+ * interface or address appears or disappears on the host, and each Docker
+ * container start or WSL adapter change does exactly that. A dev-server page
+ * load is a few hundred separate module requests, so a load overlapping one of
+ * those events leaves `#root` empty.
  *
- * Reloading cannot hide a product failure: the caller's assertions still run
- * against the reloaded page, and a page that mounts but fails an expectation
- * is never retried.
+ * The retry is deliberately narrow: it happens only if Chromium reported
+ * `net::ERR_NETWORK_CHANGED` for a request during that load. A blank page from
+ * any other cause — a thrown error, a broken build, a route that does not
+ * mount — throws on the first attempt, so a product failure still fails here.
  */
 export async function visit(page: Page, path: string): Promise<void> {
   let lastError: unknown = null;
+
   for (let attempt = 0; attempt < 3; attempt += 1) {
+    const cancelled: string[] = [];
+    const recordCancelled = (request: Request) => {
+      const failure = request.failure()?.errorText ?? '';
+      if (failure.includes('ERR_NETWORK_CHANGED')) cancelled.push(request.url());
+    };
+
+    page.on('requestfailed', recordCancelled);
     try {
       await page.goto(path);
       await page
@@ -57,8 +67,12 @@ export async function visit(page: Page, path: string): Promise<void> {
       return;
     } catch (error) {
       lastError = error;
+      if (cancelled.length === 0) throw error;
+    } finally {
+      page.off('requestfailed', recordCancelled);
     }
   }
+
   throw lastError;
 }
 

@@ -53,3 +53,15 @@
 - Payments/proposals/quotes remain blocked: no payment provider is installed or configured, and the product currently promises no payments/payouts. Do not fake a provider callback or mark a request paid.
 - Optional AI Guide remains deferred; no secure LLM provider/configuration and the managed workflow prerequisite is still optional.
 - Live Clerk/Resend provider paths were not exercised locally; WebKit/Safari e2e is unavailable on this host.
+
+## 2026-11-27 — Verification pass on `feat/rapid-mvp-alignment`
+- Every check was run on the pushed branch and its full output kept under `.planning/rapid-dashboard/verify/`, which is gitignored so a restarted shell cannot erase the evidence (`*.log`, `*.exit`, `e2e-auth.counts`, plus the `run-checks.sh`/`run-e2e.sh` used to reproduce them).
+- `pnpm db:migrate`: applied `0016_published_findings.sql`. The first `pnpm test` failed with `relation "published_findings" does not exist`; that dev database had simply never been migrated past 0015 (CI runs `db:migrate` before `test`), so the fix was the migration, not the code.
+- `pnpm test`: 106 passed, 9 files, all green.
+- `pnpm typecheck`: pass. `pnpm typecheck:server`: pass.
+- `pnpm lint`: 0 warnings, 0 errors across 160 files.
+- `pnpm build`: pass.
+- `pnpm e2e:auth`: 31 passed in 8.7m, exit 0, one uninterrupted run over auth-desktop (10), auth-mobile (3) and auth-forms (14), including the founder → tester → staff → findings loop and the role-isolation checks.
+- Leftover test users (`pw.` / `mvp.` / `integration.`): 0 before the run and 0 after. Global setup found nothing to remove; global teardown reported `cleaned up 14 test records`.
+- `visit()` in `tests/auth/env.ts` was narrowed: it reloads only when Chromium reported `net::ERR_NETWORK_CHANGED` for a request during that load, so a blank page from a thrown error, broken build or unmounted route still throws on the first attempt.
+- Still owner configuration, deliberately not stubbed: Paystack `PAYSTACK_SECRET_KEY` and the OpenAI key. Without them the app reports "not configured" and uses the manual fallback, which is the documented behaviour.

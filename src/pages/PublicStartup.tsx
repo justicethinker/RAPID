@@ -247,7 +247,7 @@ function StartupProfile({ slug }: { slug: string | undefined }) {
     return (
       <PageShell>
         <Container className="py-20 sm:py-28">
-          <p className="t-eyebrow text-rapid-700">Startup profile</p>
+          <p className="kicker">Startup profile</p>
           <h1 className="t-section mt-3 max-w-[700px] text-ink">This startup is not public.</h1>
           <p className="lead mt-4 max-w-[55ch]">
             The link may be out of date, or the founder has not published their profile yet.
@@ -424,7 +424,7 @@ function StartupProfile({ slug }: { slug: string | undefined }) {
                 </div>
               ) : (
                 <>
-                  <p className="t-eyebrow text-rapid-700">Early interest</p>
+                  <p className="kicker">Early interest</p>
                   <h2 className="font-display mt-2 text-[26px] font-bold leading-[1.05] tracking-[-0.04em] text-ink">
                     Join the waitlist.
                   </h2>
@@ -530,7 +530,7 @@ function StartupProfile({ slug }: { slug: string | undefined }) {
         <Container>
           <div className="flex flex-wrap items-end justify-between gap-4 border-b border-cream-200 pb-5">
             <div>
-              <p className="t-eyebrow text-rapid-700">From the founder</p>
+              <p className="kicker">From the founder</p>
               <h2 className="font-display mt-2 text-[28px] font-bold tracking-[-0.04em] text-ink sm:text-[34px]">
                 Building in public.
               </h2>
@@ -601,7 +601,7 @@ function StartupProfile({ slug }: { slug: string | undefined }) {
 
                   {post.linkedTest && (
                     <div className="mt-5 rounded-xl border border-cream-300 bg-cream-50 p-4 sm:p-5">
-                      <p className="t-eyebrow text-rapid-700">Linked test</p>
+                      <p className="kicker">Linked test</p>
                       <h3 className="font-display mt-1.5 text-[18px] font-bold tracking-[-0.02em] text-ink">
                         {post.linkedTest.title || 'Validation test'}
                       </h3>

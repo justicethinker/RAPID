@@ -18,15 +18,15 @@ export default function NotFound() {
         <Container className="relative py-20 sm:py-28 lg:py-32">
           <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
             <div aria-hidden="true" className="select-none">
-              <span className="block text-[clamp(120px,18vw,240px)] font-extrabold leading-[0.8] tracking-[-0.08em] text-rapid-100">
-                404
+              <span className="float-slow block font-display text-[clamp(120px,18vw,260px)] font-extrabold leading-[0.8] tracking-[-0.06em] text-rapid-900">
+                4<span className="t-serif font-normal text-sun-500">0</span>4
               </span>
-              <span className="mt-6 block h-[3px] w-16 bg-rapid-700" />
+              <span className="mt-8 block h-[3px] w-16 rounded-full bg-sun-500" />
             </div>
 
             <div className="hero-stagger max-w-[620px]">
-              <p className="t-eyebrow text-rapid-700">Page not found</p>
-              <h1 className="t-section mt-3 text-ink">{NOT_FOUND.title}</h1>
+              <p className="kicker">Page not found</p>
+              <h1 className="t-section mt-4 text-ink">{NOT_FOUND.title}</h1>
               <p className="lead mt-4">{NOT_FOUND.body}</p>
 
               <ul className="mt-9 border-t border-cream-300">
@@ -34,7 +34,7 @@ export default function NotFound() {
                   <li key={link.to} className="border-b border-cream-300">
                     <Link
                       to={link.to}
-                      className="group flex min-h-[56px] items-center justify-between gap-4 text-[15px] font-bold text-ink transition-colors hover:text-rapid-700"
+                      className="group flex min-h-[60px] items-center justify-between gap-4 font-display text-[19px] font-semibold tracking-[-0.01em] text-ink transition-colors hover:text-rapid-700"
                     >
                       {link.label}
                       <ArrowRight

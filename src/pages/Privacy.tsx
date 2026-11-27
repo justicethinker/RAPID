@@ -324,9 +324,9 @@ export default function Privacy() {
 
   return (
     <PageShell>
-      <section className="border-b border-cream-200 bg-white" aria-labelledby="policy-title">
+      <section className="relative border-b border-cream-200 bg-cream-100" aria-labelledby="policy-title">
         <Container className="py-12 lg:py-16">
-          <p className="t-eyebrow text-rapid-700">Legal</p>
+          <p className="kicker">Legal</p>
           <h1 id="policy-title" className="t-section mt-3 text-ink">
             Privacy Policy
           </h1>

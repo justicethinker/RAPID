@@ -6,6 +6,7 @@ import {
   MessageSquare,
   Search,
   Users,
+  RefreshCw,
 } from 'lucide-react';
 import { PageShell } from '@/components/layout/PageShell';
 import { Container } from '@/components/layout/Container';
@@ -152,13 +153,9 @@ function DiscoverFeed({ q, category, type, params, setParams }: {
           className="paper-grid pointer-events-none absolute inset-x-0 top-0 h-[420px] opacity-55"
         />
         <Container className="relative py-12 sm:py-16 lg:py-20">
-          <p className="studio-eyebrow">
-            <span className="studio-dot" /> DISCOVER
-          </p>
-          <h1 className="t-section mt-4 max-w-[780px] text-ink">
-            See what founders are
-            <br />
-            building right now.
+          <p className="kicker">Discover</p>
+          <h1 className="t-display mt-5 max-w-[860px] text-ink">
+            See what founders are <span className="t-serif text-rapid-700">building right now.</span>
           </h1>
           <p className="lead mt-5 max-w-[58ch]">
             Read public updates from startups, follow the ones you care about and
@@ -278,23 +275,26 @@ function DiscoverFeed({ q, category, type, params, setParams }: {
           )}
 
           {!loading && error && (
-            <div
-              role="alert"
-              className="max-w-[560px] rounded-2xl border border-danger/30 bg-danger-50 p-6 text-danger"
-            >
-              <p className="font-semibold">{error}</p>
-              <button
-                type="button"
-                onClick={() => window.location.reload()}
-                className="mt-4 inline-flex min-h-[44px] items-center rounded-full border border-danger/30 bg-white px-4 text-sm font-semibold"
-              >
-                Try again
-              </button>
+            <div role="alert" className="flex max-w-[640px] gap-4 rounded-[24px] bg-white p-6 shadow-elev-1 ring-1 ring-cream-200 sm:p-8">
+              <span aria-hidden="true" className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-sun-100 text-sun-700">
+                <RefreshCw size={20} />
+              </span>
+              <div>
+                <p className="font-display text-[20px] font-bold tracking-[-0.015em] text-ink">The feed is taking a breather.</p>
+                <p className="mt-1 text-[15px] leading-relaxed text-ink-soft">{error}</p>
+                <button
+                  type="button"
+                  onClick={() => window.location.reload()}
+                  className="mt-4 inline-flex min-h-[44px] items-center rounded-full bg-rapid-900 px-5 text-sm font-semibold text-white transition-colors hover:bg-rapid-800"
+                >
+                  Try again
+                </button>
+              </div>
             </div>
           )}
 
           {!loading && !error && items.length === 0 && (
-            <div className="rounded-2xl border border-cream-200 bg-white p-8">
+            <div className="rounded-[24px] bg-white p-8 shadow-elev-1 ring-1 ring-cream-200">
               <h2 className="font-display text-[22px] font-bold tracking-[-0.03em] text-ink">
                 {filtered ? 'No posts match those filters.' : 'No public posts yet.'}
               </h2>

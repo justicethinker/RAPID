@@ -31,15 +31,15 @@ export function ThanksPage({ kind }: { kind: 'tester' | 'founder' }) {
                 {kind === 'tester' ? 'Application received' : 'Request received'}
               </span>
 
-              <div className="mt-8 flex h-12 w-12 items-center justify-center rounded-full bg-rapid-50">
+              <div className="mt-8 flex h-16 w-16 items-center justify-center rounded-full bg-sun-500 shadow-sun">
                 <CheckCircle2
                   size={26}
-                  className="check-pop text-rapid-700"
+                  className="check-pop text-ink"
                   aria-hidden="true"
                 />
               </div>
 
-              <h1 className="t-section mt-5 max-w-[620px] text-ink">{copy.title}</h1>
+              <h1 className="t-display mt-6 max-w-[680px] text-ink">{copy.title}</h1>
 
               <p className="lead mt-5">{copy.body}</p>
 
@@ -90,8 +90,8 @@ export function ThanksPage({ kind }: { kind: 'tester' | 'founder' }) {
               </p>
             </div>
 
-            <aside className="h-fit rounded-2xl border border-cream-200 bg-white p-6 sm:p-8 lg:sticky lg:top-28">
-              <p className="t-eyebrow text-rapid-700">What happens next</p>
+            <aside className="h-fit rounded-[24px] bg-white p-6 shadow-elev-2 ring-1 ring-cream-200 sm:p-8 lg:sticky lg:top-28">
+              <p className="kicker">What happens next</p>
               <ol className="mt-5 space-y-5">
                 {(kind === 'tester'
                   ? [
@@ -106,17 +106,17 @@ export function ThanksPage({ kind }: { kind: 'tester' | 'founder' }) {
                     ]
                 ).map((step, index) => (
                   <li key={step} className="border-t border-cream-200 pt-4 first:border-t-0 first:pt-0">
-                    <span className="text-[10px] font-extrabold tracking-[0.12em] text-ink-faint">
-                      {String(index + 1).padStart(2, '0')}
+                    <span className="flex h-8 w-8 items-center justify-center rounded-full bg-rapid-900 font-display text-sm font-bold text-white">
+                      {index + 1}
                     </span>
-                    <p className="mt-2 text-[13px] leading-relaxed text-ink-soft">{step}</p>
+                    <p className="mt-2 text-[15px] leading-relaxed text-ink-soft">{step}</p>
                   </li>
                 ))}
               </ol>
 
               {reference && (
                 <div className="mt-7 rounded-xl border border-cream-200 bg-cream-50 p-4">
-                  <p className="text-[9px] font-extrabold uppercase tracking-[0.14em] text-ink-faint">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-ink-faint">
                     Your reference
                   </p>
                   <p className="mt-2 break-all font-mono text-[12px] text-ink">{reference}</p>

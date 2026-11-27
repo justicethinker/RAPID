@@ -52,7 +52,7 @@ export default function FounderStartup() {
             href={publicUrl}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex min-h-[44px] items-center gap-2 rounded-xl border border-studio-300 bg-studio-25 px-4 text-sm font-bold text-ink hover:border-brand-600 hover:bg-studio-50"
+            className="inline-flex min-h-[44px] items-center gap-2 rounded-full border border-cream-300 bg-white px-4 text-sm font-semibold text-ink hover:border-rapid-600 hover:bg-cream-50"
           >
             View startup
             <ArrowUpRight size={15} aria-hidden="true" />
@@ -131,27 +131,27 @@ export default function FounderStartup() {
               description="Share this link with early users, testers and anyone who wants to follow what you are building."
             >
               <div className="flex flex-wrap items-center gap-3">
-                <code className="min-w-0 flex-1 break-all rounded-xl border border-studio-200 bg-studio-50 px-4 py-3 text-sm text-ink">
+                <code className="min-w-0 flex-1 break-all rounded-xl border border-cream-200 bg-cream-50 px-4 py-3 text-sm text-ink">
                   {publicUrl}
                 </code>
                 <CopyLinkButton url={publicUrl} label="Copy public link" />
               </div>
-              <p className="mt-3 text-xs leading-relaxed text-light-muted">
+              <p className="mt-3 text-xs leading-relaxed text-ink-soft">
                 Draft profiles are not visible publicly. Turn publishing off in the form above to hide this page.
               </p>
             </Panel>
           ) : (
             <Panel title="Not public yet">
-              <p className="text-sm leading-relaxed text-light-muted">
+              <p className="text-sm leading-relaxed text-ink-soft">
                 Your profile is still a draft. Publish it above to get a shareable link and start collecting
                 waitlist sign-ups. You can keep working on it privately first.
               </p>
             </Panel>
           )}
 
-          <p className="text-xs text-light-muted">
+          <p className="text-xs text-ink-soft">
             Looking for the research-test flow?{' '}
-            <Link to="/app/founder" className="font-semibold text-brand-700 underline underline-offset-2">
+            <Link to="/app/founder" className="font-semibold text-rapid-700 underline underline-offset-2">
               Go to your workspace
             </Link>
             .

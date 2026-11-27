@@ -12,8 +12,8 @@ const PATHS = [
     role: 'founder',
     index: '01',
     icon: Compass,
-    accent: 'text-oxblood-600',
-    iconClass: 'bg-oxblood-50 text-oxblood-600',
+    accent: 'text-rapid-700',
+    iconClass: 'bg-rapid-50 text-rapid-700',
     title: 'I’m building something',
     body: 'Create a public startup profile, share what you are building and collect early interest.',
     cta: 'Create a founder account',
@@ -22,8 +22,8 @@ const PATHS = [
     role: 'tester',
     index: '02',
     icon: Users,
-    accent: 'text-brand-700',
-    iconClass: 'bg-brand-50 text-brand-700',
+    accent: 'text-rapid-700',
+    iconClass: 'bg-rapid-50 text-rapid-700',
     title: 'I want to test products',
     body: 'Join the tester pool, get invitations that match your experience and choose which ones to accept.',
     cta: 'Become a tester',
@@ -51,14 +51,14 @@ export default function SignUp() {
   return (
     <AuthLayout width="max-w-[880px]">
       <div className="mx-auto max-w-[780px]">
-        <p className="t-eyebrow text-brand-700">Get started</p>
+        <p className="t-eyebrow text-rapid-700">Get started</p>
         <h1 className="t-section mt-3 text-ink">Create your RAPID account</h1>
         <p className="lead mt-4 max-w-[56ch]">
           Testers create an account to manage their invitations. Founders create an account to publish a startup profile and collect interest.
         </p>
 
         {status === 'signed_in' && me && (
-          <p className="mt-5 max-w-[56ch] rounded-xl border border-studio-200 bg-studio-25 px-4 py-3 text-sm text-light-muted">
+          <p className="mt-5 max-w-[56ch] rounded-xl border border-cream-200 bg-white px-4 py-3 text-sm text-ink-soft">
             You’re signed in as <strong className="text-ink">{me.person.email}</strong>. Pick
             what you want to do next.
           </p>
@@ -90,10 +90,10 @@ export default function SignUp() {
                   </span>
                 </div>
 
-                <h2 className="mt-5 text-[24px] font-extrabold leading-[1.08] tracking-[-0.035em] text-ink">
+                <h2 className="font-display mt-5 text-[24px] font-bold leading-[1.08] tracking-[-0.035em] text-ink">
                   {path.title}
                 </h2>
-                <p className="mt-3 flex-1 text-[14px] leading-relaxed text-light-muted">
+                <p className="mt-3 flex-1 text-[14px] leading-relaxed text-ink-soft">
                   {path.body}
                 </p>
 
@@ -110,11 +110,11 @@ export default function SignUp() {
           })}
         </Stagger>
 
-        <p className="mt-10 border-t border-studio-200 pt-5 text-[13px] text-light-muted">
+        <p className="mt-10 border-t border-cream-200 pt-5 text-[13px] text-ink-soft">
           Already have an account?{' '}
           <Link
             to="/sign-in"
-            className="font-semibold text-brand-700 underline underline-offset-2 hover:text-ink"
+            className="font-semibold text-rapid-700 underline underline-offset-2 hover:text-ink"
           >
             Sign in
           </Link>

@@ -29,8 +29,8 @@ const ClerkBridge = lazy(() => import("@/auth/ClerkBridge"));
 
 function SessionLoading() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-studio-50">
-      <p className="flex items-center gap-3 text-light-muted">
+    <div className="flex min-h-screen items-center justify-center bg-cream-50">
+      <p className="flex items-center gap-3 text-ink-soft">
         <Loader2 size={18} className="animate-spin" aria-hidden="true" />
         Loading your account…
       </p>

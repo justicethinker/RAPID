@@ -47,7 +47,7 @@ const AdminSignUp = lazy(() => import("./pages/AdminSignUp"));
 
 export function AppRoutes() {
   return (
-    <Suspense fallback={<div className="min-h-screen bg-studio-25" />}>
+    <Suspense fallback={<div className="min-h-screen bg-white" />}>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/join" element={<Join />} />

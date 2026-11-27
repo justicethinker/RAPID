@@ -215,7 +215,7 @@ function StartupProfile({ slug }: { slug: string | undefined }) {
     return (
       <PageShell>
         <Container className="py-24">
-          <p role="status" className="flex items-center gap-2 text-light-muted">
+          <p role="status" className="flex items-center gap-2 text-ink-soft">
             <Loader2 size={17} className="animate-spin" aria-hidden="true" />
             Loading startup…
           </p>
@@ -228,12 +228,12 @@ function StartupProfile({ slug }: { slug: string | undefined }) {
     return (
       <PageShell>
         <Container className="py-24">
-          <div role="alert" className="max-w-[560px] rounded-2xl border border-red-200 bg-red-50 p-6 text-danger">
+          <div role="alert" className="max-w-[560px] rounded-2xl border border-danger/30 bg-danger-50 p-6 text-danger">
             <p className="font-semibold">{loadError}</p>
             <button
               type="button"
               onClick={() => window.location.reload()}
-              className="mt-4 inline-flex min-h-[44px] items-center rounded-xl border border-red-200 bg-white px-4 text-sm font-semibold"
+              className="mt-4 inline-flex min-h-[44px] items-center rounded-full border border-danger/30 bg-white px-4 text-sm font-semibold"
             >
               Try again
             </button>
@@ -247,14 +247,14 @@ function StartupProfile({ slug }: { slug: string | undefined }) {
     return (
       <PageShell>
         <Container className="py-20 sm:py-28">
-          <p className="t-eyebrow text-brand-700">Startup profile</p>
+          <p className="t-eyebrow text-rapid-700">Startup profile</p>
           <h1 className="t-section mt-3 max-w-[700px] text-ink">This startup is not public.</h1>
           <p className="lead mt-4 max-w-[55ch]">
             The link may be out of date, or the founder has not published their profile yet.
           </p>
           <Link
             to="/"
-            className="mt-8 inline-flex min-h-[44px] items-center gap-2 rounded-xl bg-brand-500 px-5 text-sm font-bold text-ink hover:bg-brand-600"
+            className="mt-8 inline-flex min-h-[44px] items-center gap-2 rounded-full bg-sun-500 px-5 text-sm font-semibold text-ink hover:bg-sun-400"
           >
             Back to RAPID
           </Link>
@@ -269,14 +269,14 @@ function StartupProfile({ slug }: { slug: string | undefined }) {
 
   return (
     <PageShell>
-      <section className="relative overflow-hidden bg-[#e7efe2]">
+      <section className="relative overflow-hidden bg-cream-100">
         <div
           aria-hidden="true"
           className="paper-grid pointer-events-none absolute inset-x-0 top-0 h-[520px] opacity-55"
         />
         <Container className="relative py-12 sm:py-20 lg:py-24">
           {startup.coverUrl && (
-            <div className="mb-8 overflow-hidden rounded-2xl border border-[#bfd0b8] bg-[#f4f8ee] shadow-[0_12px_35px_#1d4a2b12] sm:mb-10">
+            <div className="mb-8 overflow-hidden rounded-2xl border border-cream-300 bg-cream-50 shadow-[0_12px_35px_#1d4a2b12] sm:mb-10">
               <img
                 src={startup.coverUrl}
                 alt={`${startup.name} cover image`}
@@ -288,11 +288,11 @@ function StartupProfile({ slug }: { slug: string | undefined }) {
             <div className="hero-stagger min-w-0">
               <div className="flex flex-wrap items-center gap-2">
                 <span className="eyebrow-pill">Startup profile</span>
-                <span className="rounded-full border border-[#b9cbb3] bg-[#f4f8ee] px-3 py-1 text-[10px] font-bold uppercase tracking-[0.1em] text-[#39544a]">
+                <span className="rounded-full border border-cream-300 bg-cream-50 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.1em] text-ink-soft">
                   {category}
                 </span>
                 {stage && (
-                  <span className="rounded-full border border-[#b9cbb3] bg-[#f4f8ee] px-3 py-1 text-[10px] font-bold uppercase tracking-[0.1em] text-[#39544a]">
+                  <span className="rounded-full border border-cream-300 bg-cream-50 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.1em] text-ink-soft">
                     {stage}
                   </span>
                 )}
@@ -303,7 +303,7 @@ function StartupProfile({ slug }: { slug: string | undefined }) {
                   <img
                     src={startup.logoUrl}
                     alt={`${startup.name} logo`}
-                    className="h-16 w-16 shrink-0 rounded-2xl border border-[#bfd0b8] bg-[#f8faf2] object-cover shadow-sm sm:h-20 sm:w-20"
+                    className="h-16 w-16 shrink-0 rounded-2xl border border-cream-300 bg-cream-50 object-cover shadow-sm sm:h-20 sm:w-20"
                   />
                 )}
                 <h1 className="t-section max-w-[700px] text-ink">{startup.name}</h1>
@@ -317,7 +317,7 @@ function StartupProfile({ slug }: { slug: string | undefined }) {
                     target="_blank"
                     rel="noreferrer noopener"
                     onClick={trackDemoClick}
-                    className="inline-flex min-h-[44px] items-center gap-2 rounded-xl bg-brand-500 px-5 text-sm font-bold text-ink transition-colors hover:bg-brand-600"
+                    className="inline-flex min-h-[44px] items-center gap-2 rounded-full bg-sun-500 px-5 text-sm font-semibold text-ink transition-colors hover:bg-sun-400"
                   >
                     Visit product
                     <ArrowUpRight size={16} aria-hidden="true" />
@@ -330,7 +330,7 @@ function StartupProfile({ slug }: { slug: string | undefined }) {
                     onClick={() => void toggleFollow()}
                     disabled={followPending}
                     aria-pressed={following}
-                    className="inline-flex min-h-[44px] items-center gap-2 rounded-xl border border-[#8fae86] bg-[#f4f8ee] px-5 text-sm font-bold text-[#123b2d] transition-colors hover:border-brand-700 hover:bg-white disabled:opacity-60"
+                    className="inline-flex min-h-[44px] items-center gap-2 rounded-full border border-rapid-300 bg-cream-50 px-5 text-sm font-semibold text-rapid-900 transition-colors hover:border-rapid-700 hover:bg-white disabled:opacity-60"
                   >
                     {following ? (
                       <UserCheck size={16} aria-hidden="true" />
@@ -351,7 +351,7 @@ function StartupProfile({ slug }: { slug: string | undefined }) {
                     state={{
                       from: `${window.location.pathname}${window.location.search}`,
                     }}
-                    className="inline-flex min-h-[44px] items-center gap-2 rounded-xl border border-[#8fae86] bg-[#f4f8ee] px-5 text-sm font-bold text-[#123b2d] transition-colors hover:border-brand-700 hover:bg-white"
+                    className="inline-flex min-h-[44px] items-center gap-2 rounded-full border border-rapid-300 bg-cream-50 px-5 text-sm font-semibold text-rapid-900 transition-colors hover:border-rapid-700 hover:bg-white"
                   >
                     <UserPlus size={16} aria-hidden="true" />
                     Follow
@@ -361,7 +361,7 @@ function StartupProfile({ slug }: { slug: string | undefined }) {
                 {startup.isOwner && (
                   <Link
                     to="/app/founder/startup"
-                    className="inline-flex min-h-[44px] items-center gap-2 rounded-xl border border-[#8fae86] bg-[#f4f8ee] px-5 text-sm font-bold text-[#123b2d] transition-colors hover:border-brand-700 hover:bg-white"
+                    className="inline-flex min-h-[44px] items-center gap-2 rounded-full border border-rapid-300 bg-cream-50 px-5 text-sm font-semibold text-rapid-900 transition-colors hover:border-rapid-700 hover:bg-white"
                   >
                     Manage startup
                   </Link>
@@ -380,13 +380,13 @@ function StartupProfile({ slug }: { slug: string | undefined }) {
                 </p>
               )}
 
-              <p className="mt-4 text-xs font-semibold text-[#476157]">
+              <p className="mt-4 text-xs font-semibold text-ink-faint">
                 {followers} follower{followers === 1 ? '' : 's'} ·{' '}
                 {startup.posts.length} published post
                 {startup.posts.length === 1 ? '' : 's'}
               </p>
 
-              <p className="mt-6 max-w-[54ch] border-t border-[#c8d7c1] pt-5 text-[13px] leading-relaxed text-[#476157]">
+              <p className="mt-6 max-w-[54ch] border-t border-cream-200 pt-5 text-[13px] leading-relaxed text-ink-faint">
                 This startup is sharing what it is building in public. Join the waitlist to hear about what
                 comes next.
               </p>
@@ -394,17 +394,17 @@ function StartupProfile({ slug }: { slug: string | undefined }) {
 
             <aside
               id="join-waitlist"
-              className="h-fit scroll-mt-24 rounded-2xl border border-[#bfd0b8] bg-[#f8faf2] p-5 shadow-[0_12px_35px_#1d4a2b12] sm:p-6"
+              className="h-fit scroll-mt-24 rounded-2xl border border-cream-300 bg-cream-50 p-5 shadow-[0_12px_35px_#1d4a2b12] sm:p-6"
             >
               {joined ? (
                 <div aria-live="polite">
-                  <span className="flex h-11 w-11 items-center justify-center rounded-full bg-brand-50">
-                    <CheckCircle2 size={23} className="text-brand-700" aria-hidden="true" />
+                  <span className="flex h-11 w-11 items-center justify-center rounded-full bg-rapid-50">
+                    <CheckCircle2 size={23} className="text-rapid-700" aria-hidden="true" />
                   </span>
-                  <h2 className="mt-4 text-[24px] font-extrabold tracking-[-0.03em] text-ink">
+                  <h2 className="font-display mt-4 text-[24px] font-bold tracking-[-0.03em] text-ink">
                     {joined === 'already' ? 'You’re already on the list.' : 'You’re on the list.'}
                   </h2>
-                  <p className="mt-2 text-sm leading-relaxed text-light-muted">
+                  <p className="mt-2 text-sm leading-relaxed text-ink-soft">
                     {joined === 'already'
                       ? 'This email is already registered for updates from this startup.'
                       : `We’ll use your email to share updates from ${startup.name}. No spam.`}
@@ -417,31 +417,31 @@ function StartupProfile({ slug }: { slug: string | undefined }) {
                       setName('');
                       setConsent(false);
                     }}
-                    className="mt-5 min-h-[44px] text-sm font-semibold text-brand-700 underline underline-offset-2"
+                    className="mt-5 min-h-[44px] text-sm font-semibold text-rapid-700 underline underline-offset-2"
                   >
                     Add another email
                   </button>
                 </div>
               ) : (
                 <>
-                  <p className="t-eyebrow text-brand-700">Early interest</p>
-                  <h2 className="mt-2 text-[26px] font-extrabold leading-[1.05] tracking-[-0.04em] text-ink">
+                  <p className="t-eyebrow text-rapid-700">Early interest</p>
+                  <h2 className="font-display mt-2 text-[26px] font-bold leading-[1.05] tracking-[-0.04em] text-ink">
                     Join the waitlist.
                   </h2>
-                  <p className="mt-2 text-sm leading-relaxed text-light-muted">
+                  <p className="mt-2 text-sm leading-relaxed text-ink-soft">
                     Get updates about the product and what the team is learning.
                   </p>
 
                   <form onSubmit={(event) => void joinWaitlist(event)} noValidate className="mt-5 space-y-3">
                     {waitlistError && (
-                      <p role="alert" className="rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-xs font-semibold text-danger">
+                      <p role="alert" className="rounded-lg border border-danger/30 bg-danger-50 px-3 py-2 text-xs font-semibold text-danger">
                         {waitlistError}
                       </p>
                     )}
 
                     <div>
                       <label htmlFor="waitlist-name" className="block text-xs font-semibold text-ink">
-                        Name <span className="font-normal text-studio-600">(optional)</span>
+                        Name <span className="font-normal text-ink-faint">(optional)</span>
                       </label>
                       <input
                         id="waitlist-name"
@@ -484,12 +484,12 @@ function StartupProfile({ slug }: { slug: string | undefined }) {
                         type="checkbox"
                         checked={consent}
                         onChange={(event) => setConsent(event.target.checked)}
-                        className="mt-0.5 h-4 w-4 shrink-0 accent-brand-700"
+                        className="mt-0.5 h-4 w-4 shrink-0 accent-rapid-700"
                         aria-invalid={fields.consent ? true : undefined}
                       />
-                      <span className="text-[11px] leading-relaxed text-light-muted">
+                      <span className="text-[11px] leading-relaxed text-ink-soft">
                         I agree to be contacted about this startup. See the{' '}
-                        <Link to="/privacy" className="font-semibold text-brand-700 underline underline-offset-2">
+                        <Link to="/privacy" className="font-semibold text-rapid-700 underline underline-offset-2">
                           privacy notice
                         </Link>
                         .
@@ -504,7 +504,7 @@ function StartupProfile({ slug }: { slug: string | undefined }) {
                     <button
                       type="submit"
                       disabled={pending}
-                      className="inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-xl bg-brand-500 px-4 text-sm font-bold text-ink transition-colors hover:bg-brand-600 disabled:opacity-60"
+                      className="inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-full bg-sun-500 px-4 text-sm font-bold text-ink transition-colors hover:bg-sun-400 disabled:opacity-60"
                     >
                       {pending ? (
                         <>
@@ -526,23 +526,23 @@ function StartupProfile({ slug }: { slug: string | undefined }) {
         </Container>
       </section>
 
-      <section className="bg-studio-50 py-14 sm:py-20">
+      <section className="bg-cream-50 py-14 sm:py-20">
         <Container>
-          <div className="flex flex-wrap items-end justify-between gap-4 border-b border-studio-200 pb-5">
+          <div className="flex flex-wrap items-end justify-between gap-4 border-b border-cream-200 pb-5">
             <div>
-              <p className="t-eyebrow text-brand-700">From the founder</p>
-              <h2 className="mt-2 text-[28px] font-extrabold tracking-[-0.04em] text-ink sm:text-[34px]">
+              <p className="t-eyebrow text-rapid-700">From the founder</p>
+              <h2 className="font-display mt-2 text-[28px] font-bold tracking-[-0.04em] text-ink sm:text-[34px]">
                 Building in public.
               </h2>
             </div>
-            <p className="max-w-[34ch] text-sm leading-relaxed text-light-muted">
+            <p className="max-w-[34ch] text-sm leading-relaxed text-ink-soft">
               Published updates from {startup.name}. New posts appear here as the team shares them.
             </p>
           </div>
 
           {startup.posts.length === 0 ? (
-            <div className="mt-8 rounded-2xl border border-studio-200 bg-studio-25 p-6">
-              <p className="text-sm leading-relaxed text-light-muted">
+            <div className="mt-8 rounded-2xl border border-cream-200 bg-white p-6">
+              <p className="text-sm leading-relaxed text-ink-soft">
                 No posts have been published yet. Join the waitlist to hear when the next update is ready.
               </p>
             </div>
@@ -552,7 +552,7 @@ function StartupProfile({ slug }: { slug: string | undefined }) {
                 <article
                   key={post.id}
                   id={`post-${post.id}`}
-                  className="scroll-mt-24 rounded-2xl border border-studio-200 bg-studio-25 p-6 sm:p-8"
+                  className="scroll-mt-24 rounded-2xl border border-cream-200 bg-white p-6 sm:p-8"
                 >
                   <PostImpressionMarker
                     startupId={startup.id}
@@ -561,12 +561,12 @@ function StartupProfile({ slug }: { slug: string | undefined }) {
                     disabled={startup.isOwner}
                   />
                   <div className="flex flex-wrap items-center justify-between gap-3">
-                    <span className="rounded-full bg-brand-50 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.1em] text-brand-700">
+                    <span className="rounded-full bg-rapid-50 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.1em] text-rapid-700">
                       {post.kind === 'validation' ? 'Validation' : 'Showcase'}
                     </span>
-                    <span className="text-xs text-studio-600">{formatPublished(post.publishedAt)}</span>
+                    <span className="text-xs text-ink-faint">{formatPublished(post.publishedAt)}</span>
                   </div>
-                  <h2 className="mt-4 text-[24px] font-extrabold leading-[1.1] tracking-[-0.035em] text-ink">
+                  <h2 className="font-display mt-4 text-[24px] font-bold leading-[1.1] tracking-[-0.035em] text-ink">
                     {post.title}
                   </h2>
                   {post.images.length > 0 && (
@@ -584,7 +584,7 @@ function StartupProfile({ slug }: { slug: string | undefined }) {
                           alt={image.altText ?? `Image ${index + 1} for ${post.title}`}
                           loading="lazy"
                           className={cn(
-                            'w-full rounded-xl border border-studio-200 object-cover',
+                            'w-full rounded-xl border border-cream-200 object-cover',
                             post.images.length === 1
                               ? 'max-h-[420px]'
                               : index === 0 && post.images.length >= 3
@@ -595,29 +595,29 @@ function StartupProfile({ slug }: { slug: string | undefined }) {
                       ))}
                     </div>
                   )}
-                  <p className="mt-3 whitespace-pre-line text-[15px] leading-[1.75] text-light-muted">
+                  <p className="mt-3 whitespace-pre-line text-[15px] leading-[1.75] text-ink-soft">
                     {post.body}
                   </p>
 
                   {post.linkedTest && (
-                    <div className="mt-5 rounded-xl border border-[#bfd0b8] bg-[#f4f8ee] p-4 sm:p-5">
-                      <p className="t-eyebrow text-brand-700">Linked test</p>
-                      <h3 className="mt-1.5 text-[18px] font-extrabold tracking-[-0.02em] text-ink">
+                    <div className="mt-5 rounded-xl border border-cream-300 bg-cream-50 p-4 sm:p-5">
+                      <p className="t-eyebrow text-rapid-700">Linked test</p>
+                      <h3 className="font-display mt-1.5 text-[18px] font-bold tracking-[-0.02em] text-ink">
                         {post.linkedTest.title || 'Validation test'}
                       </h3>
-                      <p className="mt-1 text-sm leading-relaxed text-[#476157]">
+                      <p className="mt-1 text-sm leading-relaxed text-ink-faint">
                         RAPID runs this test with invited participants. An
                         invitation checks that you match the audience before you
                         take part.
                       </p>
                       {post.eligibility && (
-                        <p className="mt-3 text-sm leading-relaxed text-[#476157]">
+                        <p className="mt-3 text-sm leading-relaxed text-ink-faint">
                           <span className="font-semibold text-ink">Who it is for: </span>
                           {post.eligibility}
                         </p>
                       )}
                       {post.closesAt && (
-                        <p className="mt-2 text-xs font-semibold text-[#476157]">
+                        <p className="mt-2 text-xs font-semibold text-ink-faint">
                           Participation closes {formatPublished(post.closesAt)}
                         </p>
                       )}
@@ -625,7 +625,7 @@ function StartupProfile({ slug }: { slug: string | undefined }) {
                         {startup.isOwner ? (
                           <Link
                             to={`/app/founder/tests/${post.linkedTest.id}`}
-                            className="inline-flex min-h-[42px] items-center gap-2 rounded-xl border border-[#8fae86] bg-white px-4 text-sm font-bold text-[#123b2d] transition-colors hover:border-brand-700"
+                            className="inline-flex min-h-[42px] items-center gap-2 rounded-full border border-rapid-300 bg-white px-4 text-sm font-semibold text-rapid-900 transition-colors hover:border-rapid-700"
                           >
                             Manage this test
                             <ArrowUpRight size={15} aria-hidden="true" />
@@ -637,7 +637,7 @@ function StartupProfile({ slug }: { slug: string | undefined }) {
                     </div>
                   )}
 
-                  <div className="mt-5 border-t border-studio-200 pt-4">
+                  <div className="mt-5 border-t border-cream-200 pt-4">
                     <div className="flex flex-wrap items-center justify-between gap-3">
                       <CopyLinkButton
                         url={`${publicUrl.split('#')[0]}#post-${post.id}`}
@@ -646,7 +646,7 @@ function StartupProfile({ slug }: { slug: string | undefined }) {
                       <ReportForm targetType="post" targetId={post.id} />
                     </div>
                     {!startup.isOwner && (
-                      <div className="mt-5 rounded-xl border border-studio-200 bg-studio-50 p-4">
+                      <div className="mt-5 rounded-xl border border-cream-200 bg-cream-50 p-4">
                         <FeedbackForm postId={post.id} />
                       </div>
                     )}

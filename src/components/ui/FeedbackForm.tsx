@@ -22,11 +22,11 @@ export function FeedbackForm({ postId }: { postId: string }) {
 
   if (status === 'signed_out') {
     return (
-      <p className="text-sm leading-relaxed text-light-muted">
+      <p className="text-sm leading-relaxed text-ink-soft">
         <Link
           to="/sign-in"
           state={{ from: `${window.location.pathname}${window.location.hash}` }}
-          className="font-semibold text-brand-700 underline underline-offset-2"
+          className="font-semibold text-rapid-700 underline underline-offset-2"
         >
           Sign in
         </Link>{' '}
@@ -37,7 +37,7 @@ export function FeedbackForm({ postId }: { postId: string }) {
 
   if (status === 'error') {
     return (
-      <p className="text-sm text-light-muted">
+      <p className="text-sm text-ink-soft">
         We could not confirm your account, so feedback is unavailable right now.
       </p>
     );
@@ -48,14 +48,14 @@ export function FeedbackForm({ postId }: { postId: string }) {
       <div aria-live="polite" className="flex items-start gap-3">
         <CheckCircle2
           size={20}
-          className="mt-0.5 shrink-0 text-brand-700"
+          className="mt-0.5 shrink-0 text-rapid-700"
           aria-hidden="true"
         />
         <div>
           <p className="text-sm font-semibold text-ink">
             Feedback sent to the founder.
           </p>
-          <p className="mt-1 text-sm leading-relaxed text-light-muted">
+          <p className="mt-1 text-sm leading-relaxed text-ink-soft">
             It will appear in their audience page. It is not shown publicly.
           </p>
           <button
@@ -64,7 +64,7 @@ export function FeedbackForm({ postId }: { postId: string }) {
               setSent(false);
               setBody('');
             }}
-            className="mt-2 text-xs font-semibold text-brand-700 underline underline-offset-2"
+            className="mt-2 text-xs font-semibold text-rapid-700 underline underline-offset-2"
           >
             Send more feedback
           </button>
@@ -114,7 +114,7 @@ export function FeedbackForm({ postId }: { postId: string }) {
         <MessageSquare size={15} aria-hidden="true" />
         Share feedback with the founder
       </label>
-      <p className="mt-1 text-xs leading-relaxed text-light-muted">
+      <p className="mt-1 text-xs leading-relaxed text-ink-soft">
         What is clear, confusing or missing? Your feedback is private to the
         founder.
       </p>
@@ -130,13 +130,13 @@ export function FeedbackForm({ postId }: { postId: string }) {
         placeholder="Tell them what you think…"
       />
       <div className="mt-2 flex flex-wrap items-center justify-between gap-2">
-        <span className="text-[11px] text-studio-600">
+        <span className="text-[11px] text-ink-faint">
           {body.trim().length}/1000 · at least 10
         </span>
         <button
           type="submit"
           disabled={pending || body.trim().length < 10}
-          className="inline-flex min-h-[40px] items-center gap-2 rounded-lg bg-brand-500 px-4 text-xs font-bold text-ink transition-colors hover:bg-brand-600 disabled:opacity-50"
+          className="inline-flex min-h-[40px] items-center gap-2 rounded-full bg-sun-500 px-4 text-xs font-semibold text-ink transition-colors hover:bg-sun-400 disabled:opacity-50"
         >
           {pending ? (
             <>

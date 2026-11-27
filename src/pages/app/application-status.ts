@@ -58,12 +58,12 @@ export function applicationStatus(code: string): StatusCopy {
 export function toneClasses(tone: StatusTone): string {
   switch (tone) {
     case 'positive':
-      return 'bg-brand-50 text-brand-700';
+      return 'bg-rapid-50 text-rapid-700';
     case 'warning':
-      return 'bg-warn-50 text-warn-900';
+      return 'bg-warn-50 text-warn-700';
     case 'negative':
-      return 'bg-red-50 text-danger';
+      return 'bg-danger-50 text-danger';
     default:
-      return 'bg-studio-100 text-ink';
+      return 'bg-cream-100 text-ink';
   }
 }

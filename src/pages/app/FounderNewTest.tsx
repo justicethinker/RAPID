@@ -80,23 +80,23 @@ export default function FounderNewTest() {
         title="Guided intake"
         description="Answer five questions and RAPID will save a structured brief for the team to review."
       >
-        <a href="/app/founder/intake" className="inline-flex min-h-[44px] items-center rounded-xl bg-brand-500 px-5 text-sm font-bold text-ink hover:bg-brand-700 hover:text-white">Start guided intake</a>
-        <p className="mt-3 text-sm text-light-muted">Prefer the manual form? Continue below.</p>
+        <a href="/app/founder/intake" className="inline-flex min-h-[44px] items-center rounded-full bg-sun-500 px-5 text-sm font-semibold text-ink hover:bg-sun-400">Start guided intake</a>
+        <p className="mt-3 text-sm text-ink-soft">Prefer the manual form? Continue below.</p>
       </Panel>
 
       <Panel>
         <form onSubmit={submit} className="space-y-8">
           <section aria-labelledby="request-question" className="space-y-5">
-            <div className="flex items-baseline gap-3 border-b border-studio-200 pb-3">
+            <div className="flex items-baseline gap-3 border-b border-cream-200 pb-3">
               <span
                 aria-hidden="true"
-                className="text-[10px] font-bold tracking-[0.14em] text-studio-600 tabular-nums"
+                className="text-[10px] font-bold tracking-[0.14em] text-ink-faint tabular-nums"
               >
                 01
               </span>
               <h2
                 id="request-question"
-                className="text-[11px] font-bold uppercase tracking-[0.16em] text-ink"
+                className="font-display text-[11px] font-bold uppercase tracking-[0.16em] text-ink"
               >
                 The question
               </h2>
@@ -144,16 +144,16 @@ export default function FounderNewTest() {
           </section>
 
           <section aria-labelledby="request-people" className="space-y-5">
-            <div className="flex items-baseline gap-3 border-b border-studio-200 pb-3">
+            <div className="flex items-baseline gap-3 border-b border-cream-200 pb-3">
               <span
                 aria-hidden="true"
-                className="text-[10px] font-bold tracking-[0.14em] text-studio-600 tabular-nums"
+                className="text-[10px] font-bold tracking-[0.14em] text-ink-faint tabular-nums"
               >
                 02
               </span>
               <h2
                 id="request-people"
-                className="text-[11px] font-bold uppercase tracking-[0.16em] text-ink"
+                className="font-display text-[11px] font-bold uppercase tracking-[0.16em] text-ink"
               >
                 The people
               </h2>
@@ -213,16 +213,16 @@ export default function FounderNewTest() {
           </section>
 
           <section aria-labelledby="request-terms" className="space-y-5">
-            <div className="flex items-baseline gap-3 border-b border-studio-200 pb-3">
+            <div className="flex items-baseline gap-3 border-b border-cream-200 pb-3">
               <span
                 aria-hidden="true"
-                className="text-[10px] font-bold tracking-[0.14em] text-studio-600 tabular-nums"
+                className="text-[10px] font-bold tracking-[0.14em] text-ink-faint tabular-nums"
               >
                 03
               </span>
               <h2
                 id="request-terms"
-                className="text-[11px] font-bold uppercase tracking-[0.16em] text-ink"
+                className="font-display text-[11px] font-bold uppercase tracking-[0.16em] text-ink"
               >
                 The terms
               </h2>
@@ -245,14 +245,14 @@ export default function FounderNewTest() {
             </div>
           </section>
 
-          <div className="flex flex-wrap items-center justify-between gap-4 border-t border-studio-200 pt-6">
-            <p className="max-w-[42ch] text-xs leading-relaxed text-studio-600">
+          <div className="flex flex-wrap items-center justify-between gap-4 border-t border-cream-200 pt-6">
+            <p className="max-w-[42ch] text-xs leading-relaxed text-ink-faint">
               Requests are scoped by the team before recruitment starts.
             </p>
             <button
               type="submit"
               disabled={saving}
-              className="inline-flex min-h-[44px] items-center rounded-xl bg-brand-500 px-5 text-sm font-bold text-ink hover:bg-brand-700 hover:text-white disabled:opacity-60"
+              className="inline-flex min-h-[44px] items-center rounded-full bg-sun-500 px-5 text-sm font-semibold text-ink hover:bg-sun-400 disabled:opacity-60"
             >
               {saving ? 'Saving…' : 'Send request'}
             </button>

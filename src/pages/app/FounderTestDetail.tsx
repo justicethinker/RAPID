@@ -53,7 +53,7 @@ function Metric({
 }) {
   return (
     <div>
-      <dt className="text-[10px] font-bold uppercase tracking-[0.16em] text-studio-600">
+      <dt className="text-[10px] font-bold uppercase tracking-[0.16em] text-ink-faint">
         {label}
       </dt>
       <dd>
@@ -61,7 +61,7 @@ function Metric({
           {value}
         </span>
         {hint && (
-          <span className="mt-1.5 block text-xs leading-snug text-light-muted">
+          <span className="mt-1.5 block text-xs leading-snug text-ink-soft">
             {hint}
           </span>
         )}
@@ -180,7 +180,7 @@ export default function FounderTestDetail() {
                   aria-hidden="true"
                   className={cn(
                     "block h-[2px] w-full rounded-full",
-                    done ? "bg-brand-600" : "bg-studio-200",
+                    done ? "bg-rapid-600" : "bg-cream-200",
                   )}
                 />
                 <span className="mt-2.5 flex items-baseline gap-2">
@@ -188,7 +188,7 @@ export default function FounderTestDetail() {
                     aria-hidden="true"
                     className={cn(
                       "text-[10px] font-bold tabular-nums",
-                      done ? "text-brand-700" : "text-studio-600",
+                      done ? "text-rapid-700" : "text-ink-faint",
                     )}
                   >
                     {String(index + 1).padStart(2, "0")}
@@ -200,7 +200,7 @@ export default function FounderTestDetail() {
                         ? "font-bold text-ink"
                         : done
                           ? "font-semibold text-ink"
-                          : "text-studio-600",
+                          : "text-ink-faint",
                     )}
                   >
                     {label}
@@ -223,7 +223,7 @@ export default function FounderTestDetail() {
       >
         <dl className="grid gap-x-6 gap-y-5 sm:grid-cols-2 lg:grid-cols-3">
           <div className="sm:col-span-2 lg:col-span-3">
-            <dt className="text-[10px] font-bold uppercase tracking-[0.16em] text-studio-600">
+            <dt className="text-[10px] font-bold uppercase tracking-[0.16em] text-ink-faint">
               Question
             </dt>
             <dd className="mt-1.5 max-w-[70ch] text-[15px] leading-relaxed text-ink">
@@ -231,20 +231,20 @@ export default function FounderTestDetail() {
             </dd>
           </div>
           <div>
-            <dt className="text-[10px] font-bold uppercase tracking-[0.16em] text-studio-600">
+            <dt className="text-[10px] font-bold uppercase tracking-[0.16em] text-ink-faint">
               Audience
             </dt>
             <dd className="mt-1.5 text-sm font-semibold text-ink">
               {audience || data.audienceDescription || "To be agreed"}
             </dd>
             {audience && data.audienceDescription && (
-              <dd className="mt-1 text-xs leading-relaxed text-light-muted">
+              <dd className="mt-1 text-xs leading-relaxed text-ink-soft">
                 {data.audienceDescription}
               </dd>
             )}
           </div>
           <div>
-            <dt className="text-[10px] font-bold uppercase tracking-[0.16em] text-studio-600">
+            <dt className="text-[10px] font-bold uppercase tracking-[0.16em] text-ink-faint">
               Method
             </dt>
             <dd className="mt-1.5 text-sm leading-relaxed text-ink">
@@ -252,7 +252,7 @@ export default function FounderTestDetail() {
             </dd>
           </div>
           <div>
-            <dt className="text-[10px] font-bold uppercase tracking-[0.16em] text-studio-600">
+            <dt className="text-[10px] font-bold uppercase tracking-[0.16em] text-ink-faint">
               Target completions
             </dt>
             <dd className="mt-1.5 text-sm font-semibold text-ink tabular-nums">
@@ -260,7 +260,7 @@ export default function FounderTestDetail() {
             </dd>
           </div>
           <div>
-            <dt className="text-[10px] font-bold uppercase tracking-[0.16em] text-studio-600">
+            <dt className="text-[10px] font-bold uppercase tracking-[0.16em] text-ink-faint">
               Report due
             </dt>
             <dd className="mt-1.5 text-sm font-semibold text-ink">
@@ -268,7 +268,7 @@ export default function FounderTestDetail() {
             </dd>
           </div>
           <div>
-            <dt className="text-[10px] font-bold uppercase tracking-[0.16em] text-studio-600">
+            <dt className="text-[10px] font-bold uppercase tracking-[0.16em] text-ink-faint">
               Reward
             </dt>
             <dd className="mt-1.5 text-sm leading-relaxed text-ink">
@@ -276,7 +276,7 @@ export default function FounderTestDetail() {
             </dd>
           </div>
           <div>
-            <dt className="text-[10px] font-bold uppercase tracking-[0.16em] text-studio-600">
+            <dt className="text-[10px] font-bold uppercase tracking-[0.16em] text-ink-faint">
               Startup
             </dt>
             <dd className="mt-1.5 text-sm font-semibold text-ink">
@@ -285,11 +285,11 @@ export default function FounderTestDetail() {
           </div>
         </dl>
         {data.terms && (
-          <div className="mt-6 border-t border-studio-200 pt-5">
-            <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-studio-600">
+          <div className="mt-6 border-t border-cream-200 pt-5">
+            <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-ink-faint">
               Task terms
             </p>
-            <p className="mt-2 max-w-[70ch] whitespace-pre-line text-sm leading-relaxed text-light-muted">
+            <p className="mt-2 max-w-[70ch] whitespace-pre-line text-sm leading-relaxed text-ink-soft">
               {data.terms}
             </p>
           </div>
@@ -299,10 +299,10 @@ export default function FounderTestDetail() {
       {data.brief && (
         <Panel title="Guided brief" description={`Status: ${data.brief.status} · Version ${data.brief.version}`}>
           <dl className="grid gap-x-6 gap-y-4 sm:grid-cols-2">
-            <div><dt className="text-[10px] font-bold uppercase tracking-[0.16em] text-studio-600">Service</dt><dd className="mt-1 text-sm text-ink">{data.serviceKey.replaceAll('_', ' ')}</dd></div>
-            <div><dt className="text-[10px] font-bold uppercase tracking-[0.16em] text-studio-600">Product</dt><dd className="mt-1 text-sm text-ink">{String(data.brief.brief.productSummary ?? '')}</dd></div>
-            <div><dt className="text-[10px] font-bold uppercase tracking-[0.16em] text-studio-600">Customer</dt><dd className="mt-1 text-sm text-ink">{String(data.brief.brief.targetCustomer ?? '')}</dd></div>
-            <div><dt className="text-[10px] font-bold uppercase tracking-[0.16em] text-studio-600">Goal</dt><dd className="mt-1 text-sm text-ink">{String(data.brief.brief.goal ?? '')}</dd></div>
+            <div><dt className="text-[10px] font-bold uppercase tracking-[0.16em] text-ink-faint">Service</dt><dd className="mt-1 text-sm text-ink">{data.serviceKey.replaceAll('_', ' ')}</dd></div>
+            <div><dt className="text-[10px] font-bold uppercase tracking-[0.16em] text-ink-faint">Product</dt><dd className="mt-1 text-sm text-ink">{String(data.brief.brief.productSummary ?? '')}</dd></div>
+            <div><dt className="text-[10px] font-bold uppercase tracking-[0.16em] text-ink-faint">Customer</dt><dd className="mt-1 text-sm text-ink">{String(data.brief.brief.targetCustomer ?? '')}</dd></div>
+            <div><dt className="text-[10px] font-bold uppercase tracking-[0.16em] text-ink-faint">Goal</dt><dd className="mt-1 text-sm text-ink">{String(data.brief.brief.goal ?? '')}</dd></div>
           </dl>
           {data.brief.risks.length > 0 && <p className="mt-4 border-l-2 border-warning pl-3 text-sm text-warning">{data.brief.risks.join(' ')}</p>}
         </Panel>
@@ -315,8 +315,8 @@ export default function FounderTestDetail() {
           <Metric label="Project status" value={data.projectStatus.replaceAll('_', ' ')} />
           <Metric label="Price" value={data.priceAmount ? `${(data.priceAmount / 100).toLocaleString()} ${data.priceCurrency ?? ''}` : 'Not set'} />
         </dl>
-        {data.priceAmount && data.paymentStatus !== 'paid' && <button type="button" disabled={paying} onClick={() => void pay()} className="mt-5 min-h-[44px] rounded-xl bg-brand-500 px-5 text-sm font-bold text-ink hover:bg-brand-700 hover:text-white disabled:opacity-60">{paying ? 'Starting…' : 'Pay now'}</button>}
-        {data.payments.length > 0 && <ul className="mt-5 space-y-2 text-sm text-light-muted">{data.payments.map((payment) => <li key={payment.id}>{payment.provider_reference} · {payment.status} · {(payment.amountKobo / 100).toLocaleString()} {payment.currency}</li>)}</ul>}
+        {data.priceAmount && data.paymentStatus !== 'paid' && <button type="button" disabled={paying} onClick={() => void pay()} className="mt-5 min-h-[44px] rounded-full bg-sun-500 px-5 text-sm font-bold text-ink hover:bg-sun-400 disabled:opacity-60">{paying ? 'Starting…' : 'Pay now'}</button>}
+        {data.payments.length > 0 && <ul className="mt-5 space-y-2 text-sm text-ink-soft">{data.payments.map((payment) => <li key={payment.id}>{payment.provider_reference} · {payment.status} · {(payment.amountKobo / 100).toLocaleString()} {payment.currency}</li>)}</ul>}
       </Panel>
 
       <Panel
@@ -346,27 +346,27 @@ export default function FounderTestDetail() {
           />
         </dl>
 
-        <dl className="mt-7 grid grid-cols-2 gap-x-6 gap-y-5 border-t border-studio-200 pt-5 sm:grid-cols-4">
+        <dl className="mt-7 grid grid-cols-2 gap-x-6 gap-y-5 border-t border-cream-200 pt-5 sm:grid-cols-4">
           <Metric label="Assigned" value={data.actionCounts.assigned} />
           <Metric label="Opened" value={data.actionCounts.linkOpened} />
           <Metric label="Self-reported" value={data.actionCounts.selfReported} />
           <Metric label="Verified" value={data.actionCounts.verified} />
         </dl>
-        {data.actionReasons.length > 0 && <p className="mt-4 text-xs text-light-muted">Reasons: {data.actionReasons.map((item) => `${item.reason} (${item.count})`).join(' · ')}</p>}
-        {data.audienceBreakdown.length > 0 && <p className="mt-2 text-xs text-light-muted">Audience: {data.audienceBreakdown.map((item) => `${item.label} (${item.count})`).join(' · ')}</p>}
+        {data.actionReasons.length > 0 && <p className="mt-4 text-xs text-ink-soft">Reasons: {data.actionReasons.map((item) => `${item.reason} (${item.count})`).join(' · ')}</p>}
+        {data.audienceBreakdown.length > 0 && <p className="mt-2 text-xs text-ink-soft">Audience: {data.audienceBreakdown.map((item) => `${item.label} (${item.count})`).join(' · ')}</p>}
 
-        <div className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-studio-200 pt-4 text-xs text-studio-600">
+        <div className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-cream-200 pt-4 text-xs text-ink-faint">
           <span className="tabular-nums">{data.counts.completed} completed</span>
-          <span aria-hidden="true" className="h-3 w-px bg-studio-300" />
+          <span aria-hidden="true" className="h-3 w-px bg-cream-300" />
           <span className="tabular-nums">{data.counts.declined} declined</span>
         </div>
 
         <div className="mt-7">
-          <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-studio-600">
+          <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-ink-faint">
             What testers did
           </p>
           {data.outcomes.length === 0 ? (
-            <p className="mt-2 text-sm text-light-muted">No responses yet.</p>
+            <p className="mt-2 text-sm text-ink-soft">No responses yet.</p>
           ) : (
             <ul className="mt-4 space-y-4">
               {data.outcomes.map((outcome) => {
@@ -386,10 +386,10 @@ export default function FounderTestDetail() {
                     </div>
                     <span
                       aria-hidden="true"
-                      className="mt-2 block h-1 overflow-hidden rounded-full bg-studio-200"
+                      className="mt-2 block h-1 overflow-hidden rounded-full bg-cream-200"
                     >
                       <span
-                        className="block h-full rounded-full bg-brand-600"
+                        className="block h-full rounded-full bg-rapid-600"
                         style={{ width: `${share}%` }}
                       />
                     </span>
@@ -407,14 +407,14 @@ export default function FounderTestDetail() {
         action={
           data.findings ? (
             <div className="flex flex-wrap items-center gap-3">
-              <span className="text-[10px] font-bold uppercase tracking-[0.16em] text-oxblood-600 tabular-nums">
+              <span className="text-[10px] font-bold uppercase tracking-[0.16em] text-rapid-700 tabular-nums">
                 v{data.findings.version} · {formatDay(data.findings.publishedAt)}
               </span>
               <button
                 type="button"
                 onClick={() => void downloadReport()}
                 disabled={downloading}
-                className="inline-flex min-h-[40px] items-center gap-1.5 rounded-xl border border-studio-300 bg-studio-25 px-3 text-xs font-bold text-ink hover:border-brand-600 disabled:opacity-60"
+                className="inline-flex min-h-[40px] items-center gap-1.5 rounded-full border border-cream-300 bg-white px-3 text-xs font-semibold text-ink hover:border-rapid-600 disabled:opacity-60"
               >
                 <Download size={14} aria-hidden="true" />
                 {downloading ? 'Preparing…' : 'Download report'}
@@ -426,18 +426,18 @@ export default function FounderTestDetail() {
         {reportError && <ErrorPanel message={reportError} />}
         {data.findings ? (
           <article>
-            <p className="flex items-center gap-2.5 text-[10px] font-bold uppercase tracking-[0.18em] text-oxblood-600">
-              <span aria-hidden="true" className="h-px w-6 bg-oxblood-500/60" />
+            <p className="flex items-center gap-2.5 text-[10px] font-bold uppercase tracking-[0.18em] text-rapid-700">
+              <span aria-hidden="true" className="h-px w-6 bg-rapid-600/60" />
               Published finding · Version {data.findings.version}
             </p>
-            <h3 className="mt-3 max-w-[26ch] text-[26px] font-extrabold leading-[1.1] tracking-[-0.03em] text-ink sm:text-[30px]">
+            <h3 className="font-display mt-3 max-w-[26ch] text-[26px] font-bold leading-[1.1] tracking-[-0.03em] text-ink sm:text-[30px]">
               {data.findings.headline}
             </h3>
-            <p className="mt-4 max-w-[64ch] whitespace-pre-line text-[15px] leading-relaxed text-light-muted">
+            <p className="mt-4 max-w-[64ch] whitespace-pre-line text-[15px] leading-relaxed text-ink-soft">
               {data.findings.summary}
             </p>
 
-            <ul className="mt-7 divide-y divide-studio-200 border-y border-studio-200">
+            <ul className="mt-7 divide-y divide-cream-200 border-y border-cream-200">
               {data.findings.learnings.map((learning, index) => (
                 <li
                   key={learning.label}
@@ -445,13 +445,13 @@ export default function FounderTestDetail() {
                 >
                   <span
                     aria-hidden="true"
-                    className="text-[10px] font-bold tracking-[0.14em] text-studio-600 tabular-nums sm:pt-1"
+                    className="text-[10px] font-bold tracking-[0.14em] text-ink-faint tabular-nums sm:pt-1"
                   >
                     {String(index + 1).padStart(2, "0")}
                   </span>
                   <div>
                     <p className="font-semibold text-ink">{learning.label}</p>
-                    <p className="mt-1 max-w-[60ch] text-sm leading-relaxed text-light-muted">
+                    <p className="mt-1 max-w-[60ch] text-sm leading-relaxed text-ink-soft">
                       {learning.detail}
                     </p>
                   </div>
@@ -460,19 +460,19 @@ export default function FounderTestDetail() {
             </ul>
 
             {data.findings.limits && (
-              <div className="mt-6 border-l-2 border-oxblood-500 bg-oxblood-50 px-5 py-4">
-                <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-oxblood-600">
+              <div className="mt-6 border-l-2 border-rapid-600 bg-rapid-50 px-5 py-4">
+                <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-rapid-700">
                   What this cannot tell you
                 </p>
-                <p className="mt-2 max-w-[58ch] text-sm leading-relaxed text-light-muted">
+                <p className="mt-2 max-w-[58ch] text-sm leading-relaxed text-ink-soft">
                   {data.findings.limits}
                 </p>
               </div>
             )}
 
             {data.findings.recommendation && (
-              <div className="mt-6 rounded-xl border border-brand-200 bg-brand-50 px-5 py-4">
-                <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-brand-700">
+              <div className="mt-6 rounded-xl border border-rapid-200 bg-rapid-50 px-5 py-4">
+                <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-rapid-700">
                   Suggested next step
                 </p>
                 <p className="mt-2 max-w-[62ch] whitespace-pre-line text-sm leading-relaxed text-ink">
@@ -483,7 +483,7 @@ export default function FounderTestDetail() {
 
             {data.quotes.length > 0 && (
               <div className="mt-7">
-                <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-studio-600">
+                <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-ink-faint">
                   What testers said
                 </p>
                 <ul className="mt-4 space-y-5">
@@ -499,7 +499,7 @@ export default function FounderTestDetail() {
             )}
           </article>
         ) : (
-          <p className="max-w-[62ch] leading-relaxed text-light-muted">
+          <p className="max-w-[62ch] leading-relaxed text-ink-soft">
             Findings appear here after the team has reviewed responses and
             published them. Recruitment counts above are live.
           </p>
@@ -515,7 +515,7 @@ export default function FounderTestDetail() {
           <div
             role="group"
             aria-label="Record your decision"
-            className="inline-flex flex-wrap gap-1 rounded-xl border border-studio-200 bg-studio-50 p-1"
+            className="inline-flex flex-wrap gap-1 rounded-xl border border-cream-200 bg-cream-50 p-1"
           >
             {DECISIONS.map(([value, label]) => (
               <button
@@ -527,8 +527,8 @@ export default function FounderTestDetail() {
                 className={cn(
                   "inline-flex min-h-[44px] items-center rounded-lg px-4 text-sm font-semibold transition-colors disabled:opacity-60",
                   data.decision === value
-                    ? "bg-studio-25 text-brand-700 shadow-elev-1"
-                    : "text-light-muted hover:text-ink",
+                    ? "bg-white text-rapid-700 shadow-elev-1"
+                    : "text-ink-soft hover:text-ink",
                 )}
               >
                 {label}
@@ -536,7 +536,7 @@ export default function FounderTestDetail() {
             ))}
           </div>
           {data.decision && (
-            <p className="mt-4 text-sm text-light-muted">
+            <p className="mt-4 text-sm text-ink-soft">
               Recorded:{" "}
               {data.decision.charAt(0).toUpperCase() + data.decision.slice(1)}
               {data.decidedAt

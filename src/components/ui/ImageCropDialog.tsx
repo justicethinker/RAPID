@@ -273,7 +273,7 @@ export function ImageCropDialog({
   return (
     <dialog
       ref={dialog}
-      className="image-crop-dialog m-auto max-h-[92vh] w-[92vw] max-w-[34rem] overflow-y-auto rounded-2xl border border-studio-200 bg-studio-25 p-0 text-ink shadow-2xl"
+      className="image-crop-dialog m-auto max-h-[92vh] w-[92vw] max-w-[34rem] overflow-y-auto rounded-2xl border border-cream-200 bg-white p-0 text-ink shadow-2xl"
       aria-labelledby="image-crop-title"
       aria-describedby="image-crop-instructions"
       onCancel={(event) => {
@@ -288,16 +288,16 @@ export function ImageCropDialog({
       <div className="p-5 sm:p-6">
         <div className="flex items-start justify-between gap-4">
           <div>
-            <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-brand-700">
+            <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-rapid-700">
               Image preparation
             </p>
             <h2
               id="image-crop-title"
-              className="mt-2 text-[22px] font-extrabold tracking-[-0.03em] text-ink"
+              className="font-display mt-2 text-[22px] font-bold tracking-[-0.03em] text-ink"
             >
               Crop {label.toLowerCase()}
             </h2>
-            <p id="image-crop-instructions" className="mt-1 text-sm leading-relaxed text-light-muted">
+            <p id="image-crop-instructions" className="mt-1 text-sm leading-relaxed text-ink-soft">
               Drag the image to reposition it, then use the slider to zoom.
             </p>
           </div>
@@ -306,7 +306,7 @@ export function ImageCropDialog({
             autoFocus
             onClick={onCancel}
             aria-label="Close crop dialog"
-            className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg text-studio-600 hover:bg-studio-100 hover:text-ink"
+            className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg text-ink-faint hover:bg-cream-100 hover:text-ink"
           >
             <X size={18} aria-hidden="true" />
           </button>
@@ -379,7 +379,7 @@ export function ImageCropDialog({
         <div className="mt-4 flex items-center gap-3">
           <label
             htmlFor="image-crop-zoom"
-            className="text-xs font-bold uppercase tracking-[0.12em] text-studio-600"
+            className="text-xs font-bold uppercase tracking-[0.12em] text-ink-faint"
           >
             Zoom
           </label>
@@ -392,9 +392,9 @@ export function ImageCropDialog({
             value={zoom}
             disabled={!natural}
             onChange={(event) => changeZoom(Number(event.target.value))}
-            className="h-2 min-w-0 flex-1 cursor-pointer accent-brand-700 disabled:cursor-not-allowed disabled:opacity-50"
+            className="h-2 min-w-0 flex-1 cursor-pointer accent-rapid-700 disabled:cursor-not-allowed disabled:opacity-50"
           />
-          <span className="w-10 text-right text-xs font-semibold tabular-nums text-studio-600">
+          <span className="w-10 text-right text-xs font-semibold tabular-nums text-ink-faint">
             {Math.round(zoom * 100)}%
           </span>
         </div>
@@ -405,8 +405,8 @@ export function ImageCropDialog({
           </p>
         )}
 
-        <div className="mt-5 flex flex-wrap items-center justify-between gap-3 border-t border-studio-200 pt-4">
-          <p className="text-xs text-studio-600">
+        <div className="mt-5 flex flex-wrap items-center justify-between gap-3 border-t border-cream-200 pt-4">
+          <p className="text-xs text-ink-faint">
             Crops to {outputWidth} × {outputHeight} px
           </p>
           <div className="flex flex-wrap gap-2">
@@ -414,7 +414,7 @@ export function ImageCropDialog({
               type="button"
               onClick={onCancel}
               disabled={preparing}
-              className="inline-flex min-h-[44px] items-center rounded-xl px-4 text-sm font-semibold text-studio-600 hover:bg-studio-100 hover:text-ink disabled:opacity-60"
+              className="inline-flex min-h-[44px] items-center rounded-full px-4 text-sm font-semibold text-ink-faint hover:bg-cream-100 hover:text-ink disabled:opacity-60"
             >
               Cancel
             </button>
@@ -422,7 +422,7 @@ export function ImageCropDialog({
               type="button"
               onClick={crop}
               disabled={!natural || preparing}
-              className="inline-flex min-h-[44px] items-center gap-2 rounded-xl bg-brand-500 px-5 text-sm font-bold text-ink hover:bg-brand-700 hover:text-white disabled:opacity-60"
+              className="inline-flex min-h-[44px] items-center gap-2 rounded-full bg-sun-500 px-5 text-sm font-semibold text-ink hover:bg-sun-400 disabled:opacity-60"
             >
               {preparing && <Loader2 size={15} className="animate-spin" aria-hidden="true" />}
               {preparing ? 'Preparing…' : 'Crop and upload'}

@@ -88,38 +88,38 @@ export default function AdminSignIn() {
         header={
           <>
             <div className="flex items-center gap-3">
-              <span className="float-slow flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-studio-100 text-brand-700">
+              <span className="float-slow flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-cream-100 text-rapid-700">
                 <ShieldCheck size={20} aria-hidden="true" />
               </span>
-              <h1 className="text-[28px] font-extrabold tracking-[-0.03em] text-ink">
+              <h1 className="font-display text-[28px] font-bold tracking-[-0.03em] text-ink">
                 Admin sign in
               </h1>
             </div>
-            <p className="mt-3 text-sm text-light-muted">
+            <p className="mt-3 text-sm text-ink-soft">
               Staff only. Sign in with the credentials the team issued to you.
             </p>
           </>
         }
       >
-        <div className="pop-in rounded-3xl border border-studio-200 bg-studio-25 p-6 shadow-elev-1 sm:p-8">
+        <div className="pop-in rounded-3xl border border-cream-200 bg-white p-6 shadow-elev-1 sm:p-8">
           {available === null ? (
-            <p className="flex items-center gap-2 text-sm text-light-muted">
+            <p className="flex items-center gap-2 text-sm text-ink-soft">
               <Loader2 size={16} className="animate-spin" aria-hidden="true" />
               Checking admin sign-in…
             </p>
           ) : available === false ? (
-            <div className="rounded-xl border border-studio-200 bg-studio-50 p-4">
-              <p className="text-sm text-light-muted">
+            <div className="rounded-xl border border-cream-200 bg-cream-50 p-4">
+              <p className="text-sm text-ink-soft">
                 Admin sign-in is unavailable here.{" "}
                 <Link
                   to="/admin"
-                  className="font-semibold text-brand-700 underline underline-offset-2"
+                  className="font-semibold text-rapid-700 underline underline-offset-2"
                 >
                   See admin access
                 </Link>{" "}
                 or email{" "}
                 <a
-                  className="font-semibold text-brand-700 underline underline-offset-2"
+                  className="font-semibold text-rapid-700 underline underline-offset-2"
                   href={supportEmailHref}
                 >
                   {supportEmail}
@@ -172,7 +172,7 @@ export default function AdminSignIn() {
               <button
                 type="submit"
                 disabled={pending || !username.trim() || !password}
-                className="sheen mt-6 inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-xl bg-brand-500 px-5 font-semibold text-ink transition-all duration-200 hover:-translate-y-0.5 hover:bg-brand-600 active:scale-[0.99] disabled:opacity-60"
+                className="sheen mt-6 inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-full bg-sun-500 px-5 font-semibold text-ink transition-all duration-200 hover:-translate-y-0.5 hover:bg-sun-400 active:scale-[0.99] disabled:opacity-60"
               >
                 {pending ? (
                   <>
@@ -197,11 +197,11 @@ export default function AdminSignIn() {
           )}
         </div>
 
-        <p className="mt-6 text-center text-sm text-light-muted">
+        <p className="mt-6 text-center text-sm text-ink-soft">
           Not staff?{" "}
           <Link
             to="/sign-up"
-            className="font-semibold text-brand-700 underline underline-offset-2"
+            className="font-semibold text-rapid-700 underline underline-offset-2"
           >
             Join as a tester or founder
           </Link>

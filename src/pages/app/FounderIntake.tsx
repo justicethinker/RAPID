@@ -116,7 +116,7 @@ export default function FounderIntake() {
                 {SERVICES.map((service) => <option key={service.value} value={service.value}>{service.label}</option>)}
               </select>
             </div>
-            <button type="button" disabled={saving} onClick={() => void start()} className="min-h-[44px] rounded-xl bg-brand-500 px-5 text-sm font-bold text-ink hover:bg-brand-700 hover:text-white disabled:opacity-60">Start guided intake</button>
+            <button type="button" disabled={saving} onClick={() => void start()} className="min-h-[44px] rounded-full bg-sun-500 px-5 text-sm font-bold text-ink hover:bg-sun-400 disabled:opacity-60">Start guided intake</button>
           </div>
         </Panel>
       ) : (
@@ -125,14 +125,14 @@ export default function FounderIntake() {
             <div className="space-y-4">
               {brief.messages.map((entry) => (
                 <div key={entry.id} className={entry.role === 'founder' ? 'ml-auto max-w-[80%]' : 'mr-auto max-w-[80%]'}>
-                  <p className={entry.role === 'founder' ? 'rounded-2xl bg-brand-500 px-4 py-3 text-sm text-ink' : 'rounded-2xl bg-studio-50 px-4 py-3 text-sm text-ink'}>{entry.content}</p>
+                  <p className={entry.role === 'founder' ? 'rounded-2xl bg-sun-500 px-4 py-3 text-sm text-ink' : 'rounded-2xl bg-cream-50 px-4 py-3 text-sm text-ink'}>{entry.content}</p>
                 </div>
               ))}
             </div>
             <form onSubmit={send} className="mt-5 space-y-3">
               <FieldLabel htmlFor="message">Your answer</FieldLabel>
               <textarea id="message" className={`${inputClass} min-h-[90px]`} value={message} maxLength={1000} onChange={(event) => setMessage(event.target.value)} required />
-              <button type="submit" disabled={saving || message.trim().length < 5} className="min-h-[44px] rounded-xl bg-brand-500 px-5 text-sm font-bold text-ink hover:bg-brand-700 hover:text-white disabled:opacity-60">Send</button>
+              <button type="submit" disabled={saving || message.trim().length < 5} className="min-h-[44px] rounded-full bg-sun-500 px-5 text-sm font-bold text-ink hover:bg-sun-400 disabled:opacity-60">Send</button>
             </form>
           </Panel>
 
@@ -146,7 +146,7 @@ export default function FounderIntake() {
                 </div>
               ))}
             </div>
-            <button type="button" disabled={saving || brief.missingDetails.length > 0} onClick={() => void confirm()} className="mt-6 min-h-[44px] rounded-xl bg-brand-500 px-5 text-sm font-bold text-ink hover:bg-brand-700 hover:text-white disabled:opacity-60">Confirm brief and create project</button>
+            <button type="button" disabled={saving || brief.missingDetails.length > 0} onClick={() => void confirm()} className="mt-6 min-h-[44px] rounded-full bg-sun-500 px-5 text-sm font-bold text-ink hover:bg-sun-400 disabled:opacity-60">Confirm brief and create project</button>
           </Panel>
         </>
       )}

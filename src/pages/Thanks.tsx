@@ -19,7 +19,7 @@ export function ThanksPage({ kind }: { kind: 'tester' | 'founder' }) {
 
   return (
     <PageShell>
-      <section className="relative overflow-hidden bg-studio-50">
+      <section className="relative overflow-hidden bg-cream-50">
         <div
           aria-hidden="true"
           className="paper-grid pointer-events-none absolute inset-x-0 top-0 h-[520px] opacity-55"
@@ -31,10 +31,10 @@ export function ThanksPage({ kind }: { kind: 'tester' | 'founder' }) {
                 {kind === 'tester' ? 'Application received' : 'Request received'}
               </span>
 
-              <div className="mt-8 flex h-12 w-12 items-center justify-center rounded-full bg-brand-50">
+              <div className="mt-8 flex h-12 w-12 items-center justify-center rounded-full bg-rapid-50">
                 <CheckCircle2
                   size={26}
-                  className="check-pop text-brand-700"
+                  className="check-pop text-rapid-700"
                   aria-hidden="true"
                 />
               </div>
@@ -52,13 +52,13 @@ export function ThanksPage({ kind }: { kind: 'tester' | 'founder' }) {
                 </ButtonLink>
               </div>
 
-              <p className="mt-6 max-w-[54ch] text-[13px] leading-relaxed text-light-muted">
+              <p className="mt-6 max-w-[54ch] text-[13px] leading-relaxed text-ink-soft">
                 {kind === 'tester' ? (
                   <>
                     Applying doesn’t guarantee a test or payment. Need help? Email{' '}
                     <a
                       href={supportEmailHref}
-                      className="font-semibold text-brand-700 underline underline-offset-2"
+                      className="font-semibold text-rapid-700 underline underline-offset-2"
                     >
                       {supportEmail}
                     </a>
@@ -69,7 +69,7 @@ export function ThanksPage({ kind }: { kind: 'tester' | 'founder' }) {
                     Prefer to talk first? Email{' '}
                     <a
                       href={supportEmailHref}
-                      className="font-semibold text-brand-700 underline underline-offset-2"
+                      className="font-semibold text-rapid-700 underline underline-offset-2"
                     >
                       {supportEmail}
                     </a>{' '}
@@ -78,10 +78,10 @@ export function ThanksPage({ kind }: { kind: 'tester' | 'founder' }) {
                 )}
               </p>
 
-              <p className="mt-3 text-[13px] leading-relaxed text-light-muted">
+              <p className="mt-3 text-[13px] leading-relaxed text-ink-soft">
                 <Link
                   to={kind === 'tester' ? '/contact' : '/join'}
-                  className="font-semibold text-brand-700 underline underline-offset-2 hover:text-ink"
+                  className="font-semibold text-rapid-700 underline underline-offset-2 hover:text-ink"
                 >
                   {kind === 'tester'
                     ? 'Building something? Test your idea with RAPID as a founder.'
@@ -90,8 +90,8 @@ export function ThanksPage({ kind }: { kind: 'tester' | 'founder' }) {
               </p>
             </div>
 
-            <aside className="h-fit rounded-2xl border border-studio-200 bg-studio-25 p-6 sm:p-8 lg:sticky lg:top-28">
-              <p className="t-eyebrow text-brand-700">What happens next</p>
+            <aside className="h-fit rounded-2xl border border-cream-200 bg-white p-6 sm:p-8 lg:sticky lg:top-28">
+              <p className="t-eyebrow text-rapid-700">What happens next</p>
               <ol className="mt-5 space-y-5">
                 {(kind === 'tester'
                   ? [
@@ -105,29 +105,29 @@ export function ThanksPage({ kind }: { kind: 'tester' | 'founder' }) {
                       'If it’s a fit, we agree the next steps with you before any recruiting starts.',
                     ]
                 ).map((step, index) => (
-                  <li key={step} className="border-t border-studio-200 pt-4 first:border-t-0 first:pt-0">
-                    <span className="text-[10px] font-extrabold tracking-[0.12em] text-studio-500">
+                  <li key={step} className="border-t border-cream-200 pt-4 first:border-t-0 first:pt-0">
+                    <span className="text-[10px] font-extrabold tracking-[0.12em] text-ink-faint">
                       {String(index + 1).padStart(2, '0')}
                     </span>
-                    <p className="mt-2 text-[13px] leading-relaxed text-light-muted">{step}</p>
+                    <p className="mt-2 text-[13px] leading-relaxed text-ink-soft">{step}</p>
                   </li>
                 ))}
               </ol>
 
               {reference && (
-                <div className="mt-7 rounded-xl border border-studio-200 bg-studio-50 p-4">
-                  <p className="text-[9px] font-extrabold uppercase tracking-[0.14em] text-studio-500">
+                <div className="mt-7 rounded-xl border border-cream-200 bg-cream-50 p-4">
+                  <p className="text-[9px] font-extrabold uppercase tracking-[0.14em] text-ink-faint">
                     Your reference
                   </p>
                   <p className="mt-2 break-all font-mono text-[12px] text-ink">{reference}</p>
-                  <p className="mt-1.5 text-[11px] leading-relaxed text-studio-500">
+                  <p className="mt-1.5 text-[11px] leading-relaxed text-ink-faint">
                     Keep this reference if you contact support.
                   </p>
                 </div>
               )}
 
-              <p className="mt-6 flex items-center gap-2 text-[11px] font-medium text-studio-500">
-                <span className="h-1.5 w-1.5 rounded-full bg-brand-500" aria-hidden="true" />
+              <p className="mt-6 flex items-center gap-2 text-[11px] font-medium text-ink-faint">
+                <span className="h-1.5 w-1.5 rounded-full bg-sun-500" aria-hidden="true" />
                 {kind === 'tester'
                   ? 'A real person reads every application.'
                   : 'A real person reads every request.'}

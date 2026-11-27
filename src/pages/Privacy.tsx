@@ -15,10 +15,10 @@ interface PolicySection {
   body: ReactNode;
 }
 
-const p = 'text-[17px] leading-[1.7] text-light-muted';
-const ul = 'list-disc space-y-2 pl-6 text-[17px] leading-[1.7] text-light-muted marker:text-studio-400';
+const p = 'text-[17px] leading-[1.7] text-ink-soft';
+const ul = 'list-disc space-y-2 pl-6 text-[17px] leading-[1.7] text-ink-soft marker:text-cream-400';
 const link =
-  'font-semibold text-brand-700 underline underline-offset-2 transition-colors hover:text-ink';
+  'font-semibold text-rapid-700 underline underline-offset-2 transition-colors hover:text-ink';
 
 function ContactBlock() {
   const configured = (import.meta.env.VITE_SITE_URL as string | undefined)?.replace(
@@ -32,9 +32,9 @@ function ContactBlock() {
       : 'https://rapid.africa';
 
   return (
-    <div className="mt-5 rounded-2xl border border-studio-200 bg-studio-50 p-6">
+    <div className="mt-5 rounded-2xl border border-cream-200 bg-cream-50 p-6">
       <p className="mb-3 text-[17px] font-bold text-ink">RAPID</p>
-      <dl className="space-y-2 text-[15px] text-light-muted">
+      <dl className="space-y-2 text-[15px] text-ink-soft">
         <div className="flex flex-wrap gap-x-2">
           <dt className="font-bold text-ink">Email:</dt>
           <dd>
@@ -324,13 +324,13 @@ export default function Privacy() {
 
   return (
     <PageShell>
-      <section className="border-b border-studio-200 bg-studio-25" aria-labelledby="policy-title">
+      <section className="border-b border-cream-200 bg-white" aria-labelledby="policy-title">
         <Container className="py-12 lg:py-16">
-          <p className="t-eyebrow text-brand-700">Legal</p>
+          <p className="t-eyebrow text-rapid-700">Legal</p>
           <h1 id="policy-title" className="t-section mt-3 text-ink">
             Privacy Policy
           </h1>
-          <p className="mt-3 text-sm text-light-muted">
+          <p className="mt-3 text-sm text-ink-soft">
             Last updated: {PRIVACY_LAST_UPDATED} · Notice version {PRIVACY_VERSION}
           </p>
           <p className="lead mt-5">
@@ -343,20 +343,20 @@ export default function Privacy() {
       <Container className="py-12 lg:py-16">
         <div className="flex flex-col gap-10 lg:flex-row lg:gap-14">
           <aside className="shrink-0 lg:w-[250px]">
-            <details className="group mb-8 rounded-2xl border border-studio-200 bg-studio-25 lg:hidden">
+            <details className="group mb-8 rounded-2xl border border-cream-200 bg-white lg:hidden">
               <summary className="flex cursor-pointer list-none items-center justify-between px-5 py-4 text-sm font-bold text-ink [&::-webkit-details-marker]:hidden">
                 On this page
                 <ChevronDown
                   size={16}
-                  className="text-light-muted transition-transform group-open:rotate-180"
+                  className="text-ink-soft transition-transform group-open:rotate-180"
                 />
               </summary>
-              <ul className="space-y-1 border-t border-studio-200 px-5 py-3">
+              <ul className="space-y-1 border-t border-cream-200 px-5 py-3">
                 {POLICY.map((section) => (
                   <li key={section.id}>
                     <a
                       href={`#${section.id}`}
-                      className="block py-1.5 text-sm text-light-muted transition-colors hover:text-ink"
+                      className="block py-1.5 text-sm text-ink-soft transition-colors hover:text-ink"
                     >
                       {section.num}. {section.title}
                     </a>
@@ -366,17 +366,17 @@ export default function Privacy() {
             </details>
 
             <nav aria-label="Privacy policy contents" className="sticky top-[88px] hidden lg:block">
-              <p className="mb-3 text-[13px] font-bold text-light-muted">Contents</p>
+              <p className="mb-3 text-[13px] font-bold text-ink-soft">Contents</p>
               <ul className="max-h-[calc(100vh-160px)] space-y-1 overflow-y-auto">
                 {POLICY.map((section) => (
                   <li key={section.id}>
                     <a
                       href={`#${section.id}`}
                       className={cn(
-                        'block border-l-2 border-studio-200 py-1 pl-3 text-sm leading-snug transition-colors',
+                        'block border-l-2 border-cream-200 py-1 pl-3 text-sm leading-snug transition-colors',
                         activeId === section.id
-                          ? 'border-brand-600 font-semibold text-ink'
-                          : 'text-light-muted hover:text-ink',
+                          ? 'border-rapid-600 font-semibold text-ink'
+                          : 'text-ink-soft hover:text-ink',
                       )}
                     >
                       {section.num}. {section.title}
@@ -390,14 +390,14 @@ export default function Privacy() {
           <div className="min-w-0 max-w-[760px] flex-1">
             {POLICY.map((section) => (
               <section key={section.id} id={section.id} className="mb-10 lg:mb-12">
-                <h2 className="mb-4 text-[24px] font-extrabold tracking-[-.02em] text-ink lg:text-[28px]">
+                <h2 className="font-display mb-4 text-[24px] font-bold tracking-[-.02em] text-ink lg:text-[28px]">
                   {section.num}. {section.title}
                 </h2>
                 <div className="space-y-4">{section.body}</div>
               </section>
             ))}
 
-            <div className="h-px bg-studio-200" />
+            <div className="h-px bg-cream-200" />
             <p className={cn(p, 'mt-8')}>
               By using the pilot website, you acknowledge that you have read this notice and
               understand how your information may be collected and used.

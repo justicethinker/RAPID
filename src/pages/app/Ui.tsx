@@ -1,29 +1,35 @@
 import type { ReactNode } from "react";
 import { Link } from "react-router-dom";
-import { ArrowLeft, Loader2 } from "lucide-react";
+import { AlertTriangle, ArrowLeft, Loader2 } from "lucide-react";
 import { cn } from "@/lib/cn";
 import { CountUp } from "@/components/motion/CountUp";
 import { Reveal } from "@/components/motion/Reveal";
 
 export type Tone = "positive" | "neutral" | "warning" | "negative" | "proof";
 
-const TONES: Record<Tone, string> = {
-  positive: "bg-brand-50 text-brand-700",
-  neutral: "bg-studio-100 text-ink",
-  warning: "bg-warn-50 text-warn-900",
-  negative: "bg-red-50 text-danger",
-  // Oxblood is the evidence accent: published findings, not actions.
-  proof: "bg-oxblood-50 text-oxblood-600",
+const TONES: Record<Tone, { chip: string; dot: string }> = {
+  // Green: done, accepted, approved, live.
+  positive: { chip: "bg-rapid-50 text-rapid-800 ring-rapid-200", dot: "bg-rapid-500" },
+  // Cream: draft, closed, not started — nothing needed.
+  neutral: { chip: "bg-cream-100 text-ink-soft ring-cream-200", dot: "bg-ink-faint" },
+  // Amber: waiting on someone, needs attention.
+  warning: { chip: "bg-warn-50 text-warn-700 ring-[#F2D39A]", dot: "bg-[#D99A00]" },
+  // Red: declined, rejected, failed.
+  negative: { chip: "bg-danger-50 text-danger ring-danger/20", dot: "bg-danger" },
+  // Deep green: published evidence. The one inverted chip.
+  proof: { chip: "bg-rapid-900 text-cream-50 ring-rapid-900", dot: "bg-sun-500" },
 };
 
 export function Pill({ tone = "neutral", children }: { tone?: Tone; children: ReactNode }) {
+  const style = TONES[tone];
   return (
     <span
       className={cn(
-        "inline-flex items-center whitespace-nowrap rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.1em]",
-        TONES[tone],
+        "inline-flex items-center gap-1.5 whitespace-nowrap rounded-full px-2.5 py-1 text-xs font-semibold leading-none ring-1 ring-inset",
+        style.chip,
       )}
     >
+      <span aria-hidden="true" className={cn("h-1.5 w-1.5 rounded-full", style.dot)} />
       {children}
     </span>
   );
@@ -41,19 +47,16 @@ export function PageHeading({
   children?: ReactNode;
 }) {
   return (
-    <div className="dashboard-page-heading hero-stagger flex flex-wrap items-end justify-between gap-4">
+    <div className="dashboard-page-heading hero-stagger flex flex-wrap items-end justify-between gap-x-6 gap-y-4 border-b border-cream-200 pb-7">
       {/* flex-1 lets a long title shrink instead of pushing the page action
           onto its own line. */}
       <div className="min-w-0 flex-1">
-        <p className="flex items-center gap-2.5 text-[10px] font-bold uppercase tracking-[0.18em] text-brand-700">
-          <span aria-hidden="true" className="h-px w-6 bg-brand-700/50" />
-          {eyebrow}
-        </p>
-        <h1 className="mt-3 text-[30px] font-extrabold leading-[1.05] tracking-[-0.035em] text-ink sm:text-[36px]">
+        <p className="kicker">{eyebrow}</p>
+        <h1 className="mt-3 font-display text-[32px] font-bold leading-[1.04] tracking-[-0.03em] text-ink sm:text-[40px]">
           {title}
         </h1>
         {description && (
-          <p className="mt-3 max-w-[62ch] text-[15px] leading-relaxed text-light-muted">
+          <p className="mt-3 max-w-[62ch] text-[15px] leading-relaxed text-ink-soft">
             {description}
           </p>
         )}
@@ -67,7 +70,7 @@ export function BackLink({ to, children }: { to: string; children: ReactNode }) 
   return (
     <Link
       to={to}
-      className="group -ml-0.5 inline-flex min-h-[44px] items-center gap-2 text-[11px] font-bold uppercase tracking-[0.16em] text-studio-600 transition-colors hover:text-ink"
+      className="group -ml-1 inline-flex min-h-[44px] items-center gap-2 rounded-full px-1 text-sm font-semibold text-ink-soft transition-colors hover:text-rapid-700"
     >
       <ArrowLeft
         size={15}
@@ -86,22 +89,23 @@ export function BackLink({ to, children }: { to: string; children: ReactNode }) 
 export function Meta({ label, children }: { label: string; children: ReactNode }) {
   return (
     <div>
-      <dt className="text-[10px] font-bold uppercase tracking-[0.16em] text-studio-600">
+      <dt className="text-xs font-semibold text-ink-faint">
         {label}
       </dt>
-      <dd className="mt-1.5 text-sm font-semibold text-ink">{children}</dd>
+      <dd className="mt-1 text-[15px] font-semibold text-ink">{children}</dd>
     </div>
   );
 }
 
-/** Oxblood marks evidence — quotes and published findings, never actions. */
+/** Evidence quotes: serif voice on a paper card. */
 export function Quote({ label, children }: { label: string; children: ReactNode }) {
   return (
-    <figure className="border-l-2 border-oxblood-500 pl-5">
-      <blockquote className="text-[15px] leading-[1.7] text-ink">
+    <figure className="relative rounded-2xl bg-cream-100 px-5 pb-4 pt-5">
+      <span aria-hidden="true" className="absolute -top-3 left-4 font-serif text-5xl leading-none text-sun-500">“</span>
+      <blockquote className="font-serif text-[19px] italic leading-[1.45] text-ink">
         “{children}”
       </blockquote>
-      <figcaption className="mt-2.5 text-[10px] font-bold uppercase tracking-[0.16em] text-oxblood-600">
+      <figcaption className="mt-2.5 text-xs font-semibold text-ink-faint">
         {label}
       </figcaption>
     </figure>
@@ -124,16 +128,16 @@ export function Panel({
   return (
     <Reveal
       as="section"
-      className="dashboard-panel lift overflow-hidden rounded-2xl border border-studio-200 bg-studio-25 hover:border-brand-600"
+      className="dashboard-panel overflow-hidden rounded-[20px] border border-cream-200 bg-white shadow-elev-1"
     >
       {hasHeader && (
-        <div className="flex flex-wrap items-start justify-between gap-3 border-b border-studio-200/80 px-5 py-5 sm:px-6">
+        <div className="flex flex-wrap items-start justify-between gap-3 border-b border-cream-200 px-5 py-4 sm:px-6">
           <div className="min-w-0">
             {title && (
-              <h2 className="text-[17px] font-bold tracking-[-0.01em] text-ink">{title}</h2>
+              <h2 className="font-display text-lg font-bold tracking-[-0.015em] text-ink">{title}</h2>
             )}
             {description && (
-              <p className="mt-1 max-w-[62ch] text-sm leading-relaxed text-light-muted">
+              <p className="mt-1 max-w-[62ch] text-sm leading-relaxed text-ink-soft">
                 {description}
               </p>
             )}
@@ -150,21 +154,28 @@ export function Stat({
   label,
   value,
   hint,
+  icon,
 }: {
   label: string;
   value: number | string;
   hint?: string;
+  icon?: ReactNode;
 }) {
   return (
-    <div className="lift relative overflow-hidden rounded-2xl border border-studio-200 bg-studio-25 py-5 pl-6 pr-5 hover:border-brand-600">
-      <span
-        aria-hidden="true"
-        className="absolute inset-y-5 left-0 w-[2px] rounded-full bg-brand-500/80"
-      />
-      <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-studio-600">{label}</p>        <p className="mt-2.5 text-[32px] font-extrabold leading-none tracking-[-0.04em] text-ink tabular-nums">
+    <div className="lift group relative overflow-hidden rounded-[20px] border border-cream-200 bg-white p-5 shadow-elev-1 hover:border-rapid-300">
+      <div className="flex items-center justify-between gap-3">
+        <p className="text-[13px] font-semibold text-ink-soft">{label}</p>
+        {icon && (
+          <span aria-hidden="true" className="flex h-8 w-8 items-center justify-center rounded-full bg-rapid-50 text-rapid-700">
+            {icon}
+          </span>
+        )}
+      </div>
+      <p className="mt-3 font-display text-[40px] font-bold leading-none tracking-[-0.04em] text-ink tabular-nums">
         {typeof value === "number" ? <CountUp value={value} /> : value}
       </p>
-      {hint && <p className="mt-2 text-xs leading-snug text-light-muted">{hint}</p>}
+      {hint && <p className="mt-2 text-xs leading-snug text-ink-faint">{hint}</p>}
+      <span aria-hidden="true" className="absolute inset-x-5 bottom-0 h-[3px] origin-left scale-x-0 rounded-full bg-sun-500 transition-transform duration-500 group-hover:scale-x-100" />
     </div>
   );
 }
@@ -173,54 +184,71 @@ export function EmptyState({
   icon,
   title,
   children,
+  action,
 }: {
   icon?: ReactNode;
   title: string;
   children?: ReactNode;
+  /** The next step, usually a button or link. */
+  action?: ReactNode;
 }) {
   return (
-    <div className="flex items-start gap-4">
+    <div className="flex flex-col items-start gap-4 sm:flex-row">
       {icon && (
-        <span className="pop-in flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-studio-200 bg-studio-50 text-brand-700">
+        <span className="pop-in relative flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-rapid-50 text-rapid-700 ring-1 ring-inset ring-rapid-100">
           {icon}
+          <span aria-hidden="true" className="absolute -right-1 -top-1 h-3 w-3 rounded-full border-2 border-white bg-sun-500" />
         </span>
       )}
       <div className="min-w-0">
         {/* Panels are not always titled, so this stays at h2 to keep the
             heading order valid (h1 followed by h2). */}
-        <h2 className="text-[17px] font-bold tracking-[-0.01em] text-ink">{title}</h2>
+        <h2 className="font-display text-lg font-bold tracking-[-0.015em] text-ink">{title}</h2>
         {children && (
-          <div className="mt-1.5 max-w-[60ch] text-sm leading-relaxed text-light-muted">
+          <div className="mt-1.5 max-w-[60ch] text-sm leading-relaxed text-ink-soft">
             {children}
           </div>
         )}
+        {action && <div className="mt-4 flex flex-wrap gap-2">{action}</div>}
       </div>
     </div>
   );
 }
 
+/** Skeleton rows while data loads; the label stays readable to assistive tech. */
 export function Loading({ label = "Loading…" }: { label?: string }) {
   return (
-    <p role="status" className="fade-in flex items-center gap-2 text-light-muted">
-      <Loader2 size={16} className="animate-spin" aria-hidden="true" />
-      {label}
-    </p>
+    <div role="status" className="fade-in space-y-3">
+      <p className="flex items-center gap-2 text-sm text-ink-faint">
+        <Loader2 size={15} className="animate-spin" aria-hidden="true" />
+        {label}
+      </p>
+      <div aria-hidden="true" className="grid gap-3 sm:grid-cols-3">
+        <div className="skeleton h-24" />
+        <div className="skeleton h-24" />
+        <div className="skeleton hidden h-24 sm:block" />
+      </div>
+      <div aria-hidden="true" className="skeleton h-40" />
+    </div>
   );
 }
 
 export function ErrorPanel({ message, onRetry }: { message: string; onRetry?: () => void }) {
   return (
-    <div role="alert" className="shake rounded-2xl border border-red-200 bg-red-50 p-5">
-      <p className="font-semibold text-danger">{message}</p>
-      {onRetry && (
-        <button
-          type="button"
-          onClick={onRetry}
-          className="mt-3 inline-flex min-h-[44px] items-center rounded-xl border border-red-200 bg-studio-25 px-4 text-sm font-semibold text-danger"
-        >
-          Try again
-        </button>
-      )}
+    <div role="alert" className="shake flex items-start gap-3 rounded-[20px] border border-danger/25 bg-danger-50 p-5">
+      <AlertTriangle size={18} aria-hidden="true" className="mt-0.5 shrink-0 text-danger" />
+      <div>
+        <p className="font-semibold text-danger">{message}</p>
+        {onRetry && (
+          <button
+            type="button"
+            onClick={onRetry}
+            className="mt-3 inline-flex min-h-[40px] items-center rounded-full border border-danger/30 bg-white px-4 text-sm font-semibold text-danger transition-colors hover:border-danger"
+          >
+            Try again
+          </button>
+        )}
+      </div>
     </div>
   );
 }
@@ -237,10 +265,10 @@ export function FieldLabel({
   return (
     <label htmlFor={htmlFor} className="block text-sm font-semibold text-ink">
       {children}
-      {hint && <span className="mt-1 block text-sm font-normal text-light-muted">{hint}</span>}
+      {hint && <span className="mt-1 block text-sm font-normal text-ink-soft">{hint}</span>}
     </label>
   );
 }
 
 export const inputClass =
-  "mt-2 w-full rounded-xl border border-studio-300 bg-studio-25 px-4 py-3 text-base text-ink placeholder:text-light-muted/70 focus:border-brand-700 focus:outline-none focus:ring-2 focus:ring-brand-500/25";
+  "mt-2 w-full rounded-xl border border-cream-300 bg-white px-4 py-3 text-base text-ink transition-[border-color,box-shadow] placeholder:text-ink-faint/80 hover:border-ink/40 focus:border-rapid-600 focus:outline-none focus:ring-4 focus:ring-rapid-500/15";

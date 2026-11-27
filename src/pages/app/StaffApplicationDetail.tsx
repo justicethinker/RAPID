@@ -115,7 +115,7 @@ export default function StaffApplicationDetail() {
             <Meta label="Phone">{data.phone ?? "—"}</Meta>
             <Meta label="WhatsApp">{data.whatsapp ?? "—"}</Meta>
             <Meta label="Reference">
-              <span className="break-all font-mono text-xs text-light-muted">
+              <span className="break-all font-mono text-xs text-ink-soft">
                 {data.reference}
               </span>
             </Meta>
@@ -140,7 +140,7 @@ export default function StaffApplicationDetail() {
             <Meta label="Industry">{data.industry ?? "—"}</Meta>
             <div className="sm:col-span-2">
               <Meta label="Other activities">
-                <span className="font-normal text-light-muted">
+                <span className="font-normal text-ink-soft">
                   {data.otherActivities
                     .map((item) => labelSituation(item) ?? item)
                     .join(", ") || "—"}
@@ -157,12 +157,12 @@ export default function StaffApplicationDetail() {
       >
         <ul className="flex flex-wrap gap-2">
           {data.interests.length === 0 && (
-            <li className="text-light-muted">No interests recorded.</li>
+            <li className="text-ink-soft">No interests recorded.</li>
           )}
           {data.interests.map((interest) => (
             <li
               key={interest}
-              className="rounded-full border border-studio-200 bg-studio-50 px-3 py-1 text-sm font-semibold text-ink"
+              className="rounded-full border border-cream-200 bg-cream-50 px-3 py-1 text-sm font-semibold text-ink"
             >
               {labelInterest(interest)}
             </li>
@@ -176,7 +176,7 @@ export default function StaffApplicationDetail() {
             <span className="whitespace-pre-line">{data.frustration}</span>
           </Quote>
         ) : (
-          <p className="text-light-muted">No answer recorded.</p>
+          <p className="text-ink-soft">No answer recorded.</p>
         )}
       </Panel>
 
@@ -195,7 +195,7 @@ export default function StaffApplicationDetail() {
           onChange={(event) => setNote(event.target.value)}
         />
         {data.note && (
-          <p className="mt-2 text-xs text-light-muted">
+          <p className="mt-2 text-xs text-ink-soft">
             Current note: {data.note}
           </p>
         )}
@@ -208,8 +208,8 @@ export default function StaffApplicationDetail() {
               onClick={() => void decide(status)}
               className={`inline-flex min-h-[44px] items-center rounded-xl border px-4 text-sm font-semibold transition-colors disabled:opacity-60 ${
                 data.status === status
-                  ? "border-brand-700 bg-brand-50 text-brand-700"
-                  : "border-studio-300 bg-studio-25 text-ink hover:border-brand-600"
+                  ? "border-rapid-700 bg-rapid-50 text-rapid-700"
+                  : "border-cream-300 bg-white text-ink hover:border-rapid-600"
               }`}
             >
               {label}
@@ -219,7 +219,7 @@ export default function StaffApplicationDetail() {
       </Panel>
 
       <Panel title="Privacy">
-        <p className="max-w-[62ch] text-sm text-light-muted">
+        <p className="max-w-[62ch] text-sm text-ink-soft">
           Anonymising clears the name, email, phone and written answers in
           place. Invitation and response counts stay intact so founder reports
           do not change.
@@ -228,7 +228,7 @@ export default function StaffApplicationDetail() {
           type="button"
           disabled={pending}
           onClick={() => void anonymise()}
-          className="mt-4 inline-flex min-h-[44px] items-center rounded-xl border border-danger/30 bg-studio-25 px-4 text-sm font-semibold text-danger hover:bg-red-50 disabled:opacity-60"
+          className="mt-4 inline-flex min-h-[44px] items-center rounded-full border border-danger/30 bg-white px-4 text-sm font-semibold text-danger hover:bg-danger-50 disabled:opacity-60"
         >
           Anonymise person
         </button>

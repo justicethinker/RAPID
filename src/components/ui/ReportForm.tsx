@@ -31,7 +31,7 @@ export function ReportForm({
       <Link
         to="/sign-in"
         state={{ from: `${window.location.pathname}${window.location.hash}` }}
-        className="text-xs font-semibold text-studio-600 underline underline-offset-2 hover:text-ink"
+        className="text-xs font-semibold text-ink-faint underline underline-offset-2 hover:text-ink"
       >
         Sign in to report
       </Link>
@@ -42,7 +42,7 @@ export function ReportForm({
     return (
       <p
         aria-live="polite"
-        className="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-700"
+        className="inline-flex items-center gap-1.5 text-xs font-semibold text-rapid-700"
       >
         <CheckCircle2 size={14} aria-hidden="true" />
         Report sent for review
@@ -90,7 +90,7 @@ export function ReportForm({
         onClick={() => setOpen((value) => !value)}
         aria-expanded={open}
         aria-controls={`${id}-panel`}
-        className="inline-flex items-center gap-1.5 text-xs font-semibold text-studio-600 underline underline-offset-2 hover:text-danger"
+        className="inline-flex items-center gap-1.5 text-xs font-semibold text-ink-faint underline underline-offset-2 hover:text-danger"
       >
         <Flag size={13} aria-hidden="true" />
         Report
@@ -99,11 +99,11 @@ export function ReportForm({
         <form
           id={`${id}-panel`}
           onSubmit={(event) => void submit(event)}
-          className="mt-3 w-full max-w-[420px] rounded-xl border border-studio-200 bg-studio-50 p-3 text-left"
+          className="mt-3 w-full max-w-[420px] rounded-xl border border-cream-200 bg-cream-50 p-3 text-left"
         >
           <label
             htmlFor={`${id}-reason`}
-            className="block text-xs font-bold uppercase tracking-[0.1em] text-studio-600"
+            className="block text-xs font-bold uppercase tracking-[0.1em] text-ink-faint"
           >
             What is wrong?
           </label>
@@ -121,7 +121,7 @@ export function ReportForm({
             <button
               type="submit"
               disabled={pending || reason.trim().length < 10}
-              className="inline-flex min-h-[38px] items-center gap-1.5 rounded-lg bg-ink px-3 text-xs font-bold text-white disabled:opacity-50"
+              className="inline-flex min-h-[38px] items-center gap-1.5 rounded-full bg-ink px-3 text-xs font-semibold text-white disabled:opacity-50"
             >
               {pending ? (
                 <>
@@ -135,7 +135,7 @@ export function ReportForm({
             <button
               type="button"
               onClick={() => setOpen(false)}
-              className="text-xs font-semibold text-light-muted hover:text-ink"
+              className="text-xs font-semibold text-ink-soft hover:text-ink"
             >
               Cancel
             </button>

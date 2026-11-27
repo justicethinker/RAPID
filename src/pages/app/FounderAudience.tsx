@@ -60,7 +60,7 @@ export default function FounderAudience() {
             href={`${window.location.origin}/startup/${startup.slug}`}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex min-h-[44px] items-center gap-2 rounded-xl border border-studio-300 bg-studio-25 px-4 text-sm font-bold text-ink hover:border-brand-600 hover:bg-studio-50"
+            className="inline-flex min-h-[44px] items-center gap-2 rounded-full border border-cream-300 bg-white px-4 text-sm font-semibold text-ink hover:border-rapid-600 hover:bg-cream-50"
           >
             View public page
             <ArrowUpRight size={15} aria-hidden="true" />
@@ -77,7 +77,7 @@ export default function FounderAudience() {
             <p>Publish your profile and share the link. Followers, waitlist registrations and feedback will appear here.</p>
             <Link
               to="/app/founder/startup"
-              className="mt-4 inline-flex min-h-[44px] items-center rounded-xl bg-brand-500 px-5 text-sm font-bold text-ink hover:bg-brand-700 hover:text-white"
+              className="mt-4 inline-flex min-h-[44px] items-center rounded-full bg-sun-500 px-5 text-sm font-semibold text-ink hover:bg-sun-400"
             >
               Set up startup
             </Link>
@@ -114,14 +114,14 @@ export default function FounderAudience() {
             title="Organic analytics"
             description={`First-party visits and post activity over the last ${range} days. Each visitor is counted once per item per day.`}
             action={
-              <label className="text-xs font-semibold text-light-muted">
+              <label className="text-xs font-semibold text-ink-soft">
                 Period{' '}
                 <select
                   value={range}
                   onChange={(event) =>
                     setRange(Number(event.target.value) as 7 | 30 | 90)
                   }
-                  className="ml-1 min-h-[36px] rounded-lg border border-studio-300 bg-studio-25 px-2 text-xs font-semibold text-ink"
+                  className="ml-1 min-h-[36px] rounded-lg border border-cream-300 bg-white px-2 text-xs font-semibold text-ink"
                 >
                   <option value={7}>7 days</option>
                   <option value={30}>30 days</option>
@@ -156,17 +156,17 @@ export default function FounderAudience() {
 
                 <div className="mt-6 grid gap-6 lg:grid-cols-[minmax(0,1fr)_230px]">
                   <div>
-                    <div className="flex flex-wrap items-center gap-4 text-[11px] font-semibold text-light-muted">
+                    <div className="flex flex-wrap items-center gap-4 text-[11px] font-semibold text-ink-soft">
                       <span className="inline-flex items-center gap-1.5">
-                        <span className="h-2 w-2 rounded-full bg-brand-600" aria-hidden="true" />
+                        <span className="h-2 w-2 rounded-full bg-rapid-600" aria-hidden="true" />
                         Profile views
                       </span>
                       <span className="inline-flex items-center gap-1.5">
-                        <span className="h-2 w-2 rounded-full bg-brand-400" aria-hidden="true" />
+                        <span className="h-2 w-2 rounded-full bg-rapid-400" aria-hidden="true" />
                         Post impressions
                       </span>
                       <span className="inline-flex items-center gap-1.5">
-                        <span className="h-2 w-2 rounded-full bg-oxblood-400" aria-hidden="true" />
+                        <span className="h-2 w-2 rounded-full bg-rapid-400" aria-hidden="true" />
                         Post opens
                       </span>
                     </div>
@@ -178,9 +178,9 @@ export default function FounderAudience() {
                           title={`${day.date}: ${day.profileViews} profile views, ${day.postImpressions} impressions, ${day.postOpens} opens`}
                         >
                           {[
-                            ['bg-brand-600', day.profileViews],
-                            ['bg-brand-400', day.postImpressions],
-                            ['bg-oxblood-400', day.postOpens],
+                            ['bg-rapid-600', day.profileViews],
+                            ['bg-rapid-400', day.postImpressions],
+                            ['bg-rapid-400', day.postOpens],
                           ].map(([colour, count]) => (
                             <span
                               key={String(colour)}
@@ -196,24 +196,24 @@ export default function FounderAudience() {
                         </div>
                       ))}
                     </div>
-                    <p className="mt-2 text-xs text-light-muted">
+                    <p className="mt-2 text-xs text-ink-soft">
                       {range} days, ending today. Hover a bar for the exact daily count.
                     </p>
                   </div>
 
-                  <div className="rounded-xl border border-studio-200 bg-studio-50 p-4">
-                    <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-studio-600">
+                  <div className="rounded-xl border border-cream-200 bg-cream-50 p-4">
+                    <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-ink-faint">
                       Profile-view sources
                     </p>
                     {analytics.sources.length === 0 ? (
-                      <p className="mt-2 text-xs leading-relaxed text-light-muted">
+                      <p className="mt-2 text-xs leading-relaxed text-ink-soft">
                         No profile-visit attribution yet.
                       </p>
                     ) : (
                       <ul className="mt-3 space-y-2">
                         {analytics.sources.map((source) => (
                           <li key={source.source} className="flex items-center justify-between gap-3 text-xs">
-                            <span className="capitalize text-light-muted">
+                            <span className="capitalize text-ink-soft">
                               {source.source.replaceAll('_', ' ')}
                             </span>
                             <span className="font-semibold text-ink tabular-nums">
@@ -247,7 +247,7 @@ export default function FounderAudience() {
                   {trend.map((point) => (
                     <div key={point.date} className="flex min-w-0 flex-1 flex-col items-center gap-1.5">
                       <span
-                        className="w-full rounded-t bg-brand-500"
+                        className="w-full rounded-t bg-sun-500"
                         style={{
                           height: `${Math.max(
                             point.count === 0 ? 2 : 8,
@@ -255,13 +255,13 @@ export default function FounderAudience() {
                           )}%`,
                         }}
                       />
-                      <span className="text-[9px] font-semibold text-studio-600">
+                      <span className="text-[9px] font-semibold text-ink-faint">
                         {dayLabel(point.date).split(' ')[0]}
                       </span>
                     </div>
                   ))}
                 </div>
-                <p className="mt-4 text-sm text-light-muted">
+                <p className="mt-4 text-sm text-ink-soft">
                   {trendTotal} new follower{trendTotal === 1 ? '' : 's'} in the last 14 days.
                   {' '}Busiest day: {trendMax} new follower{trendMax === 1 ? '' : 's'}.
                 </p>
@@ -280,23 +280,23 @@ export default function FounderAudience() {
                 </p>
               </EmptyState>
             ) : (
-              <ul className="divide-y divide-studio-200">
+              <ul className="divide-y divide-cream-200">
                 {data.feedback.items.map((item) => (
                   <li key={item.id} className="py-4 first:pt-0 last:pb-0">
                     <div className="flex flex-wrap items-center justify-between gap-2">
                       <p className="text-sm font-semibold text-ink">{item.authorName}</p>
-                      <span className="text-xs text-studio-600">
+                      <span className="text-xs text-ink-faint">
                         {formatDay(item.createdAt)}
                       </span>
                     </div>
-                    <p className="mt-2 whitespace-pre-line text-[15px] leading-relaxed text-light-muted">
+                    <p className="mt-2 whitespace-pre-line text-[15px] leading-relaxed text-ink-soft">
                       {item.body}
                     </p>
-                    <p className="mt-2 text-xs text-studio-600">
+                    <p className="mt-2 text-xs text-ink-faint">
                       On{' '}
                       <Link
                         to={`/startup/${startup.slug}#post-${item.post.id}`}
-                        className="font-semibold text-brand-700 underline underline-offset-2"
+                        className="font-semibold text-rapid-700 underline underline-offset-2"
                       >
                         {item.post.title}
                       </Link>
@@ -316,23 +316,23 @@ export default function FounderAudience() {
                 <p>Published posts appear here with their feedback count.</p>
                 <Link
                   to="/app/founder/posts"
-                  className="mt-4 inline-flex min-h-[44px] items-center rounded-xl bg-brand-500 px-5 text-sm font-bold text-ink hover:bg-brand-700 hover:text-white"
+                  className="mt-4 inline-flex min-h-[44px] items-center rounded-full bg-sun-500 px-5 text-sm font-semibold text-ink hover:bg-sun-400"
                 >
                   Go to posts
                 </Link>
               </EmptyState>
             ) : (
-              <ul className="divide-y divide-studio-200">
+              <ul className="divide-y divide-cream-200">
                 {data.posts.map((post) => (
                   <li key={post.id} className="flex flex-wrap items-center justify-between gap-3 py-4 first:pt-0 last:pb-0">
                     <div className="min-w-0">
                       <Link
                         to={`/startup/${startup.slug}#post-${post.id}`}
-                        className="text-sm font-semibold text-ink hover:text-brand-700"
+                        className="text-sm font-semibold text-ink hover:text-rapid-700"
                       >
                         {post.title}
                       </Link>
-                      <p className="mt-1 text-xs text-studio-600">
+                      <p className="mt-1 text-xs text-ink-faint">
                         {post.publishedAt
                           ? `Published ${formatDay(post.publishedAt)}`
                           : 'Published'}
@@ -364,13 +364,13 @@ export default function FounderAudience() {
                 )}
               </EmptyState>
             ) : (
-              <ul className="divide-y divide-studio-200">
+              <ul className="divide-y divide-cream-200">
                 {data.recent.map((entry) => (
                   <li key={entry.id} className="flex flex-wrap items-start justify-between gap-3 py-4 first:pt-0 last:pb-0">
                     <div className="min-w-0">
                       <p className="text-sm font-semibold text-ink">{entry.name || entry.email}</p>
-                      {entry.name && <p className="mt-0.5 break-all text-sm text-light-muted">{entry.email}</p>}
-                      <p className="mt-1 text-xs text-studio-600">Joined {formatDay(entry.createdAt)}</p>
+                      {entry.name && <p className="mt-0.5 break-all text-sm text-ink-soft">{entry.email}</p>}
+                      <p className="mt-1 text-xs text-ink-faint">Joined {formatDay(entry.createdAt)}</p>
                     </div>
                     <Pill tone="neutral">{entry.source || 'Direct link'}</Pill>
                   </li>

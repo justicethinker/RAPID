@@ -178,20 +178,20 @@ export function PostImageGallery({
         onDragOver={onDragOver}
         onDrop={onDrop}
         className={cn(
-          'relative rounded-xl border bg-studio-50 p-4 transition-colors',
+          'relative rounded-xl border bg-cream-50 p-4 transition-colors',
           dragging
-            ? 'border-brand-600 bg-brand-50 ring-2 ring-brand-500/20'
-            : 'border-studio-200',
+            ? 'border-rapid-600 bg-rapid-50 ring-2 ring-rapid-500/20'
+            : 'border-cream-200',
         )}
       >
         {dragging && !pending && !full && (
           <div
             aria-hidden="true"
-            className="pointer-events-none absolute inset-1 z-10 flex items-center justify-center rounded-lg border-2 border-dashed border-brand-600 bg-brand-50/95 p-4 text-center"
+            className="pointer-events-none absolute inset-1 z-10 flex items-center justify-center rounded-lg border-2 border-dashed border-rapid-600 bg-rapid-50/95 p-4 text-center"
           >
             <span>
-              <ImagePlus size={24} className="mx-auto text-brand-700" />
-              <span className="mt-2 block text-sm font-bold text-brand-700">
+              <ImagePlus size={24} className="mx-auto text-rapid-700" />
+              <span className="mt-2 block text-sm font-bold text-rapid-700">
                 Drop to crop and add
               </span>
             </span>
@@ -201,11 +201,11 @@ export function PostImageGallery({
         <div className="flex flex-wrap items-start justify-between gap-3">
           <div>
             <p className="text-sm font-semibold text-ink">Post images</p>
-            <p className="mt-1 text-xs leading-relaxed text-light-muted">
+            <p className="mt-1 text-xs leading-relaxed text-ink-soft">
               Up to {maxImages} images. The first image leads the gallery.
             </p>
           </div>
-          <span className="rounded-full bg-studio-25 px-2.5 py-1 text-[11px] font-bold tabular-nums text-studio-600">
+          <span className="rounded-full bg-white px-2.5 py-1 text-[11px] font-bold tabular-nums text-ink-faint">
             {images.length}/{maxImages}
           </span>
         </div>
@@ -224,19 +224,19 @@ export function PostImageGallery({
           <label
             htmlFor={id}
             className={cn(
-              'mt-3 flex min-h-[120px] cursor-pointer flex-col items-center justify-center rounded-xl border border-dashed border-studio-300 bg-studio-25 px-4 text-center transition-colors hover:border-brand-600 hover:bg-brand-50',
+              'mt-3 flex min-h-[120px] cursor-pointer flex-col items-center justify-center rounded-xl border border-dashed border-cream-300 bg-white px-4 text-center transition-colors hover:border-rapid-600 hover:bg-rapid-50',
               (pending || full) && 'pointer-events-none opacity-60',
             )}
           >
             {pending ? (
-              <Loader2 size={22} className="animate-spin text-brand-700" aria-hidden="true" />
+              <Loader2 size={22} className="animate-spin text-rapid-700" aria-hidden="true" />
             ) : (
-              <ImagePlus size={22} className="text-studio-500" aria-hidden="true" />
+              <ImagePlus size={22} className="text-ink-faint" aria-hidden="true" />
             )}
             <span className="mt-2 text-sm font-bold text-ink">
               {pending ? 'Uploading image…' : 'Add an image'}
             </span>
-            <span className="mt-1 text-xs text-light-muted">
+            <span className="mt-1 text-xs text-ink-soft">
               Drag a file here or choose one to crop.
             </span>
           </label>
@@ -251,7 +251,7 @@ export function PostImageGallery({
               <div
                 key={image.id}
                 className={cn(
-                  'group relative aspect-[16/9] overflow-hidden rounded-lg border border-studio-200 bg-studio-25',
+                  'group relative aspect-[16/9] overflow-hidden rounded-lg border border-cream-200 bg-white',
                   removing === image.id && 'opacity-60',
                 )}
               >
@@ -270,7 +270,7 @@ export function PostImageGallery({
                   onClick={() => void remove(image.id)}
                   disabled={pending}
                   aria-label={`Remove image ${index + 1} of ${images.length}`}
-                  className="absolute right-1.5 top-1.5 inline-flex h-7 w-7 items-center justify-center rounded-md border border-studio-200 bg-studio-25/95 text-studio-600 shadow-sm transition-colors hover:text-danger disabled:opacity-60"
+                  className="absolute right-1.5 top-1.5 inline-flex h-7 w-7 items-center justify-center rounded-md border border-cream-200 bg-white/95 text-ink-faint shadow-sm transition-colors hover:text-danger disabled:opacity-60"
                 >
                   {removing === image.id ? (
                     <Loader2 size={13} className="animate-spin" aria-hidden="true" />
@@ -284,14 +284,14 @@ export function PostImageGallery({
               <label
                 htmlFor={id}
                 className={cn(
-                  'flex aspect-[16/9] cursor-pointer flex-col items-center justify-center rounded-lg border border-dashed border-studio-300 bg-studio-25 px-2 text-center transition-colors hover:border-brand-600 hover:bg-brand-50',
+                  'flex aspect-[16/9] cursor-pointer flex-col items-center justify-center rounded-lg border border-dashed border-cream-300 bg-white px-2 text-center transition-colors hover:border-rapid-600 hover:bg-rapid-50',
                   pending && 'pointer-events-none opacity-60',
                 )}
               >
                 {pending ? (
-                  <Loader2 size={18} className="animate-spin text-brand-700" aria-hidden="true" />
+                  <Loader2 size={18} className="animate-spin text-rapid-700" aria-hidden="true" />
                 ) : (
-                  <ImagePlus size={18} className="text-studio-500" aria-hidden="true" />
+                  <ImagePlus size={18} className="text-ink-faint" aria-hidden="true" />
                 )}
                 <span className="mt-1 text-[11px] font-bold text-ink">
                   {pending ? 'Uploading…' : 'Add image'}
@@ -310,29 +310,29 @@ export function PostImageGallery({
               aria-valuemax={100}
               aria-valuenow={progress ?? undefined}
               aria-valuetext={uploadLabel}
-              className="h-1.5 overflow-hidden rounded-full bg-studio-200"
+              className="h-1.5 overflow-hidden rounded-full bg-cream-200"
             >
               <span
                 className={cn(
-                  'block h-full rounded-full bg-brand-600 transition-[width] duration-300',
+                  'block h-full rounded-full bg-rapid-600 transition-[width] duration-300',
                   progress === null && 'animate-pulse',
                 )}
                 style={{ width: progress === null ? '12%' : `${Math.max(4, progress)}%` }}
               />
             </div>
-            <p role="status" aria-live="polite" className="mt-1.5 text-[11px] font-semibold text-brand-700">
+            <p role="status" aria-live="polite" className="mt-1.5 text-[11px] font-semibold text-rapid-700">
               {uploadLabel}
             </p>
           </div>
         )}
 
         {removing && (
-          <p role="status" className="mt-2 text-[11px] font-semibold text-brand-700">
+          <p role="status" className="mt-2 text-[11px] font-semibold text-rapid-700">
             Removing image…
           </p>
         )}
 
-        <p className="mt-2 text-[11px] text-studio-600">
+        <p className="mt-2 text-[11px] text-ink-faint">
           PNG, JPEG or WebP · up to 3 MB each. Drag a file here or choose one to crop it first.
         </p>
         {error && (

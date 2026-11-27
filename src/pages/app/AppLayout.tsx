@@ -123,11 +123,11 @@ function NavRow({ item, horizontal = false }: { item: NavItem; horizontal?: bool
           "group relative flex min-h-[44px] shrink-0 items-center gap-2 rounded-xl px-3 text-sm font-semibold transition-all duration-200",
           horizontal ? "whitespace-nowrap" : "hover:translate-x-0.5",
           isActive
-            ? "bg-brand-50 text-brand-700"
-            : "text-light-muted hover:bg-studio-50 hover:text-ink",
+            ? "bg-rapid-50 text-rapid-700"
+            : "text-ink-soft hover:bg-cream-50 hover:text-ink",
           !horizontal &&
             isActive &&
-            "before:absolute before:left-0 before:top-1/2 before:h-6 before:w-1 before:-translate-y-1/2 before:rounded-full before:bg-brand-500",
+            "before:absolute before:left-0 before:top-1/2 before:h-6 before:w-1 before:-translate-y-1/2 before:rounded-full before:bg-sun-500",
         )
       }
     >
@@ -139,7 +139,7 @@ function NavRow({ item, horizontal = false }: { item: NavItem; horizontal?: bool
       />
       {item.label}
       {item.badge ? (
-        <span className="pop-in ml-auto rounded-full bg-brand-500 px-2 py-0.5 text-[11px] font-bold text-ink">
+        <span className="pop-in ml-auto rounded-full bg-sun-500 px-2 py-0.5 text-[11px] font-bold text-ink">
           {item.badge > 9 ? "9+" : item.badge}
           <span className="sr-only"> unread</span>
         </span>
@@ -171,7 +171,7 @@ function NavItems({ horizontal = false }: { horizontal?: boolean }) {
           <div key={group.label}>
             <p
               id={labelId}
-              className="px-3 text-[10px] font-bold uppercase tracking-[0.16em] text-studio-600"
+              className="px-3 text-[10px] font-bold uppercase tracking-[0.16em] text-ink-faint"
             >
               {group.label}
             </p>
@@ -200,34 +200,34 @@ function UserBlock() {
   const initial = (name.trim().charAt(0) || "R").toUpperCase();
 
   return (
-    <div className="mt-8 border-t border-studio-200 pt-5">
+    <div className="mt-8 border-t border-cream-200 pt-5">
       <div className="flex items-center gap-3">
         <span
           aria-hidden="true"
-          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand-50 text-sm font-bold text-brand-700"
+          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-rapid-50 text-sm font-bold text-rapid-700"
         >
           {initial}
         </span>
         <div className="min-w-0">
           <p className="truncate text-sm font-semibold text-ink">{name}</p>
-          <p className="truncate text-xs text-light-muted">{me?.person.email}</p>
+          <p className="truncate text-xs text-ink-soft">{me?.person.email}</p>
         </div>
       </div>
       <div className="mt-3 flex items-center gap-1">
         <Link
           to="/"
-          className="inline-flex min-h-[40px] items-center gap-1 rounded-lg px-2 text-xs font-semibold text-light-muted transition-colors hover:bg-studio-50 hover:text-ink"
+          className="inline-flex min-h-[40px] items-center gap-1 rounded-full px-2 text-xs font-semibold text-ink-soft transition-colors hover:bg-cream-50 hover:text-ink"
         >
           Public site
           <ArrowUpRight size={13} aria-hidden="true" />
         </Link>
-        <span aria-hidden="true" className="text-studio-300">
+        <span aria-hidden="true" className="text-cream-300">
           /
         </span>
         <button
           type="button"
           onClick={() => void onSignOut()}
-          className="inline-flex min-h-[40px] items-center gap-1.5 rounded-lg px-2 text-xs font-semibold text-light-muted transition-colors hover:bg-studio-50 hover:text-ink"
+          className="inline-flex min-h-[40px] items-center gap-1.5 rounded-full px-2 text-xs font-semibold text-ink-soft transition-colors hover:bg-cream-50 hover:text-ink"
         >
           <LogOut size={14} aria-hidden="true" />
           Sign out
@@ -248,22 +248,22 @@ export default function AppLayout() {
   };
 
   return (
-    <div className="dashboard-shell relative flex min-h-screen overflow-x-clip bg-studio-50">
+    <div className="dashboard-shell relative flex min-h-screen overflow-x-clip bg-cream-50">
       <SkipLink />
       <span
         aria-hidden="true"
-        className="pointer-events-none fixed -right-40 -top-40 h-[520px] w-[520px] rounded-full bg-oxblood-200/[0.24] blur-3xl drift-slower breathe"
+        className="pointer-events-none fixed -right-40 -top-40 h-[520px] w-[520px] rounded-full bg-rapid-200/[0.24] blur-3xl drift-slower breathe"
       />
-      <aside className="dashboard-sidebar sticky top-0 hidden h-screen w-[272px] shrink-0 flex-col justify-between overflow-y-auto overscroll-contain border-r border-studio-200 bg-studio-25 px-5 py-6 lg:flex">
+      <aside className="dashboard-sidebar sticky top-0 hidden h-screen w-[272px] shrink-0 flex-col justify-between overflow-y-auto overscroll-contain border-r border-cream-200 bg-white px-5 py-6 lg:flex">
         <span
           aria-hidden="true"
-          className="pointer-events-none absolute inset-x-0 top-0 h-[3px] bg-brand-500"
+          className="pointer-events-none absolute inset-x-0 top-0 h-[3px] bg-sun-500"
         />
         <div>
           <Link to="/app" aria-label="RAPID account home" className="text-ink">
             <Logo size={26} />
           </Link>
-          <p className="mt-5 text-[10px] font-bold uppercase tracking-[0.18em] text-studio-600">
+          <p className="mt-5 text-[10px] font-bold uppercase tracking-[0.18em] text-ink-faint">
             Your RAPID space
           </p>
           <NavItems />
@@ -272,8 +272,8 @@ export default function AppLayout() {
       </aside>
 
       <div className="flex min-w-0 flex-1 flex-col">
-        <header className="dashboard-mobile-header sticky top-0 z-40 border-b border-studio-200 bg-studio-25/[0.97] backdrop-blur-md lg:hidden">
-          <span aria-hidden="true" className="block h-[3px] bg-brand-500" />
+        <header className="dashboard-mobile-header sticky top-0 z-40 border-b border-cream-200 bg-white/[0.97] backdrop-blur-md lg:hidden">
+          <span aria-hidden="true" className="block h-[3px] bg-sun-500" />
           <div className="flex h-[60px] items-center justify-between gap-3 px-5">
             <Link to="/app" aria-label="RAPID account home" className="text-ink">
               <Logo size={24} />
@@ -281,7 +281,7 @@ export default function AppLayout() {
             <div className="flex items-center gap-2">
               <Link
                 to="/"
-                className="inline-flex min-h-[44px] items-center text-sm font-semibold text-light-muted hover:text-ink"
+                className="inline-flex min-h-[44px] items-center text-sm font-semibold text-ink-soft hover:text-ink"
               >
                 Public site
               </Link>
@@ -289,13 +289,13 @@ export default function AppLayout() {
                 type="button"
                 onClick={() => void onSignOut()}
                 aria-label="Sign out"
-                className="inline-flex h-11 w-11 items-center justify-center rounded-xl text-light-muted hover:bg-studio-50 hover:text-ink"
+                className="inline-flex h-11 w-11 items-center justify-center rounded-xl text-ink-soft hover:bg-cream-50 hover:text-ink"
               >
                 <LogOut size={17} aria-hidden="true" />
               </button>
             </div>
           </div>
-          <div className="overflow-x-auto border-t border-studio-200/70 px-3 pb-2 pt-1">
+          <div className="overflow-x-auto border-t border-cream-200/70 px-3 pb-2 pt-1">
             <NavItems horizontal />
           </div>
         </header>

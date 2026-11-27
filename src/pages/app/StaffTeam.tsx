@@ -104,15 +104,15 @@ export default function StaffTeam() {
       />
 
       <Panel title="How an admin gets in">
-        <ol className="space-y-3 text-sm text-light-muted">
+        <ol className="space-y-3 text-sm text-ink-soft">
           <li className="flex gap-3">
-            <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-studio-100 text-xs font-bold text-brand-700">
+            <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-cream-100 text-xs font-bold text-rapid-700">
               1
             </span>
             An existing admin invites an email address below.
           </li>
           <li className="flex gap-3">
-            <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-studio-100 text-xs font-bold text-brand-700">
+            <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-cream-100 text-xs font-bold text-rapid-700">
               2
             </span>
             That person opens{" "}
@@ -120,13 +120,13 @@ export default function StaffTeam() {
             account with the invited address.
           </li>
           <li className="flex gap-3">
-            <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-studio-100 text-xs font-bold text-brand-700">
+            <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-cream-100 text-xs font-bold text-rapid-700">
               3
             </span>
             The staff role attaches on first sign-in and the dashboard opens.
           </li>
         </ol>
-        <p className="mt-4 rounded-xl border border-studio-200 bg-studio-50 px-4 py-3 text-sm text-light-muted">
+        <p className="mt-4 rounded-xl border border-cream-200 bg-cream-50 px-4 py-3 text-sm text-ink-soft">
           The very first admin is set outside the app with{" "}
           <code className="font-semibold text-ink">STAFF_EMAILS</code>, a
           comma-separated list of addresses. Add one there, sign in with it, and
@@ -148,7 +148,7 @@ export default function StaffTeam() {
             title="With access"
             description="Everyone here can review applications and run tests."
           >
-            <ul className="rows divide-y divide-studio-200">
+            <ul className="rows divide-y divide-cream-200">
               {data.members.map((member) => (
                 <li
                   key={member.personId}
@@ -163,12 +163,12 @@ export default function StaffTeam() {
                         <Pill tone="positive">You</Pill>
                       )}
                     </span>
-                    <span className="mt-0.5 block truncate text-sm text-light-muted">
+                    <span className="mt-0.5 block truncate text-sm text-ink-soft">
                       {member.email} · added {formatDate(member.grantedAt)}
                     </span>
                   </span>
                   {member.personId === me?.person.id ? (
-                    <span className="flex items-center gap-2 text-sm text-light-muted">
+                    <span className="flex items-center gap-2 text-sm text-ink-soft">
                       <ShieldCheck size={16} aria-hidden="true" />
                       Keep access
                     </span>
@@ -177,7 +177,7 @@ export default function StaffTeam() {
                       type="button"
                       onClick={() => void removeMember(member.personId)}
                       disabled={pending !== null}
-                      className="inline-flex min-h-[44px] items-center gap-2 rounded-xl border border-studio-300 bg-studio-25 px-4 text-sm font-semibold text-danger transition-colors hover:border-danger disabled:opacity-60"
+                      className="inline-flex min-h-[44px] items-center gap-2 rounded-full border border-cream-300 bg-white px-4 text-sm font-semibold text-danger transition-colors hover:border-danger disabled:opacity-60"
                     >
                       {pending === member.personId ? (
                         <Loader2
@@ -210,7 +210,7 @@ export default function StaffTeam() {
                 </p>
               </EmptyState>
             ) : (
-              <ul className="rows divide-y divide-studio-200">
+              <ul className="rows divide-y divide-cream-200">
                 {data.invites.map((inviteRow) => (
                   <li
                     key={inviteRow.email}
@@ -220,7 +220,7 @@ export default function StaffTeam() {
                       <span className="block truncate font-semibold text-ink">
                         {inviteRow.email}
                       </span>
-                      <span className="mt-0.5 block text-sm text-light-muted">
+                      <span className="mt-0.5 block text-sm text-ink-soft">
                         Invited {formatDate(inviteRow.invitedAt)}
                         {inviteRow.invitedBy
                           ? ` by ${inviteRow.invitedBy}`
@@ -231,7 +231,7 @@ export default function StaffTeam() {
                       type="button"
                       onClick={() => void revokeInvite(inviteRow.email)}
                       disabled={pending !== null}
-                      className="inline-flex min-h-[44px] items-center gap-2 rounded-xl border border-studio-300 bg-studio-25 px-4 text-sm font-semibold text-ink transition-colors hover:border-brand-600 disabled:opacity-60"
+                      className="inline-flex min-h-[44px] items-center gap-2 rounded-full border border-cream-300 bg-white px-4 text-sm font-semibold text-ink transition-colors hover:border-rapid-600 disabled:opacity-60"
                     >
                       {pending === inviteRow.email ? (
                         <Loader2
@@ -258,7 +258,7 @@ export default function StaffTeam() {
               >
                 Email address
               </label>
-              <p className="mt-1 text-sm text-light-muted">
+              <p className="mt-1 text-sm text-ink-soft">
                 Access applies to the account that uses this exact address.
               </p>
               <div className="mt-2 flex flex-wrap gap-2">
@@ -277,7 +277,7 @@ export default function StaffTeam() {
                 <button
                   type="submit"
                   disabled={pending !== null || !email.trim()}
-                  className="inline-flex min-h-[48px] items-center gap-2 rounded-xl bg-brand-500 px-5 text-sm font-bold text-ink transition-colors hover:bg-brand-700 hover:text-white disabled:opacity-60"
+                  className="inline-flex min-h-[48px] items-center gap-2 rounded-full bg-sun-500 px-5 text-sm font-semibold text-ink transition-colors hover:bg-sun-400 disabled:opacity-60"
                 >
                   {pending === "invite" ? (
                     <Loader2

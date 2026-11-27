@@ -53,7 +53,7 @@ function Metric({
 }) {
   return (
     <div>
-      <dt className="text-[10px] font-bold uppercase tracking-[0.16em] text-ink-faint">
+      <dt className="text-[11px] font-semibold uppercase tracking-[0.12em] text-ink-faint">
         {label}
       </dt>
       <dd>
@@ -223,7 +223,7 @@ export default function FounderTestDetail() {
       >
         <dl className="grid gap-x-6 gap-y-5 sm:grid-cols-2 lg:grid-cols-3">
           <div className="sm:col-span-2 lg:col-span-3">
-            <dt className="text-[10px] font-bold uppercase tracking-[0.16em] text-ink-faint">
+            <dt className="text-[11px] font-semibold uppercase tracking-[0.12em] text-ink-faint">
               Question
             </dt>
             <dd className="mt-1.5 max-w-[70ch] text-[15px] leading-relaxed text-ink">
@@ -231,7 +231,7 @@ export default function FounderTestDetail() {
             </dd>
           </div>
           <div>
-            <dt className="text-[10px] font-bold uppercase tracking-[0.16em] text-ink-faint">
+            <dt className="text-[11px] font-semibold uppercase tracking-[0.12em] text-ink-faint">
               Audience
             </dt>
             <dd className="mt-1.5 text-sm font-semibold text-ink">
@@ -244,7 +244,7 @@ export default function FounderTestDetail() {
             )}
           </div>
           <div>
-            <dt className="text-[10px] font-bold uppercase tracking-[0.16em] text-ink-faint">
+            <dt className="text-[11px] font-semibold uppercase tracking-[0.12em] text-ink-faint">
               Method
             </dt>
             <dd className="mt-1.5 text-sm leading-relaxed text-ink">
@@ -252,7 +252,7 @@ export default function FounderTestDetail() {
             </dd>
           </div>
           <div>
-            <dt className="text-[10px] font-bold uppercase tracking-[0.16em] text-ink-faint">
+            <dt className="text-[11px] font-semibold uppercase tracking-[0.12em] text-ink-faint">
               Target completions
             </dt>
             <dd className="mt-1.5 text-sm font-semibold text-ink tabular-nums">
@@ -260,7 +260,7 @@ export default function FounderTestDetail() {
             </dd>
           </div>
           <div>
-            <dt className="text-[10px] font-bold uppercase tracking-[0.16em] text-ink-faint">
+            <dt className="text-[11px] font-semibold uppercase tracking-[0.12em] text-ink-faint">
               Report due
             </dt>
             <dd className="mt-1.5 text-sm font-semibold text-ink">
@@ -268,7 +268,7 @@ export default function FounderTestDetail() {
             </dd>
           </div>
           <div>
-            <dt className="text-[10px] font-bold uppercase tracking-[0.16em] text-ink-faint">
+            <dt className="text-[11px] font-semibold uppercase tracking-[0.12em] text-ink-faint">
               Reward
             </dt>
             <dd className="mt-1.5 text-sm leading-relaxed text-ink">
@@ -276,7 +276,7 @@ export default function FounderTestDetail() {
             </dd>
           </div>
           <div>
-            <dt className="text-[10px] font-bold uppercase tracking-[0.16em] text-ink-faint">
+            <dt className="text-[11px] font-semibold uppercase tracking-[0.12em] text-ink-faint">
               Startup
             </dt>
             <dd className="mt-1.5 text-sm font-semibold text-ink">
@@ -286,7 +286,7 @@ export default function FounderTestDetail() {
         </dl>
         {data.terms && (
           <div className="mt-6 border-t border-cream-200 pt-5">
-            <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-ink-faint">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-ink-faint">
               Task terms
             </p>
             <p className="mt-2 max-w-[70ch] whitespace-pre-line text-sm leading-relaxed text-ink-soft">
@@ -299,10 +299,10 @@ export default function FounderTestDetail() {
       {data.brief && (
         <Panel title="Guided brief" description={`Status: ${data.brief.status} · Version ${data.brief.version}`}>
           <dl className="grid gap-x-6 gap-y-4 sm:grid-cols-2">
-            <div><dt className="text-[10px] font-bold uppercase tracking-[0.16em] text-ink-faint">Service</dt><dd className="mt-1 text-sm text-ink">{data.serviceKey.replaceAll('_', ' ')}</dd></div>
-            <div><dt className="text-[10px] font-bold uppercase tracking-[0.16em] text-ink-faint">Product</dt><dd className="mt-1 text-sm text-ink">{String(data.brief.brief.productSummary ?? '')}</dd></div>
-            <div><dt className="text-[10px] font-bold uppercase tracking-[0.16em] text-ink-faint">Customer</dt><dd className="mt-1 text-sm text-ink">{String(data.brief.brief.targetCustomer ?? '')}</dd></div>
-            <div><dt className="text-[10px] font-bold uppercase tracking-[0.16em] text-ink-faint">Goal</dt><dd className="mt-1 text-sm text-ink">{String(data.brief.brief.goal ?? '')}</dd></div>
+            <div><dt className="text-[11px] font-semibold uppercase tracking-[0.12em] text-ink-faint">Service</dt><dd className="mt-1 text-sm text-ink">{data.serviceKey.replaceAll('_', ' ')}</dd></div>
+            <div><dt className="text-[11px] font-semibold uppercase tracking-[0.12em] text-ink-faint">Product</dt><dd className="mt-1 text-sm text-ink">{String(data.brief.brief.productSummary ?? '')}</dd></div>
+            <div><dt className="text-[11px] font-semibold uppercase tracking-[0.12em] text-ink-faint">Customer</dt><dd className="mt-1 text-sm text-ink">{String(data.brief.brief.targetCustomer ?? '')}</dd></div>
+            <div><dt className="text-[11px] font-semibold uppercase tracking-[0.12em] text-ink-faint">Goal</dt><dd className="mt-1 text-sm text-ink">{String(data.brief.brief.goal ?? '')}</dd></div>
           </dl>
           {data.brief.risks.length > 0 && <p className="mt-4 border-l-2 border-warning pl-3 text-sm text-warning">{data.brief.risks.join(' ')}</p>}
         </Panel>
@@ -362,7 +362,7 @@ export default function FounderTestDetail() {
         </div>
 
         <div className="mt-7">
-          <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-ink-faint">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-ink-faint">
             What testers did
           </p>
           {data.outcomes.length === 0 ? (
@@ -407,7 +407,7 @@ export default function FounderTestDetail() {
         action={
           data.findings ? (
             <div className="flex flex-wrap items-center gap-3">
-              <span className="text-[10px] font-bold uppercase tracking-[0.16em] text-rapid-700 tabular-nums">
+              <span className="text-[11px] font-semibold uppercase tracking-[0.12em] text-rapid-700 tabular-nums">
                 v{data.findings.version} · {formatDay(data.findings.publishedAt)}
               </span>
               <button
@@ -426,7 +426,7 @@ export default function FounderTestDetail() {
         {reportError && <ErrorPanel message={reportError} />}
         {data.findings ? (
           <article>
-            <p className="flex items-center gap-2.5 text-[10px] font-bold uppercase tracking-[0.18em] text-rapid-700">
+            <p className="flex items-center gap-2.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-rapid-700">
               <span aria-hidden="true" className="h-px w-6 bg-rapid-600/60" />
               Published finding · Version {data.findings.version}
             </p>
@@ -461,7 +461,7 @@ export default function FounderTestDetail() {
 
             {data.findings.limits && (
               <div className="mt-6 border-l-2 border-rapid-600 bg-rapid-50 px-5 py-4">
-                <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-rapid-700">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-rapid-700">
                   What this cannot tell you
                 </p>
                 <p className="mt-2 max-w-[58ch] text-sm leading-relaxed text-ink-soft">
@@ -472,7 +472,7 @@ export default function FounderTestDetail() {
 
             {data.findings.recommendation && (
               <div className="mt-6 rounded-xl border border-rapid-200 bg-rapid-50 px-5 py-4">
-                <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-rapid-700">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-rapid-700">
                   Suggested next step
                 </p>
                 <p className="mt-2 max-w-[62ch] whitespace-pre-line text-sm leading-relaxed text-ink">
@@ -483,7 +483,7 @@ export default function FounderTestDetail() {
 
             {data.quotes.length > 0 && (
               <div className="mt-7">
-                <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-ink-faint">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-ink-faint">
                   What testers said
                 </p>
                 <ul className="mt-4 space-y-5">

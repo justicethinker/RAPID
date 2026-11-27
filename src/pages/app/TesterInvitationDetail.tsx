@@ -166,7 +166,7 @@ export default function TesterInvitationDetail() {
         </p>
         {data.test.method && (
           <div className="mt-6 border-t border-cream-200 pt-5">
-            <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-ink-faint">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-ink-faint">
               How to take part
             </p>
             <p className="mt-2 max-w-[62ch] whitespace-pre-line text-sm leading-relaxed text-ink">
@@ -296,7 +296,7 @@ export default function TesterInvitationDetail() {
           <div className="space-y-6">
             {data.steps.map((step, index) => (
               <div key={step.id} className="border-t border-cream-200 pt-5 first:border-0 first:pt-0">
-                <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-ink-faint">Step {index + 1} · {step.stepType.replaceAll('_', ' ')}</p>
+                <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-ink-faint">Step {index + 1} · {step.stepType.replaceAll('_', ' ')}</p>
                 <FieldLabel htmlFor={`step-${step.id}`}>{step.prompt}</FieldLabel>
                 {step.stepType === 'single_choice' ? (
                   <select id={`step-${step.id}`} className={inputClass} value={String(answers[step.id] ?? step.answer ?? '')} onChange={(event) => void saveAnswer(step.id, event.target.value)}>

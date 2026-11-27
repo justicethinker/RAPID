@@ -1,9 +1,8 @@
 import type { ReactNode } from "react";
 import { Link } from "react-router-dom";
-import { AlertTriangle, ArrowLeft, Loader2 } from "lucide-react";
+import { AlertTriangle, ArrowLeft, ArrowRight, Loader2 } from "lucide-react";
 import { cn } from "@/lib/cn";
 import { CountUp } from "@/components/motion/CountUp";
-import { Reveal } from "@/components/motion/Reveal";
 
 export type Tone = "positive" | "neutral" | "warning" | "negative" | "proof";
 
@@ -50,7 +49,7 @@ export function PageHeading({
     <div className="dashboard-page-heading hero-stagger flex flex-wrap items-end justify-between gap-x-6 gap-y-4 border-b border-cream-200 pb-7">
       {/* flex-1 lets a long title shrink instead of pushing the page action
           onto its own line. */}
-      <div className="min-w-0 flex-1">
+      <div className="min-w-0 flex-1 basis-[min(100%,26rem)]">
         <p className="kicker">{eyebrow}</p>
         <h1 className="mt-3 font-display text-[32px] font-bold leading-[1.04] tracking-[-0.03em] text-ink sm:text-[40px]">
           {title}
@@ -126,10 +125,7 @@ export function Panel({
   const hasHeader = Boolean(title || description || action);
 
   return (
-    <Reveal
-      as="section"
-      className="dashboard-panel overflow-hidden rounded-[20px] border border-cream-200 bg-white shadow-elev-1"
-    >
+    <section className="dashboard-panel rise overflow-hidden rounded-[20px] border border-cream-200 bg-white shadow-elev-1">
       {hasHeader && (
         <div className="flex flex-wrap items-start justify-between gap-3 border-b border-cream-200 px-5 py-4 sm:px-6">
           <div className="min-w-0">
@@ -146,7 +142,7 @@ export function Panel({
         </div>
       )}
       <div className={hasHeader ? "px-5 py-5 sm:px-6" : "p-5 sm:p-6"}>{children}</div>
-    </Reveal>
+    </section>
   );
 }
 
@@ -272,3 +268,91 @@ export function FieldLabel({
 
 export const inputClass =
   "mt-2 w-full rounded-xl border border-cream-300 bg-white px-4 py-3 text-base text-ink transition-[border-color,box-shadow] placeholder:text-ink-faint/80 hover:border-ink/40 focus:border-rapid-600 focus:outline-none focus:ring-4 focus:ring-rapid-500/15";
+
+/**
+ * The greeting at the top of a role's overview: deep green, one sentence on
+ * what to do next, and the one primary action.
+ */
+export function WelcomeBanner({
+  kicker,
+  title,
+  children,
+  action,
+}: {
+  kicker: string;
+  title: string;
+  children?: ReactNode;
+  action?: ReactNode;
+}) {
+  return (
+    <section className="on-dark hero-stagger relative isolate overflow-hidden rounded-[28px] bg-rapid-900 px-6 py-8 text-white sm:px-10 sm:py-10">
+      <span aria-hidden="true" className="absolute -right-24 -top-24 -z-10 h-72 w-72 rounded-full bg-rapid-700/70 blur-2xl" />
+      <span aria-hidden="true" className="absolute -bottom-16 right-10 -z-10 h-40 w-40 rounded-full bg-sun-500/25 blur-2xl" />
+      <p className="kicker">{kicker}</p>
+      <h1 className="mt-4 font-display text-[34px] font-bold leading-[1.02] tracking-[-0.03em] sm:text-[46px]">{title}</h1>
+      {children && <div className="mt-3 max-w-[56ch] text-[16px] leading-relaxed text-rapid-100">{children}</div>}
+      {action && <div className="mt-7 flex flex-wrap gap-3">{action}</div>}
+    </section>
+  );
+}
+
+/** A small "View all" style link used in panel headers. */
+export function PanelLink({ to, children }: { to: string; children: ReactNode }) {
+  return (
+    <Link
+      to={to}
+      className="group inline-flex min-h-[36px] items-center gap-1 rounded-full px-3 text-sm font-semibold text-rapid-700 transition-colors hover:bg-rapid-50"
+    >
+      {children}
+      <ArrowRight size={14} aria-hidden="true" className="transition-transform group-hover:translate-x-0.5" />
+    </Link>
+  );
+}
+
+/**
+ * Where a test is in its life: a compact stepper. Done steps are filled green,
+ * the current step carries the accent, later steps stay quiet.
+ */
+export function StatusTimeline({
+  stages,
+  current,
+  className,
+}: {
+  stages: Array<{ key: string; label: string }>;
+  current: string;
+  className?: string;
+}) {
+  const index = stages.findIndex((stage) => stage.key === current);
+  const currentLabel = index >= 0 ? stages[index]!.label : current;
+  return (
+    <div className={className}>
+      <p className="sr-only">
+        Stage {index + 1} of {stages.length}: {currentLabel}
+      </p>
+      <ol aria-hidden="true" className="flex items-center gap-1">
+        {stages.map((stage, position) => {
+          const done = index >= 0 && position < index;
+          const active = position === index;
+          return (
+            <li key={stage.key} className="flex min-w-0 flex-1 flex-col gap-1.5">
+              <span
+                className={cn(
+                  "h-1.5 rounded-full transition-colors",
+                  done ? "bg-rapid-600" : active ? "bg-sun-500" : "bg-cream-200",
+                )}
+              />
+              <span
+                className={cn(
+                  "hidden truncate text-[11px] font-semibold sm:block",
+                  active ? "text-ink" : done ? "text-rapid-700" : "text-ink-faint",
+                )}
+              >
+                {stage.label}
+              </span>
+            </li>
+          );
+        })}
+      </ol>
+    </div>
+  );
+}

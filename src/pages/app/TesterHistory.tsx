@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { History as HistoryIcon } from 'lucide-react';
 import { usePageMeta } from '@/hooks/usePageMeta';
+import { buttonStyles } from '@/components/ui/buttonStyles';
 import { useApi } from '@/hooks/useApi';
 import { labelOutcome } from '@/lib/labels';
 import type { TesterHistoryItem } from '@/lib/dashboard-types';
@@ -29,6 +30,7 @@ export default function TesterHistory() {
             <EmptyState
               icon={<HistoryIcon size={20} aria-hidden="true" />}
               title="Nothing here yet"
+              action={<Link to="/app/tester/invitations" className={buttonStyles({ variant: 'outline', size: 'sm' })}>See your invitations</Link>}
             >
               <p>Completed and declined tests will appear here.</p>
             </EmptyState>
@@ -36,10 +38,10 @@ export default function TesterHistory() {
         ) : (
           <section className="overflow-hidden rounded-2xl border border-cream-200 bg-white">
             <div className="flex items-center justify-between gap-3 border-b border-cream-200 bg-cream-50/60 px-5 py-3 sm:px-6">
-              <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-ink-faint">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-ink-faint">
                 Your record
               </p>
-              <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-ink-faint tabular-nums">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-ink-faint tabular-nums">
                 {data.length} test{data.length === 1 ? '' : 's'}
               </p>
             </div>
@@ -51,7 +53,7 @@ export default function TesterHistory() {
                     to={`/app/tester/invitations/${item.id}`}
                     className="group grid gap-3 px-5 py-5 transition-colors duration-300 hover:bg-cream-50 sm:grid-cols-[132px_1fr] sm:gap-5 sm:px-6"
                   >
-                    <span className="text-[10px] font-bold uppercase tracking-[0.14em] text-ink-faint sm:pt-1">
+                    <span className="text-[11px] font-semibold uppercase tracking-[0.12em] text-ink-faint sm:pt-1">
                       {formatDay(item.submittedAt ?? item.invitedAt)}
                     </span>
 

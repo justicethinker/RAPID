@@ -7,7 +7,6 @@ import { ApiError } from "@/lib/api";
 import { FOUNDER_AUDIENCES, INTERESTS, SITUATIONS } from "@/content/pilot";
 import type { StaffTestDetail as TestDetail } from "@/lib/dashboard-types";
 import { labelOutcome } from "@/lib/labels";
-import { Stagger } from "@/components/motion/Reveal";
 import {
   BackLink,
   EmptyState,
@@ -282,7 +281,7 @@ function StaffTestEditor({ id, data, refresh }: { id: string; data: TestDetail; 
         </p>
       )}
 
-      <Stagger className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="rows grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <Stat label="Invited" value={data.counts.invited} />
         <Stat
           label="Accepted"
@@ -295,7 +294,7 @@ function StaffTestEditor({ id, data, refresh }: { id: string; data: TestDetail; 
           value={data.counts.responses}
           hint="Written answers to review"
         />
-      </Stagger>
+      </div>
 
       <Panel
         title="Scope"

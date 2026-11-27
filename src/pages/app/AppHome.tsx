@@ -4,7 +4,6 @@ import { ShieldCheck, Users, Compass, Rocket } from 'lucide-react';
 import { useSession, type Role } from '@/auth/session';
 import { usePageMeta } from '@/hooks/usePageMeta';
 import { applicationStatus } from '@/pages/app/application-status';
-import { Stagger } from '@/components/motion/Reveal';
 import { useSpotlight } from '@/components/motion/spotlight';
 
 export default function AppHome() {
@@ -25,7 +24,7 @@ export default function AppHome() {
         <p className="mt-3 text-ink-soft">
           You’re signed in as {me.person.email}. Finish your tester application, or tell us what you want to test.
         </p>
-        <Stagger className="mt-8 grid gap-4 sm:grid-cols-2">
+        <div className="rows mt-8 grid gap-4 sm:grid-cols-2">
           <Link
             to="/sign-up/tester"
             className="lift card-sheen group rounded-2xl border border-cream-200 bg-white p-6 transition-colors hover:border-rapid-600"
@@ -46,7 +45,7 @@ export default function AppHome() {
               Set up a public startup profile and collect early interest.
             </span>
           </Link>
-        </Stagger>
+        </div>
       </div>
     );
   }
@@ -65,7 +64,7 @@ export default function AppHome() {
         This account is set up for more than one role. Each view shows different work.
       </p>
 
-      <Stagger className="mt-8 grid gap-4">
+      <div className="rows mt-8 grid gap-4">
         {me.roles.tester && me.tester && (
           <RoleCard
             to="/app/tester"
@@ -90,7 +89,7 @@ export default function AppHome() {
             description="Review applications and run the pilot."
           />
         )}
-      </Stagger>
+      </div>
     </div>
   );
 }

@@ -288,7 +288,7 @@ export function ImageCropDialog({
       <div className="p-5 sm:p-6">
         <div className="flex items-start justify-between gap-4">
           <div>
-            <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-rapid-700">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-rapid-700">
               Image preparation
             </p>
             <h2

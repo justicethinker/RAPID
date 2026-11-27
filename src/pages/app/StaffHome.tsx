@@ -4,7 +4,6 @@ import { useSession } from "@/auth/session";
 import { usePageMeta } from "@/hooks/usePageMeta";
 import { useApi } from "@/hooks/useApi";
 import { CountUp } from "@/components/motion/CountUp";
-import { Stagger } from "@/components/motion/Reveal";
 import {
   EmptyState,
   ErrorPanel,
@@ -166,7 +165,7 @@ export default function StaffHome() {
             </Panel>
           )}
 
-          <Stagger className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
+          <div className="rows grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
             <Stat
               label="Awaiting review"
               value={
@@ -194,7 +193,7 @@ export default function StaffHome() {
               value={summary.totals.responses}
               hint="Written evidence collected"
             />
-          </Stagger>
+          </div>
 
           <div className="grid items-start gap-4 lg:grid-cols-2">
             <Breakdown

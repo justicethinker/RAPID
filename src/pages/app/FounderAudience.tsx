@@ -202,7 +202,7 @@ export default function FounderAudience() {
                   </div>
 
                   <div className="rounded-xl border border-cream-200 bg-cream-50 p-4">
-                    <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-ink-faint">
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-ink-faint">
                       Profile-view sources
                     </p>
                     {analytics.sources.length === 0 ? (

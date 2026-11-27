@@ -1,0 +1,126 @@
+{
+  "title": "Join as a tester | RAPID",
+  "height": 2723,
+  "sections": [
+    {
+      "i": 0,
+      "top": 69,
+      "height": 578,
+      "cls": "relative overflow-hidden bg-white",
+      "bg": "rgb(255, 255, 255)",
+      "headings": [
+        {
+          "level": "H1",
+          "text": "Take part in tests that shape what gets built."
+        }
+      ],
+      "paragraphs": [
+        "FOR TESTERS",
+        "Apply once and join a reviewed pool of people who test products and ideas. You choose whether to accept each invitation."
+      ],
+      "images": [
+        {
+          "src": "http://localhost:5290/images/photos/tester-600.webp",
+          "alt": "A participant writing notes during a research conversation",
+          "w": 360,
+          "h": 450
+        }
+      ],
+      "visual": []
+    },
+    {
+      "i": 1,
+      "top": 647,
+      "height": 624,
+      "cls": "border-y border-mint-200 bg-mint-50",
+      "bg": "rgb(230, 251, 243)",
+      "headings": [
+        {
+          "level": "H2",
+          "text": "Before you apply"
+        },
+        {
+          "level": "H3",
+          "text": "What you will do"
+        },
+        {
+          "level": "H3",
+          "text": "What you get"
+        },
+        {
+          "level": "H3",
+          "text": "How selection works"
+        },
+        {
+          "level": "H3",
+          "text": "Your privacy"
+        }
+      ],
+      "paragraphs": [
+        "Tasks are short — usually 10 to 30 minutes. You might try a prototype, walk through a real situation or answer a focused set of questions. Then you write a short account of what happened.",
+        "Every invitation states the task, the time and the reward before you accept. There is no charge to join. Applying does not guarantee a paid task.",
+        "The team reviews applications within three business days. Approved testers are invited when their situation and interests match a founder’s question. It is not first come, first served.",
+        "Your name, email and phone number are used to run the pilot. Founders receive counts and anonymised responses. Your account shows the reward status for every completed test."
+      ],
+      "images": [],
+      "visual": []
+    },
+    {
+      "i": 2,
+      "top": 1270,
+      "height": 711,
+      "cls": "bg-white",
+      "bg": "rgb(255, 255, 255)",
+      "headings": [
+        {
+          "level": "H2",
+          "text": "Tester questions"
+        }
+      ],
+      "paragraphs": [],
+      "images": [],
+      "visual": []
+    },
+    {
+      "i": 3,
+      "top": 1981,
+      "height": 642,
+      "cls": "scroll-mt-28 bg-mint-50 py-14 lg:py-20",
+      "bg": "rgb(230, 251, 243)",
+      "headings": [
+        {
+          "level": "H2",
+          "text": "Request your invite"
+        }
+      ],
+      "paragraphs": [
+        "Apply to join RAPID's tester pool. It takes about three minutes. We aim to review applications within three business days.",
+        "Applying does not guarantee a test or payment.",
+        "Your account keeps your application, invitations and reward status in one place."
+      ],
+      "images": [],
+      "visual": []
+    },
+    {
+      "i": 4,
+      "top": 2622,
+      "height": 101,
+      "cls": "border-t border-mint-200 bg-mint-25",
+      "bg": "rgb(246, 253, 250)",
+      "headings": [],
+      "paragraphs": [
+        "© RAPID. Pilot website."
+      ],
+      "images": [
+        {
+          "src": "http://localhost:5290/images/brand/r-mark.webp",
+          "alt": "",
+          "w": 240,
+          "h": 158
+        }
+      ],
+      "visual": []
+    }
+  ],
+  "allText": "Skip to main content\nRAPID\nFor testers\nFor founders\nHow it works\nSign in\nSign up\n\nFOR TESTERS\n\nTake part in tests that shape what gets built.\n\nApply once and join a reviewed pool of people who test products and ideas. You choose whether to accept each invitation.\n\nApply now\nI am a founder\nBefore you apply\nWhat you will do\n\nTasks are short — usually 10 to 30 minutes. You might try a prototype, walk through a real situation or answer a focused set of questions. Then you write a short account of what happened.\n\nWhat you get\n\nEvery invitation states the task, the time and the reward before you accept. There is no charge to join. Applying does not guarantee a paid task.\n\nHow selection works\n\nThe team reviews applications within three business days. Approved testers are invited when their situation and interests match a founder’s question. It is not first come, first served.\n\nYour privacy\n\nYour name, email and phone number are used to run the pilot. Founders receive counts and anonymised responses. Your account shows the reward status for every completed test.\n\nTester questions\nIs joining free?\nWho can join?\nWhat happens after I apply?\nWill I be paid?\nMust I join WhatsApp?\nHow are my details used?\nRequest your invite\n\nApply to join RAPID's tester pool. It takes about three minutes. We aim to review applications within three business days.\n\nApplying does not guarantee a test or payment.\n\n1\nCreate your account with Google or your email address.\n2\nAnswer the application questions — about three minutes.\n3\nTrack your review, invitations and rewards in your dashboard.\nCreate your tester account\nI already have an account\n\nYour account keeps your application, invitations and reward status in one place.\n\nRAPID\nFor testers\nFor founders\nHow it works\nSign in\nPrivacy\nhello@rapid.africa\n\n© RAPID. Pilot website."
+}

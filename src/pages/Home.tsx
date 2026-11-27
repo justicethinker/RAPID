@@ -1,206 +1,62 @@
-import * as Accordion from '@radix-ui/react-accordion';
+import { ArrowDown, ArrowRight, ArrowUpRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { PageShell } from '@/components/layout/PageShell';
 import { Container } from '@/components/layout/Container';
 import { ButtonLink } from '@/components/ui/Button';
-import { FAQ, HOME, SITE } from '@/content/pilot';
+import { Photo } from '@/components/ui/Photo';
+import { SignalMark } from '@/components/ui/SignalMark';
 import { usePageMeta } from '@/hooks/usePageMeta';
-import { trackEvent } from '@/lib/analytics';
+import { Faq } from '@/components/site/Faq';
+import { SAMPLE, TESTER_FAQ } from '@/content/pilot';
+import { Reveal, Stagger } from '@/components/motion/Reveal';
 
-function InviteCta({ location }: { location: string }) {
-  return (
-    <ButtonLink
-      to="/join"
-      size="lg"
-      showArrow
-      onClick={() => trackEvent('cta_click', { cta: 'request_invite', location })}
-    >
-      {SITE.requestInvite}
-    </ButtonLink>
-  );
-}
-
-function FaqAnswer({ answer, privacyLink }: { answer: string; privacyLink?: boolean }) {
-  if (!privacyLink) {
-    return <p className="text-[16px] leading-relaxed text-light-muted">{answer}</p>;
-  }
-
-  const [before, after] = answer.split('Privacy Policy');
-  return (
-    <p className="text-[16px] leading-relaxed text-light-muted">
-      {before}
-      <Link
-        to="/privacy"
-        className="font-semibold text-brand-700 underline underline-offset-2 hover:text-ink"
-      >
-        Privacy Policy
-      </Link>
-      {after}
-    </p>
-  );
-}
+const steps = [
+  { number: '01', title: 'Tell us what you’re testing', body: 'Share your idea, who it’s for and what you need to find out.' },
+  { number: '02', title: 'We find the right people', body: 'We invite testers who fit your audience. They see the task and terms first, and they choose whether to take part.' },
+  { number: '03', title: 'You get a clear report', body: 'See what people did, where they got stuck and what it means for your next move.' },
+];
 
 export default function Home() {
-  usePageMeta({ title: SITE.title, description: SITE.description });
-
+  usePageMeta({ title: 'RAPID | Test your startup idea with real people in Nigeria', description: 'Find out if people will use your idea before you build it. RAPID recruits relevant testers in Nigeria and turns their feedback into clear next steps.' });
   return (
     <PageShell>
-      {/* Hero */}
-      <section className="bg-white">
-        <Container className="pb-16 pt-14 sm:pt-20 lg:pb-24 lg:pt-24">
-          <div className="max-w-[860px]">
-            <p className="t-eyebrow text-brand-700">RAPID pilot</p>
-            <h1 className="t-statement mt-5 text-ink">{HOME.hero.headline}</h1>
-            <p className="lead mt-6">{HOME.hero.lead}</p>
-            <div className="mt-8">
-              <InviteCta location="hero" />
-            </div>
-            <p className="mt-4 max-w-[54ch] text-sm leading-relaxed text-light-muted">
-              {HOME.hero.note}
-            </p>
+      <section className="home-hero">
+        <div className="home-hero-grid" aria-hidden="true" />
+        <Container className="home-hero-layout">
+          <div className="home-hero-copy">
+            <p className="studio-eyebrow"><span className="studio-dot" /> REAL FEEDBACK · NIGERIA</p>
+            <h1>Will people actually <br /><span>use your idea?</span></h1>
+            <p className="home-hero-intro">Find out before you build. RAPID puts your idea in front of real people in Nigeria, then shows you what they did, where they got stuck and what to fix next.</p>
+            <div className="hero-actions"><ButtonLink to="/contact" size="lg" showArrow>Test my idea</ButtonLink><ButtonLink to="/join" size="lg" variant="outline">Become a tester</ButtonLink></div>
+            <div className="hero-bottom"><span>REAL PEOPLE</span><SignalMark className="hero-bottom-mark" /><span>HONEST FEEDBACK</span><SignalMark className="hero-bottom-mark" /><span>CLEAR NEXT STEPS</span></div>
+          </div>
+          <div className="hero-composition">
+            <div className="hero-photo-wrap"><Photo name="session" sizes="(min-width: 1024px) 480px, 90vw" alt="Two people sharing ideas over a laptop" width={900} height={1125} priority className="hero-photo" /><span className="hero-photo-credit">Illustrative photograph</span></div>
+            <div className="hero-stamp" aria-hidden="true"><span>MADE FOR</span><strong>real<br />people<span>.</span></strong><ArrowUpRight size={25} /></div>
+            <div className="hero-note"><span>THE REAL QUESTION</span><p>“Would you use this, or would you just say you would?”</p><div><span className="hero-note-dot" /> THAT’S WHAT WE FIND OUT</div></div>
+            <SignalMark className="hero-scribble" />
           </div>
         </Container>
+        <div className="hero-edge"><Container><span>STOP GUESSING. START KNOWING.</span><ArrowDown size={17} aria-hidden="true" /></Container></div>
       </section>
 
-      {/* The problem */}
-      <section className="border-y border-sand-200 bg-sand-50" aria-labelledby="problem-heading">
-        <Container className="py-14 lg:py-20">
-          <div className="grid gap-8 lg:grid-cols-[260px_1fr] lg:gap-16">
-            <div>
-              <p className="t-eyebrow text-brand-700">Why this matters</p>
-              <h2 id="problem-heading" className="t-section mt-3 text-ink">
-                {HOME.problem.heading}
-              </h2>
-            </div>
-            <p className="max-w-[58ch] text-[18px] leading-relaxed text-light-muted sm:text-[19px]">
-              {HOME.problem.body}
-            </p>
-          </div>
+      <section className="intro-section"><Container><Reveal className="intro-layout"><div><p className="studio-eyebrow"><span className="studio-dot" /> WHY RAPID</p><h2 id="value-heading">Friends say it’s great.<br /><span>Customers tell the truth.</span></h2></div><div className="intro-copy"><p>Your friends and family will cheer you on. People who actually need the product will tell you what’s wrong with it.</p><p>RAPID finds the right people in Nigeria, asks them to try your idea and gives you a clear report on what to keep, what to change and what to drop.</p><Link to="/how-it-works" className="text-arrow">See how it works <ArrowUpRight size={18} /></Link></div></Reveal></Container></section>
+
+      <section className="pathways"><Container><div className="section-top"><div><p className="studio-eyebrow"><span className="studio-dot" /> TWO WAYS IN</p><h2>Which side are <span>you on?</span></h2></div><p>Building something, or want a say in what gets built? Start here.</p></div><Stagger className="pathway-grid">
+        <Link to="/founders" className="pathway-card pathway-founder"><div className="pathway-top"><span>01 / FOR FOUNDERS</span><span className="pathway-arrow"><ArrowUpRight size={22} /></span></div><h3>Hear from real users<br />before you build more<span>.</span></h3><p>Get your idea in front of the right people. Find out what works, what confuses them and what to fix first.</p><span className="pathway-cta">See how it works for founders <ArrowRight size={17} /></span><div className="pathway-image"><Photo name="founder-card" sizes="(min-width: 768px) 300px, 45vw" alt="Person thinking beside a laptop" width={900} height={675} /><small>Illustrative</small></div></Link>
+        <Link to="/join" className="pathway-card pathway-tester"><div className="pathway-top"><span>02 / FOR TESTERS</span><span className="pathway-arrow"><ArrowUpRight size={22} /></span></div><h3>Try it early.<br />Say what you think<span>.</span></h3><p>Test new products before they launch, give honest feedback and help shape what gets built. Some tasks come with a reward.</p><span className="pathway-cta">See how it works for testers <ArrowRight size={17} /></span><div className="pathway-image"><Photo name="tester-card" sizes="(min-width: 768px) 300px, 45vw" alt="Person writing notes while using a phone" width={900} height={675} /><small>Illustrative</small></div></Link>
+      </Stagger></Container></section>
+
+      <section id="how-it-works" className="method-section" aria-labelledby="loop-heading"><Container><div className="method-heading"><div><p className="studio-eyebrow"><span className="studio-dot" /> HOW IT WORKS</p><h2 id="loop-heading">Three steps.<br /><span>One clear answer.</span></h2></div><Link to="/how-it-works" className="text-arrow">The full process <ArrowUpRight size={18} /></Link></div><Stagger className="method-steps">{steps.map(step => <article key={step.number}><span className="method-number">{step.number}</span><h3>{step.title}</h3><p>{step.body}</p><ArrowDown className="method-icon" size={20} aria-hidden="true" /></article>)}</Stagger><div className="sample-finding"><div><p className="studio-eyebrow"><span className="studio-dot" /> SAMPLE FINDING</p><p className="sample-finding-count">{SAMPLE.finding.statement}</p><p className="sample-finding-note">Illustrative example · not live data.</p></div><blockquote className="sample-finding-quote"><p>“{SAMPLE.finding.quote}”</p><cite>{SAMPLE.finding.quoteBy}</cite></blockquote></div></Container></section>
+
+      <section className="belief-section"><Container className="belief-layout"><div className="belief-symbol" aria-hidden="true"><SignalMark /><span>THE RAPID<br />PROMISE</span></div><div><p className="studio-eyebrow">HOW WE TREAT PEOPLE</p><h2 id="honesty-heading">Testers are people,<br />not numbers<span>.</span></h2><p>Taking part is always voluntary. The terms are clear before anyone says yes. And founders never see a tester’s name or contact details.</p><Link to="/about" className="text-arrow">What we stand for <ArrowUpRight size={18}/></Link></div></Container></section>
+      <section className="faq-section" aria-labelledby="faq-heading">
+        <Container className="faq-layout">
+          <h2 id="faq-heading">Questions about testing?</h2>
+          <Faq id="home" items={TESTER_FAQ} />
         </Container>
       </section>
-
-      {/* How it works */}
-      <section className="bg-white" aria-labelledby="how-heading">
-        <Container className="py-16 lg:py-24">
-          <div className="max-w-[680px]">
-            <h2 id="how-heading" className="t-section text-ink">
-              {HOME.how.heading}
-            </h2>
-            <p className="lead mt-4">
-              A short application, a human review, and invitations only when a test fits.
-            </p>
-          </div>
-
-          <ol className="mt-10 grid gap-x-8 gap-y-8 sm:grid-cols-2 lg:grid-cols-4">
-            {HOME.how.steps.map((step, index) => (
-              <li key={step} className="border-t border-sand-200 pt-5">
-                <span className="flex h-9 w-9 items-center justify-center rounded-full bg-brand-50 text-sm font-bold text-brand-700">
-                  {String(index + 1).padStart(2, '0')}
-                </span>
-                <p className="mt-4 max-w-[30ch] text-[16px] leading-relaxed text-ink">{step}</p>
-              </li>
-            ))}
-          </ol>
-
-          <p className="mt-10 text-sm text-light-muted">{HOME.how.note}</p>
-        </Container>
-      </section>
-
-      {/* Founders */}
-      <section className="bg-white pb-16 lg:pb-24" aria-labelledby="founders-heading">
-        <Container>
-          <div className="rounded-3xl bg-brand-50 px-6 py-10 sm:px-10 sm:py-12 lg:px-14 lg:py-16">
-            <div className="max-w-[760px]">
-              <p className="t-eyebrow text-brand-700">For founders</p>
-              <h2 id="founders-heading" className="t-section mt-3 text-ink">
-                {HOME.founders.heading}
-              </h2>
-              <p className="lead mt-5">{HOME.founders.body}</p>
-              <div className="mt-7">
-                <ButtonLink
-                  to="/founders"
-                  variant="primary"
-                  showArrow
-                  onClick={() => trackEvent('cta_click', { cta: 'request_test', location: 'home' })}
-                >
-                  {HOME.founders.cta}
-                </ButtonLink>
-              </div>
-              <p className="mt-4 text-sm leading-relaxed text-light-muted">
-                {HOME.founders.note}
-              </p>
-            </div>
-          </div>
-        </Container>
-      </section>
-
-      {/* FAQ */}
-      <section className="border-y border-sand-200 bg-sand-50" aria-labelledby="faq-heading">
-        <Container className="py-16 lg:py-24">
-          <div className="mx-auto max-w-[760px]">
-            <div className="max-w-[560px]">
-              <h2 id="faq-heading" className="t-section text-ink">
-                Questions testers ask
-              </h2>
-              <p className="lead mt-4">
-                Quick answers about applying, payments and how your details are used.
-              </p>
-            </div>
-
-            <Accordion.Root
-              type="single"
-              collapsible
-              defaultValue="faq-0"
-              className="mt-9 space-y-3"
-            >
-              {FAQ.map((item, index) => (
-                <Accordion.Item
-                  key={item.question}
-                  value={`faq-${index}`}
-                  className="overflow-hidden rounded-2xl border border-sand-200 bg-white data-[state=open]:border-brand-600"
-                >
-                  <Accordion.Header>
-                    <Accordion.Trigger className="group flex w-full items-center gap-4 px-5 py-5 text-left sm:px-6">
-                      <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-sand-300 text-sm font-bold text-light-muted transition-colors group-data-[state=open]:border-brand-600 group-data-[state=open]:bg-brand-50 group-data-[state=open]:text-brand-700">
-                        <span className="group-data-[state=open]:hidden" aria-hidden="true">
-                          +
-                        </span>
-                        <span className="hidden group-data-[state=open]:inline" aria-hidden="true">
-                          −
-                        </span>
-                      </span>
-                      <span className="flex-1 text-[17px] font-semibold text-ink">
-                        {item.question}
-                      </span>
-                    </Accordion.Trigger>
-                  </Accordion.Header>
-                  <Accordion.Content className="overflow-hidden data-[state=open]:animate-[accordionOpen_0.3s_ease] data-[state=closed]:animate-[accordionClose_0.3s_ease]">
-                    <div className="pb-5 pl-[68px] pr-5 sm:pr-6">
-                      <FaqAnswer answer={item.answer} privacyLink={item.privacyLink} />
-                    </div>
-                  </Accordion.Content>
-                </Accordion.Item>
-              ))}
-            </Accordion.Root>
-          </div>
-        </Container>
-      </section>
-
-      {/* Repeat invite CTA */}
-      <section className="bg-white" aria-labelledby="final-cta-heading">
-        <Container className="py-16 lg:py-24">
-          <div className="mx-auto max-w-[760px] text-center">
-            <h2 id="final-cta-heading" className="t-statement text-[38px] text-ink sm:text-[48px]">
-              {HOME.finalCta.heading}
-            </h2>
-            <p className="lead mx-auto mt-4">{HOME.finalCta.lead}</p>
-            <div className="mt-8 flex justify-center">
-              <InviteCta location="final" />
-            </div>
-            <p className="mt-4 text-sm text-light-muted">{HOME.finalCta.note}</p>
-          </div>
-        </Container>
-      </section>
+      <section className="end-section"><Container><div className="end-inner"><p className="studio-eyebrow"><span className="studio-dot" /> READY WHEN YOU ARE</p><h2 id="final-cta-heading">Got an idea?<br /><span>Let’s test it.</span></h2><p>Building something? Tell us about it. Want to test products? Tell us about you. Either way, it takes a few minutes to start.</p><div className="hero-actions"><ButtonLink to="/contact" size="lg" showArrow>Test my idea</ButtonLink><ButtonLink to="/join" size="lg" variant="outline">Become a tester</ButtonLink></div><SignalMark className="end-star" /></div></Container></section>
     </PageShell>
   );
 }

@@ -51,5 +51,5 @@ test('home page stays inside the mobile load budget', async ({ page }, testInfo)
   // Generous ceilings: they catch a regression, not normal variance.
   expect(metrics.domContentLoaded).toBeLessThan(10_000);
   expect(metrics.jsKb).toBeLessThan(600);
-  await expect(page.locator('h1')).toHaveText('Help decide what gets built next.');
+  await expect(page.locator('h1')).toHaveText('Will people actually use your idea?');
 });

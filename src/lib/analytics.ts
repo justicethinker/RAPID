@@ -87,6 +87,19 @@ export function trackPageview(pathname: string): void {
   // full URL by mistake.
   const bare = pathname.split(/[?#]/)[0] ?? '/';
   const path = bare.startsWith('/') ? bare : `/${bare}`;
+
+  // Account surfaces stay out of analytics entirely.
+  if (
+    path === '/app' ||
+    path.startsWith('/app/') ||
+    path === '/staff' ||
+    path.startsWith('/staff/') ||
+    path.startsWith('/sign-in') ||
+    path.startsWith('/sign-up')
+  ) {
+    return;
+  }
+
   send('pageview', { u: `${window.location.origin}${path}` });
 }
 

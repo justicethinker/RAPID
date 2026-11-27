@@ -1,0 +1,50 @@
+.auth-studio { background: #e5eedf; }
+.auth-pattern { background-image: radial-gradient(ellipse at 90% 5%, #bdc3f2 0, transparent 30%), repeating-linear-gradient(120deg, transparent 0 75px, #075f450a 76px 77px); }
+.auth-studio header { background: #f5f6ec; }
+.auth-studio h1 { letter-spacing: -.045em; }
+.auth-portrait { border-radius: 160px 160px 8px 8px; }
+.dashboard-shell { background: #edf2e9; }
+.dashboard-sidebar { background: #f9faf4; border-color: #d7e2d4; }
+.dashboard-mobile-header { background: #f9faf4; }
+.tester-dashboard { display: flex; flex-direction: column; gap: 22px; }
+.dashboard-welcome { display: grid; grid-template-columns: 1fr 210px; align-items: center; gap: 20px; min-height: 260px; overflow: hidden; padding: 35px 38px; background: #087352; color: #f7faef; background-image: repeating-radial-gradient(ellipse at 100% 100%,transparent 0 48px,#ffffff13 49px 50px); }
+.dashboard-kicker { display: flex; align-items: center; gap: 7px; font-size: 10px; font-weight: 800; letter-spacing: .15em; color: #d6f2b2; }.dashboard-kicker span { color:#f3a994; }.dashboard-kicker .signal-mark { font-size: 14px; }
+.dashboard-welcome h1 { margin-top: 17px; font-size: clamp(36px,4vw,53px); line-height: 1; letter-spacing: -.06em; font-weight: 800; }
+.dashboard-welcome p:not(.dashboard-kicker) { max-width: 510px; margin-top: 13px; color: #e0f0e2; font-size: 15px; line-height: 1.6; }
+.dashboard-primary { display: inline-flex; min-height: 43px; align-items: center; gap: 12px; margin-top: 23px; padding: 0 17px; background: #c7ed75; color: #143b2e; font-size: 13px; font-weight: 800; }
+.dashboard-primary:hover { background: white; }
+.dashboard-welcome-art { position: relative; width: 190px; height: 190px; display: flex; flex-direction: column; justify-content: center; padding: 30px; border-radius: 50%; background: #adb4f6; color: #1a3650; transform: rotate(8deg); }
+.dashboard-welcome-art > span { font-size: 9px; font-weight: 800; letter-spacing: .12em; }.dashboard-welcome-art strong { margin-top: 12px; font-size: 30px; font-weight: 800; letter-spacing: -.06em; }.dashboard-welcome-art strong span { color: #087352; }.dashboard-welcome-art div { position: absolute; top: 12px; right: 30px; color: #087352; font-size: 35px; }
+.dashboard-stats { display: grid; grid-template-columns: repeat(3,1fr); background: #dfe9db; }
+.dashboard-stats > div { padding: 21px 24px; border-right: 1px solid #c3d4c2; }.dashboard-stats > div:last-child { border: 0; }.dashboard-stats span { display:block; color:#52685a; font-size:10px; font-weight:800; letter-spacing:.12em; }.dashboard-stats strong { display:block; margin-top:10px; color:#153b2d; font-size:34px; line-height:1; letter-spacing:-.05em; }.dashboard-stats small { display:block; margin-top:8px; color:#52685a; font-size:12px; }
+.dashboard-content { display:grid; grid-template-columns:minmax(0,1.5fr) minmax(260px,1fr); gap:20px; align-items:start; }.dashboard-main,.dashboard-side { display:flex;flex-direction:column;gap:16px; }.dashboard-panel-link { display:inline-flex;align-items:center;gap:4px;color:#075f45;font-size:12px;font-weight:800; }.dashboard-history-link { display:inline-flex;align-items:center;gap:8px;color:#075f45;font-size:13px;font-weight:800; }.dashboard-profile-card { display:flex;gap:15px;padding:22px;background:#b2b6f2;color:#1b3450; }.dashboard-profile-card > svg { flex-shrink:0; }.dashboard-profile-card strong,.dashboard-profile-card small { display:block; }.dashboard-profile-card strong { font-size:19px;letter-spacing:-.03em; }.dashboard-profile-card small { margin-top:5px;font-size:13px;line-height:1.5; }.dashboard-profile-card b { display:inline-flex;align-items:center;gap:6px;margin-top:15px;font-size:12px; }
+/* Account screens use the same graphic language as the public site. */
+.auth-split { position: relative; align-items: start; }
+.auth-split > div:first-child h1 { font-size: clamp(36px, 4vw, 52px); line-height: 1.02; letter-spacing: -.055em; }
+.auth-split > div:first-child p { line-height: 1.6; }
+.auth-visual { padding: 18px; background: #aeb8f3; }
+.auth-visual-label { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; color: #273b51; font-size: 10px; font-weight: 800; letter-spacing: .12em; }
+.auth-visual-label span { color: #075f45; font-size: 22px; }
+.auth-portrait { border: 0; border-radius: 130px 130px 4px 4px; box-shadow: none; }
+.auth-visual-note { padding: 18px 2px 2px; color: #183b2e; }
+.auth-visual-note span { display: block; font-size: 9px; font-weight: 800; letter-spacing: .13em; }
+.auth-visual-note strong { display: block; margin-top: 9px; font-size: 22px; line-height: 1.1; letter-spacing: -.04em; }
+.auth-studio main { padding-top: clamp(35px, 6vw, 85px); }
+.dashboard-shell { background: #e8f0e4; }
+.dashboard-sidebar { background: #f7f9ef; border-right: 1px solid #c9d9cb; }
+.dashboard-sidebar nav > div > p { color: #587564; }
+.dashboard-sidebar nav a[aria-current='page'] { background: #d7edaa; color: #124b35; }
+.dashboard-welcome { position: relative; border-radius: 24px 24px 5px 24px; box-shadow: 0 16px 38px #184e3420; }
+.dashboard-stats { overflow: hidden; border: 1px solid #cbdcc8; border-radius: 16px; background: #f9faf2; }
+.dashboard-stats > div:nth-child(2) { background: #e2eccf; }
+.dashboard-stats > div:nth-child(3) { background: #e7e9fb; }
+.dashboard-panel, .dashboard-content section { border-radius: 16px; box-shadow: 0 8px 24px #16482b0a; }
+.dashboard-page-heading { padding: 28px; border-radius: 20px 20px 4px 20px; background: #d6e9c9; }
+.dashboard-page-heading h1 { font-size: clamp(34px, 4vw, 48px); }
+.dashboard-page-heading > div > p:first-child { color: #075f45; }
+.dashboard-profile-card { border-radius: 16px 16px 4px 16px; transition: transform .2s ease, box-shadow .2s ease; }
+.dashboard-profile-card:hover { transform: translateY(-3px); box-shadow: 0 12px 24px #2d416922; }
+.dashboard-primary { border-radius: 8px; }
+@media (max-width: 767px) { .dashboard-welcome { grid-template-columns:1fr; padding:27px; }.dashboard-welcome-art { display:none; }.dashboard-stats > div { padding:17px 12px; }.dashboard-stats strong { font-size:28px; }.dashboard-stats small { font-size:11px; }.dashboard-content { grid-template-columns:1fr; } .auth-visual { padding: 12px; } .auth-portrait { border-radius: 80px 80px 4px 4px; } .auth-visual-note strong { font-size: 18px; } }
+@media (prefers-reduced-motion: reduce) { .dashboard-profile-card:hover { transform: none; } }
+.image-crop-dialog::backdrop { background: rgb(13 48 39 / .72); backdrop-filter: blur(6px); }

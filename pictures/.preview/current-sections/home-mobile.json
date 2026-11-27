@@ -1,0 +1,254 @@
+{
+  "title": "RAPID | Help decide what gets built next",
+  "height": 6754,
+  "sections": [
+    {
+      "i": 0,
+      "top": 118,
+      "height": 893,
+      "cls": "relative overflow-hidden bg-white",
+      "bg": "rgb(255, 255, 255)",
+      "headings": [
+        {
+          "level": "H1",
+          "text": "Test what you are building with people who live the problem."
+        }
+      ],
+      "paragraphs": [
+        "RAPID PILOT",
+        "RAPID is a two-sided pilot. Founders bring a question; testers bring lived experience; the team turns the answers into evidence for the next decision.",
+        "For adults aged 18 and above. Invitations depend on the needs of each test."
+      ],
+      "images": [
+        {
+          "src": "http://localhost:5290/images/photos/test-session-900.webp",
+          "alt": "Two people talking through an early product at a cafe table",
+          "w": 390,
+          "h": 219
+        }
+      ],
+      "visual": []
+    },
+    {
+      "i": 1,
+      "top": 1011,
+      "height": 767,
+      "cls": "mint-band relative overflow-hidden pb-16 lg:pb-20",
+      "bg": "rgba(0, 0, 0, 0)",
+      "headings": [
+        {
+          "level": "H2",
+          "text": "I want to take part in tests"
+        },
+        {
+          "level": "H2",
+          "text": "I need evidence before I build"
+        }
+      ],
+      "paragraphs": [
+        "Apply once. Get invited when a test fits your experience. Read the terms and reward before you accept.",
+        "Describe the question and the people you need to reach. The team scopes the test and recruits matched testers."
+      ],
+      "images": [],
+      "visual": []
+    },
+    {
+      "i": 2,
+      "top": 1777,
+      "height": 1130,
+      "cls": "relative overflow-hidden border-y border-mint-200 bg-mint-50",
+      "bg": "rgb(230, 251, 243)",
+      "headings": [
+        {
+          "level": "H2",
+          "text": "One loop, two sides"
+        },
+        {
+          "level": "H3",
+          "text": "A founder asks"
+        },
+        {
+          "level": "H3",
+          "text": "The team scopes it"
+        },
+        {
+          "level": "H3",
+          "text": "Testers respond"
+        },
+        {
+          "level": "H3",
+          "text": "The founder decides"
+        }
+      ],
+      "paragraphs": [
+        "HOW IT WORKS",
+        "A test is not a survey. It is a scoped question answered by people who face it, with the evidence written down for the founder.",
+        "The founder describes what they need to learn and who needs to answer it.",
+        "RAPID turns the request into a task, agrees the terms and reward, and decides who qualifies.",
+        "Matched testers read the terms, accept or decline, do the task and write what actually happened.",
+        "Findings show the evidence, the counts behind it and what the test cannot prove."
+      ],
+      "images": [],
+      "visual": []
+    },
+    {
+      "i": 3,
+      "top": 2907,
+      "height": 1190,
+      "cls": "bg-white",
+      "bg": "rgb(255, 255, 255)",
+      "headings": [
+        {
+          "level": "H2",
+          "text": "What each side walks away with"
+        },
+        {
+          "level": "H3",
+          "text": "What testers get"
+        },
+        {
+          "level": "H3",
+          "text": "What founders get"
+        }
+      ],
+      "paragraphs": [
+        "TESTERS",
+        "FOUNDERS"
+      ],
+      "images": [],
+      "visual": []
+    },
+    {
+      "i": 4,
+      "top": 4097,
+      "height": 578,
+      "cls": "relative overflow-hidden bg-navy-900 text-white",
+      "bg": "rgb(16, 32, 47)",
+      "headings": [
+        {
+          "level": "H2",
+          "text": "What the pilot does not promise"
+        }
+      ],
+      "paragraphs": [
+        "THE LIMITS"
+      ],
+      "images": [],
+      "visual": []
+    },
+    {
+      "i": 5,
+      "top": 4675,
+      "height": 1309,
+      "cls": "bg-white",
+      "bg": "rgb(255, 255, 255)",
+      "headings": [
+        {
+          "level": "H2",
+          "text": "Questions, by role"
+        },
+        {
+          "level": "H3",
+          "text": "If you want to test"
+        },
+        {
+          "level": "H3",
+          "text": "+ Is joining free?"
+        },
+        {
+          "level": "H3",
+          "text": "+ Who can join?"
+        },
+        {
+          "level": "H3",
+          "text": "+ What happens after I apply?"
+        },
+        {
+          "level": "H3",
+          "text": "+ Will I be paid?"
+        },
+        {
+          "level": "H3",
+          "text": "+ Must I join WhatsApp?"
+        },
+        {
+          "level": "H3",
+          "text": "+ How are my details used?"
+        },
+        {
+          "level": "H3",
+          "text": "If you are a founder"
+        },
+        {
+          "level": "H3",
+          "text": "+ What counts as a test?"
+        },
+        {
+          "level": "H3",
+          "text": "+ How are testers chosen?"
+        },
+        {
+          "level": "H3",
+          "text": "+ What will I receive?"
+        },
+        {
+          "level": "H3",
+          "text": "+ How long does it take?"
+        },
+        {
+          "level": "H3",
+          "text": "+ What does it cost?"
+        },
+        {
+          "level": "H3",
+          "text": "+ Will I see who said what?"
+        }
+      ],
+      "paragraphs": [
+        "What changes if you are taking part, and what changes if you are commissioning a test."
+      ],
+      "images": [],
+      "visual": []
+    },
+    {
+      "i": 6,
+      "top": 5984,
+      "height": 554,
+      "cls": "relative overflow-hidden border-t border-mint-200 bg-mint-50",
+      "bg": "rgb(230, 251, 243)",
+      "headings": [
+        {
+          "level": "H2",
+          "text": "One question. Two sides. Evidence for the next decision."
+        }
+      ],
+      "paragraphs": [
+        "Join the tester pool, or bring the question you cannot answer yet.",
+        "For adults aged 18 and above."
+      ],
+      "images": [],
+      "visual": []
+    },
+    {
+      "i": 7,
+      "top": 6538,
+      "height": 216,
+      "cls": "border-t border-mint-200 bg-mint-25",
+      "bg": "rgb(246, 253, 250)",
+      "headings": [],
+      "paragraphs": [
+        "© RAPID. Pilot website."
+      ],
+      "images": [
+        {
+          "src": "http://localhost:5290/images/brand/r-mark.webp",
+          "alt": "",
+          "w": 240,
+          "h": 158
+        }
+      ],
+      "visual": []
+    }
+  ],
+  "allText": "Skip to main content\nRAPID\nSign up\nFor testers\nFor founders\nHow it works\nSign in\nSign up\n\nRAPID PILOT\n\nTest what you are building with people who live the problem.\n\nRAPID is a two-sided pilot. Founders bring a question; testers bring lived experience; the team turns the answers into evidence for the next decision.\n\nJoin as a tester\nI have a test in mind\n\nFor adults aged 18 and above. Invitations depend on the needs of each test.\n\nI want to take part in tests\n\nApply once. Get invited when a test fits your experience. Read the terms and reward before you accept.\n\nJoin as a tester\nI need evidence before I build\n\nDescribe the question and the people you need to reach. The team scopes the test and recruits matched testers.\n\nRequest a test\n\nHOW IT WORKS\n\nOne loop, two sides\n\nA test is not a survey. It is a scoped question answered by people who face it, with the evidence written down for the founder.\n\n01\nA founder asks\n\nThe founder describes what they need to learn and who needs to answer it.\n\n02\nThe team scopes it\n\nRAPID turns the request into a task, agrees the terms and reward, and decides who qualifies.\n\n03\nTesters respond\n\nMatched testers read the terms, accept or decline, do the task and write what actually happened.\n\n04\nThe founder decides\n\nFindings show the evidence, the counts behind it and what the test cannot prove.\n\nWhat each side walks away with\n\nTESTERS\n\nWhat testers get\nInvitations matched to your experience, not a public task board.\nThe task, time and reward are stated before you accept.\nYour name and contact details are not shared with founders.\nReward status is visible in your account after a test.\nJoin as a tester\n\nFOUNDERS\n\nWhat founders get\nRecruitment counts with real denominators, not vanity metrics.\nA summary of what testers did and what got in the way.\nPublished findings that state their limits as well as their signals.\nA recorded build, iterate or pivot decision against the evidence.\nRequest a test\n\nTHE LIMITS\n\nWhat the pilot does not promise\nMatching is team-assisted. Applying does not guarantee an invitation.\nA test does not guarantee payment, a place in a programme or a successful product.\nThe first pilot focuses on students, recent graduates and working adults in Nigeria.\nNo dashboard shows sample records. Empty means empty.\nQuestions, by role\n\nWhat changes if you are taking part, and what changes if you are commissioning a test.\n\nIf you want to test\n+\nIs joining free?\n+\nWho can join?\n+\nWhat happens after I apply?\n+\nWill I be paid?\n+\nMust I join WhatsApp?\n+\nHow are my details used?\nIf you are a founder\n+\nWhat counts as a test?\n+\nHow are testers chosen?\n+\nWhat will I receive?\n+\nHow long does it take?\n+\nWhat does it cost?\n+\nWill I see who said what?\nOne question. Two sides. Evidence for the next decision.\n\nJoin the tester pool, or bring the question you cannot answer yet.\n\nJoin as a tester\nRequest a test\n\nFor adults aged 18 and above.\n\nRAPID\nFor testers\nFor founders\nHow it works\nSign in\nPrivacy\nhello@rapid.africa\n\n© RAPID. Pilot website."
+}

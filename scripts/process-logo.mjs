@@ -125,7 +125,7 @@ let _wordAspect;
     .toFile(`${OUT}/rapid-wordmark.png`);
 }
 
-// ---------- 3. favicon.svg (navy square + real mark) ----------
+// ---------- 3. favicon.svg (site green square + real mark) ----------
 {
   const buf = await sharp(`${OUT}/r-mark.png`).resize({ width: 192 }).png().toBuffer();
   const box = 40;
@@ -133,7 +133,7 @@ let _wordAspect;
   const h = markAspect >= 1 ? box / markAspect : box;
   const x = (48 - w) / 2, y = (48 - h) / 2;
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
-  <rect width="48" height="48" rx="10" fill="#03121E"/>
+  <rect width="48" height="48" rx="10" fill="#075F45"/>
   <image href="data:image/png;base64,${buf.toString('base64')}" x="${x.toFixed(2)}" y="${y.toFixed(2)}" width="${w.toFixed(2)}" height="${h.toFixed(2)}"/>
 </svg>
 `;

@@ -1,0 +1,461 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>RAPID — Studio, with a third colour</title>
+    <style>
+      @font-face {
+        font-family: 'Inter Variable';
+        src: url('../../node_modules/@fontsource-variable/inter/files/inter-latin-wght-normal.woff2')
+          format('woff2');
+        font-weight: 100 900;
+        font-display: block;
+      }
+
+      * { box-sizing: border-box; }
+      html, body { margin: 0; }
+      body {
+        background: #e9e6df;
+        color: #121a1e;
+        font-family: 'Inter Variable', system-ui, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        padding: 42px 46px 46px;
+      }
+
+      .masthead {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 30px;
+        max-width: 1320px;
+        margin: 0 auto 24px;
+      }
+
+      .eyebrow {
+        margin: 0 0 8px;
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: 0.19em;
+        text-transform: uppercase;
+        color: #69766f;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: 36px;
+        line-height: 1.04;
+        letter-spacing: -0.045em;
+        font-weight: 800;
+      }
+
+      .sub {
+        max-width: 410px;
+        margin: 0;
+        font-size: 13px;
+        line-height: 1.55;
+        color: #53615a;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 18px;
+        max-width: 1320px;
+        margin: 0 auto;
+      }
+
+      .card {
+        overflow: hidden;
+        border-radius: 16px;
+        background: #fffdf8;
+        box-shadow: 0 1px 2px rgba(18, 26, 30, 0.08), 0 24px 55px -40px rgba(18, 26, 30, 0.5);
+      }
+
+      .scene {
+        display: grid;
+        grid-template-columns: 1.18fr 0.82fr;
+        min-height: 265px;
+        background: #f5f2ea;
+      }
+
+      .copy {
+        padding: 24px 24px 22px 26px;
+      }
+
+      .brandline {
+        display: flex;
+        align-items: baseline;
+        gap: 7px;
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: 0.09em;
+      }
+
+      .brandline .dot { width: 5px; height: 5px; border-radius: 50%; background: currentColor; }
+
+      .kicker {
+        margin: 27px 0 8px;
+        font-size: 8px;
+        font-weight: 850;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+
+      h2 {
+        margin: 0;
+        max-width: 300px;
+        font-size: 28px;
+        line-height: 1.02;
+        letter-spacing: -0.048em;
+        font-weight: 800;
+      }
+
+      h2 em { font-style: normal; }
+
+      .body {
+        max-width: 260px;
+        margin: 11px 0 0;
+        font-size: 11px;
+        line-height: 1.5;
+        color: #5b6861;
+      }
+
+      .actions { display: flex; align-items: center; gap: 7px; margin-top: 17px; }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        height: 30px;
+        padding: 0 12px;
+        border-radius: 999px;
+        font-size: 9.5px;
+        font-weight: 750;
+        white-space: nowrap;
+      }
+
+      .btn-outline { border: 1px solid rgba(18, 26, 30, 0.3); color: #121a1e; }
+
+      .panel {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 24px 22px 20px;
+        overflow: hidden;
+      }
+
+      .panel::before {
+        content: '';
+        position: absolute;
+        width: 150px;
+        height: 150px;
+        right: -76px;
+        top: -76px;
+        border: 1px solid rgba(255, 255, 255, 0.17);
+        border-radius: 50%;
+      }
+
+      .panel::after {
+        content: '';
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        right: -51px;
+        top: -51px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+      }
+
+      .panel-label {
+        font-size: 7.5px;
+        font-weight: 750;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        opacity: 0.7;
+      }
+
+      blockquote {
+        margin: 0;
+        max-width: 190px;
+        font-size: 16px;
+        line-height: 1.22;
+        letter-spacing: -0.028em;
+        font-weight: 650;
+      }
+
+      .attribution {
+        margin-top: 10px;
+        font-size: 8px;
+        line-height: 1.4;
+        opacity: 0.65;
+      }
+
+      .verified {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        margin-top: 17px;
+        padding: 4px 7px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.12);
+        font-size: 7.5px;
+        font-weight: 750;
+        letter-spacing: 0.04em;
+      }
+
+      .check {
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: #0b7a55;
+        color: #f5f2ea;
+        display: inline-grid;
+        place-items: center;
+        font-size: 6px;
+        font-weight: 900;
+      }
+
+      .meta {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 16px;
+        align-items: start;
+        padding: 14px 18px 16px;
+        border-top: 1px solid rgba(18, 26, 30, 0.09);
+      }
+
+      .meta-head {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        margin-bottom: 4px;
+      }
+
+      .num { font-size: 8px; font-weight: 850; letter-spacing: 0.12em; color: #8a958e; }
+      .name { font-size: 13px; font-weight: 800; letter-spacing: -0.02em; }
+      .note { max-width: 420px; margin: 0; font-size: 10px; line-height: 1.45; color: #5d6962; }
+
+      .swatches { display: flex; gap: 4px; margin-bottom: 13px; }
+      .swatch {
+        width: 29px;
+        height: 34px;
+        border-radius: 4px;
+        border: 1px solid rgba(0, 0, 0, 0.09);
+        position: relative;
+      }
+      .swatch span {
+        position: absolute;
+        top: 38px;
+        left: 0;
+        width: 34px;
+        font-size: 6px;
+        line-height: 1.1;
+        color: #8b958f;
+        font-weight: 600;
+      }
+
+      .footer {
+        max-width: 1320px;
+        margin: 16px auto 0;
+        font-size: 10.5px;
+        line-height: 1.5;
+        color: #65726a;
+      }
+      .footer b { color: #33423a; }
+
+      /* Individual accents */
+      .oxblood h2 em { color: #6a1e2b; }
+      .oxblood .kicker { color: #6a1e2b; }
+      .oxblood .btn-primary { background: #6a1e2b; color: #fbf6ee; }
+      .oxblood .panel { background: #6a1e2b; color: #fbf6ee; }
+
+      .cognac h2 em { color: #8a4b24; }
+      .cognac .kicker { color: #8a4b24; }
+      .cognac .btn-primary { background: #8a4b24; color: #fff8ef; }
+      .cognac .panel { background: #8a4b24; color: #fff8ef; }
+
+      .cobalt h2 em { color: #203c8b; }
+      .cobalt .kicker { color: #203c8b; }
+      .cobalt .btn-primary { background: #203c8b; color: #f7f8ff; }
+      .cobalt .panel { background: #203c8b; color: #f7f8ff; }
+
+      .aubergine h2 em { color: #44213d; }
+      .aubergine .kicker { color: #44213d; }
+      .aubergine .btn-primary { background: #44213d; color: #fbf4f8; }
+      .aubergine .panel { background: #44213d; color: #fbf4f8; }
+    </style>
+  </head>
+  <body>
+    <header class="masthead">
+      <div>
+        <p class="eyebrow">RAPID · Studio palette · Accent study</p>
+        <h1>Studio, with a third colour.</h1>
+      </div>
+      <p class="sub">
+        The paper-and-ink base is not short of colour; it is short of one rich accent with a
+        clear job. In each option the accent owns the primary action and one large surface,
+        while jade is demoted to verification and success states.
+      </p>
+    </header>
+
+    <main class="grid">
+      <section class="card oxblood">
+        <div class="scene">
+          <div class="copy">
+            <div class="brandline"><span class="dot"></span>RAPID</div>
+            <p class="kicker">Nigeria pilot</p>
+            <h2>Good ideas need <em>the right people.</em></h2>
+            <p class="body">Test what you are building with people who live the problem.</p>
+            <div class="actions">
+              <span class="btn btn-primary">Join as a tester →</span>
+              <span class="btn btn-outline">I have a test in mind</span>
+            </div>
+          </div>
+          <div class="panel">
+            <span class="panel-label">Founder note · 04</span>
+            <div>
+              <blockquote>“We finally met the people we had been guessing about.”</blockquote>
+              <p class="attribution">Founder, Lagos pilot</p>
+              <span class="verified"><span class="check">✓</span> Session verified</span>
+            </div>
+          </div>
+        </div>
+        <div class="meta">
+          <div>
+            <div class="meta-head"><span class="num">A</span><span class="name">Oxblood</span></div>
+            <p class="note">
+              A deep wine that reads expensive without turning the site into a wine bar. The
+              strongest contrast against the warm paper and the cool jade.
+            </p>
+          </div>
+          <div class="swatches">
+            <div class="swatch" style="background:#f5f2ea"><span>#F5F2EA</span></div>
+            <div class="swatch" style="background:#121a1e"><span>#121A1E</span></div>
+            <div class="swatch" style="background:#6a1e2b"><span>#6A1E2B</span></div>
+            <div class="swatch" style="background:#0b7a55"><span>#0B7A55</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card cognac">
+        <div class="scene">
+          <div class="copy">
+            <div class="brandline"><span class="dot"></span>RAPID</div>
+            <p class="kicker">Nigeria pilot</p>
+            <h2>Good ideas need <em>the right people.</em></h2>
+            <p class="body">Test what you are building with people who live the problem.</p>
+            <div class="actions">
+              <span class="btn btn-primary">Join as a tester →</span>
+              <span class="btn btn-outline">I have a test in mind</span>
+            </div>
+          </div>
+          <div class="panel">
+            <span class="panel-label">Founder note · 04</span>
+            <div>
+              <blockquote>“We finally met the people we had been guessing about.”</blockquote>
+              <p class="attribution">Founder, Lagos pilot</p>
+              <span class="verified"><span class="check">✓</span> Session verified</span>
+            </div>
+          </div>
+        </div>
+        <div class="meta">
+          <div>
+            <div class="meta-head"><span class="num">B</span><span class="name">Cognac</span></div>
+            <p class="note">
+              Burnt amber, closer to leather and printed matter. Warmer and friendlier than
+              oxblood, but still substantial enough to carry large blocks.
+            </p>
+          </div>
+          <div class="swatches">
+            <div class="swatch" style="background:#f5f2ea"><span>#F5F2EA</span></div>
+            <div class="swatch" style="background:#121a1e"><span>#121A1E</span></div>
+            <div class="swatch" style="background:#8a4b24"><span>#8A4B24</span></div>
+            <div class="swatch" style="background:#0b7a55"><span>#0B7A55</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card cobalt">
+        <div class="scene">
+          <div class="copy">
+            <div class="brandline"><span class="dot"></span>RAPID</div>
+            <p class="kicker">Nigeria pilot</p>
+            <h2>Good ideas need <em>the right people.</em></h2>
+            <p class="body">Test what you are building with people who live the problem.</p>
+            <div class="actions">
+              <span class="btn btn-primary">Join as a tester →</span>
+              <span class="btn btn-outline">I have a test in mind</span>
+            </div>
+          </div>
+          <div class="panel">
+            <span class="panel-label">Founder note · 04</span>
+            <div>
+              <blockquote>“We finally met the people we had been guessing about.”</blockquote>
+              <p class="attribution">Founder, Lagos pilot</p>
+              <span class="verified"><span class="check">✓</span> Session verified</span>
+            </div>
+          </div>
+        </div>
+        <div class="meta">
+          <div>
+            <div class="meta-head"><span class="num">C</span><span class="name">Cobalt</span></div>
+            <p class="note">
+              A clear, confident blue. The most modern and the safest for data and dashboards;
+              less warm, and closer to the visual language of other products.
+            </p>
+          </div>
+          <div class="swatches">
+            <div class="swatch" style="background:#f5f2ea"><span>#F5F2EA</span></div>
+            <div class="swatch" style="background:#121a1e"><span>#121A1E</span></div>
+            <div class="swatch" style="background:#203c8b"><span>#203C8B</span></div>
+            <div class="swatch" style="background:#0b7a55"><span>#0B7A55</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card aubergine">
+        <div class="scene">
+          <div class="copy">
+            <div class="brandline"><span class="dot"></span>RAPID</div>
+            <p class="kicker">Nigeria pilot</p>
+            <h2>Good ideas need <em>the right people.</em></h2>
+            <p class="body">Test what you are building with people who live the problem.</p>
+            <div class="actions">
+              <span class="btn btn-primary">Join as a tester →</span>
+              <span class="btn btn-outline">I have a test in mind</span>
+            </div>
+          </div>
+          <div class="panel">
+            <span class="panel-label">Founder note · 04</span>
+            <div>
+              <blockquote>“We finally met the people we had been guessing about.”</blockquote>
+              <p class="attribution">Founder, Lagos pilot</p>
+              <span class="verified"><span class="check">✓</span> Session verified</span>
+            </div>
+          </div>
+        </div>
+        <div class="meta">
+          <div>
+            <div class="meta-head"><span class="num">D</span><span class="name">Aubergine</span></div>
+            <p class="note">
+              A near-black plum. The most fashion-forward and the quietest at a glance; it
+              makes the jade verification marks feel almost like jewellery.
+            </p>
+          </div>
+          <div class="swatches">
+            <div class="swatch" style="background:#f5f2ea"><span>#F5F2EA</span></div>
+            <div class="swatch" style="background:#121a1e"><span>#121A1E</span></div>
+            <div class="swatch" style="background:#44213d"><span>#44213D</span></div>
+            <div class="swatch" style="background:#0b7a55"><span>#0B7A55</span></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <p class="footer">
+      <b>My pick: Oxblood.</b> It is the one colour here that feels premium on its own, without
+      needing gold or a texture. It also makes the existing jade useful rather than decorative:
+      wine means “brand and action”, jade means “verified and successful”.
+    </p>
+  </body>
+</html>

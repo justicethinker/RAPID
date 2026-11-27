@@ -1,30 +1,23 @@
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
+import { ArrowUpRight } from 'lucide-react';
 import { Logo } from '@/components/ui/Logo';
-import { ButtonLink } from '@/components/ui/Button';
 import { Container } from '@/components/layout/Container';
-import { SITE } from '@/content/pilot';
-import { trackEvent } from '@/lib/analytics';
+
+const NAV = [
+  { to: '/discover', label: 'Discover' },
+  { to: '/founders', label: 'For founders' },
+  { to: '/join', label: 'For testers' },
+  { to: '/how-it-works', label: 'How it works' },
+  { to: '/about', label: 'About' },
+];
 
 export function SiteHeader() {
-  return (
-    <header className="sticky top-0 z-40 border-b border-sand-200 bg-white/95 backdrop-blur">
-      <Container className="flex h-[68px] items-center justify-between gap-3">
-        <Link to="/" aria-label="RAPID home" className="shrink-0 text-ink">
-          <Logo size={30} />
-        </Link>
-
-        <ButtonLink
-          to="/join"
-          size="sm"
-          showArrow
-          onClick={() =>
-            trackEvent('cta_click', { cta: 'request_invite', location: 'header' })
-          }
-          className="px-4 text-[13px] sm:px-5 sm:text-sm"
-        >
-          {SITE.requestInvite}
-        </ButtonLink>
-      </Container>
-    </header>
-  );
+  return <header className="site-header">
+    <Container className="site-header-main">
+      <Link to="/" aria-label="RAPID home" className="site-logo"><Logo size={30} /><span className="site-logo-descriptor">PEOPLE-POWERED<br />RESEARCH</span></Link>
+      <nav aria-label="Main navigation" className="site-nav">{NAV.map(item => <NavLink key={item.to} to={item.to} className={({isActive}) => isActive ? 'site-nav-link active' : 'site-nav-link'}>{item.label}</NavLink>)}</nav>
+      <div className="site-header-actions"><Link to="/sign-in" className="site-signin">Sign in</Link><Link to="/contact" className="site-header-cta">Test my idea <span><ArrowUpRight size={16}/></span></Link></div>
+    </Container>
+    <div className="site-mobile-nav"><Container><nav aria-label="Mobile navigation">{NAV.map(item => <NavLink key={item.to} to={item.to} className={({isActive}) => isActive ? 'active' : undefined}>{item.label}</NavLink>)}<Link to="/sign-in">Sign in</Link></nav></Container></div>
+  </header>;
 }

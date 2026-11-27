@@ -12,7 +12,7 @@ import {
   SITUATIONS,
   countryName,
   labelFor,
-} from '@/content/pilot';
+} from '../content/pilot';
 
 /* ------------------------------------------------------------------ */
 /* Shared rules                                                        */

@@ -1,0 +1,86 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  DATABASE_URL: postgresql://rapid:rapid@localhost:5432/rapid
+  VITE_SITE_URL: https://rapid.africa
+
+jobs:
+  verify:
+    name: Typecheck, test and browser suites
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: rapid
+          POSTGRES_PASSWORD: rapid
+          POSTGRES_DB: rapid
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U rapid -d rapid"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Typecheck app
+        run: pnpm typecheck
+
+      - name: Typecheck server
+        run: pnpm typecheck:server
+
+      - name: Lint
+        run: pnpm lint
+
+      - name: Apply database migrations
+        run: pnpm db:migrate
+
+      - name: Unit and server tests
+        run: pnpm test
+
+      - name: Production build
+        run: pnpm build
+
+      - name: Install Playwright browsers
+        run: pnpm exec playwright install --with-deps chromium firefox
+
+      # Signed-in coverage migrates and seeds the database itself in global setup.
+      - name: Public browser suite
+        run: pnpm e2e
+
+      - name: Signed-in browser suite
+        run: pnpm e2e:auth
+
+      - name: Upload browser reports
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: |
+            playwright-report
+            test-results
+          retention-days: 7

@@ -110,6 +110,78 @@ recorded so a later reviewer does not have to guess.
 
 ---
 
+## Decision log — accounts and role dashboards (24 October 2026)
+
+The owner asked for real accounts, a dashboard for each side and a staff surface, and
+for the public UX to stop treating founders as a footer link. The design of record is
+[`docs/superpowers/specs/2026-10-24-rapid-accounts-dashboards-design.md`](docs/superpowers/specs/2026-10-24-rapid-accounts-dashboards-design.md).
+
+1. **Keep Vite, add a same-origin API.** The public site was already tested, fast and
+   accessible. A Next.js migration would have cost the first dashboard for no user
+   benefit. `api/[...path].ts` is the production Vercel Function; Vite middleware runs
+   the same router locally, so `/api` behaves the same in both places.
+2. **Authorize on the server, by row, not with RLS.** Every request verifies a Clerk
+   token (or the local development cookie), loads the person and derives roles from
+   `tester_profiles`, `founder_profiles` and `staff_members`. Nothing trusts a role
+   claim from the browser. Staff operations span many rows, which is why the API layer
+   rather than Postgres RLS is the primary boundary.
+3. **Staff surfaces return 404, not 403.** A tester or founder who guesses `/staff`
+   sees the ordinary not-found page, so the surface is not disclosed. The API follows
+   the same rule for non-staff requests.
+4. **Local role sign-in is a development tool, not a feature.** `ALLOW_DEV_AUTH=1`
+   enables three fixed accounts and an HMAC-signed HttpOnly cookie. It is refused on
+   Vercel and in production regardless of the environment file, so a misconfigured
+   `.env` cannot open a deployed surface. Clerk is the only production identity path.
+5. **The seed creates profiles, never business records.** Empty dashboards say they
+   are empty. Any test, invitation, response or finding seen locally came from a real
+   action, not from a fixture. This is the dashboard version of the pilot's honesty
+   rule.
+6. **Counts are queries, not tallies.** Founder and staff dashboards count rows on
+   read. There is no stored counter to drift from the invitations and responses it is
+   supposed to describe.
+7. **Notifications are always in-app; email is optional.** Every decision,
+   invitation, published finding and reward writes a `notifications` row. If
+   `RESEND_API_KEY` is set the same event is emailed; otherwise the message is captured
+   in the server log and recorded in `email_log`. Delivery failures are logged and
+   never roll back the action, so a mail outage cannot silently lose a decision.
+8. **One migration runner, plain SQL.** `scripts/migrate.mjs` applies files in order
+   inside a transaction and records them in `schema_migrations`. Statuses are text plus
+   check constraints so a new state is a migration, not a type rewrite. The same script
+   is used locally and in production.
+9. **Clerk is lazy; the dashboard pages are not split yet.** Clerk (and its UI panels)
+   loads only on account routes, but `/app` and `/staff` share the main bundle. That
+   grew the public main JS from 142 KB to 162 KB gzip, still inside the 600 KB test
+   ceiling and the measured 1.36 s load. Lazy-loading the account routes is the next
+   bundle improvement if the public budget gets tight.
+10. **Authenticated Playwright is database-backed.** The public suite still runs
+    against `vite preview`; a second config (`pnpm e2e:auth`) starts Vite, reads
+    `DATABASE_URL`, applies migrations and the idempotent seed, then exercises the
+    real API and rows. A serial test drives the whole pilot loop through the
+    browser, checks role isolation for tester, founder and staff (API 404s, route
+    redirects, staff 404 page, anonymous 401s) and signs each role out. Records use
+    `pw.*@rapid.invalid` addresses and are deleted in global teardown. A mobile
+    project repeats each role's main pages at 390 px and 360 px with overflow and
+    axe assertions. This caught a real gap: `/api/founder/tests` answered a tester
+    with an empty 200, because only the write path checked the founder profile.
+    Tester and founder routes now use `requireTester`/`requireFounder` alongside
+    `requireStaff`, so every surface is gated by the profile row it belongs to.
+    The same pass fixed the untitled-panel empty state, which jumped from h1 to h3
+    and failed axe on a founder's empty notifications page.
+11. **Founder discoverability was fixed in the product, not in copy.** The header now
+    carries both role doors on desktop and a visible role strip on mobile, the
+    homepage opens with a role fork, and `/founders` explains the test before asking
+    for a request. The footer is a repeated path, not the only one.
+
+### Platform open items
+
+- Configure Clerk and Resend keys and run one live sign-in and one live email.
+- Run `pnpm e2e:auth` in CI against a disposable Postgres service.
+- Add a staff resend control for failed `email_log` rows.
+- Import any live sheet records, then disable the Apps Script endpoint.
+- Require MFA on staff Clerk accounts and name the staff members.
+
+---
+
 ## Historical notes — superseded marketing site
 
 ### Decisions

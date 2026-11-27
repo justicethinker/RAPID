@@ -4,7 +4,7 @@ import { ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/cn';
 import { buttonStyles } from '@/components/ui/buttonStyles';
 
-type Variant = 'primary' | 'outline' | 'ghost';
+type Variant = 'primary' | 'outline' | 'ghost' | 'inverse';
 type Size = 'sm' | 'md' | 'lg';
 
 
@@ -38,7 +38,14 @@ export function Button({
       {...props}
     >
       {children}
-      {showArrow && <ArrowRight size={size === 'sm' ? 16 : 18} strokeWidth={2} aria-hidden="true" />}
+      {showArrow && (
+        <ArrowRight
+          size={size === 'sm' ? 16 : 18}
+          strokeWidth={2}
+          aria-hidden="true"
+          className="transition-transform duration-300 ease-out group-hover:translate-x-1"
+        />
+      )}
     </button>
   );
 }
@@ -72,7 +79,14 @@ export function ButtonLink({
       className={buttonStyles({ variant, size, className })}
     >
       {children}
-      {showArrow && <ArrowRight size={size === 'sm' ? 16 : 18} strokeWidth={2} aria-hidden="true" />}
+      {showArrow && (
+        <ArrowRight
+          size={size === 'sm' ? 16 : 18}
+          strokeWidth={2}
+          aria-hidden="true"
+          className="transition-transform duration-300 ease-out group-hover:translate-x-1"
+        />
+      )}
     </Link>
   );
 }

@@ -7,25 +7,99 @@
  */
 
 export const SCHEMA_VERSION = '2026-10-20';
-export const PRIVACY_VERSION = '2026-10-20';
-export const PRIVACY_LAST_UPDATED = '20 October 2026';
+export const PRIVACY_VERSION = '2026-11-15';
+export const PRIVACY_LAST_UPDATED = '15 November 2026';
 export const SUPPORT_EMAIL_FALLBACK = 'hello@rapid.africa';
 
 export const SITE = {
   name: 'RAPID',
-  title: 'RAPID | Help decide what gets built next',
+  title: 'RAPID | Test your startup idea with real people in Nigeria',
   description:
-    'Share your experience in short research tasks and help founders test products for people like you.',
+    'Find out if people will use your idea before you build it. RAPID recruits relevant testers in Nigeria and turns their feedback into clear next steps.',
   requestInvite: 'Request your invite',
   requestTest: 'Request a test',
 } as const;
 
 export const HOME = {
   hero: {
-    headline: 'Help decide what gets built next.',
-    lead: 'Share your experience in short research tasks and help founders test products for people like you.',
-    cta: 'Request your invite',
-    note: 'For adults aged 18 and above. Invitations depend on the needs of each test.',
+    eyebrow: 'Nigeria pilot',
+    headline: 'Good ideas need the right people.',
+    headlineAccent: 'the right people.',
+    lead: 'RAPID connects founders with people who face the problem — and shows what they actually do next.',
+    primaryCta: 'Join as a tester',
+    secondaryCta: 'Request a test',
+    note: 'Adults 18+ · Free to apply · Team-assisted matching',
+  },
+  proof: {
+    eyebrow: 'The honesty rule',
+    lead: 'A finding is only useful if you can see the counts behind it, the words that produced it and the limits of the sample.',
+    note: 'Illustrative finding · Not live data',
+  },
+  fork: {
+    eyebrow: 'The two sides',
+    heading: 'One question. Two people who need it answered.',
+    tester: {
+      title: 'I want to take part in tests',
+      body: 'Use what you already know. Get invited when a test fits your experience, and read the task, time and reward before you accept.',
+      cta: 'Join as a tester',
+    },
+    founder: {
+      title: 'I need evidence before I build',
+      body: 'Bring the question you cannot answer yet. The team scopes it, recruits matched testers and writes down what actually happened.',
+      cta: 'Request a test',
+    },
+  },
+  loop: {
+    heading: 'How a question becomes evidence',
+    lead: 'A RAPID test is not a survey. It is a scoped question, a short task and a written record of what people did next.',
+    steps: [
+      {
+        title: 'Share the question',
+        body: 'Tell us what you need to learn and who should answer it.',
+      },
+      {
+        title: 'Scope the test',
+        body: 'We agree the task, audience, terms and reward before anyone is invited.',
+      },
+      {
+        title: 'Testers respond',
+        body: 'Matched testers accept, do the task and record what actually happened.',
+      },
+      {
+        title: 'Read the evidence',
+        body: 'Findings show the counts, the quotes and the limits before you decide.',
+      },
+    ],
+  },
+  value: {
+    heading: 'What each side gets',
+    tester: {
+      title: 'What testers get',
+      points: [
+        'Invitations matched to your experience, not a public task board.',
+        'The task, time and reward are stated before you accept.',
+        'Your name and contact details stay private from founders.',
+        'Reward status is visible in your account after a test.',
+      ],
+    },
+    founder: {
+      title: "What founders get",
+      points: [
+        'Real counts with the denominators behind them, not vanity metrics.',
+        'A written record of what testers did and what got in the way.',
+        'Published findings that state their limits as well as their signals.',
+        'One place to record a build, iterate or pivot decision.',
+      ],
+    },
+  },
+  honesty: {
+    heading: 'What this can — and cannot — prove',
+    points: [
+      'Matching is team-assisted. Applying does not guarantee an invitation.',
+      'A test does not guarantee payment, a place in a programme or a successful product.',
+      'The first pilot focuses on students, recent graduates and working adults in Nigeria.',
+      'No dashboard shows sample records. Empty means empty.',
+    ],
   },
   problem: {
     heading: 'The problem',
@@ -49,10 +123,63 @@ export const HOME = {
     note: 'The first pilot focuses on students, recent graduates, and working adults.',
   },
   finalCta: {
-    heading: 'Your experience can help decide what gets built next.',
-    lead: 'Share what you know in short research tasks.',
-    cta: 'Request your invite',
-    note: 'For adults aged 18 and above.',
+    heading: 'Your next idea needs the right people.',
+    lead: 'Join the tester pool, or bring the question you cannot answer yet.',
+    cta: 'Join as a tester',
+    note: 'Adults 18+ · Team-assisted matching · Nigeria pilot',
+  },
+} as const;
+
+/**
+ * One labelled example of the loop. Every number and name here is
+ * illustrative; the UI repeats that label wherever the sample appears.
+ */
+export const SAMPLE = {
+  label: 'Example',
+  brief: {
+    kicker: 'Test brief · 04',
+    title: 'Checkout drop-off',
+    question: 'Why do first-time buyers stop at phone verification?',
+    audience: 'Students buying meals near campus',
+    task: 'Try the new checkout · 10 min',
+    invited: '14',
+    accepted: '9',
+    completed: '2',
+    completion: '22%',
+    note: 'Responses reviewed before publishing',
+    action: 'Open test',
+  },
+  invitation: {
+    kicker: 'Matched test',
+    title: 'Pickup without the queue',
+    body: 'For students who buy lunch near campus.',
+    tag: 'Example invitation',
+    task: 'Try the new checkout',
+    taskNote: 'One short task, then tell us what happened.',
+    duration: '10 min',
+    reward: '₦5,000',
+    fit: 'You buy lunch near campus.',
+    checklist: [
+      'Open the checkout like a first-time buyer.',
+      'Try one order and note what blocked you.',
+      'Write a short response. No call needed.',
+    ],
+    productLabel: 'The product',
+    product: 'Campus Kitchen',
+    productType: 'Food pickup',
+    productPlace: 'Lagos',
+    afterAccept: 'After you accept, the task opens here. Do it once, in your own time.',
+    privacy: 'Your name and contact details stay private.',
+    terms: 'Read the terms',
+    accept: 'Accept test',
+  },
+  finding: {
+    label: 'Finding · Published',
+    statement: '7 of 9 testers stopped at phone verification.',
+    link: 'Read the evidence',
+    quote:
+      'I stopped at the code because I was not sure it would work on my network.',
+    quoteBy: 'Tester response · example',
   },
 } as const;
 
@@ -62,43 +189,134 @@ export interface FaqItem {
   privacyLink?: boolean;
 }
 
-export const FAQ: FaqItem[] = [
+export const TESTER_FAQ: FaqItem[] = [
   {
-    question: 'Is joining free?',
+    question: 'Is it free to join?',
     answer: 'Yes. Applying to be a tester is free.',
   },
   {
     question: 'Who can join?',
     answer:
-      'Adults aged 18 or above. Our first tests focus on students, recent graduates, and working adults. Each test has its own requirements.',
+      'Anyone aged 18 or over. Our first tests are for students, recent graduates and working adults in Nigeria. Each test also has its own requirements.',
+  },
+  {
+    question: 'Can I be both a founder and a tester?',
+    answer:
+      'Yes. You can apply as a tester and also request a test for your startup. They are separate paths for now.',
   },
   {
     question: 'What happens after I apply?',
     answer:
-      'We aim to review applications within three business days. We will email you with the outcome or ask for more details.',
+      'We aim to review applications within three business days. We’ll email you the outcome, or ask for more details. If you’re approved, invitations appear in your account when a test fits.',
   },
   {
-    question: 'Will I be paid?',
+    question: 'Will I get paid?',
     answer:
-      'Some tasks may offer a reward. The amount, rules, and payment timing will be shared before you choose to take part. Applying does not guarantee a paid task.',
+      'Some tasks offer a reward. The amount, rules and payment timing are shown before you accept. Applying doesn’t guarantee a paid task.',
   },
   {
-    question: 'Must I join WhatsApp?',
+    question: 'Do I have to join WhatsApp?',
     answer: 'No. Tasks arrive by email. You can choose reminders or join our optional group.',
   },
   {
-    question: 'How are my details used?',
+    question: 'What happens to my details?',
     answer:
-      'To review your application, find suitable tests, and contact you about participation. Read our Privacy Policy or contact support to ask for removal.',
+      'We use them to review your application, find tests that suit you and contact you about taking part. Founders see anonymised responses, never your name or contact details. Read our Privacy Policy, or contact support to ask for removal.',
     privacyLink: true,
   },
 ];
+
+export const FOUNDER_FAQ: FaqItem[] = [
+  {
+    question: 'What counts as a test?',
+    answer:
+      'A focused question, a defined audience and a short task with a written response. It could be a prototype walkthrough, a conversation or a specific action in your product.',
+  },
+  {
+    question: 'Do I need a finished product?',
+    answer:
+      'No. A test can use a rough concept, a prototype, a live product or a conversation. We agree what people will see before recruiting starts.',
+  },
+  {
+    question: 'How do you choose testers?',
+    answer:
+      'Our team picks approved testers whose situation, interests and experience match the people you’re building for.',
+  },
+  {
+    question: 'What do I get at the end?',
+    answer:
+      'A clear summary of responses, recruitment counts and findings, plus the context behind them, so you know what to do next.',
+  },
+  {
+    question: 'How long does it take?',
+    answer:
+      'We agree a timeline with you when we scope the test. It depends on your audience and the task.',
+  },
+  {
+    question: 'What does it cost?',
+    answer:
+      'We talk through your goals first. Then we agree the scope and any cost with you before we recruit anyone.',
+  },
+  {
+    question: 'Will I see who said what?',
+    answer:
+      'No. You see counts and anonymised quotes, and quotes only where the tester agreed. Names and contact details are never shared.',
+  },
+];
+
+export const TESTER_PAGE = {
+  heading: 'Try early products. Say what actually happens.',
+  intro:
+    'Join a reviewed pool of people in Nigeria. When a test fits your experience, the invitation states the task, time and reward before you decide.',
+  sections: [
+    {
+      title: 'What you will do',
+      body: 'Tasks are short — usually 10 to 30 minutes. You might try a prototype, walk through a real situation or answer a focused set of questions. Then you write a short account of what happened.',
+    },
+    {
+      title: 'What you get',
+      body: 'Every invitation states the task, the time and the reward before you accept. There is no charge to join. Applying does not guarantee a paid task.',
+    },
+    {
+      title: 'How selection works',
+      body: 'The team reviews applications within three business days. Approved testers are invited when their situation and interests match a founder’s question. It is not first come, first served.',
+    },
+    {
+      title: 'Your privacy',
+      body: 'Your name, email and phone number are used to run the pilot. Founders receive counts and anonymised responses. Your account shows the reward status for every completed test.',
+    },
+  ],
+} as const;
+
+export const FOUNDER_PAGE = {
+  heading: 'Evidence before you build the wrong thing.',
+  intro:
+    'Bring a real question. RAPID helps you scope it, reach people who face it and read what they actually did — without handling all the outreach yourself.',
+  sections: [
+    {
+      title: 'What a test is',
+      body: 'A test is a scoped question with a defined audience and a short task. It is not a focus group or a generic survey. You get evidence about what people actually did.',
+    },
+    {
+      title: 'The process',
+      body: 'You send a request. The team scopes the question, audience, terms and reward with you. Matched testers are invited, responses are reviewed, and findings are published only after that review.',
+    },
+    {
+      title: 'What you receive',
+      body: 'Recruitment counts with denominators, outcomes and anonymised quotes where consent was given, published findings, and a place to record your build, iterate or pivot decision.',
+    },
+    {
+      title: 'Timing and cost',
+      body: 'Timing depends on who qualifies and is agreed during scoping. There is no pricing or payment step on this site; the team confirms any cost before recruitment.',
+    },
+  ],
+} as const;
 
 export const TESTER_FORM = {
   title: 'Request your invite',
   intro:
     "Apply to join RAPID's tester pool. It takes about three minutes. We aim to review applications within three business days.",
-  note: 'Applying does not guarantee a test or payment.',
+  note: 'Applying doesn’t guarantee a test or payment.',
   sections: {
     about: 'About you',
     situation: 'Your situation',
@@ -126,9 +344,9 @@ export const TESTER_FORM = {
     interestsHint: 'Choose 1–3.',
     interestsOther: 'Your interest',
     frustration: 'Tell us about a recent problem',
-    frustrationPrompt:
-      'Tell us about a recent problem in your daily life, studies, or work. What happened, and what did you do?',
-    frustrationHint: 'A clear answer matters more than fancy writing.',
+    frustrationPrompt: '',
+    frustrationHint:
+      'Tell us about a recent problem in your daily life, studies or work. What happened, and what did you do? Clear and honest beats polished.',
     whatsapp: 'WhatsApp number',
     whatsappOptional: 'Optional',
     whatsappHint: 'Include your country code, for example +234 801 234 5678.',
@@ -138,7 +356,7 @@ export const TESTER_FORM = {
     privacyAck:
       'I have read the Privacy Policy and understand RAPID will use my details to review my application and email me about suitable tests. I can ask to be removed.',
   },
-  submit: 'Request your invite',
+  submit: 'Apply to be a tester',
   saving: 'Saving your details',
   saveError: 'We could not save your details. Please try again.',
   saveErrorDetail: 'Your answers are still here. Retry when you are ready.',
@@ -150,7 +368,7 @@ export const FOUNDER_FORM = {
   title: 'Request a test',
   intro:
     'Tell us what you need to learn and who you need to reach. We will contact you to see whether the pilot is a fit.',
-  note: 'No pricing or payment step. We will follow up on WhatsApp.',
+  note: 'No pricing or payment step. We’ll follow up on WhatsApp.',
   fields: {
     fullName: 'Full name',
     whatsapp: 'WhatsApp number',
@@ -158,14 +376,15 @@ export const FOUNDER_FORM = {
     email: 'Email',
     emailOptional: 'Optional',
     testDescription: 'What do you want to test?',
-    testDescriptionHint: 'What is your idea, and what do you need to learn before your next step?',
+    testDescriptionHint:
+      'Describe your idea and what you need to learn before your next step.',
     audience: 'Who is it for?',
     audienceDescription: 'Tell us who',
     audienceDescriptionHint: 'A short description of the people you need to reach.',
     privacyAck:
       'I have read the Privacy Policy and understand RAPID will contact me on WhatsApp about this request.',
   },
-  submit: 'Send my request',
+  submit: 'Request a call',
   saving: 'Saving your details',
   saveError: 'We could not save your details. Please try again.',
   saveErrorDetail: 'Your answers are still here. Retry when you are ready.',
@@ -175,25 +394,27 @@ export const FOUNDER_FORM = {
 
 export const THANKS = {
   tester: {
-    title: 'Thanks for applying to RAPID.',
-    body: 'We aim to review your application within three business days and email you with the outcome or a request for more details. Check your spam folder. If you have not heard from us after that, contact',
-    bodyAfter: 'Applying does not guarantee a test or payment.',
+    title: 'Thanks, we’ve got your application.',
+    body: 'We’ve sent a receipt to the email you used. Our team aims to review applications within three business days.',
+    bodyAfter: 'Applying doesn’t guarantee a test or payment.',
     home: 'Return home',
   },
   founder: {
-    title: 'Thanks. We have received your request.',
-    body: 'We aim to contact you on WhatsApp within three business days to discuss whether the pilot is a fit.',
+    title: 'Thanks, we’ve got your request.',
+    body: 'We aim to message you on WhatsApp within three business days to talk through your question, audience and terms.',
     home: 'Return home',
   },
 } as const;
 
 export const NOT_FOUND = {
-  title: "We couldn't find that page.",
-  body: 'The page may have moved, or the link may be wrong. These pages may help:',
+  title: 'This page doesn’t exist.',
+  body: 'The link may be wrong, or the page may have moved. Try one of these:',
+  // These mirror the header nav, so a lost visitor is offered the same names
+  // they already saw rather than retired campaign wording.
   links: [
     { label: 'Home', to: '/' },
-    { label: 'Request your invite', to: '/join' },
-    { label: 'Request a test', to: '/founders' },
+    { label: 'For founders', to: '/founders' },
+    { label: 'For testers', to: '/join' },
     { label: 'Privacy Policy', to: '/privacy' },
   ],
 } as const;

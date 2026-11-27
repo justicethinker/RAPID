@@ -29,10 +29,12 @@ import {
   testerSchema,
   type TesterFormValues,
 } from '@/lib/submission-schema';
-import { submitEnvelope, warmSubmissions } from '@/lib/submissions';
+import { submitEnvelope, warmSubmissions, type SubmitResult } from '@/lib/submissions';
+import { SubmitOverlay } from '@/components/forms/SubmitOverlay';
 import { createSubmissionId } from '@/lib/submission-id';
 import { getAttribution } from '@/lib/attribution';
 import { trackEvent, trackSuccessOnce } from '@/lib/analytics';
+import type { AccountFormContext } from '@/components/forms/account';
 
 const COUNTRY_OPTIONS = COUNTRIES.map((country) => ({
   value: country.code,
@@ -64,7 +66,7 @@ function msg(error: unknown): string | undefined {
   return typeof message === 'string' ? message : undefined;
 }
 
-export function TesterForm() {
+export function TesterForm({ account }: { account?: AccountFormContext } = {}) {
   const navigate = useNavigate();
   const [status, setStatus] = useState<'idle' | 'saving' | 'error'>('idle');
   const [formError, setFormError] = useState<string | null>(null);
@@ -74,7 +76,14 @@ export function TesterForm() {
 
   const form = useForm<TesterFormValues>({
     resolver: zodResolver(testerSchema),
-    defaultValues: emptyTesterValues(),
+    defaultValues: account
+      ? {
+          ...emptyTesterValues(),
+          fullName: account.name,
+          email: account.email,
+          emailConfirm: account.email,
+        }
+      : emptyTesterValues(),
     shouldUnregister: true,
     mode: 'onSubmit',
   });
@@ -135,7 +144,11 @@ export function TesterForm() {
 
     // Hidden spam trap: silently accept and show nothing to the bot.
     if (values.website) {
-      navigate('/thanks/tester', { replace: true });
+      if (account) {
+        await account.onSubmitted();
+      } else {
+        navigate('/thanks/tester', { replace: true });
+      }
       return;
     }
 
@@ -145,13 +158,22 @@ export function TesterForm() {
 
     const attribution = getAttribution();
     const acknowledgedAt = new Date().toISOString();
-    const result = await submitEnvelope(
-      buildTesterSubmission(values, {
-        submissionId,
-        acknowledgedAt,
-        source: attribution,
-      }),
-    );
+    let result: SubmitResult;
+    try {
+      const token = account ? await account.getToken() : null;
+      result = await submitEnvelope(
+        buildTesterSubmission(values, {
+          submissionId,
+          acknowledgedAt,
+          source: attribution,
+        }),
+        { token },
+      );
+    } catch {
+      setStatus('error');
+      setFormError(TESTER_FORM.saveError);
+      return;
+    }
 
     if (result.ok) {
       if (result.duplicate) {
@@ -164,7 +186,14 @@ export function TesterForm() {
           campaign: attribution.campaign,
         });
       }
-      navigate('/thanks/tester', { replace: true });
+      if (account) {
+        await account.onSubmitted();
+        return;
+      }
+      navigate('/thanks/tester', {
+        replace: true,
+        state: { reference: result.id ?? submissionId },
+      });
       return;
     }
 
@@ -244,28 +273,49 @@ export function TesterForm() {
             error={msg(errors.fullName)}
           />
 
-          <div className="grid gap-5 sm:grid-cols-2">
-            <TextField
-              id="tester-email"
-              label={TESTER_FORM.fields.email}
-              required
-              type="email"
-              inputMode="email"
-              autoComplete="email"
-              registration={register('email')}
-              error={msg(errors.email)}
-            />
-            <TextField
-              id="tester-email-confirm"
-              label={TESTER_FORM.fields.emailConfirm}
-              required
-              type="email"
-              inputMode="email"
-              autoComplete="email"
-              registration={register('emailConfirm')}
-              error={msg(errors.emailConfirm)}
-            />
-          </div>
+          {account ? (
+            <>
+              {/* The visible confirmation field is redundant once the address comes
+                  from the account, but the schema still compares the two. */}
+              <input type="hidden" {...register('emailConfirm')} />
+              <TextField
+                id="tester-email"
+                label={TESTER_FORM.fields.email}
+                required
+                type="email"
+                inputMode="email"
+                autoComplete="email"
+                readOnly
+                hint="This is the email on your account, so your application and invitations stay together."
+                registration={register('email')}
+                error={msg(errors.email)}
+                className="bg-studio-50 text-light-muted"
+              />
+            </>
+          ) : (
+            <div className="grid gap-5 sm:grid-cols-2">
+              <TextField
+                id="tester-email"
+                label={TESTER_FORM.fields.email}
+                required
+                type="email"
+                inputMode="email"
+                autoComplete="email"
+                registration={register('email')}
+                error={msg(errors.email)}
+              />
+              <TextField
+                id="tester-email-confirm"
+                label={TESTER_FORM.fields.emailConfirm}
+                required
+                type="email"
+                inputMode="email"
+                autoComplete="email"
+                registration={register('emailConfirm')}
+                error={msg(errors.emailConfirm)}
+              />
+            </div>
+          )}
 
           <div className="grid gap-5 sm:grid-cols-2">
             <SelectField
@@ -401,7 +451,9 @@ export function TesterForm() {
             id="tester-frustration"
             label={TESTER_FORM.fields.frustration}
             required
-            hint={`${TESTER_FORM.fields.frustrationPrompt} ${TESTER_FORM.fields.frustrationHint}`}
+            hint={[TESTER_FORM.fields.frustrationPrompt, TESTER_FORM.fields.frustrationHint]
+              .filter(Boolean)
+              .join(' ')}
             counter={`${frustrationLength}/800`}
             maxLength={800}
             registration={register('frustration')}
@@ -483,7 +535,7 @@ export function TesterForm() {
         </div>
       )}
 
-      <div className="border-t border-sand-200 pt-6">
+      <div className="border-t border-studio-200 pt-6">
         <Button
           type="submit"
           size="lg"
@@ -502,6 +554,8 @@ export function TesterForm() {
         </Button>
         <p className="mt-3 text-sm text-light-muted">{TESTER_FORM.note}</p>
       </div>
+
+      <SubmitOverlay show={status === 'saving'} message={TESTER_FORM.saving} />
     </form>
   );
 }

@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test';
-import { fillFounder, fillTester, mockSubmissions, testerAnswers } from './mock-submissions';
+import { fillFounder, fillTester, mockSubmissions, testerAnswers } from '../mock-submissions';
+import { startOnboarding } from './env';
 
 /**
  * Conditional fields must not leak stale answers. The PRD (section 3) says
@@ -11,7 +12,7 @@ test.describe('Conditional answer hygiene', () => {
       body: { ok: true, id: 'RAPID-T-HYGIENE', duplicate: false },
     }));
 
-    await page.goto('/join');
+    await startOnboarding(page, 'tester');
 
     // Student: school is shown, industry is not.
     await fillTester(page, {
@@ -25,9 +26,10 @@ test.describe('Conditional answer hygiene', () => {
     await page.locator('#tester-main-situation').selectOption('employed');
     await expect(page.locator('#tester-school')).toHaveCount(0);
     await page.locator('#tester-industry').selectOption('technology');
-    await page.getByRole('button', { name: 'Request your invite' }).click();
+    await page.getByRole('button', { name: 'Apply to be a tester' }).click();
 
-    await expect(page).toHaveURL(/\/thanks\/tester$/);
+    // The response is mocked, so the account gains no role and stays on /app.
+    await expect(page).toHaveURL(/\/app$/);
     expect(mock.envelopes).toHaveLength(1);
     expect(mock.envelopes[0]?.answers.school).toBe('');
     expect(mock.envelopes[0]?.answers.industry).toBe('technology');
@@ -40,7 +42,7 @@ test.describe('Conditional answer hygiene', () => {
       body: { ok: true, id: 'RAPID-T-HYGIENE-2', duplicate: false },
     }));
 
-    await page.goto('/join');
+    await startOnboarding(page, 'tester');
     await page.locator('#tester-main-situation').selectOption('employed');
     await page.locator('#tester-industry').selectOption('other');
     await page.locator('#tester-industry-other').fill('Logistics brokerage');
@@ -49,9 +51,9 @@ test.describe('Conditional answer hygiene', () => {
     await expect(page.locator('#tester-industry-other')).toHaveCount(0);
 
     await fillTester(page, { mainSituation: 'employed', industry: 'technology' });
-    await page.getByRole('button', { name: 'Request your invite' }).click();
+    await page.getByRole('button', { name: 'Apply to be a tester' }).click();
 
-    await expect(page).toHaveURL(/\/thanks\/tester$/);
+    await expect(page).toHaveURL(/\/app$/);
     expect(mock.envelopes[0]?.answers.industryOther).toBe('');
     expect(mock.envelopes[0]?.answers.school).toBe('');
   });
@@ -61,14 +63,14 @@ test.describe('Conditional answer hygiene', () => {
       body: { ok: true, id: 'RAPID-F-HYGIENE', duplicate: false },
     }));
 
-    await page.goto('/founders');
+    await page.goto('/contact');
     await page.locator('#founder-audience-more_than_one').check();
     await page.locator('#founder-audience-description').fill('Students and graduates in Lagos.');
     await page.locator('#founder-audience-students').check();
     await expect(page.locator('#founder-audience-description')).toHaveCount(0);
 
     await fillFounder(page, { audience: 'students' });
-    await page.getByRole('button', { name: 'Send my request' }).click();
+    await page.getByRole('button', { name: 'Request a call' }).click();
 
     await expect(page).toHaveURL(/\/thanks\/founder$/);
     expect(mock.envelopes[0]?.answers.audienceDescription).toBe('');
@@ -81,17 +83,16 @@ test.describe('Conditional answer hygiene', () => {
 test.describe('Server-side validation', () => {
   test('shows field errors returned by the endpoint', async ({ page }) => {
     await mockSubmissions(page, () => ({
-      status: 200,
+      status: 400,
       body: {
-        ok: false,
         error: 'validation',
         fields: { frustration: 'Write 50–800 characters about a recent problem.' },
       },
     }));
 
-    await page.goto('/join');
+    await startOnboarding(page, 'tester');
     await fillTester(page);
-    await page.getByRole('button', { name: 'Request your invite' }).click();
+    await page.getByRole('button', { name: 'Apply to be a tester' }).click();
 
     await expect(
       page.getByText('Write 50–800 characters about a recent problem.'),
@@ -103,12 +104,13 @@ test.describe('Server-side validation', () => {
 
   test('reports a rate-limited response without losing answers', async ({ page }) => {
     await mockSubmissions(page, () => ({
-      body: { ok: false, error: 'rate_limited' },
+      status: 429,
+      body: { error: 'rate_limited' },
     }));
 
-    await page.goto('/founders');
+    await page.goto('/contact');
     await fillFounder(page);
-    await page.getByRole('button', { name: 'Send my request' }).click();
+    await page.getByRole('button', { name: 'Request a call' }).click();
 
     await expect(page.getByRole('alert')).toContainText('Too many attempts');
     await expect(page.locator('#founder-full-name')).toHaveValue('Tunde Bello');

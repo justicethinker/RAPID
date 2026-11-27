@@ -5,15 +5,21 @@ import {
   founderAnswers,
   mockSubmissions,
   testerAnswers,
-} from './mock-submissions';
+} from '../mock-submissions';
+import { startOnboarding } from './env';
 
+/**
+ * The tester application lives behind sign-up. These tests create a local
+ * account, land on the role form and drive it exactly as a new visitor would.
+ * The founder request form is still the public one at /contact.
+ */
 test.describe('Tester application', () => {
   test('shows field errors and focuses the first invalid field', async ({ page }) => {
-    await page.goto('/join');
-    await page.getByRole('button', { name: 'Request your invite' }).click();
+    await startOnboarding(page, 'tester');
+    await page.getByRole('button', { name: 'Apply to be a tester' }).click();
 
-    await expect(page.locator('#tester-full-name')).toBeFocused();
-    await expect(page.getByText('Enter your full name (2–100 characters).')).toBeVisible();
+    // Name and email arrive from the account, so the first empty field is city.
+    await expect(page.locator('#tester-city')).toBeFocused();
     await expect(page.getByText('Confirm that you are 18 or older.')).toBeVisible();
     await expect(page.getByText('Choose 1–3 interests.')).toBeVisible();
     await expect(
@@ -23,7 +29,7 @@ test.describe('Tester application', () => {
   });
 
   test('reveals school and industry only when relevant', async ({ page }) => {
-    await page.goto('/join');
+    await startOnboarding(page, 'tester');
 
     await page.locator('#tester-main-situation').selectOption('recent_graduate');
     await expect(page.locator('#tester-school')).toBeVisible();
@@ -38,7 +44,7 @@ test.describe('Tester application', () => {
   });
 
   test('limits interests to three', async ({ page }) => {
-    await page.goto('/join');
+    await startOnboarding(page, 'tester');
     await page.locator('#tester-interests-education').check();
     await page.locator('#tester-interests-technology').check();
     await page.locator('#tester-interests-food').check();
@@ -50,9 +56,9 @@ test.describe('Tester application', () => {
   });
 
   test('requires a phone only when reminders are requested', async ({ page }) => {
-    await page.goto('/join');
+    await startOnboarding(page, 'tester');
     await page.locator('#tester-whatsapp-reminders').check();
-    await page.getByRole('button', { name: 'Request your invite' }).click();
+    await page.getByRole('button', { name: 'Apply to be a tester' }).click();
 
     await expect(
       page.getByText('Add a valid WhatsApp number to receive reminders.'),
@@ -64,12 +70,18 @@ test.describe('Tester application', () => {
       body: { ok: true, id: 'RAPID-T-1', duplicate: false },
     }));
 
-    await page.goto('/join');
+    const account = await startOnboarding(page, 'tester');
     await fillTester(page, { whatsapp: '', whatsappReminders: false });
-    await page.getByRole('button', { name: 'Request your invite' }).click();
+    await page.getByRole('button', { name: 'Apply to be a tester' }).click();
 
-    await expect(page).toHaveURL(/\/thanks\/tester$/);
+    // The response is mocked, so no tester row exists yet and the account has
+    // no role: the visitor lands on the account chooser, not the tester area.
+    await expect(page).toHaveURL(/\/app$/);
+    await expect(
+      page.getByRole('heading', { name: 'This account has no profile yet' }),
+    ).toBeVisible();
     expect(mock.envelopes).toHaveLength(1);
+    expect(mock.envelopes[0]?.answers.email).toBe(account.email);
     expect(mock.envelopes[0]?.answers.whatsapp).toBe('');
     expect(mock.envelopes[0]?.answers.whatsappReminders).toBe(false);
   });
@@ -83,9 +95,9 @@ test.describe('Tester application', () => {
         : { body: { ok: true, id: 'RAPID-T-2', duplicate: false } },
     );
 
-    await page.goto('/join');
+    await startOnboarding(page, 'tester');
     await fillTester(page);
-    await page.getByRole('button', { name: 'Request your invite' }).click();
+    await page.getByRole('button', { name: 'Apply to be a tester' }).click();
 
     await expect(page.getByRole('alert')).toContainText(
       'We could not save your details. Please try again.',
@@ -94,27 +106,24 @@ test.describe('Tester application', () => {
     await expect(page.locator('#tester-frustration')).toHaveValue(testerAnswers.frustration);
 
     await page.getByRole('button', { name: 'Try again' }).click();
-    await expect(page).toHaveURL(/\/thanks\/tester$/);
+    await expect(page).toHaveURL(/\/app$/);
 
     expect(mock.envelopes).toHaveLength(2);
     expect(mock.envelopes[0]?.submissionId).toBeTruthy();
     expect(mock.envelopes[1]?.submissionId).toBe(mock.envelopes[0]?.submissionId);
     expect(page.url()).not.toContain('@');
-    expect(page.url()).not.toContain(testerAnswers.fullName.replace(' ', ''));
   });
 
-  test('a duplicate email still gets the neutral confirmation', async ({ page }) => {
+  test('a duplicate submission still lands the visitor on the dashboard', async ({ page }) => {
     await mockSubmissions(page, () => ({
       body: { ok: true, id: 'RAPID-T-EXISTING', duplicate: true },
     }));
 
-    await page.goto('/join');
+    await startOnboarding(page, 'tester');
     await fillTester(page);
-    await page.getByRole('button', { name: 'Request your invite' }).click();
+    await page.getByRole('button', { name: 'Apply to be a tester' }).click();
 
-    await expect(page).toHaveURL(/\/thanks\/tester$/);
-    await expect(page.locator('h1')).toContainText('Thanks for applying to RAPID');
-    await expect(page.getByText('Applying does not guarantee a test or payment.')).toBeVisible();
+    await expect(page).toHaveURL(/\/app$/);
   });
 
   test('a filled spam trap is acknowledged without sending a record', async ({ page }) => {
@@ -122,7 +131,7 @@ test.describe('Tester application', () => {
       body: { ok: true, id: 'RAPID-T-3', duplicate: false },
     }));
 
-    await page.goto('/join');
+    await startOnboarding(page, 'tester');
     await fillTester(page);
     await page.locator('#tester-website').evaluate((element) => {
       const input = element as HTMLInputElement;
@@ -133,20 +142,20 @@ test.describe('Tester application', () => {
       setter?.call(input, 'https://spam.example');
       input.dispatchEvent(new Event('input', { bubbles: true }));
     });
-    await page.getByRole('button', { name: 'Request your invite' }).click();
+    await page.getByRole('button', { name: 'Apply to be a tester' }).click();
 
-    await expect(page).toHaveURL(/\/thanks\/tester$/);
+    await expect(page).toHaveURL(/\/app$/);
     expect(mock.envelopes).toHaveLength(0);
   });
 });
 
 test.describe('Founder request', () => {
   test('shows field errors and focuses the first invalid field', async ({ page }) => {
-    await page.goto('/founders');
-    await page.getByRole('button', { name: 'Send my request' }).click();
+    await page.goto('/contact');
+
+    await page.getByRole('button', { name: 'Request a call' }).click();
 
     await expect(page.locator('#founder-full-name')).toBeFocused();
-    await expect(page.getByText('Enter your full name (2–100 characters).')).toBeVisible();
     await expect(
       page.getByText('Describe what you want to test in 20–500 characters.'),
     ).toBeVisible();
@@ -155,7 +164,7 @@ test.describe('Founder request', () => {
   });
 
   test('asks for a description only for mixed or unknown audiences', async ({ page }) => {
-    await page.goto('/founders');
+    await page.goto('/contact');
     await page.locator('#founder-audience-students').check();
     await expect(page.locator('#founder-audience-description')).toHaveCount(0);
 
@@ -166,22 +175,18 @@ test.describe('Founder request', () => {
     await expect(page.locator('#founder-audience-description')).toBeVisible();
   });
 
-  test('validates an optional email only when supplied', async ({ page }) => {
+  test('sends the email typed with the request', async ({ page }) => {
     const mock = await mockSubmissions(page, () => ({
       body: { ok: true, id: 'RAPID-F-1', duplicate: false },
     }));
 
-    await page.goto('/founders');
-    await page.locator('#founder-email').fill('not-an-email');
-    await fillFounder(page, { email: 'not-an-email' });
-    await page.getByRole('button', { name: 'Send my request' }).click();
-    await expect(page.getByText('Enter a valid email address, like name@example.com.')).toBeVisible();
+    await page.goto('/contact');
+    await fillFounder(page);
+    await page.getByRole('button', { name: 'Request a call' }).click();
 
-    await page.locator('#founder-email').fill('');
-    await page.getByRole('button', { name: 'Send my request' }).click();
     await expect(page).toHaveURL(/\/thanks\/founder$/);
     expect(mock.envelopes).toHaveLength(1);
-    expect(mock.envelopes[0]?.answers.email).toBe('');
+    expect(mock.envelopes[0]?.answers.email).toBe(founderAnswers.email);
   });
 
   test('preserves answers on failure and reuses the submission ID on retry', async ({ page }) => {
@@ -191,12 +196,12 @@ test.describe('Founder request', () => {
         : { body: { ok: true, id: 'RAPID-F-2', duplicate: false } },
     );
 
-    await page.goto('/founders');
+    await page.goto('/contact');
     await fillFounder(page, {
       audience: 'more_than_one',
       audienceDescription: 'Students and recent graduates in Lagos.',
     });
-    await page.getByRole('button', { name: 'Send my request' }).click();
+    await page.getByRole('button', { name: 'Request a call' }).click();
 
     await expect(page.getByRole('alert')).toContainText(
       'We could not save your details. Please try again.',
@@ -216,26 +221,22 @@ test.describe('Founder request', () => {
 });
 
 test.describe('Both audience paths', () => {
-  test('the same person can submit a tester application and a founder request', async ({ page }) => {
+  test('the same account can apply as a tester and reach the founder setup', async ({ page }) => {
     const mock = await mockSubmissions(page, (envelope) => ({
       body: { ok: true, id: `${envelope.formType}-1`, duplicate: false },
     }));
 
-    await page.goto('/join');
+    const account = await startOnboarding(page, 'tester');
     await fillTester(page);
-    await page.getByRole('button', { name: 'Request your invite' }).click();
-    await expect(page).toHaveURL(/\/thanks\/tester$/);
+    await page.getByRole('button', { name: 'Apply to be a tester' }).click();
+    await expect(page).toHaveURL(/\/app$/);
 
-    await page.goto('/founders');
-    await fillFounder(page);
-    await page.getByRole('button', { name: 'Send my request' }).click();
-    await expect(page).toHaveURL(/\/thanks\/founder$/);
+    // Same account, second role: founder sign-up resumes on the startup step.
+    await page.goto('/sign-up/founder');
+    await expect(page.locator('#startup-name')).toBeVisible();
+    await expect(page.getByText(account.email)).toBeVisible();
 
-    expect(mock.envelopes.map((envelope) => envelope.formType)).toEqual([
-      'tester',
-      'founder',
-    ]);
-    expect(mock.envelopes[0]?.answers.email).toBe(testerAnswers.email);
-    expect(mock.envelopes[1]?.answers.whatsapp).toBe('+2348012345678');
+    expect(mock.envelopes).toHaveLength(1);
+    expect(mock.envelopes[0]?.answers.email).toBe(account.email);
   });
 });

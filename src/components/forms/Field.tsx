@@ -51,7 +51,7 @@ function Hint({ id, hint }: { id: string; hint?: string }) {
 function ErrorText({ id, error }: { id: string; error?: string }) {
   if (!error) return null;
   return (
-    <p id={`${id}-error`} role="alert" className="mt-1.5 text-sm font-medium text-danger">
+    <p id={`${id}-error`} role="alert" className="shake mt-1.5 text-sm font-medium text-danger">
       {error}
     </p>
   );
@@ -225,7 +225,7 @@ export function CheckboxField({
           aria-required={required || undefined}
           aria-invalid={error ? true : undefined}
           aria-describedby={describedBy(id, { hint, error })}
-          className="mt-0.5 h-5 w-5 shrink-0 cursor-pointer rounded border-sand-300 accent-brand-700"
+          className="mt-0.5 h-5 w-5 shrink-0 cursor-pointer rounded border-studio-300 accent-brand-700 transition-transform duration-200 checked:scale-110"
         />
         <span>
           {children}
@@ -298,7 +298,7 @@ export function OptionGroup({
             <label
               key={option.code}
               htmlFor={optionId}
-              className="flex min-h-[44px] cursor-pointer items-start gap-3 rounded-xl border border-sand-200 bg-white px-3.5 py-2.5 text-[15px] leading-snug text-ink transition-colors hover:border-sand-300"
+              className="flex min-h-[44px] cursor-pointer items-start gap-3 rounded-xl border border-studio-200 bg-studio-25 px-3.5 py-2.5 text-[15px] leading-snug text-ink transition-all duration-200 hover:-translate-y-px hover:border-brand-600 hover:bg-studio-50"
             >
               <input
                 id={optionId}
@@ -306,7 +306,7 @@ export function OptionGroup({
                 value={option.code}
                 {...registration}
                 disabled={disabledCodes.includes(option.code)}
-                className="mt-0.5 h-[18px] w-[18px] shrink-0 accent-brand-700 disabled:opacity-40"
+                className="mt-0.5 h-[18px] w-[18px] shrink-0 accent-brand-700 transition-transform duration-200 checked:scale-110 disabled:opacity-40"
               />
               <span>
                 {option.label}

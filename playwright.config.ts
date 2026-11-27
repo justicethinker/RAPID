@@ -17,6 +17,8 @@ const includeWebkit = process.env.PLAYWRIGHT_INCLUDE_WEBKIT === '1';
 
 export default defineConfig({
   testDir: './tests',
+  // The signed-in suite needs the API and Postgres and has its own config.
+  testIgnore: ['auth/**'],
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,

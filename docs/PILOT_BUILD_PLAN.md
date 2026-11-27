@@ -1,5 +1,13 @@
 # RAPID Pilot — build plan (PRD rev. 3, 17 Oct 2026)
 
+> **Partially superseded 24 October 2026.** The public pages, forms, privacy notice
+> and validation contract still stand, but the pilot now has accounts, role
+> dashboards, a Postgres record store and a staff workspace. The API replaces the
+> Apps Script write path. See
+> [`docs/superpowers/specs/2026-10-24-rapid-accounts-dashboards-design.md`](superpowers/specs/2026-10-24-rapid-accounts-dashboards-design.md)
+> and [`docs/ACCEPTANCE_REPORT.md`](ACCEPTANCE_REPORT.md). The sections below are
+> retained as the original brief.
+
 This plan replaces the previous waitlist marketing brief. Sections 1–7 of
 `RAPID_Website_PRD_Pilot_v2.docx` are the build scope; sections 8–11 are manual
 team operations and add no website features.

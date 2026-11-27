@@ -17,10 +17,12 @@ import {
   founderSchema,
   type FounderFormValues,
 } from '@/lib/submission-schema';
-import { submitEnvelope, warmSubmissions } from '@/lib/submissions';
+import { submitEnvelope, warmSubmissions, type SubmitResult } from '@/lib/submissions';
+import { SubmitOverlay } from '@/components/forms/SubmitOverlay';
 import { createSubmissionId } from '@/lib/submission-id';
 import { getAttribution } from '@/lib/attribution';
 import { trackEvent, trackSuccessOnce } from '@/lib/analytics';
+import type { AccountFormContext } from '@/components/forms/account';
 
 const AUDIENCE_OPTIONS = FOUNDER_AUDIENCES.map((option) => ({
   code: option.code,
@@ -33,7 +35,7 @@ function msg(error: unknown): string | undefined {
   return typeof message === 'string' ? message : undefined;
 }
 
-export function FounderForm() {
+export function FounderForm({ account }: { account?: AccountFormContext } = {}) {
   const navigate = useNavigate();
   const [status, setStatus] = useState<'idle' | 'saving' | 'error'>('idle');
   const [formError, setFormError] = useState<string | null>(null);
@@ -43,7 +45,13 @@ export function FounderForm() {
 
   const form = useForm<FounderFormValues>({
     resolver: zodResolver(founderSchema),
-    defaultValues: emptyFounderValues(),
+    defaultValues: account
+      ? {
+          ...emptyFounderValues(),
+          fullName: account.name,
+          email: account.email,
+        }
+      : emptyFounderValues(),
     shouldUnregister: true,
     mode: 'onSubmit',
   });
@@ -74,7 +82,11 @@ export function FounderForm() {
     if (status === 'saving') return;
 
     if (values.website) {
-      navigate('/thanks/founder', { replace: true });
+      if (account) {
+        await account.onSubmitted();
+      } else {
+        navigate('/thanks/founder', { replace: true });
+      }
       return;
     }
 
@@ -83,13 +95,22 @@ export function FounderForm() {
     setFieldErrorsFromServer(false);
 
     const attribution = getAttribution();
-    const result = await submitEnvelope(
-      buildFounderSubmission(values, {
-        submissionId,
-        acknowledgedAt: new Date().toISOString(),
-        source: attribution,
-      }),
-    );
+    let result: SubmitResult;
+    try {
+      const token = account ? await account.getToken() : null;
+      result = await submitEnvelope(
+        buildFounderSubmission(values, {
+          submissionId,
+          acknowledgedAt: new Date().toISOString(),
+          source: attribution,
+        }),
+        { token },
+      );
+    } catch {
+      setStatus('error');
+      setFormError(FOUNDER_FORM.saveError);
+      return;
+    }
 
     if (result.ok) {
       if (result.duplicate) {
@@ -102,7 +123,14 @@ export function FounderForm() {
           campaign: attribution.campaign,
         });
       }
-      navigate('/thanks/founder', { replace: true });
+      if (account) {
+        await account.onSubmitted();
+        return;
+      }
+      navigate('/thanks/founder', {
+        replace: true,
+        state: { reference: result.id ?? submissionId },
+      });
       return;
     }
 
@@ -194,12 +222,15 @@ export function FounderForm() {
             />
             <TextField
               id="founder-email"
-              label={`${FOUNDER_FORM.fields.email} (${FOUNDER_FORM.fields.emailOptional})`}
+              label={account ? FOUNDER_FORM.fields.email : `${FOUNDER_FORM.fields.email} (${FOUNDER_FORM.fields.emailOptional})`}
               type="email"
               inputMode="email"
               autoComplete="email"
+              readOnly={Boolean(account)}
+              hint={account ? 'This is the email on your account.' : undefined}
               registration={register('email')}
               error={msg(errors.email)}
+              className={account ? 'bg-studio-50 text-light-muted' : undefined}
             />
           </div>
         </div>
@@ -277,7 +308,7 @@ export function FounderForm() {
         </div>
       )}
 
-      <div className="border-t border-sand-200 pt-6">
+      <div className="border-t border-studio-200 pt-6">
         <Button
           type="submit"
           size="lg"
@@ -296,6 +327,8 @@ export function FounderForm() {
         </Button>
         <p className="mt-3 text-sm text-light-muted">{FOUNDER_FORM.note}</p>
       </div>
+
+      <SubmitOverlay show={status === 'saving'} message={FOUNDER_FORM.saving} />
     </form>
   );
 }

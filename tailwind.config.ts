@@ -30,22 +30,67 @@ export default {
           600: '#0B9468',
           700: '#087A56',
         },
-        // Warm neutral (secondary).
+        // Studio: the warm paper system that now carries the public site.
+        studio: {
+          25: '#FFFFFF',
+          50: '#F3F7F1',
+          100: '#EAF1E9',
+          200: '#D9E4DA',
+          300: '#C3D3C7',
+          400: '#A4B9A9',
+          500: '#758C7B',
+          // Dark enough for small print (captions, disclaimers) on studio-25/50.
+          600: '#52665A',
+        },
+        // Oxblood: the proof accent. Findings, published evidence and the
+        // moments that need to feel decided — never a second CTA colour.
+        oxblood: {
+          50: '#F1EEFA',
+          100: '#E5DDF6',
+          200: '#D0C2EB',
+          500: '#6B4BA0',
+          600: '#513779',
+          700: '#402D61',
+          800: '#302147',
+          900: '#211631',
+        },
+        // Deep warm green replaces navy in the public product stage.
+        forest: {
+          50: '#EEF7F2',
+          100: '#D6EDE1',
+          200: '#A9D6C2',
+          500: '#2F6B58',
+          600: '#265244',
+          700: '#1D3A30',
+          800: '#162A23',
+          900: '#12231F',
+          950: '#0F1A1E',
+          line: '#284238',
+        },
+        // Warm neutral (legacy name kept for the dashboard and forms).
         sand: {
-          50: '#FAF8F4',
-          100: '#F3EEE6',
-          200: '#E7DFD2',
-          300: '#D6C9B6',
+          50: '#FAF8F1',
+          100: '#F3EEE3',
+          200: '#E6DED0',
+          300: '#D5C7B4',
           400: '#C2B29A',
         },
         // Kept for compatibility; no longer used as a second accent in UI.
         teal: { 500: '#12C9D6' },
-        mint: { 50: '#E6FBF3', 100: '#CFF5E6' },
-        ink: '#101B26',
-        paper: '#FAF8F4',
-        'dark-text': '#E6EDF3',
-        'dark-muted': '#9FB0BF',
-        'light-muted': '#55636E',
+        // Green carries the RAPID identity: page washes use 25/50, borders and
+        // accents 200/300, and text stays on brand-700 for contrast.
+        mint: {
+          25: '#F6FDFA',
+          50: '#E6FBF3',
+          100: '#CFF5E6',
+          200: '#9BE8CC',
+          300: '#6FD9B5',
+        },
+        ink: '#172D25',
+        paper: '#FFFFFF',
+        'dark-text': '#E8F0EA',
+        'dark-muted': '#B3C2B8',
+        'light-muted': '#4F5D55',
         warn: { 50: '#FFF4D6', 900: '#5C4610' },
         danger: '#B42318',
       },
@@ -62,7 +107,7 @@ export default {
         ],
         hand: ['Caveat', 'cursive'],
       },
-      maxWidth: { site: '1160px' },
+      maxWidth: { site: '1200px' },
       borderRadius: { card: '20px', phone: '48px' },
       boxShadow: {
         // One elevation ladder, lit from above. Light surfaces.
@@ -80,9 +125,11 @@ export default {
         'glow-btn-hover': '0 12px 28px -14px rgba(21,230,160,.55)',
         'glow-card': '0 30px 70px -38px rgba(0,0,0,.6), 0 0 40px rgba(21,230,160,.1)',
         'glow-phone': '0 0 0 1px #22384D, 0 30px 70px -30px rgba(0,0,0,.6)',
-        'card-light': '0 1px 2px rgba(11,24,38,.04), 0 18px 40px -24px rgba(11,24,38,.22), 0 0 0 1px #E7DFD2',
-        'card-light-float': '0 2px 6px rgba(11,24,38,.05), 0 34px 70px -40px rgba(11,24,38,.34), 0 0 0 1px #E7DFD2',
-        'photo-float': '0 2px 6px rgba(11,24,38,.05), 0 44px 80px -50px rgba(11,24,38,.4)',
+        'card-light': '0 1px 2px rgba(18,26,30,.04), 0 18px 40px -24px rgba(18,26,30,.18), 0 0 0 1px #E3DCCF',
+        'card-light-float': '0 2px 6px rgba(18,26,30,.05), 0 34px 70px -40px rgba(18,26,30,.3), 0 0 0 1px #E3DCCF',
+        'photo-float': '0 2px 6px rgba(18,26,30,.05), 0 44px 80px -50px rgba(18,26,30,.38)',
+        stage: '0 2px 4px rgba(18,26,30,.12), 0 40px 90px -48px rgba(18,26,30,.62)',
+        'proof': '0 28px 60px -34px rgba(74,20,28,.65)',
         'card-float': '0 2px 4px rgba(0,0,0,.3), 0 26px 55px -26px rgba(0,0,0,.62), 0 0 0 1px rgba(255,255,255,.08)',
       },
       backgroundImage: {

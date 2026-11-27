@@ -29,43 +29,22 @@ export async function mockSubmissions(
 ): Promise<EndpointMock> {
   const state: EndpointMock = { envelopes: [], warmups: 0 };
 
-  await page.route('https://example.invalid/rapid-submissions', async (route: Route) => {
+  await page.route('**/api/applications/*', async (route: Route) => {
     const request = route.request();
 
     if (request.method() === 'OPTIONS') {
-      await route.fulfill({
-        status: 204,
-        headers: {
-          'access-control-allow-origin': '*',
-          'access-control-allow-methods': 'POST',
-          'access-control-allow-headers': 'content-type',
-        },
-      });
-      return;
-    }
-
-    const params = new URLSearchParams(request.postData() ?? '');
-
-    if (params.get('warmup') === '1') {
-      state.warmups += 1;
-      await route.fulfill({
-        status: 200,
-        contentType: 'application/json',
-        headers: { 'access-control-allow-origin': '*' },
-        body: JSON.stringify({ ok: true, warm: true }),
-      });
+      await route.fulfill({ status: 204 });
       return;
     }
 
     let envelope: Envelope;
     try {
-      envelope = JSON.parse(params.get('payload') ?? '{}') as Envelope;
+      envelope = JSON.parse(request.postData() ?? '{}') as Envelope;
     } catch {
       await route.fulfill({
         status: 400,
         contentType: 'application/json',
-        headers: { 'access-control-allow-origin': '*' },
-        body: JSON.stringify({ ok: false, error: 'bad_request' }),
+        body: JSON.stringify({ error: 'bad_request' }),
       });
       return;
     }
@@ -76,7 +55,6 @@ export async function mockSubmissions(
     await route.fulfill({
       status: result.status ?? 200,
       contentType: 'application/json',
-      headers: { 'access-control-allow-origin': '*' },
       body: JSON.stringify(result.body),
     });
   });
@@ -124,8 +102,11 @@ export async function fillTester(page: Page, overrides: Partial<typeof testerAns
   const values = { ...testerAnswers, ...overrides };
 
   await page.locator('#tester-full-name').fill(values.fullName);
-  await page.locator('#tester-email').fill(values.email);
-  await page.locator('#tester-email-confirm').fill(values.emailConfirm);
+  // In the signed-in onboarding the address is fixed to the account.
+  if (await page.locator('#tester-email').isEditable()) {
+    await page.locator('#tester-email').fill(values.email);
+    await page.locator('#tester-email-confirm').fill(values.emailConfirm);
+  }
   await page.locator('#tester-country').selectOption(values.country);
   await page.locator('#tester-city').fill(values.cityState);
   await page.locator('#tester-age').selectOption(values.ageRange);
@@ -158,6 +139,21 @@ export async function fillTester(page: Page, overrides: Partial<typeof testerAns
   if (values.privacyAck) await page.locator('#tester-privacy').check();
 }
 
+export async function fillStartup(
+  page: Page,
+  overrides: { name?: string; description?: string } = {},
+) {
+  await page
+    .locator('#startup-name')
+    .fill(overrides.name ?? 'Kọ́lá Student Planner');
+  await page
+    .locator('#startup-description')
+    .fill(
+      overrides.description ??
+        'A planning app that helps students see the next exam deadline and what to study first.',
+    );
+}
+
 export async function fillFounder(
   page: Page,
   overrides: Partial<typeof founderAnswers> = {},
@@ -166,7 +162,9 @@ export async function fillFounder(
 
   await page.locator('#founder-full-name').fill(values.fullName);
   await page.locator('#founder-whatsapp').fill(values.whatsapp);
-  if (values.email) await page.locator('#founder-email').fill(values.email);
+  if (values.email && (await page.locator('#founder-email').isEditable())) {
+    await page.locator('#founder-email').fill(values.email);
+  }
   await page.locator('#founder-test-description').fill(values.testDescription);
   await page.locator(`#founder-audience-${values.audience}`).check();
   if (values.audienceDescription) {

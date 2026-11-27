@@ -1,0 +1,128 @@
+{
+  "title": "Request a test | RAPID",
+  "height": 2956,
+  "sections": [
+    {
+      "i": 0,
+      "top": 69,
+      "height": 610,
+      "cls": "relative overflow-hidden bg-navy-900 text-white",
+      "bg": "rgb(16, 32, 47)",
+      "headings": [
+        {
+          "level": "H1",
+          "text": "Evidence before you build the wrong thing."
+        }
+      ],
+      "paragraphs": [
+        "FOR FOUNDERS",
+        "Bring a real question. RAPID helps you scope it, reach people who face it and read the evidence without handling all the outreach yourself.",
+        "No pricing or payment step on this site. The team confirms scope and cost before recruitment."
+      ],
+      "images": [
+        {
+          "src": "http://localhost:5290/images/photos/founder-600.webp",
+          "alt": "A founder thinking over his notes in a quiet workspace",
+          "w": 360,
+          "h": 450
+        }
+      ],
+      "visual": []
+    },
+    {
+      "i": 1,
+      "top": 679,
+      "height": 861,
+      "cls": "border-b border-mint-200 bg-mint-50",
+      "bg": "rgb(230, 251, 243)",
+      "headings": [
+        {
+          "level": "H2",
+          "text": "How a RAPID test works"
+        },
+        {
+          "level": "H3",
+          "text": "What a test is"
+        },
+        {
+          "level": "H3",
+          "text": "The process"
+        },
+        {
+          "level": "H3",
+          "text": "What you receive"
+        },
+        {
+          "level": "H3",
+          "text": "Timing and cost"
+        }
+      ],
+      "paragraphs": [
+        "A test is a scoped question with a defined audience and a short task. It is not a focus group or a generic survey. You get evidence about what people actually did.",
+        "You send a request. The team scopes the question, audience, terms and reward with you. Matched testers are invited, responses are reviewed, and findings are published only after that review.",
+        "Recruitment counts with denominators, outcomes and anonymised quotes where consent was given, published findings, and a place to record your build, iterate or pivot decision.",
+        "Timing depends on who qualifies and is agreed during scoping. There is no pricing or payment step on this site; the team confirms any cost before recruitment.",
+        "THE HONESTY RULE",
+        "Recruitment counts are real queries. Findings state what the test cannot prove. Empty dashboards say they are empty. Matching is team-assisted, so a request does not guarantee the number of testers you hoped for."
+      ],
+      "images": [],
+      "visual": []
+    },
+    {
+      "i": 2,
+      "top": 1539,
+      "height": 711,
+      "cls": "bg-white",
+      "bg": "rgb(255, 255, 255)",
+      "headings": [
+        {
+          "level": "H2",
+          "text": "Founder questions"
+        }
+      ],
+      "paragraphs": [],
+      "images": [],
+      "visual": []
+    },
+    {
+      "i": 3,
+      "top": 2250,
+      "height": 606,
+      "cls": "scroll-mt-28 bg-mint-50 py-14 lg:py-20",
+      "bg": "rgb(230, 251, 243)",
+      "headings": [
+        {
+          "level": "H2",
+          "text": "Request a test"
+        }
+      ],
+      "paragraphs": [
+        "Tell us what you need to learn and who you need to reach. We will contact you to see whether the pilot is a fit.",
+        "No pricing or payment step. We will follow up on WhatsApp."
+      ],
+      "images": [],
+      "visual": []
+    },
+    {
+      "i": 4,
+      "top": 2855,
+      "height": 101,
+      "cls": "border-t border-mint-200 bg-mint-25",
+      "bg": "rgb(246, 253, 250)",
+      "headings": [],
+      "paragraphs": [
+        "© RAPID. Pilot website."
+      ],
+      "images": [
+        {
+          "src": "http://localhost:5290/images/brand/r-mark.webp",
+          "alt": "",
+          "w": 240,
+          "h": 158
+        }
+      ],
+      "visual": []
+    }
+  ],
+  "allText": "Skip to main content\nRAPID\nFor testers\nFor founders\nHow it works\nSign in\nSign up\n\nFOR FOUNDERS\n\nEvidence before you build the wrong thing.\n\nBring a real question. RAPID helps you scope it, reach people who face it and read the evidence without handling all the outreach yourself.\n\nRequest a test\nI want to be a tester\n\nNo pricing or payment step on this site. The team confirms scope and cost before recruitment.\n\nHow a RAPID test works\nWhat a test is\n\nA test is a scoped question with a defined audience and a short task. It is not a focus group or a generic survey. You get evidence about what people actually did.\n\nThe process\n\nYou send a request. The team scopes the question, audience, terms and reward with you. Matched testers are invited, responses are reviewed, and findings are published only after that review.\n\nWhat you receive\n\nRecruitment counts with denominators, outcomes and anonymised quotes where consent was given, published findings, and a place to record your build, iterate or pivot decision.\n\nTiming and cost\n\nTiming depends on who qualifies and is agreed during scoping. There is no pricing or payment step on this site; the team confirms any cost before recruitment.\n\nTHE HONESTY RULE\n\nRecruitment counts are real queries. Findings state what the test cannot prove. Empty dashboards say they are empty. Matching is team-assisted, so a request does not guarantee the number of testers you hoped for.\n\nFounder questions\nWhat counts as a test?\nHow are testers chosen?\nWhat will I receive?\nHow long does it take?\nWhat does it cost?\nWill I see who said what?\nRequest a test\n\nTell us what you need to learn and who you need to reach. We will contact you to see whether the pilot is a fit.\n\nNo pricing or payment step. We will follow up on WhatsApp.\n\n1\nCreate your founder account with Google or your email address.\n2\nTell us what you want to test and who you need to reach.\n3\nFollow the request, findings and your decision in your dashboard.\nCreate your founder account\nI already have an account\nRAPID\nFor testers\nFor founders\nHow it works\nSign in\nPrivacy\nhello@rapid.africa\n\n© RAPID. Pilot website."
+}

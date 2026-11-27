@@ -1,0 +1,906 @@
+{
+  "title": "RAPID | Validation that drives traction",
+  "height": 11409,
+  "sections": [
+    {
+      "i": 0,
+      "top": 0,
+      "height": 1082,
+      "tag": "section",
+      "cls": "relative overflow-hidden surface-dark pt-16 pb-4 lg:pt-24",
+      "bg": "rgb(11, 24, 38)",
+      "color": "rgb(230, 237, 243)",
+      "padding": "96px 0px 16px",
+      "headings": [
+        {
+          "level": "H1",
+          "text": "Good ideas need the right people.",
+          "cls": "t-statement mb-6"
+        },
+        {
+          "level": "H2",
+          "text": "A better way to plan campus meals",
+          "cls": "text-[19px] font-extrabold text-ink mb-2 px-0.5"
+        },
+        {
+          "level": "H3",
+          "text": "Share a pitch",
+          "cls": "text-base font-bold text-dark-text mt-3 mb-1"
+        },
+        {
+          "level": "H3",
+          "text": "Meet relevant people",
+          "cls": "text-base font-bold text-dark-text mt-3 mb-1"
+        },
+        {
+          "level": "H3",
+          "text": "Track actions",
+          "cls": "text-base font-bold text-dark-text mt-3 mb-1"
+        },
+        {
+          "level": "H3",
+          "text": "Choose your next step",
+          "cls": "text-base font-bold text-dark-text mt-3 mb-1"
+        }
+      ],
+      "paragraphs": [
+        "RAPID connects founders with real people who can try their ideas and show what they would actually do.",
+        "Test your ideas with people who could use it or help shape products that solve problems you care about.",
+        "Free to join. Joining does not guarantee a place.",
+        "Helping students find affordable, healthy meals near campus with real-time options and group orders.",
+        "Trial signup",
+        "Someone requested trial access",
+        "Call requested",
+        "A tester wants to chat",
+        "Feedback shared",
+        "Received specific feedback",
+        "Illustrative product preview",
+        "Tell us what you're building in a few minutes.",
+        "Reach people who experience the problem.",
+        "See signups, calls, feedback and more.",
+        "Iterate, find co-founders or move forward."
+      ],
+      "images": [
+        {
+          "src": "https://rapid-rouge.vercel.app/images/hero-pitch.webp",
+          "alt": "",
+          "w": 720,
+          "h": 450,
+          "cls": "absolute inset-0 h-full w-full object-cover",
+          "parent": "relative w-full overflow-hidden rounded-[14px] bg-navy-800 group mb-3"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "Join the waitlist",
+          "href": null,
+          "cls": "inline-flex items-center justify-center gap-2 rounded-full font-bold transition-all duration-[150ms] ease-out focus-visi"
+        },
+        {
+          "text": "Walk through the demo",
+          "href": null,
+          "cls": "inline-flex items-center justify-center gap-2 rounded-full font-bold transition-all duration-[150ms] ease-out focus-visi"
+        },
+        {
+          "text": "0:58 Sample pitch · 0:58",
+          "href": null,
+          "cls": "relative w-full overflow-hidden rounded-[14px] bg-navy-800 group mb-3"
+        }
+      ]
+    },
+    {
+      "i": 1,
+      "top": 1082,
+      "height": 1436,
+      "tag": "section",
+      "cls": "cv-auto relative overflow-hidden surface-light seam-hairline py-[56px] lg:py-24 on-light",
+      "bg": "rgb(250, 248, 244)",
+      "color": "rgb(16, 27, 38)",
+      "padding": "96px 0px",
+      "headings": [
+        {
+          "level": "H2",
+          "text": "A good response is not always a real next step.",
+          "cls": "t-section text-center text-ink mb-16"
+        },
+        {
+          "level": "H3",
+          "text": "The problem",
+          "cls": "text-[30px] font-extrabold tracking-[-.02em] text-ink mb-4"
+        },
+        {
+          "level": "H3",
+          "text": "A clearer way to test",
+          "cls": "text-[30px] font-extrabold tracking-[-.02em] text-ink mb-4"
+        },
+        {
+          "level": "H4",
+          "text": "Recent actions",
+          "cls": "text-[17px] font-bold text-ink"
+        }
+      ],
+      "paragraphs": [
+        "Finding the right people takes time. Friendly feedback can hide weak demand. Likes alone do not tell you who will try it.",
+        "Product feedback",
+        "1. What do you think about this idea?",
+        "2. Any additional thoughts?",
+        "Interesting idea",
+        "10:24 AM",
+        "Sounds useful",
+        "11:03 AM",
+        "What happens next?",
+        "RAPID helps you reach people who know the problem and see what they choose to do.",
+        "Asked to try it",
+        "Showed interest and requested access",
+        "Requested a conversation",
+        "Booked a call to learn more",
+        "Shared a useful concern",
+        "Provided a specific insight",
+        "Useful feedback matters. So does what happens after it."
+      ],
+      "images": [],
+      "buttons": []
+    },
+    {
+      "i": 2,
+      "top": 2518,
+      "height": 934,
+      "tag": "section",
+      "cls": "cv-auto relative overflow-hidden surface-light surface-light--mist seam-hairline py-[56px] lg:py-24 on-light",
+      "bg": "rgb(250, 248, 244)",
+      "color": "rgb(16, 27, 38)",
+      "padding": "96px 0px",
+      "headings": [
+        {
+          "level": "H2",
+          "text": "",
+          "cls": "t-section text-ink"
+        },
+        {
+          "level": "H3",
+          "text": "",
+          "cls": "text-xl font-bold text-ink mb-1"
+        }
+      ],
+      "paragraphs": [],
+      "images": [
+        {
+          "src": "https://rapid-rouge.vercel.app/images/brand/r-mark.webp",
+          "alt": "",
+          "w": 240,
+          "h": 158,
+          "cls": "block shrink-0",
+          "parent": "inline-flex items-center gap-2.5 text-ink"
+        },
+        {
+          "src": "https://rapid-rouge.vercel.app/images/create-pitch.webp",
+          "alt": "",
+          "w": 880,
+          "h": 550,
+          "cls": "absolute inset-0 h-full w-full object-cover",
+          "parent": "relative w-full overflow-hidden rounded-[14px] bg-navy-800 group w-full"
+        }
+      ],
+      "buttons": []
+    },
+    {
+      "i": 3,
+      "top": 3453,
+      "height": 1059,
+      "tag": "section",
+      "cls": "cv-auto relative overflow-hidden surface-light surface-light--mint seam-hairline py-[56px] lg:py-24 on-light",
+      "bg": "rgb(250, 248, 244)",
+      "color": "rgb(16, 27, 38)",
+      "padding": "96px 0px",
+      "headings": [
+        {
+          "level": "H2",
+          "text": "",
+          "cls": "t-section text-ink mb-6"
+        }
+      ],
+      "paragraphs": [],
+      "images": [
+        {
+          "src": "https://rapid-rouge.vercel.app/images/profile-1.webp",
+          "alt": "",
+          "w": 400,
+          "h": 300,
+          "cls": "absolute inset-0 h-full w-full object-cover object-top",
+          "parent": "relative h-[110px] bg-gradient-to-br from-navy-100 to-navy-50"
+        },
+        {
+          "src": "https://rapid-rouge.vercel.app/images/profile-2.webp",
+          "alt": "",
+          "w": 400,
+          "h": 300,
+          "cls": "absolute inset-0 h-full w-full object-cover object-top",
+          "parent": "relative h-[110px] bg-gradient-to-br from-navy-100 to-navy-50"
+        },
+        {
+          "src": "https://rapid-rouge.vercel.app/images/profile-3.webp",
+          "alt": "",
+          "w": 400,
+          "h": 300,
+          "cls": "absolute inset-0 h-full w-full object-cover object-top",
+          "parent": "relative h-[110px] bg-gradient-to-br from-navy-100 to-navy-50"
+        },
+        {
+          "src": "https://rapid-rouge.vercel.app/images/profile-1.webp",
+          "alt": "",
+          "w": 400,
+          "h": 300,
+          "cls": "absolute inset-0 h-full w-full object-cover object-top",
+          "parent": "relative w-[104px] shrink-0 bg-gradient-to-br from-navy-100 to-navy-50"
+        },
+        {
+          "src": "https://rapid-rouge.vercel.app/images/profile-2.webp",
+          "alt": "",
+          "w": 400,
+          "h": 300,
+          "cls": "absolute inset-0 h-full w-full object-cover object-top",
+          "parent": "relative w-[104px] shrink-0 bg-gradient-to-br from-navy-100 to-navy-50"
+        },
+        {
+          "src": "https://rapid-rouge.vercel.app/images/profile-3.webp",
+          "alt": "",
+          "w": 400,
+          "h": 300,
+          "cls": "absolute inset-0 h-full w-full object-cover object-top",
+          "parent": "relative w-[104px] shrink-0 bg-gradient-to-br from-navy-100 to-navy-50"
+        }
+      ],
+      "buttons": []
+    },
+    {
+      "i": 4,
+      "top": 4511,
+      "height": 862,
+      "tag": "section",
+      "cls": "cv-auto relative overflow-hidden surface-dark seam-hairline py-[56px] lg:py-24",
+      "bg": "rgb(11, 24, 38)",
+      "color": "rgb(230, 237, 243)",
+      "padding": "96px 0px",
+      "headings": [
+        {
+          "level": "H2",
+          "text": "",
+          "cls": "t-section text-dark-text mb-6"
+        },
+        {
+          "level": "H2",
+          "text": "",
+          "cls": "px-4 text-[23px] font-extrabold text-ink mb-2"
+        },
+        {
+          "level": "H3",
+          "text": "",
+          "cls": "text-[17px] font-bold text-ink mb-0.5"
+        },
+        {
+          "level": "H3",
+          "text": "",
+          "cls": "text-[17px] font-bold text-ink mb-0.5"
+        },
+        {
+          "level": "H3",
+          "text": "",
+          "cls": "text-[17px] font-bold text-ink mb-0.5"
+        },
+        {
+          "level": "H3",
+          "text": "",
+          "cls": "text-[17px] font-bold text-ink mb-0.5"
+        },
+        {
+          "level": "H3",
+          "text": "",
+          "cls": "text-[17px] font-bold text-ink mb-0.5"
+        },
+        {
+          "level": "H3",
+          "text": "",
+          "cls": "text-[17px] font-bold text-ink mb-0.5"
+        },
+        {
+          "level": "H3",
+          "text": "",
+          "cls": "text-[17px] font-bold text-ink mb-0.5"
+        },
+        {
+          "level": "H3",
+          "text": "",
+          "cls": "text-[17px] font-bold text-ink mb-0.5"
+        }
+      ],
+      "paragraphs": [],
+      "images": [
+        {
+          "src": "https://rapid-rouge.vercel.app/images/brand/r-mark.webp",
+          "alt": "",
+          "w": 240,
+          "h": 158,
+          "cls": "block shrink-0",
+          "parent": "inline-flex items-center gap-2.5 text-ink"
+        },
+        {
+          "src": "https://rapid-rouge.vercel.app/images/feed-1.webp",
+          "alt": "",
+          "w": 720,
+          "h": 495,
+          "cls": "absolute inset-0 h-full w-full object-cover",
+          "parent": "relative w-full overflow-hidden rounded-[14px] bg-navy-800 group w-full"
+        },
+        {
+          "src": "https://rapid-rouge.vercel.app/images/feed-2.webp",
+          "alt": "",
+          "w": 720,
+          "h": 495,
+          "cls": "absolute inset-0 h-full w-full object-cover",
+          "parent": "relative w-full overflow-hidden rounded-[14px] bg-navy-800 group w-full"
+        },
+        {
+          "src": "https://rapid-rouge.vercel.app/images/feed-3.webp",
+          "alt": "",
+          "w": 720,
+          "h": 495,
+          "cls": "absolute inset-0 h-full w-full object-cover",
+          "parent": "relative w-full overflow-hidden rounded-[14px] bg-navy-800 group w-full"
+        },
+        {
+          "src": "https://rapid-rouge.vercel.app/images/feed-1.webp",
+          "alt": "",
+          "w": 720,
+          "h": 495,
+          "cls": "absolute inset-0 h-full w-full object-cover",
+          "parent": "relative w-full overflow-hidden rounded-[14px] bg-navy-800 group w-full"
+        },
+        {
+          "src": "https://rapid-rouge.vercel.app/images/feed-2.webp",
+          "alt": "",
+          "w": 720,
+          "h": 495,
+          "cls": "absolute inset-0 h-full w-full object-cover",
+          "parent": "relative w-full overflow-hidden rounded-[14px] bg-navy-800 group w-full"
+        },
+        {
+          "src": "https://rapid-rouge.vercel.app/images/feed-3.webp",
+          "alt": "",
+          "w": 720,
+          "h": 495,
+          "cls": "absolute inset-0 h-full w-full object-cover",
+          "parent": "relative w-full overflow-hidden rounded-[14px] bg-navy-800 group w-full"
+        },
+        {
+          "src": "https://rapid-rouge.vercel.app/images/feed-1.webp",
+          "alt": "",
+          "w": 720,
+          "h": 495,
+          "cls": "absolute inset-0 h-full w-full object-cover",
+          "parent": "relative w-full overflow-hidden rounded-[14px] bg-navy-800 group w-full"
+        },
+        {
+          "src": "https://rapid-rouge.vercel.app/images/feed-2.webp",
+          "alt": "",
+          "w": 720,
+          "h": 495,
+          "cls": "absolute inset-0 h-full w-full object-cover",
+          "parent": "relative w-full overflow-hidden rounded-[14px] bg-navy-800 group w-full"
+        }
+      ],
+      "buttons": []
+    },
+    {
+      "i": 5,
+      "top": 5373,
+      "height": 1169,
+      "tag": "section",
+      "cls": "cv-auto relative overflow-hidden surface-dark surface-dark--bleed-top seam-hairline py-[56px] lg:py-24",
+      "bg": "rgb(11, 24, 38)",
+      "color": "rgb(230, 237, 243)",
+      "padding": "96px 0px",
+      "headings": [
+        {
+          "level": "H2",
+          "text": "",
+          "cls": "t-section text-dark-text mb-4"
+        },
+        {
+          "level": "H3",
+          "text": "",
+          "cls": "text-[22px] font-extrabold text-ink mb-1"
+        },
+        {
+          "level": "H3",
+          "text": "",
+          "cls": "text-xl font-bold text-ink"
+        }
+      ],
+      "paragraphs": [],
+      "images": [
+        {
+          "src": "https://rapid-rouge.vercel.app/images/brand/r-mark.webp",
+          "alt": "",
+          "w": 240,
+          "h": 158,
+          "cls": "block shrink-0",
+          "parent": "inline-flex items-center gap-2.5 "
+        },
+        {
+          "src": "https://rapid-rouge.vercel.app/images/role-demo.webp",
+          "alt": "",
+          "w": 880,
+          "h": 550,
+          "cls": "absolute inset-0 h-full w-full object-cover",
+          "parent": "relative w-full overflow-hidden rounded-[14px] bg-navy-800 group w-full"
+        }
+      ],
+      "buttons": []
+    },
+    {
+      "i": 6,
+      "top": 6542,
+      "height": 1461,
+      "tag": "section",
+      "cls": "cv-auto relative overflow-hidden surface-light seam-hairline py-[56px] lg:py-24 on-light",
+      "bg": "rgb(250, 248, 244)",
+      "color": "rgb(16, 27, 38)",
+      "padding": "96px 0px",
+      "headings": [
+        {
+          "level": "H2",
+          "text": "",
+          "cls": "t-section text-ink"
+        },
+        {
+          "level": "H3",
+          "text": "",
+          "cls": ""
+        },
+        {
+          "level": "H3",
+          "text": "",
+          "cls": ""
+        },
+        {
+          "level": "H3",
+          "text": "",
+          "cls": ""
+        },
+        {
+          "level": "H3",
+          "text": "",
+          "cls": ""
+        },
+        {
+          "level": "H3",
+          "text": "",
+          "cls": "text-[28px] font-bold text-ink mb-5"
+        }
+      ],
+      "paragraphs": [],
+      "images": [
+        {
+          "src": "https://rapid-rouge.vercel.app/images/brand/r-mark.webp",
+          "alt": "",
+          "w": 240,
+          "h": 158,
+          "cls": "block shrink-0",
+          "parent": "inline-flex items-center gap-2.5 "
+        }
+      ],
+      "buttons": []
+    },
+    {
+      "i": 7,
+      "top": 8003,
+      "height": 878,
+      "tag": "section",
+      "cls": "cv-auto relative overflow-hidden surface-dark seam-hairline py-[56px] lg:py-24",
+      "bg": "rgb(11, 24, 38)",
+      "color": "rgb(230, 237, 243)",
+      "padding": "96px 0px",
+      "headings": [
+        {
+          "level": "H2",
+          "text": "",
+          "cls": "t-section text-dark-text"
+        },
+        {
+          "level": "H3",
+          "text": "",
+          "cls": "text-xl font-extrabold text-ink mb-3 flex items-center gap-2.5"
+        },
+        {
+          "level": "H3",
+          "text": "",
+          "cls": "text-xl font-extrabold text-ink mb-3 flex items-center gap-2.5"
+        },
+        {
+          "level": "H3",
+          "text": "",
+          "cls": "text-xl font-extrabold text-ink mb-3 flex items-center gap-2.5"
+        },
+        {
+          "level": "H3",
+          "text": "",
+          "cls": "text-[17px] font-bold text-dark-text"
+        },
+        {
+          "level": "H3",
+          "text": "",
+          "cls": "text-[17px] font-bold text-dark-text"
+        },
+        {
+          "level": "H3",
+          "text": "",
+          "cls": "text-[17px] font-bold text-dark-text"
+        }
+      ],
+      "paragraphs": [],
+      "images": [
+        {
+          "src": "https://rapid-rouge.vercel.app/images/feedback-avatar.webp",
+          "alt": "",
+          "w": 160,
+          "h": 160,
+          "cls": "absolute inset-0 h-full w-full rounded-full object-cover",
+          "parent": "relative h-[76px] w-[76px] shrink-0"
+        },
+        {
+          "src": "https://rapid-rouge.vercel.app/images/grilled-bowl.webp",
+          "alt": "",
+          "w": 160,
+          "h": 160,
+          "cls": "h-full w-full object-cover",
+          "parent": "h-14 w-14 rounded-xl shrink-0 overflow-hidden"
+        }
+      ],
+      "buttons": []
+    },
+    {
+      "i": 8,
+      "top": 8881,
+      "height": 959,
+      "tag": "section",
+      "cls": "cv-auto relative overflow-hidden surface-light surface-light--mist seam-hairline py-[56px] lg:py-24 on-light",
+      "bg": "rgb(250, 248, 244)",
+      "color": "rgb(16, 27, 38)",
+      "padding": "96px 0px",
+      "headings": [
+        {
+          "level": "H2",
+          "text": "",
+          "cls": "t-statement text-center text-ink mb-16 max-w-[760px] mx-auto"
+        },
+        {
+          "level": "H3",
+          "text": "",
+          "cls": "text-[30px] font-extrabold tracking-[-.02em] text-ink mb-3"
+        },
+        {
+          "level": "H3",
+          "text": "",
+          "cls": "text-[30px] font-extrabold tracking-[-.02em] text-ink mb-3"
+        }
+      ],
+      "paragraphs": [],
+      "images": [
+        {
+          "src": "https://rapid-rouge.vercel.app/images/roles-founders.webp",
+          "alt": "",
+          "w": 960,
+          "h": 540,
+          "cls": "absolute inset-0 h-full w-full object-cover",
+          "parent": "relative rounded-[20px] overflow-hidden mb-6 aspect-video bg-gradient-to-br from-sand-200 to-sand-50"
+        },
+        {
+          "src": "https://rapid-rouge.vercel.app/images/roles-testers.webp",
+          "alt": "",
+          "w": 960,
+          "h": 540,
+          "cls": "absolute inset-0 h-full w-full object-cover",
+          "parent": "relative rounded-[20px] overflow-hidden mb-6 aspect-video bg-gradient-to-br from-sand-100 to-sand-50"
+        }
+      ],
+      "buttons": []
+    },
+    {
+      "i": 9,
+      "top": 9841,
+      "height": 874,
+      "tag": "section",
+      "cls": "cv-auto relative overflow-hidden surface-light seam-hairline py-[56px] lg:py-24 on-light",
+      "bg": "rgb(250, 248, 244)",
+      "color": "rgb(16, 27, 38)",
+      "padding": "96px 0px",
+      "headings": [
+        {
+          "level": "H2",
+          "text": "",
+          "cls": "t-section text-ink mb-5"
+        },
+        {
+          "level": "H3",
+          "text": "",
+          "cls": ""
+        },
+        {
+          "level": "H3",
+          "text": "",
+          "cls": ""
+        },
+        {
+          "level": "H3",
+          "text": "",
+          "cls": ""
+        },
+        {
+          "level": "H3",
+          "text": "",
+          "cls": ""
+        }
+      ],
+      "paragraphs": [],
+      "images": [],
+      "buttons": []
+    },
+    {
+      "i": 10,
+      "top": 10715,
+      "height": 518,
+      "tag": "section",
+      "cls": "relative overflow-hidden surface-dark seam-hairline py-[56px] lg:py-24",
+      "bg": "rgb(11, 24, 38)",
+      "color": "rgb(230, 237, 243)",
+      "padding": "96px 0px",
+      "headings": [
+        {
+          "level": "H2",
+          "text": "Your next idea needs the right people.",
+          "cls": "t-statement text-dark-text mb-5"
+        }
+      ],
+      "paragraphs": [
+        "Join the RAPID waitlist for a chance to enter the Nigeria pilot.",
+        "Joining does not guarantee a place."
+      ],
+      "images": [],
+      "buttons": [
+        {
+          "text": "Join the waitlist",
+          "href": null,
+          "cls": "inline-flex items-center justify-center gap-2 rounded-full font-bold transition-all duration-[150ms] ease-out focus-visi"
+        }
+      ]
+    },
+    {
+      "i": 11,
+      "top": 11233,
+      "height": 176,
+      "tag": "footer",
+      "cls": "surface-dark seam-hairline py-8 pb-[100px]",
+      "bg": "rgb(11, 24, 38)",
+      "color": "rgb(230, 237, 243)",
+      "padding": "32px 0px 100px",
+      "headings": [],
+      "paragraphs": [
+        "© RAPID. Nigeria pilot."
+      ],
+      "images": [
+        {
+          "src": "https://rapid-rouge.vercel.app/images/brand/r-mark.webp",
+          "alt": "",
+          "w": 240,
+          "h": 158,
+          "cls": "block shrink-0",
+          "parent": "inline-flex items-center gap-2.5 "
+        }
+      ],
+      "buttons": [
+        {
+          "text": "Privacy",
+          "href": "/privacy",
+          "cls": "inline-flex min-h-[44px] items-center hover:text-brand-500 transition-colors"
+        },
+        {
+          "text": "Explore the demo",
+          "href": "#explore-ideas",
+          "cls": "inline-flex min-h-[44px] items-center hover:text-brand-500 transition-colors"
+        }
+      ]
+    }
+  ],
+  "allImages": [
+    {
+      "src": "https://rapid-rouge.vercel.app/images/brand/r-mark.webp",
+      "alt": "",
+      "w": 240,
+      "h": 158,
+      "parent": "inline-flex items-center gap-2.5 "
+    },
+    {
+      "src": "https://rapid-rouge.vercel.app/images/hero-pitch.webp",
+      "alt": "",
+      "w": 720,
+      "h": 450,
+      "parent": "relative w-full overflow-hidden rounded-[14px] bg-navy-800 group mb-3"
+    },
+    {
+      "src": "https://rapid-rouge.vercel.app/images/brand/r-mark.webp",
+      "alt": "",
+      "w": 240,
+      "h": 158,
+      "parent": "inline-flex items-center gap-2.5 text-ink"
+    },
+    {
+      "src": "https://rapid-rouge.vercel.app/images/create-pitch.webp",
+      "alt": "",
+      "w": 880,
+      "h": 550,
+      "parent": "relative w-full overflow-hidden rounded-[14px] bg-navy-800 group w-full"
+    },
+    {
+      "src": "https://rapid-rouge.vercel.app/images/profile-1.webp",
+      "alt": "",
+      "w": 400,
+      "h": 300,
+      "parent": "relative h-[110px] bg-gradient-to-br from-navy-100 to-navy-50"
+    },
+    {
+      "src": "https://rapid-rouge.vercel.app/images/profile-2.webp",
+      "alt": "",
+      "w": 400,
+      "h": 300,
+      "parent": "relative h-[110px] bg-gradient-to-br from-navy-100 to-navy-50"
+    },
+    {
+      "src": "https://rapid-rouge.vercel.app/images/profile-3.webp",
+      "alt": "",
+      "w": 400,
+      "h": 300,
+      "parent": "relative h-[110px] bg-gradient-to-br from-navy-100 to-navy-50"
+    },
+    {
+      "src": "https://rapid-rouge.vercel.app/images/profile-1.webp",
+      "alt": "",
+      "w": 400,
+      "h": 300,
+      "parent": "relative w-[104px] shrink-0 bg-gradient-to-br from-navy-100 to-navy-50"
+    },
+    {
+      "src": "https://rapid-rouge.vercel.app/images/profile-2.webp",
+      "alt": "",
+      "w": 400,
+      "h": 300,
+      "parent": "relative w-[104px] shrink-0 bg-gradient-to-br from-navy-100 to-navy-50"
+    },
+    {
+      "src": "https://rapid-rouge.vercel.app/images/profile-3.webp",
+      "alt": "",
+      "w": 400,
+      "h": 300,
+      "parent": "relative w-[104px] shrink-0 bg-gradient-to-br from-navy-100 to-navy-50"
+    },
+    {
+      "src": "https://rapid-rouge.vercel.app/images/brand/r-mark.webp",
+      "alt": "",
+      "w": 240,
+      "h": 158,
+      "parent": "inline-flex items-center gap-2.5 text-ink"
+    },
+    {
+      "src": "https://rapid-rouge.vercel.app/images/feed-1.webp",
+      "alt": "",
+      "w": 720,
+      "h": 495,
+      "parent": "relative w-full overflow-hidden rounded-[14px] bg-navy-800 group w-full"
+    },
+    {
+      "src": "https://rapid-rouge.vercel.app/images/feed-2.webp",
+      "alt": "",
+      "w": 720,
+      "h": 495,
+      "parent": "relative w-full overflow-hidden rounded-[14px] bg-navy-800 group w-full"
+    },
+    {
+      "src": "https://rapid-rouge.vercel.app/images/feed-3.webp",
+      "alt": "",
+      "w": 720,
+      "h": 495,
+      "parent": "relative w-full overflow-hidden rounded-[14px] bg-navy-800 group w-full"
+    },
+    {
+      "src": "https://rapid-rouge.vercel.app/images/feed-1.webp",
+      "alt": "",
+      "w": 720,
+      "h": 495,
+      "parent": "relative w-full overflow-hidden rounded-[14px] bg-navy-800 group w-full"
+    },
+    {
+      "src": "https://rapid-rouge.vercel.app/images/feed-2.webp",
+      "alt": "",
+      "w": 720,
+      "h": 495,
+      "parent": "relative w-full overflow-hidden rounded-[14px] bg-navy-800 group w-full"
+    },
+    {
+      "src": "https://rapid-rouge.vercel.app/images/feed-3.webp",
+      "alt": "",
+      "w": 720,
+      "h": 495,
+      "parent": "relative w-full overflow-hidden rounded-[14px] bg-navy-800 group w-full"
+    },
+    {
+      "src": "https://rapid-rouge.vercel.app/images/feed-1.webp",
+      "alt": "",
+      "w": 720,
+      "h": 495,
+      "parent": "relative w-full overflow-hidden rounded-[14px] bg-navy-800 group w-full"
+    },
+    {
+      "src": "https://rapid-rouge.vercel.app/images/feed-2.webp",
+      "alt": "",
+      "w": 720,
+      "h": 495,
+      "parent": "relative w-full overflow-hidden rounded-[14px] bg-navy-800 group w-full"
+    },
+    {
+      "src": "https://rapid-rouge.vercel.app/images/brand/r-mark.webp",
+      "alt": "",
+      "w": 240,
+      "h": 158,
+      "parent": "inline-flex items-center gap-2.5 "
+    },
+    {
+      "src": "https://rapid-rouge.vercel.app/images/role-demo.webp",
+      "alt": "",
+      "w": 880,
+      "h": 550,
+      "parent": "relative w-full overflow-hidden rounded-[14px] bg-navy-800 group w-full"
+    },
+    {
+      "src": "https://rapid-rouge.vercel.app/images/brand/r-mark.webp",
+      "alt": "",
+      "w": 240,
+      "h": 158,
+      "parent": "inline-flex items-center gap-2.5 "
+    },
+    {
+      "src": "https://rapid-rouge.vercel.app/images/feedback-avatar.webp",
+      "alt": "",
+      "w": 160,
+      "h": 160,
+      "parent": "relative h-[76px] w-[76px] shrink-0"
+    },
+    {
+      "src": "https://rapid-rouge.vercel.app/images/grilled-bowl.webp",
+      "alt": "",
+      "w": 160,
+      "h": 160,
+      "parent": "h-14 w-14 rounded-xl shrink-0 overflow-hidden"
+    },
+    {
+      "src": "https://rapid-rouge.vercel.app/images/roles-founders.webp",
+      "alt": "",
+      "w": 960,
+      "h": 540,
+      "parent": "relative rounded-[20px] overflow-hidden mb-6 aspect-video bg-gradient-to-br from-sand-200 to-sand-50 shadow-photo-float"
+    },
+    {
+      "src": "https://rapid-rouge.vercel.app/images/roles-testers.webp",
+      "alt": "",
+      "w": 960,
+      "h": 540,
+      "parent": "relative rounded-[20px] overflow-hidden mb-6 aspect-video bg-gradient-to-br from-sand-100 to-sand-50 shadow-photo-float"
+    },
+    {
+      "src": "https://rapid-rouge.vercel.app/images/brand/r-mark.webp",
+      "alt": "",
+      "w": 240,
+      "h": 158,
+      "parent": "inline-flex items-center gap-2.5 "
+    }
+  ],
+  "visual": []
+}

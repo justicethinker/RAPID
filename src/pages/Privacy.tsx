@@ -16,16 +16,23 @@ interface PolicySection {
 }
 
 const p = 'text-[17px] leading-[1.7] text-light-muted';
-const ul = 'list-disc space-y-2 pl-6 text-[17px] leading-[1.7] text-light-muted marker:text-sand-400';
+const ul = 'list-disc space-y-2 pl-6 text-[17px] leading-[1.7] text-light-muted marker:text-studio-400';
 const link =
   'font-semibold text-brand-700 underline underline-offset-2 transition-colors hover:text-ink';
 
 function ContactBlock() {
+  const configured = (import.meta.env.VITE_SITE_URL as string | undefined)?.replace(
+    /\/+$/,
+    '',
+  );
+  // Never print a local preview address in a published legal page.
   const siteUrl =
-    (import.meta.env.VITE_SITE_URL as string | undefined) || window.location.origin;
+    configured && !/localhost|127\.0\.0\.1/.test(configured)
+      ? configured
+      : 'https://rapid.africa';
 
   return (
-    <div className="mt-5 rounded-2xl border border-sand-200 bg-sand-50 p-6">
+    <div className="mt-5 rounded-2xl border border-studio-200 bg-studio-50 p-6">
       <p className="mb-3 text-[17px] font-bold text-ink">RAPID</p>
       <dl className="space-y-2 text-[15px] text-light-muted">
         <div className="flex flex-wrap gap-x-2">
@@ -67,7 +74,9 @@ const POLICY: PolicySection[] = [
         </p>
         <p className={p}>
           RAPID is running a small pilot to learn whether we can find suitable people, get useful
-          participation, and help founders make clearer decisions with less outreach effort.
+          participation, and help founders make clearer decisions with less outreach effort. Testers
+          and founders now have accounts, so this notice also covers sign-in, invitations, responses
+          and the status shown in each dashboard.
         </p>
       </>
     ),
@@ -97,7 +106,17 @@ const POLICY: PolicySection[] = [
           include the form type, submission time, a random submission identifier, schema and privacy
           versions, landing path, and approved source, medium and campaign tags. Analytics records
           page views, button clicks, form starts, validation error field codes, save failures and
-          confirmed new records.
+          confirmed new records. On public startup pages we also count profile views, post
+          impressions and post opens for the founder. These counts use a random key stored in your
+          browser to avoid counting the same browser twice for the same item on the same day; the
+          key is not linked to your account, email address or IP address.
+        </p>
+        <p className={p}>
+          <strong className="font-semibold text-ink">If you sign in</strong>, our identity provider
+          processes your email address and a verification code. We store the resulting account ID,
+          your verified email address and the profile details above. We never receive or store a
+          password. We record invitations you receive, whether you accept or decline, the response
+          you submit, any quote consent you give, and the reward status staff record.
         </p>
         <p className={p}>
           We do not send names, email addresses, phone numbers, written answers or raw tracking URLs
@@ -118,7 +137,9 @@ const POLICY: PolicySection[] = [
           <li>Review your application and decide whether the pilot is a fit.</li>
           <li>Find suitable tests and email you about them.</li>
           <li>Contact founders on WhatsApp about a request.</li>
-          <li>Plan tests, record outcomes and share findings with the relevant founder.</li>
+          <li>Run your account, show your application status and deliver invitations.</li>
+          <li>Collect responses, record outcomes and share findings with the relevant founder.</li>
+          <li>Record reward status so you can see whether a reward has been sent.</li>
           <li>Keep the records needed to run and review the pilot.</li>
           <li>Prevent spam, duplicate submissions and misuse of the forms.</li>
           <li>Understand how the website is used and improve it.</li>
@@ -168,13 +189,14 @@ const POLICY: PolicySection[] = [
       <>
         <p className={p}>
           We use service providers to run the pilot website and store the records. These currently
-          include hosting, Google Sheets through a private Google Apps Script form endpoint, email,
-          and privacy-friendly analytics where enabled. Providers receive only what they need to
-          perform their service.
+          include Vercel for hosting and server functions, Neon for the Postgres database, Clerk for
+          passwordless sign-in, Resend for transactional email, and privacy-friendly analytics where
+          enabled. Providers receive only what they need to perform their service.
         </p>
         <p className={p}>
-          We may share relevant, anonymous findings with the founder who commissioned a test. We do
-          not share contact details with a founder unless the tester gives specific permission.
+          We may share relevant, anonymous findings with the founder who commissioned a test. The
+          founder sees counts, outcomes and anonymised quotes only where the tester explicitly
+          consented. We do not share names or contact details with a founder.
         </p>
         <p className={p}>
           We do not sell personal information. We may disclose information where required by law, to
@@ -190,14 +212,15 @@ const POLICY: PolicySection[] = [
     body: (
       <>
         <p className={p}>
-          We keep records only as long as reasonably necessary to run the pilot, review outcomes,
-          meet legal requirements and maintain appropriate business records. As a starting policy,
-          we review applications that have been inactive for six months and delete them unless there
-          is a reason to keep them.
+          We keep account and application records while the pilot runs and for up to 12 months after
+          your last activity. Declined or inactive tester records are anonymised after 12 months
+          unless there is a legal or operational reason to keep them longer. Invitation and response
+          rows are kept without contact details so founder counts remain accurate.
         </p>
         <p className={p}>
-          If you ask to be removed, we will suppress your details from invitation lists and delete the
-          active record where we can. Some information may remain in backups for a limited period.
+          If you ask to be removed, we anonymise your person record in place: name, email, phone and
+          written answers are cleared, and the account can no longer sign in. Counts stay intact.
+          Some information may remain in backups for a limited period.
         </p>
       </>
     ),
@@ -244,12 +267,21 @@ const POLICY: PolicySection[] = [
     num: 10,
     title: 'Cookies and analytics',
     body: (
-      <p className={p}>
-        We use privacy-friendly analytics that does not use advertising cookies and does not build
-        profiles across websites. We record page paths and limited interaction events, not the
-        answers you type into a form. If our analytics approach changes, we will update this notice
-        and provide any choices required by law.
-      </p>
+      <>
+        <p className={p}>
+          Signing in uses essential cookies set by our identity provider. They keep you signed in
+          and protect the session; they are not used for advertising. Server-side sessions are
+          HttpOnly, Secure in production and SameSite=Lax.
+        </p>
+        <p className={p}>
+          We use privacy-friendly analytics that does not use advertising cookies and does not build
+          profiles across websites. We record page paths and limited interaction events, not the
+          answers you type into a form, and authenticated dashboard paths are excluded. Our
+          first-party audience counts use a random browser-local key described above, not an
+          advertising cookie. If our analytics approach changes, we will update this notice and
+          provide any choices required by law.
+        </p>
+      </>
     ),
   },
   {
@@ -292,9 +324,10 @@ export default function Privacy() {
 
   return (
     <PageShell>
-      <section className="border-b border-sand-200 bg-sand-50" aria-labelledby="policy-title">
+      <section className="border-b border-studio-200 bg-studio-25" aria-labelledby="policy-title">
         <Container className="py-12 lg:py-16">
-          <h1 id="policy-title" className="t-section text-ink">
+          <p className="t-eyebrow text-brand-700">Legal</p>
+          <h1 id="policy-title" className="t-section mt-3 text-ink">
             Privacy Policy
           </h1>
           <p className="mt-3 text-sm text-light-muted">
@@ -310,7 +343,7 @@ export default function Privacy() {
       <Container className="py-12 lg:py-16">
         <div className="flex flex-col gap-10 lg:flex-row lg:gap-14">
           <aside className="shrink-0 lg:w-[250px]">
-            <details className="group mb-8 rounded-2xl border border-sand-200 bg-white lg:hidden">
+            <details className="group mb-8 rounded-2xl border border-studio-200 bg-studio-25 lg:hidden">
               <summary className="flex cursor-pointer list-none items-center justify-between px-5 py-4 text-sm font-bold text-ink [&::-webkit-details-marker]:hidden">
                 On this page
                 <ChevronDown
@@ -318,7 +351,7 @@ export default function Privacy() {
                   className="text-light-muted transition-transform group-open:rotate-180"
                 />
               </summary>
-              <ul className="space-y-1 border-t border-sand-200 px-5 py-3">
+              <ul className="space-y-1 border-t border-studio-200 px-5 py-3">
                 {POLICY.map((section) => (
                   <li key={section.id}>
                     <a
@@ -340,7 +373,7 @@ export default function Privacy() {
                     <a
                       href={`#${section.id}`}
                       className={cn(
-                        'block border-l-2 border-sand-200 py-1 pl-3 text-sm leading-snug transition-colors',
+                        'block border-l-2 border-studio-200 py-1 pl-3 text-sm leading-snug transition-colors',
                         activeId === section.id
                           ? 'border-brand-600 font-semibold text-ink'
                           : 'text-light-muted hover:text-ink',
@@ -364,7 +397,7 @@ export default function Privacy() {
               </section>
             ))}
 
-            <div className="h-px bg-sand-200" />
+            <div className="h-px bg-studio-200" />
             <p className={cn(p, 'mt-8')}>
               By using the pilot website, you acknowledge that you have read this notice and
               understand how your information may be collected and used.

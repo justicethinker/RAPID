@@ -1,0 +1,489 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>RAPID — colour directions</title>
+    <style>
+      @font-face {
+        font-family: 'Inter Variable';
+        src: url('../../node_modules/@fontsource-variable/inter/files/inter-latin-wght-normal.woff2')
+          format('woff2');
+        font-weight: 100 900;
+        font-display: block;
+      }
+
+      * { box-sizing: border-box; }
+
+      html, body {
+        margin: 0;
+        background: #eae7e0;
+        color: #101b26;
+        font-family: 'Inter Variable', system-ui, sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      body { padding: 44px 48px 50px; }
+
+      .masthead {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 32px;
+        margin: 0 auto 26px;
+        max-width: 1344px;
+      }
+
+      .eyebrow {
+        margin: 0 0 8px;
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: #5b6a63;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: 38px;
+        line-height: 1.05;
+        letter-spacing: -0.045em;
+        font-weight: 800;
+      }
+
+      .sub {
+        margin: 0;
+        max-width: 390px;
+        font-size: 14px;
+        line-height: 1.55;
+        color: #4d5a54;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        max-width: 1344px;
+        margin: 0 auto;
+      }
+
+      .option {
+        overflow: hidden;
+        border-radius: 18px;
+        background: #fff;
+        box-shadow: 0 1px 2px rgba(11, 24, 38, 0.08), 0 24px 60px -38px rgba(11, 24, 38, 0.45);
+      }
+
+      .scene {
+        position: relative;
+        display: grid;
+        grid-template-columns: 1.18fr 0.82fr;
+        gap: 24px;
+        min-height: 238px;
+        padding: 26px 26px 24px;
+        overflow: hidden;
+      }
+
+      .scene-copy { position: relative; z-index: 1; }
+
+      .wordmark {
+        display: flex;
+        align-items: baseline;
+        gap: 8px;
+        margin-bottom: 30px;
+        font-size: 12px;
+        letter-spacing: 0.08em;
+        font-weight: 800;
+      }
+
+      .wordmark .dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 999px;
+        background: currentColor;
+        opacity: 0.9;
+      }
+
+      .kicker {
+        margin: 0 0 9px;
+        font-size: 9px;
+        font-weight: 800;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+
+      .headline {
+        margin: 0;
+        max-width: 320px;
+        font-size: 29px;
+        line-height: 1.02;
+        letter-spacing: -0.045em;
+        font-weight: 800;
+      }
+
+      .body {
+        margin: 12px 0 0;
+        max-width: 268px;
+        font-size: 11.5px;
+        line-height: 1.5;
+        opacity: 0.78;
+      }
+
+      .actions {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-top: 18px;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        height: 31px;
+        padding: 0 13px;
+        border-radius: 999px;
+        font-size: 10px;
+        font-weight: 750;
+        white-space: nowrap;
+      }
+
+      .btn-ghost {
+        border: 1px solid currentColor;
+        opacity: 0.62;
+      }
+
+      .photo {
+        position: relative;
+        align-self: stretch;
+        min-height: 188px;
+        border-radius: 11px;
+        overflow: hidden;
+        background: #d9d4ca;
+      }
+
+      .photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: grayscale(1) contrast(1.04);
+        display: block;
+      }
+
+      .photo-tag {
+        position: absolute;
+        left: 8px;
+        bottom: 8px;
+        padding: 4px 7px;
+        border-radius: 5px;
+        background: rgba(4, 10, 14, 0.76);
+        color: #f7f5ef;
+        font-size: 8px;
+        font-weight: 650;
+        letter-spacing: 0.02em;
+        backdrop-filter: blur(6px);
+      }
+
+      .meta {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 20px;
+        padding: 15px 18px 17px;
+        border-top: 1px solid rgba(16, 27, 38, 0.1);
+        background: #fff;
+      }
+
+      .meta-top {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 5px;
+      }
+
+      .number {
+        font-size: 9px;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        color: #7a8680;
+      }
+
+      .name {
+        font-size: 14px;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+      }
+
+      .pitch {
+        margin: 0;
+        max-width: 380px;
+        font-size: 10.5px;
+        line-height: 1.45;
+        color: #58645e;
+      }
+
+      .swatches {
+        display: flex;
+        gap: 4px;
+        align-items: flex-start;
+      }
+
+      .swatch {
+        width: 32px;
+        height: 38px;
+        border-radius: 5px;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        position: relative;
+      }
+
+      .swatch span {
+        position: absolute;
+        top: 42px;
+        left: 0;
+        width: 38px;
+        font-size: 6.5px;
+        line-height: 1.15;
+        letter-spacing: 0.01em;
+        color: #8a948f;
+        font-weight: 600;
+      }
+
+      .swatches { margin-bottom: 15px; }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        height: 20px;
+        padding: 0 7px;
+        border-radius: 999px;
+        background: #f0eee8;
+        color: #5c6963;
+        font-size: 8px;
+        font-weight: 750;
+        letter-spacing: 0.03em;
+        white-space: nowrap;
+      }
+
+      .footer {
+        max-width: 1344px;
+        margin: 18px auto 0;
+        font-size: 11px;
+        line-height: 1.5;
+        color: #66736c;
+      }
+
+      .footer b { color: #36443d; }
+
+      /* 01 — Heritage */
+      .heritage .scene { background: #0b1826; color: #e6edf3; }
+      .heritage .kicker { color: #15e6a0; }
+      .heritage .headline { color: #faf8f4; }
+      .heritage .headline em { color: #15e6a0; font-style: normal; }
+      .heritage .btn-primary { background: #15e6a0; color: #0b1826; }
+      .heritage .photo { box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12); }
+      .heritage .photo-tag { background: rgba(11, 24, 38, 0.84); color: #15e6a0; }
+
+      /* 02 — Field notes */
+      .fieldnotes .scene { background: #17332b; color: #f4ede2; }
+      .fieldnotes .kicker { color: #dda27e; }
+      .fieldnotes .headline { color: #f4ede2; }
+      .fieldnotes .headline em { color: #e2a27c; font-style: normal; }
+      .fieldnotes .btn-primary { background: #c45535; color: #fff7ed; }
+      .fieldnotes .photo-tag { background: rgba(23, 51, 43, 0.84); color: #f4ede2; }
+
+      /* 03 — Ink & signal */
+      .signal .scene { background: #080d11; color: #ece6da; }
+      .signal .kicker { color: #d4ff4f; }
+      .signal .headline { color: #f1ece2; }
+      .signal .headline em { color: #d4ff4f; font-style: normal; }
+      .signal .btn-primary { background: #d4ff4f; color: #080d11; }
+      .signal .photo-tag { background: rgba(8, 13, 17, 0.84); color: #d4ff4f; }
+
+      /* 04 — Studio */
+      .studio .scene { background: #f5f2ea; color: #121a1e; }
+      .studio .scene::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(80% 80% at 92% 4%, rgba(15, 122, 85, 0.11), transparent 64%);
+      }
+      .studio .kicker { color: #0b7a55; }
+      .studio .headline { color: #121a1e; }
+      .studio .headline em { color: #0b7a55; font-style: normal; }
+      .studio .btn-primary { background: #0b7a55; color: #f7fbf7; }
+      .studio .photo-tag { background: rgba(18, 26, 30, 0.78); color: #f5f2ea; }
+    </style>
+  </head>
+  <body>
+    <header class="masthead">
+      <div>
+        <p class="eyebrow">RAPID · Colour study</p>
+        <h1>Four ways to feel like RAPID again.</h1>
+      </div>
+      <p class="sub">
+        The old site and the current one share the same core colours. The difference is
+        proportion: the old one let navy and paper lead, and used mint as a signal. These are
+        four ways to restore that hierarchy — or move the brand somewhere new.
+      </p>
+    </header>
+
+    <main class="grid">
+      <!-- 01 -->
+      <section class="option heritage">
+        <div class="scene">
+          <div class="scene-copy">
+            <div class="wordmark"><span class="dot"></span>RAPID</div>
+            <p class="kicker">Nigeria pilot</p>
+            <h2 class="headline">Good ideas need <em>the right people.</em></h2>
+            <p class="body">Test what you are building with people who live the problem.</p>
+            <div class="actions">
+              <span class="btn btn-primary">Join as a tester →</span>
+              <span class="btn btn-ghost">I have a test in mind</span>
+            </div>
+          </div>
+          <div class="photo">
+            <img src="../../public/images/photos/session-900.webp" alt="" />
+            <span class="photo-tag">Session 04 · Lagos</span>
+          </div>
+        </div>
+        <div class="meta">
+          <div>
+            <div class="meta-top">
+              <span class="number">01</span><span class="name">Heritage</span>
+              <span class="badge">Closest to pre-v2</span>
+            </div>
+            <p class="pitch">
+              Navy hero, warm paper chapters, mint reserved for action. The original identity,
+              with the mint wash removed.
+            </p>
+          </div>
+          <div class="swatches">
+            <div class="swatch" style="background:#0b1826"><span>#0B1826</span></div>
+            <div class="swatch" style="background:#faf8f4"><span>#FAF8F4</span></div>
+            <div class="swatch" style="background:#15e6a0"><span>#15E6A0</span></div>
+            <div class="swatch" style="background:#55636e"><span>#55636E</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 02 -->
+      <section class="option fieldnotes">
+        <div class="scene">
+          <div class="scene-copy">
+            <div class="wordmark"><span class="dot"></span>RAPID</div>
+            <p class="kicker">Nigeria pilot</p>
+            <h2 class="headline">Good ideas need <em>the right people.</em></h2>
+            <p class="body">Test what you are building with people who live the problem.</p>
+            <div class="actions">
+              <span class="btn btn-primary">Join as a tester →</span>
+              <span class="btn btn-ghost">I have a test in mind</span>
+            </div>
+          </div>
+          <div class="photo">
+            <img src="../../public/images/photos/session-900.webp" alt="" />
+            <span class="photo-tag">Session 04 · Lagos</span>
+          </div>
+        </div>
+        <div class="meta">
+          <div>
+            <div class="meta-top">
+              <span class="number">02</span><span class="name">Field notes</span>
+              <span class="badge">Biggest departure</span>
+            </div>
+            <p class="pitch">
+              Pine and cream with a clay action colour. Human, editorial, closer to a research
+              notebook than a SaaS dashboard.
+            </p>
+          </div>
+          <div class="swatches">
+            <div class="swatch" style="background:#17332b"><span>#17332B</span></div>
+            <div class="swatch" style="background:#f4ede2"><span>#F4EDE2</span></div>
+            <div class="swatch" style="background:#c45535"><span>#C45535</span></div>
+            <div class="swatch" style="background:#55705c"><span>#55705C</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 03 -->
+      <section class="option signal">
+        <div class="scene">
+          <div class="scene-copy">
+            <div class="wordmark"><span class="dot"></span>RAPID</div>
+            <p class="kicker">Nigeria pilot</p>
+            <h2 class="headline">Good ideas need <em>the right people.</em></h2>
+            <p class="body">Test what you are building with people who live the problem.</p>
+            <div class="actions">
+              <span class="btn btn-primary">Join as a tester →</span>
+              <span class="btn btn-ghost">I have a test in mind</span>
+            </div>
+          </div>
+          <div class="photo">
+            <img src="../../public/images/photos/session-900.webp" alt="" />
+            <span class="photo-tag">Session 04 · Lagos</span>
+          </div>
+        </div>
+        <div class="meta">
+          <div>
+            <div class="meta-top">
+              <span class="number">03</span><span class="name">Ink &amp; signal</span>
+              <span class="badge">Boldest</span>
+            </div>
+            <p class="pitch">
+              Near-black, bone and an acid-lime signal. Sharper and younger than mint, with
+              very little colour used on any one screen.
+            </p>
+          </div>
+          <div class="swatches">
+            <div class="swatch" style="background:#080d11"><span>#080D11</span></div>
+            <div class="swatch" style="background:#ece6da"><span>#ECE6DA</span></div>
+            <div class="swatch" style="background:#d4ff4f"><span>#D4FF4F</span></div>
+            <div class="swatch" style="background:#8c9ba3"><span>#8C9BA3</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 04 -->
+      <section class="option studio">
+        <div class="scene">
+          <div class="scene-copy">
+            <div class="wordmark"><span class="dot"></span>RAPID</div>
+            <p class="kicker">Nigeria pilot</p>
+            <h2 class="headline">Good ideas need <em>the right people.</em></h2>
+            <p class="body">Test what you are building with people who live the problem.</p>
+            <div class="actions">
+              <span class="btn btn-primary">Join as a tester →</span>
+              <span class="btn btn-ghost">I have a test in mind</span>
+            </div>
+          </div>
+          <div class="photo">
+            <img src="../../public/images/photos/session-900.webp" alt="" />
+            <span class="photo-tag">Session 04 · Lagos</span>
+          </div>
+        </div>
+        <div class="meta">
+          <div>
+            <div class="meta-top">
+              <span class="number">04</span><span class="name">Studio</span>
+              <span class="badge">Most restrained</span>
+            </div>
+            <p class="pitch">
+              Paper, ink and a deeper jade. No mint backgrounds, no gradients. The photography
+              and the writing do the branding.
+            </p>
+          </div>
+          <div class="swatches">
+            <div class="swatch" style="background:#f5f2ea"><span>#F5F2EA</span></div>
+            <div class="swatch" style="background:#121a1e"><span>#121A1E</span></div>
+            <div class="swatch" style="background:#0b7a55"><span>#0B7A55</span></div>
+            <div class="swatch" style="background:#dde7e0"><span>#DDE7E0</span></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <p class="footer">
+      <b>My recommendation:</b> start from <b>Heritage</b> if the old site still feels like the
+      brand. Choose <b>Studio</b> if you want that identity to feel quieter and more current.
+      Field notes and Ink &amp; signal are real re-brand directions — stronger, but they need the
+      R mark and the wordmark to move with them.
+    </p>
+  </body>
+</html>

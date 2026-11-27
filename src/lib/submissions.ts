@@ -1,18 +1,5 @@
 import type { SubmissionEnvelope } from '@/lib/submission-schema';
 
-/**
- * Production endpoint: the RAPID Apps Script web app
- * (`integrations/google-apps-script`). Set VITE_SUBMISSIONS_ENDPOINT after
- * deployment. Until it is set, submissions fail honestly — the UI never shows
- * a confirmation for an unsaved record.
- *
- * The `.invalid` placeholder is reserved and lets local/E2E tests intercept the
- * request without touching a real sheet.
- */
-const endpoint =
-  (import.meta.env.VITE_SUBMISSIONS_ENDPOINT as string | undefined)?.trim() ||
-  'https://example.invalid/rapid-submissions';
-
 const TIMEOUT_MS = 25_000;
 
 export type SubmitFailureCode =
@@ -32,35 +19,14 @@ export type SubmitResult =
       message?: string;
     };
 
-interface ScriptResponse {
-  ok?: boolean;
-  success?: boolean;
-  result?: string;
-  id?: string;
+interface ApiResponse {
+  reference?: string;
   duplicate?: boolean;
   error?: string;
   fields?: Record<string, string>;
-  message?: string;
 }
 
-/**
- * Warm the Apps Script container while the visitor reads the form. Best effort;
- * an error here is ignored.
- */
-export function warmSubmissions(): void {
-  if (!endpoint) return;
-  try {
-    void fetch(endpoint, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
-      body: new URLSearchParams({ warmup: '1' }),
-    }).catch(() => undefined);
-  } catch {
-    // warming is best-effort
-  }
-}
-
-function mapServerError(value: string | undefined): SubmitFailureCode {
+function mapError(value: string | undefined): SubmitFailureCode {
   switch (value) {
     case 'validation':
     case 'rate_limited':
@@ -70,50 +36,52 @@ function mapServerError(value: string | undefined): SubmitFailureCode {
   }
 }
 
-export async function submitEnvelope(envelope: SubmissionEnvelope): Promise<SubmitResult> {
+/** Warm the API while the visitor reads the form. Best effort. */
+export function warmSubmissions(): void {
+  try {
+    void fetch('/api/health', { cache: 'no-store' }).catch(() => undefined);
+  } catch {
+    // warming is best-effort
+  }
+}
+
+export async function submitEnvelope(
+  envelope: SubmissionEnvelope,
+  options: { token?: string | null } = {},
+): Promise<SubmitResult> {
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), TIMEOUT_MS);
 
   try {
-    // Form-encoded so the request stays a CORS "simple request"; Apps Script
-    // answers those directly instead of failing a preflight OPTIONS call.
-    const body = new URLSearchParams({ payload: JSON.stringify(envelope) });
+    const headers: Record<string, string> = { 'Content-Type': 'application/json' };
+    if (options.token) headers.authorization = `Bearer ${options.token}`;
 
-    const response = await fetch(endpoint, {
+    const response = await fetch(`/api/applications/${envelope.formType}`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
-      body,
+      headers,
+      body: JSON.stringify(envelope),
       signal: controller.signal,
     });
 
-    if (!response.ok) {
-      return { ok: false, code: 'server' };
-    }
-
-    const text = await response.text();
-    let json: ScriptResponse | null = null;
+    let json: ApiResponse | null = null;
     try {
-      json = JSON.parse(text) as ScriptResponse;
+      json = (await response.json()) as ApiResponse;
     } catch {
-      // Not JSON: treat any 2xx as a successful save.
+      json = null;
     }
 
-    if (!json) return { ok: true, duplicate: false };
-
-    if (json.ok === false || json.success === false || json.result === 'error') {
-      const code = mapServerError(json.error);
+    if (!response.ok) {
       return {
         ok: false,
-        code,
-        fields: json.fields,
-        message: json.message,
+        code: mapError(json?.error),
+        fields: json?.fields,
       };
     }
 
     return {
       ok: true,
-      id: json.id,
-      duplicate: json.duplicate === true || json.result === 'duplicate',
+      id: json?.reference,
+      duplicate: json?.duplicate === true,
     };
   } catch (error) {
     if (error instanceof DOMException && error.name === 'AbortError') {

@@ -37,12 +37,12 @@ export function CopyLinkButton({
       type="button"
       onClick={() => void copy()}
       className={cn(
-        'inline-flex min-h-[40px] items-center gap-2 rounded-lg border border-studio-300 bg-studio-25 px-3 text-xs font-bold text-ink transition-colors hover:border-brand-600 hover:bg-studio-50',
+        'inline-flex min-h-[40px] items-center gap-2 rounded-lg border border-cream-300 bg-white px-3 text-xs font-bold text-ink transition-colors hover:border-rapid-600 hover:bg-cream-50',
         className,
       )}
     >
       {copied ? (
-        <Check size={14} className="text-brand-700" aria-hidden="true" />
+        <Check size={14} className="text-rapid-700" aria-hidden="true" />
       ) : (
         <Copy size={14} aria-hidden="true" />
       )}

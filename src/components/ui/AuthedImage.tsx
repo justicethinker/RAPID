@@ -61,7 +61,7 @@ export function AuthedImage({
         role="img"
         aria-label={current.failed ? 'Image unavailable' : 'Loading image'}
         className={cn(
-          'flex items-center justify-center bg-studio-100 text-center text-[10px] font-semibold uppercase tracking-[0.12em] text-studio-500',
+          'flex items-center justify-center bg-cream-100 text-center text-[10px] font-semibold uppercase tracking-[0.12em] text-ink-faint',
           className,
         )}
       >

@@ -72,7 +72,7 @@ export default function TesterProfile() {
 
       {formError && <ErrorPanel message={formError} />}
       {saved && (
-        <p className="rounded-xl border border-brand-100 bg-brand-50 p-4 text-sm font-semibold text-brand-700">
+        <p className="rounded-xl border border-rapid-100 bg-rapid-50 p-4 text-sm font-semibold text-rapid-700">
           Profile saved.
         </p>
       )}
@@ -95,11 +95,11 @@ export default function TesterProfile() {
             <FieldLabel htmlFor="email">Email</FieldLabel>
             <input
               id="email"
-              className={`${inputClass} bg-studio-50 text-light-muted`}
+              className={`${inputClass} bg-cream-50 text-ink-soft`}
               value={me.person.email}
               readOnly
             />
-            <p className="mt-1 text-xs text-light-muted">
+            <p className="mt-1 text-xs text-ink-soft">
               Email changes are handled by support so an account cannot be taken over.
             </p>
           </div>
@@ -132,12 +132,12 @@ export default function TesterProfile() {
             </div>
           </div>
 
-          <label className="flex items-start gap-3 text-sm text-light-muted">
+          <label className="flex items-start gap-3 text-sm text-ink-soft">
             <input
               type="checkbox"
               checked={reminders}
               onChange={(event) => setReminders(event.target.checked)}
-              className="mt-1 h-4 w-4 rounded border-studio-300 text-brand-700 focus:ring-brand-500"
+              className="mt-1 h-4 w-4 rounded border-cream-300 text-rapid-700 focus:ring-rapid-500"
             />
             You may send WhatsApp reminders about my application and suitable tests.
           </label>
@@ -145,7 +145,7 @@ export default function TesterProfile() {
           <button
             type="submit"
             disabled={saving}
-            className="inline-flex min-h-[44px] items-center rounded-xl bg-brand-500 px-5 text-sm font-bold text-ink hover:bg-brand-700 hover:text-white disabled:opacity-60"
+            className="inline-flex min-h-[44px] items-center rounded-full bg-sun-500 px-5 text-sm font-semibold text-ink hover:bg-sun-400 disabled:opacity-60"
           >
             {saving ? 'Saving…' : 'Save profile'}
           </button>
@@ -153,7 +153,7 @@ export default function TesterProfile() {
       </Panel>
 
       <Panel title="Leaving the pilot">
-        <p className="max-w-[62ch] text-light-muted">
+        <p className="max-w-[62ch] text-ink-soft">
           Email support to request removal. RAPID anonymises your record, keeps the test
           counts intact and stops contacting you.
         </p>

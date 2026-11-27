@@ -36,12 +36,12 @@ export function LinkedTestButton({ postId }: { postId: string }) {
         <Link
           to="/sign-in"
           state={{ from: `${window.location.pathname}${window.location.hash}` }}
-          className="inline-flex min-h-[42px] items-center gap-2 rounded-xl bg-brand-500 px-4 text-sm font-bold text-ink transition-colors hover:bg-brand-600"
+          className="inline-flex min-h-[42px] items-center gap-2 rounded-full bg-sun-500 px-4 text-sm font-semibold text-ink transition-colors hover:bg-sun-400"
         >
           Sign in to take part
           <ArrowUpRight size={15} aria-hidden="true" />
         </Link>
-        <p className="mt-2 text-xs leading-relaxed text-light-muted">
+        <p className="mt-2 text-xs leading-relaxed text-ink-soft">
           Participation is limited to approved testers with an invitation for
           this test.
         </p>
@@ -85,7 +85,7 @@ export function LinkedTestButton({ postId }: { postId: string }) {
         type="button"
         onClick={() => void open()}
         disabled={pending}
-        className="inline-flex min-h-[42px] items-center gap-2 rounded-xl bg-brand-500 px-4 text-sm font-bold text-ink transition-colors hover:bg-brand-600 disabled:opacity-60"
+        className="inline-flex min-h-[42px] items-center gap-2 rounded-full bg-sun-500 px-4 text-sm font-semibold text-ink transition-colors hover:bg-sun-400 disabled:opacity-60"
       >
         {pending ? (
           <Loader2 size={15} className="animate-spin" aria-hidden="true" />

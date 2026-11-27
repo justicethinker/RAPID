@@ -14,10 +14,11 @@ export default function ClerkSignUpPanel({ redirectUrl }: { redirectUrl: string 
       fallbackRedirectUrl={redirectUrl}
       appearance={{
         variables: {
-          colorPrimary: '#0B9468',
-          colorText: '#101B26',
+          colorPrimary: '#075F45',
+          colorText: '#16150F',
           colorBackground: '#FFFFFF',
-          borderRadius: '12px',
+          borderRadius: '14px',
+          fontFamily: '"Inter Variable", system-ui, sans-serif',
         },
       }}
     />

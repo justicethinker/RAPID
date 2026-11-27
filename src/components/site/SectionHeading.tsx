@@ -21,21 +21,14 @@ export function SectionHeading({
   return (
     <div className={cn('max-w-[780px]', className)}>
       {eyebrow && (
-        <p
-          className={cn(
-            't-eyebrow',
-            tone === 'dark' ? 'text-brand-500' : 'text-brand-700',
-          )}
-        >
-          {eyebrow}
-        </p>
+        <p className={cn('kicker', tone === 'dark' && '!text-rapid-100')}>{eyebrow}</p>
       )}
       <h2
         id={id}
         className={cn(
           't-section',
-          eyebrow && 'mt-3',
-          tone === 'dark' ? 'text-studio-25' : 'text-ink',
+          eyebrow && 'mt-4',
+          tone === 'dark' ? 'text-white' : 'text-ink',
         )}
       >
         {title}
@@ -44,7 +37,7 @@ export function SectionHeading({
         <p
           className={cn(
             'lead mt-4',
-            tone === 'dark' && '!text-dark-muted',
+            tone === 'dark' && '!text-rapid-100',
           )}
         >
           {lead}

@@ -45,7 +45,7 @@ export default function StaffModeration() {
       />
 
       {actionError && (
-        <div role="alert" className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-semibold text-danger">
+        <div role="alert" className="rounded-xl border border-danger/30 bg-danger-50 px-4 py-3 text-sm font-semibold text-danger">
           {actionError}
         </div>
       )}
@@ -64,7 +64,7 @@ export default function StaffModeration() {
                 <p>New reports from signed-in readers will appear here.</p>
               </EmptyState>
             ) : (
-              <ul className="divide-y divide-studio-200">
+              <ul className="divide-y divide-cream-200">
                 {data.reports.map((report) => {
                   const path = `/api/staff/moderation/reports/${report.id}`;
                   return (
@@ -83,7 +83,7 @@ export default function StaffModeration() {
                             >
                               {report.targetType}
                             </Pill>
-                            <span className="text-xs text-studio-600">
+                            <span className="text-xs text-ink-faint">
                               Reported by {report.reporterName} · {formatDay(report.createdAt)}
                             </span>
                           </div>
@@ -91,7 +91,7 @@ export default function StaffModeration() {
                             {report.target.title || 'Content unavailable'}
                           </p>
                           {report.target.detail && (
-                            <p className="mt-1 line-clamp-3 text-sm leading-relaxed text-light-muted">
+                            <p className="mt-1 line-clamp-3 text-sm leading-relaxed text-ink-soft">
                               {report.target.detail}
                             </p>
                           )}
@@ -105,7 +105,7 @@ export default function StaffModeration() {
                             type="button"
                             onClick={() => void act(path, { action: 'hide' })}
                             disabled={busy !== null}
-                            className="inline-flex min-h-[40px] items-center rounded-lg bg-danger px-3 text-xs font-bold text-white transition-opacity hover:opacity-90 disabled:opacity-50"
+                            className="inline-flex min-h-[40px] items-center rounded-full bg-danger px-3 text-xs font-semibold text-white transition-opacity hover:opacity-90 disabled:opacity-50"
                           >
                             {busy === path
                               ? 'Working…'
@@ -117,7 +117,7 @@ export default function StaffModeration() {
                             type="button"
                             onClick={() => void act(path, { action: 'dismiss' })}
                             disabled={busy !== null}
-                            className="inline-flex min-h-[40px] items-center rounded-lg border border-studio-300 bg-studio-25 px-3 text-xs font-bold text-ink transition-colors hover:bg-studio-50 disabled:opacity-50"
+                            className="inline-flex min-h-[40px] items-center rounded-full border border-cream-300 bg-white px-3 text-xs font-semibold text-ink transition-colors hover:bg-cream-50 disabled:opacity-50"
                           >
                             Dismiss
                           </button>
@@ -139,7 +139,7 @@ export default function StaffModeration() {
                 <p>Feedback left on published posts appears here for review.</p>
               </EmptyState>
             ) : (
-              <ul className="divide-y divide-studio-200">
+              <ul className="divide-y divide-cream-200">
                 {data.feedback.map((item) => {
                   const path = `/api/staff/moderation/feedback/${item.id}`;
                   return (
@@ -149,14 +149,14 @@ export default function StaffModeration() {
                           <Pill tone={item.status === 'visible' ? 'neutral' : 'negative'}>
                             {item.status}
                           </Pill>
-                          <span className="text-xs text-studio-600">
+                          <span className="text-xs text-ink-faint">
                             {item.authorName} · {formatDay(item.createdAt)}
                           </span>
                         </div>
-                        <p className="mt-2 whitespace-pre-line text-sm leading-relaxed text-light-muted">
+                        <p className="mt-2 whitespace-pre-line text-sm leading-relaxed text-ink-soft">
                           {item.body}
                         </p>
-                        <p className="mt-1 text-xs text-studio-600">On {item.post.title}</p>
+                        <p className="mt-1 text-xs text-ink-faint">On {item.post.title}</p>
                       </div>
                       <button
                         type="button"
@@ -166,7 +166,7 @@ export default function StaffModeration() {
                           })
                         }
                         disabled={busy !== null}
-                        className="inline-flex min-h-[40px] items-center gap-1.5 rounded-lg border border-studio-300 bg-studio-25 px-3 text-xs font-bold text-ink transition-colors hover:bg-studio-50 disabled:opacity-50"
+                        className="inline-flex min-h-[40px] items-center gap-1.5 rounded-full border border-cream-300 bg-white px-3 text-xs font-semibold text-ink transition-colors hover:bg-cream-50 disabled:opacity-50"
                       >
                         {item.status === 'visible' ? 'Hide' : 'Restore'}
                       </button>
@@ -186,14 +186,14 @@ export default function StaffModeration() {
                 <p>Startups hidden from a report will be listed here.</p>
               </EmptyState>
             ) : (
-              <ul className="divide-y divide-studio-200">
+              <ul className="divide-y divide-cream-200">
                 {data.moderatedStartups.map((startup) => {
                   const path = `/api/staff/moderation/startups/${startup.id}`;
                   return (
                     <li key={startup.id} className="flex flex-wrap items-center justify-between gap-3 py-4 first:pt-0 last:pb-0">
                       <div className="min-w-0">
                         <p className="text-sm font-semibold text-ink">{startup.name}</p>
-                        <p className="mt-1 text-xs text-studio-600">
+                        <p className="mt-1 text-xs text-ink-faint">
                           /{startup.slug} · hidden {formatDay(startup.moderatedAt)}
                           {startup.moderatedByName ? ` by ${startup.moderatedByName}` : ''}
                         </p>
@@ -202,7 +202,7 @@ export default function StaffModeration() {
                         type="button"
                         onClick={() => void act(path, { action: 'restore' })}
                         disabled={busy !== null}
-                        className="inline-flex min-h-[40px] items-center gap-1.5 rounded-lg border border-studio-300 bg-studio-25 px-3 text-xs font-bold text-ink transition-colors hover:bg-studio-50 disabled:opacity-50"
+                        className="inline-flex min-h-[40px] items-center gap-1.5 rounded-full border border-cream-300 bg-white px-3 text-xs font-semibold text-ink transition-colors hover:bg-cream-50 disabled:opacity-50"
                       >
                         <RotateCcw size={13} aria-hidden="true" />
                         Restore
@@ -223,14 +223,14 @@ export default function StaffModeration() {
                 <p>Moderated posts will be listed here with the staff member who hid them.</p>
               </EmptyState>
             ) : (
-              <ul className="divide-y divide-studio-200">
+              <ul className="divide-y divide-cream-200">
                 {data.moderatedPosts.map((post) => {
                   const path = `/api/staff/moderation/posts/${post.id}`;
                   return (
                     <li key={post.id} className="flex flex-wrap items-center justify-between gap-3 py-4 first:pt-0 last:pb-0">
                       <div className="min-w-0">
                         <p className="text-sm font-semibold text-ink">{post.title}</p>
-                        <p className="mt-1 text-xs text-studio-600">
+                        <p className="mt-1 text-xs text-ink-faint">
                           {post.startupName} · hidden {formatDay(post.moderatedAt)}
                           {post.moderatedByName ? ` by ${post.moderatedByName}` : ''}
                         </p>
@@ -239,7 +239,7 @@ export default function StaffModeration() {
                         type="button"
                         onClick={() => void act(path, { action: 'restore' })}
                         disabled={busy !== null}
-                        className="inline-flex min-h-[40px] items-center gap-1.5 rounded-lg border border-studio-300 bg-studio-25 px-3 text-xs font-bold text-ink transition-colors hover:bg-studio-50 disabled:opacity-50"
+                        className="inline-flex min-h-[40px] items-center gap-1.5 rounded-full border border-cream-300 bg-white px-3 text-xs font-semibold text-ink transition-colors hover:bg-cream-50 disabled:opacity-50"
                       >
                         <RotateCcw size={13} aria-hidden="true" />
                         Restore

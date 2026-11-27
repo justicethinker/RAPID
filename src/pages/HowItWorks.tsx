@@ -1,19 +1,118 @@
 import { Link } from 'react-router-dom';
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, CircleCheckBig, CircleStop, Hand, HandCoins, MessageSquareText, ClipboardList, Users, FileBarChart2 } from 'lucide-react';
 import { PageShell } from '@/components/layout/PageShell';
 import { Container } from '@/components/layout/Container';
 import { ButtonLink } from '@/components/ui/Button';
+import { PageHero } from '@/components/site/PageHero';
+import { LoopSteps } from '@/components/site/LoopSteps';
+import { Reveal, Stagger } from '@/components/motion/Reveal';
 import { usePageMeta } from '@/hooks/usePageMeta';
 
+const STEPS = [
+  { icon: MessageSquareText, title: 'You ask', body: 'A founder tells us what they need to learn and who they need to hear from.' },
+  { icon: ClipboardList, title: 'We plan', body: 'We agree the task, audience, timing and reward before any recruiting starts.' },
+  { icon: Users, title: 'Testers take part', body: 'We invite suitable testers. Each one reads the terms and chooses whether to take part.' },
+  { icon: FileBarChart2, title: 'You learn', body: 'We review the responses and share findings with counts, context and the limits of the evidence.' },
+];
+
 const ACTIONS = [
-  ['Finished the task', 'They completed the task you set and described what happened.'],
-  ['Stopped at a specific step', 'They showed exactly where the idea or prototype lost them.'],
-  ['Asked to hear more', 'They chose a next step instead of only giving an opinion.'],
-  ['Said they would pay', 'A stated intent to pay. Useful, but not proof on its own.'],
-] as const;
+  { icon: CircleCheckBig, title: 'Finished the task', body: 'They completed the task you set and described what happened.' },
+  { icon: CircleStop, title: 'Stopped at a specific step', body: 'They showed exactly where the idea or prototype lost them.' },
+  { icon: Hand, title: 'Asked to hear more', body: 'They chose a next step instead of only giving an opinion.' },
+  { icon: HandCoins, title: 'Said they would pay', body: 'A stated intent to pay. Useful, but not proof on its own.' },
+];
 
 export default function HowItWorks() {
-  usePageMeta({ title: 'How RAPID works | Product research in Nigeria', description: 'See how RAPID takes a founder’s question to clear findings: scoping the test, recruiting testers, collecting responses and reporting what they mean.' });
-  const steps = [['You ask','A founder tells us what they need to learn and who they need to hear from.'],['We plan','We agree the task, audience, timing and reward before any recruiting starts.'],['Testers take part','We invite suitable testers. Each one reads the terms and chooses whether to take part.'],['You learn','We review the responses and share findings with counts, context and the limits of the evidence.']];
-  return <PageShell><section className="signal-hero"><Container className="py-16 sm:py-24"><p className="signal-kicker"><span/> HOW RAPID WORKS</p><h1 className="signal-display mt-6 max-w-[900px]">From your question to <em>a clear answer.</em></h1><p className="mt-6 max-w-[640px] text-lg leading-relaxed text-[#39544a]">A simple, people-led process that connects your idea with the people you’re building for.</p></Container></section><section className="bg-[#f8faf5]"><Container className="grid gap-12 py-20 sm:py-28 lg:grid-cols-[.65fr_1.35fr]"><div><p className="signal-label">THE PROCESS</p><h2 className="signal-heading mt-4">Four steps. No guesswork.</h2></div><ol className="space-y-4">{steps.map(([title,body],index)=><li className="process-row" key={title}><span>0{index+1}</span><div><h3>{title}</h3><p>{body}</p></div><ArrowUpRight aria-hidden="true"/></li>)}</ol></Container></section><section className="bg-[#eef5e9]"><Container className="py-20 sm:py-28"><div className="max-w-[880px]"><p className="signal-label">WHAT COUNTS</p><h2 className="signal-heading mt-4">A good response is not always a real next step.</h2><p className="mt-5 max-w-[680px] text-lg leading-relaxed text-[#39544a]">We agree what a useful action looks like before recruitment, so a polite answer is not mistaken for demand.</p></div><div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-4">{ACTIONS.map(([title,body],index)=><article className="signal-step" key={title}><span className="text-[10px] font-extrabold uppercase tracking-[0.14em] text-[#5e4b85]">0{index+1}</span><h3>{title}</h3><p>{body}</p></article>)}</div><p className="mt-6 max-w-[680px] text-sm leading-relaxed text-[#4a6157]">What counts depends on the test. We agree it with you before recruiting.</p></Container></section><section className="bg-[#e7e3f6]"><Container className="grid gap-8 py-20 sm:py-24 md:grid-cols-2"><div><p className="signal-label">FOR FOUNDERS</p><h2 className="mt-4 text-3xl font-bold tracking-tight">Start with what you need to know.</h2><p className="mt-4 max-w-[48ch] text-[#4e4b62]">Tell us your question. We’ll talk through fit, scope and cost before any recruiting begins.</p><ButtonLink to="/contact" showArrow className="mt-6">Test my idea</ButtonLink></div><div><p className="signal-label">FOR TESTERS</p><h2 className="mt-4 text-3xl font-bold tracking-tight">Your opinion, your choice.</h2><p className="mt-4 max-w-[48ch] text-[#4e4b62]">Apply for free, get matched when a test fits, and track your participation and reward status in your account.</p><Link className="signal-link mt-6" to="/join">Become a tester <ArrowUpRight size={17}/></Link></div></Container></section></PageShell>;
+  usePageMeta({
+    title: 'How RAPID works | Product research in Nigeria',
+    description:
+      'See how RAPID takes a founder’s question to clear findings: scoping the test, recruiting testers, collecting responses and reporting what they mean.',
+  });
+
+  return (
+    <PageShell overlayHeader>
+      <PageHero
+        tone="green"
+        kicker="How RAPID works"
+        title={
+          <>
+            From your question to <span className="t-serif text-sun-300">a clear answer.</span>
+          </>
+        }
+        lead="A simple, people-led process that connects your idea with the people you’re building for."
+      />
+
+      <section aria-labelledby="process-heading" className="py-24 sm:py-32">
+        <Container>
+          <Reveal className="max-w-[720px]">
+            <p className="kicker">The process</p>
+            <h2 id="process-heading" className="t-section mt-4 text-ink">
+              Four steps. <span className="t-serif text-rapid-700">No guesswork.</span>
+            </h2>
+          </Reveal>
+          <div className="mt-14">
+            <LoopSteps steps={STEPS} tone="light" />
+          </div>
+        </Container>
+      </section>
+
+      <section aria-labelledby="counts-heading" className="relative overflow-hidden bg-cream-100 py-24 sm:py-32">
+        <div aria-hidden="true" className="paper-grid absolute inset-0" />
+        <Container className="relative">
+          <Reveal className="max-w-[820px]">
+            <p className="kicker">What counts</p>
+            <h2 id="counts-heading" className="t-section mt-4 text-ink">
+              A polite answer is <span className="t-serif text-rapid-700">not a next step.</span>
+            </h2>
+            <p className="lead mt-5">
+              We agree what a useful action looks like before recruitment, so a kind word is never mistaken for demand.
+            </p>
+          </Reveal>
+          <Stagger className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {ACTIONS.map(({ icon: Icon, title, body }, index) => (
+              <article key={title} className="lift flex flex-col rounded-[24px] bg-white p-6 ring-1 ring-cream-200">
+                <span className={index === 3 ? 'flex h-11 w-11 items-center justify-center rounded-full bg-cream-100 text-ink-soft' : 'flex h-11 w-11 items-center justify-center rounded-full bg-rapid-50 text-rapid-700'}>
+                  <Icon size={19} aria-hidden="true" />
+                </span>
+                <h3 className="mt-6 font-display text-[21px] font-bold leading-tight tracking-[-0.02em] text-ink">{title}</h3>
+                <p className="mt-2 text-[15px] leading-relaxed text-ink-soft">{body}</p>
+              </article>
+            ))}
+          </Stagger>
+          <p className="mt-6 text-sm text-ink-faint">What counts depends on the test. We agree it with you before recruiting.</p>
+        </Container>
+      </section>
+
+      <section className="py-24 sm:py-32">
+        <Container className="grid gap-5 md:grid-cols-2">
+          <Reveal className="flex flex-col rounded-[28px] bg-rapid-900 p-8 text-white sm:p-12">
+            <p className="kicker !text-rapid-100">For founders</p>
+            <h2 className="mt-4 font-display text-[34px] font-bold leading-[1.05] tracking-[-0.03em]">
+              Start with what you <span className="t-serif text-sun-300">need to know.</span>
+            </h2>
+            <p className="mt-4 max-w-[44ch] flex-1 text-[16px] leading-relaxed text-rapid-100">
+              Tell us your question. We’ll talk through fit, scope and cost before any recruiting begins.
+            </p>
+            <div className="on-dark mt-8">
+              <ButtonLink to="/contact" showArrow>
+                Test my idea
+              </ButtonLink>
+            </div>
+          </Reveal>
+          <Reveal delay={100} className="flex flex-col rounded-[28px] bg-white p-8 ring-1 ring-cream-200 sm:p-12">
+            <p className="kicker">For testers</p>
+            <h2 className="mt-4 font-display text-[34px] font-bold leading-[1.05] tracking-[-0.03em] text-ink">
+              Your opinion, <span className="t-serif text-rapid-700">your choice.</span>
+            </h2>
+            <p className="mt-4 max-w-[44ch] flex-1 text-[16px] leading-relaxed text-ink-soft">
+              Apply for free, get invited when a test fits, and track your participation and reward status in your account.
+            </p>
+            <Link className="text-arrow mt-8" to="/join">
+              Become a tester <ArrowUpRight size={17} aria-hidden="true" />
+            </Link>
+          </Reveal>
+        </Container>
+      </section>
+    </PageShell>
+  );
 }

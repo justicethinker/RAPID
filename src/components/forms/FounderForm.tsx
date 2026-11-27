@@ -230,7 +230,7 @@ export function FounderForm({ account }: { account?: AccountFormContext } = {}) 
               hint={account ? 'This is the email on your account.' : undefined}
               registration={register('email')}
               error={msg(errors.email)}
-              className={account ? 'bg-studio-50 text-light-muted' : undefined}
+              className={account ? 'bg-cream-50 text-ink-soft' : undefined}
             />
           </div>
         </div>
@@ -288,7 +288,7 @@ export function FounderForm({ account }: { account?: AccountFormContext } = {}) 
             href="/privacy"
             target="_blank"
             rel="noopener noreferrer"
-            className="font-semibold text-brand-700 underline underline-offset-2"
+            className="font-semibold text-rapid-700 underline underline-offset-2"
           >
             Privacy Policy
           </a>{' '}
@@ -297,10 +297,10 @@ export function FounderForm({ account }: { account?: AccountFormContext } = {}) 
       </section>
 
       {formError && (
-        <div role="alert" className="rounded-2xl border border-red-200 bg-red-50 p-5">
+        <div role="alert" className="rounded-2xl border border-danger/30 bg-danger-50 p-5">
           <p className="font-semibold text-danger">{formError}</p>
           {!fieldErrorsFromServer && (
-            <p className="mt-1 text-sm text-light-muted">{FOUNDER_FORM.saveErrorDetail}</p>
+            <p className="mt-1 text-sm text-ink-soft">{FOUNDER_FORM.saveErrorDetail}</p>
           )}
           <Button type="button" variant="outline" size="sm" className="mt-3" onClick={retry}>
             {FOUNDER_FORM.retry}
@@ -308,7 +308,7 @@ export function FounderForm({ account }: { account?: AccountFormContext } = {}) 
         </div>
       )}
 
-      <div className="border-t border-studio-200 pt-6">
+      <div className="border-t border-cream-200 pt-6">
         <Button
           type="submit"
           size="lg"
@@ -325,7 +325,7 @@ export function FounderForm({ account }: { account?: AccountFormContext } = {}) 
             FOUNDER_FORM.submit
           )}
         </Button>
-        <p className="mt-3 text-sm text-light-muted">{FOUNDER_FORM.note}</p>
+        <p className="mt-3 text-sm text-ink-soft">{FOUNDER_FORM.note}</p>
       </div>
 
       <SubmitOverlay show={status === 'saving'} message={FOUNDER_FORM.saving} />

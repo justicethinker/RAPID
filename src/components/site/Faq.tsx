@@ -6,16 +6,16 @@ import { cn } from '@/lib/cn';
 
 function Answer({ answer, privacyLink }: { answer: string; privacyLink?: boolean }) {
   if (!privacyLink) {
-    return <p className="text-[15px] leading-relaxed text-light-muted">{answer}</p>;
+    return <p className="text-[16px] leading-relaxed text-ink-soft">{answer}</p>;
   }
 
   const [before, after] = answer.split('Privacy Policy');
   return (
-    <p className="text-[15px] leading-relaxed text-light-muted">
+    <p className="text-[16px] leading-relaxed text-ink-soft">
       {before}
       <Link
         to="/privacy"
-        className="font-semibold text-brand-700 underline underline-offset-2 hover:text-ink"
+        className="font-semibold text-rapid-700 underline underline-offset-2 hover:text-ink"
       >
         Privacy Policy
       </Link>
@@ -41,26 +41,26 @@ export function Faq({
     <Accordion.Root
       type="single"
       collapsible
-      className={cn('border-t border-studio-200', className)}
+      className={cn('space-y-3', className)}
     >
       {items.map((item, index) => (
         <Accordion.Item
           key={item.question}
           value={`${id}-${index}`}
-          className="group border-b border-studio-200"
+          className="group rounded-2xl border border-cream-200 bg-white px-5 transition-[border-color,box-shadow] duration-300 hover:border-cream-300 data-[state=open]:border-rapid-200 data-[state=open]:shadow-elev-2 sm:px-6"
         >
           <Accordion.Header>
-            <Accordion.Trigger className="flex w-full items-center gap-4 py-5 text-left transition-colors hover:text-brand-700 data-[state=open]:text-brand-700">
-              <span className="flex-1 text-[16px] font-bold leading-snug text-ink group-data-[state=open]:text-brand-700">
+            <Accordion.Trigger className="flex w-full items-center gap-4 py-5 text-left">
+              <span className="flex-1 font-display text-[18px] font-semibold leading-snug tracking-[-0.01em] text-ink">
                 {item.question}
               </span>
-              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-studio-300 text-studio-500 transition-all duration-300 group-data-[state=open]:rotate-45 group-data-[state=open]:border-brand-700 group-data-[state=open]:bg-brand-50 group-data-[state=open]:text-brand-700">
+              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-cream-100 text-ink transition-all duration-300 group-hover:bg-cream-200 group-data-[state=open]:rotate-45 group-data-[state=open]:bg-sun-500">
                 <Plus size={14} strokeWidth={2.4} aria-hidden="true" />
               </span>
             </Accordion.Trigger>
           </Accordion.Header>
           <Accordion.Content className="overflow-hidden data-[state=open]:animate-[accordionOpen_0.32s_cubic-bezier(0.16,1,0.3,1)] data-[state=closed]:animate-[accordionClose_0.22s_ease]">
-            <div className="pb-5 pr-12">
+            <div className="pb-6 pr-2 sm:pr-14">
               <Answer answer={item.answer} privacyLink={item.privacyLink} />
             </div>
           </Accordion.Content>

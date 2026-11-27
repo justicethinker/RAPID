@@ -10,8 +10,9 @@ test.describe('Home page', () => {
         exact: false,
       }),
     ).toBeVisible();
+    // The marquee renders its words twice for a seamless loop.
     await expect(
-      page.locator('main section').first().getByText('CLEAR NEXT STEPS'),
+      page.locator('main section').first().getByText('Clear next steps').first(),
     ).toBeVisible();
   });
 
@@ -33,6 +34,17 @@ test.describe('Home page', () => {
     await page.goto('/');
     const header = page.locator('header');
     await expect(header.locator('a[aria-label="RAPID home"]')).toBeVisible();
+    // Small screens keep the links in a drawer behind the Menu button.
+    const menu = header.getByRole('button', { name: 'Menu' });
+    if (await menu.isVisible()) {
+      await menu.click();
+      const drawer = page.getByRole('dialog', { name: 'Menu' });
+      await expect(drawer.getByRole('navigation', { name: 'Mobile navigation' })).toBeVisible();
+      await expect(drawer.locator('a[href="/join"]')).toBeVisible();
+      await expect(drawer.locator('a[href="/founders"]')).toBeVisible();
+      await expect(drawer.getByText('How it works')).toBeVisible();
+      return;
+    }
     // Each breakpoint renders one of two navs, so match the one that is showing.
     await expect(header.locator('nav:visible').first()).toBeVisible();
     await expect(header.locator('a[href="/join"]:visible').first()).toBeVisible();
@@ -42,7 +54,8 @@ test.describe('Home page', () => {
 
   test('audience paths are easy to find', async ({ page }) => {
     await page.goto('/');
-    await expect(page.locator('header a[href="/join"]:visible').first()).toHaveAttribute(
+    // The hero offers the tester door on every screen size.
+    await expect(page.locator('main a[href="/join"]:visible').first()).toHaveAttribute(
       'href',
       '/join',
     );

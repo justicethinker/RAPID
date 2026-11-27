@@ -7,7 +7,6 @@ import { ApiError } from "@/lib/api";
 import { FOUNDER_AUDIENCES, INTERESTS, SITUATIONS } from "@/content/pilot";
 import type { StaffTestDetail as TestDetail } from "@/lib/dashboard-types";
 import { labelOutcome } from "@/lib/labels";
-import { Stagger } from "@/components/motion/Reveal";
 import {
   BackLink,
   EmptyState,
@@ -277,12 +276,12 @@ function StaffTestEditor({ id, data, refresh }: { id: string; data: TestDetail; 
 
       {actionError && <ErrorPanel message={actionError} />}
       {saved && (
-        <p className="rounded-xl border border-brand-100 bg-brand-50 p-4 text-sm font-semibold text-brand-700">
+        <p className="rounded-xl border border-rapid-100 bg-rapid-50 p-4 text-sm font-semibold text-rapid-700">
           {saved}
         </p>
       )}
 
-      <Stagger className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="rows grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <Stat label="Invited" value={data.counts.invited} />
         <Stat
           label="Accepted"
@@ -295,7 +294,7 @@ function StaffTestEditor({ id, data, refresh }: { id: string; data: TestDetail; 
           value={data.counts.responses}
           hint="Written answers to review"
         />
-      </Stagger>
+      </div>
 
       <Panel
         title="Scope"
@@ -336,7 +335,7 @@ function StaffTestEditor({ id, data, refresh }: { id: string; data: TestDetail; 
                   </option>
                 ))}
               </select>
-              <p className="mt-1.5 text-xs leading-relaxed text-light-muted">
+              <p className="mt-1.5 text-xs leading-relaxed text-ink-soft">
                 Publishing is a separate step in the findings panel.
               </p>
             </div>
@@ -350,7 +349,7 @@ function StaffTestEditor({ id, data, refresh }: { id: string; data: TestDetail; 
             <div><FieldLabel htmlFor="price-currency">Currency</FieldLabel><input id="price-currency" className={inputClass} value={priceCurrency} maxLength={3} onChange={(event) => setPriceCurrency(event.target.value.toUpperCase())} /></div>
             <div><FieldLabel htmlFor="reward-amount">Reward (kobo)</FieldLabel><input id="reward-amount" type="number" min={0} className={inputClass} value={rewardAmount} onChange={(event) => setRewardAmount(event.target.value)} /></div>
             <div className="sm:col-span-3"><FieldLabel htmlFor="task-url">External task URL</FieldLabel><input id="task-url" className={inputClass} value={taskUrl} placeholder="https://…" onChange={(event) => setTaskUrl(event.target.value)} /></div>
-            <label className="flex items-center gap-3 text-sm text-light-muted sm:col-span-3"><input type="checkbox" checked={taskRequiresReturn} onChange={(event) => setTaskRequiresReturn(event.target.checked)} className="h-4 w-4" /> Tester must return to Rapid after the task</label>
+            <label className="flex items-center gap-3 text-sm text-ink-soft sm:col-span-3"><input type="checkbox" checked={taskRequiresReturn} onChange={(event) => setTaskRequiresReturn(event.target.checked)} className="h-4 w-4" /> Tester must return to Rapid after the task</label>
           </div>
 
           <div>
@@ -477,7 +476,7 @@ function StaffTestEditor({ id, data, refresh }: { id: string; data: TestDetail; 
           <button
             type="submit"
             disabled={saving}
-            className="inline-flex min-h-[44px] items-center rounded-xl bg-brand-500 px-5 text-sm font-bold text-ink hover:bg-brand-700 hover:text-white disabled:opacity-60"
+            className="inline-flex min-h-[44px] items-center rounded-full bg-sun-500 px-5 text-sm font-semibold text-ink hover:bg-sun-400 disabled:opacity-60"
           >
             Save scope
           </button>
@@ -485,31 +484,31 @@ function StaffTestEditor({ id, data, refresh }: { id: string; data: TestDetail; 
       </Panel>
 
       <Panel title="Study builder" description="Copy a service template, then edit steps, screeners and eligibility. AI drafts stay editable until you save.">
-        <div className="flex flex-wrap items-end gap-3 border-b border-studio-200 pb-5">
+        <div className="flex flex-wrap items-end gap-3 border-b border-cream-200 pb-5">
           <div className="min-w-[220px] flex-1"><FieldLabel htmlFor="template-key">Template</FieldLabel><select id="template-key" className={inputClass} value={templateKey} onChange={(event) => setTemplateKey(event.target.value)}>{(templates.data ?? []).map((template) => <option key={template.service_key} value={template.service_key}>{template.name}</option>)}</select></div>
-          <button type="button" disabled={saving} onClick={async () => { setSaving(true); try { await request(`/api/staff/tests/${id}/copy-template`, { method: 'POST', body: { serviceKey: templateKey } }); await study.refresh(); setSaved('Template copied.'); } catch { setActionError('Could not copy the template.'); } finally { setSaving(false); } }} className="min-h-[44px] rounded-xl bg-brand-500 px-4 text-sm font-bold text-ink hover:bg-brand-700 hover:text-white disabled:opacity-60">Copy template</button>
-          <button type="button" disabled={saving} onClick={async () => { setSaving(true); try { await request(`/api/staff/tests/${id}/ai-draft`, { method: 'POST', body: {} }); await study.refresh(); setSaved('AI draft added. Review it before publishing.'); } catch { setActionError('Could not draft the study.'); } finally { setSaving(false); } }} className="min-h-[44px] rounded-xl border border-studio-300 px-4 text-sm font-bold disabled:opacity-60">AI draft</button>
+          <button type="button" disabled={saving} onClick={async () => { setSaving(true); try { await request(`/api/staff/tests/${id}/copy-template`, { method: 'POST', body: { serviceKey: templateKey } }); await study.refresh(); setSaved('Template copied.'); } catch { setActionError('Could not copy the template.'); } finally { setSaving(false); } }} className="min-h-[44px] rounded-full bg-sun-500 px-4 text-sm font-bold text-ink hover:bg-sun-400 disabled:opacity-60">Copy template</button>
+          <button type="button" disabled={saving} onClick={async () => { setSaving(true); try { await request(`/api/staff/tests/${id}/ai-draft`, { method: 'POST', body: {} }); await study.refresh(); setSaved('AI draft added. Review it before publishing.'); } catch { setActionError('Could not draft the study.'); } finally { setSaving(false); } }} className="min-h-[44px] rounded-xl border border-cream-300 px-4 text-sm font-bold disabled:opacity-60">AI draft</button>
         </div>
         <div className="grid gap-6 py-5 lg:grid-cols-3">
-          <div className="space-y-4"><h3 className="text-sm font-bold text-ink">Steps</h3>{(study.data?.steps ?? []).map((step) => <div key={step.id} className="rounded-xl border border-studio-200 p-3"><p className="text-xs font-bold uppercase tracking-[0.14em] text-studio-600">{step.position + 1} · {step.stepType.replaceAll('_', ' ')}</p><p className="mt-1 text-sm text-ink">{step.prompt}</p><button type="button" onClick={async () => { await request(`/api/staff/tests/${id}/steps/${step.id}`, { method: 'DELETE' }); await study.refresh(); }} className="mt-2 text-xs font-bold text-danger">Delete</button></div>)}</div>
+          <div className="space-y-4"><h3 className="font-display text-sm font-bold text-ink">Steps</h3>{(study.data?.steps ?? []).map((step) => <div key={step.id} className="rounded-xl border border-cream-200 p-3"><p className="text-xs font-bold uppercase tracking-[0.14em] text-ink-faint">{step.position + 1} · {step.stepType.replaceAll('_', ' ')}</p><p className="mt-1 text-sm text-ink">{step.prompt}</p><button type="button" onClick={async () => { await request(`/api/staff/tests/${id}/steps/${step.id}`, { method: 'DELETE' }); await study.refresh(); }} className="mt-2 text-xs font-bold text-danger">Delete</button></div>)}</div>
           <form className="space-y-3" onSubmit={async (event) => { event.preventDefault(); setSaving(true); try { await request(`/api/staff/tests/${id}/steps`, { method: 'POST', body: { position: study.data?.steps.length ?? 0, stepType, prompt: stepPrompt, options: stepOptions.split(',').map((item) => item.trim()).filter(Boolean), required: true } }); setStepPrompt(''); setStepOptions(''); await study.refresh(); } catch { setActionError('Could not save the step.'); } finally { setSaving(false); } }}>
-            <h3 className="text-sm font-bold text-ink">Add step</h3>
+            <h3 className="font-display text-sm font-bold text-ink">Add step</h3>
             <select className={inputClass} value={stepType} onChange={(event) => setStepType(event.target.value)}><option value="single_choice">Single choice</option><option value="multiple_choice">Multiple choice</option><option value="scale">Scale</option><option value="short_answer">Short answer</option><option value="image_prompt">Image prompt</option><option value="link_task">Link / task</option></select>
             <textarea className={`${inputClass} min-h-[70px]`} value={stepPrompt} onChange={(event) => setStepPrompt(event.target.value)} placeholder="Prompt" required />
             <input className={inputClass} value={stepOptions} onChange={(event) => setStepOptions(event.target.value)} placeholder="Options, comma separated" />
-            <button className="min-h-[40px] rounded-xl bg-brand-500 px-4 text-sm font-bold text-ink disabled:opacity-60">Add step</button>
+            <button className="min-h-[40px] rounded-full bg-sun-500 px-4 text-sm font-bold text-ink disabled:opacity-60">Add step</button>
           </form>
-          <div className="space-y-4"><h3 className="text-sm font-bold text-ink">Eligibility</h3>{(study.data?.rules ?? []).map((rule) => <div key={rule.id} className="rounded-xl border border-studio-200 p-3"><p className="text-sm text-ink">{rule.ruleType.replaceAll('_', ' ')} · {JSON.stringify(rule.value)}</p><button type="button" onClick={async () => { await request(`/api/staff/tests/${id}/rules/${rule.id}`, { method: 'DELETE' }); await study.refresh(); }} className="mt-1 text-xs font-bold text-danger">Delete</button></div>)}</div>
+          <div className="space-y-4"><h3 className="font-display text-sm font-bold text-ink">Eligibility</h3>{(study.data?.rules ?? []).map((rule) => <div key={rule.id} className="rounded-xl border border-cream-200 p-3"><p className="text-sm text-ink">{rule.ruleType.replaceAll('_', ' ')} · {JSON.stringify(rule.value)}</p><button type="button" onClick={async () => { await request(`/api/staff/tests/${id}/rules/${rule.id}`, { method: 'DELETE' }); await study.refresh(); }} className="mt-1 text-xs font-bold text-danger">Delete</button></div>)}</div>
           <form className="space-y-3" onSubmit={async (event) => { event.preventDefault(); setSaving(true); try { await request(`/api/staff/tests/${id}/rules`, { method: 'POST', body: { ruleType, operator: 'in', value: { values: ruleValues.split(',').map((item) => item.trim()).filter(Boolean) } } }); setRuleValues(''); await study.refresh(); } catch { setActionError('Could not save the rule.'); } finally { setSaving(false); } }}>
             <select className={inputClass} value={ruleType} onChange={(event) => setRuleType(event.target.value)}><option value="country">Country</option><option value="age_band">Age band</option><option value="situation">Situation</option><option value="interest">Interest</option><option value="industry">Industry</option></select>
             <input className={inputClass} value={ruleValues} onChange={(event) => setRuleValues(event.target.value)} placeholder="Values, comma separated" required />
-            <button className="min-h-[40px] rounded-xl bg-brand-500 px-4 text-sm font-bold text-ink disabled:opacity-60">Add rule</button>
+            <button className="min-h-[40px] rounded-full bg-sun-500 px-4 text-sm font-bold text-ink disabled:opacity-60">Add rule</button>
           </form>
-          <div className="space-y-4"><h3 className="text-sm font-bold text-ink">Screeners</h3>{(study.data?.screeners ?? []).map((screener) => <div key={screener.id} className="rounded-xl border border-studio-200 p-3"><p className="text-sm text-ink">{screener.question}</p><button type="button" onClick={async () => { await request(`/api/staff/tests/${id}/screeners/${screener.id}`, { method: 'DELETE' }); await study.refresh(); }} className="mt-1 text-xs font-bold text-danger">Delete</button></div>)}</div>
+          <div className="space-y-4"><h3 className="font-display text-sm font-bold text-ink">Screeners</h3>{(study.data?.screeners ?? []).map((screener) => <div key={screener.id} className="rounded-xl border border-cream-200 p-3"><p className="text-sm text-ink">{screener.question}</p><button type="button" onClick={async () => { await request(`/api/staff/tests/${id}/screeners/${screener.id}`, { method: 'DELETE' }); await study.refresh(); }} className="mt-1 text-xs font-bold text-danger">Delete</button></div>)}</div>
           <form className="space-y-3" onSubmit={async (event) => { event.preventDefault(); setSaving(true); try { await request(`/api/staff/tests/${id}/screeners`, { method: 'POST', body: { position: study.data?.screeners.length ?? 0, question: screenerQuestion, options: screenerOptions.split(',').map((item) => item.trim()).filter(Boolean), required: true } }); setScreenerQuestion(''); setScreenerOptions(''); await study.refresh(); } catch { setActionError('Could not save the screener.'); } finally { setSaving(false); } }}>
             <textarea className={`${inputClass} min-h-[70px]`} value={screenerQuestion} onChange={(event) => setScreenerQuestion(event.target.value)} placeholder="Screener question" required />
             <input className={inputClass} value={screenerOptions} onChange={(event) => setScreenerOptions(event.target.value)} placeholder="Options, comma separated" required />
-            <button className="min-h-[40px] rounded-xl bg-brand-500 px-4 text-sm font-bold text-ink disabled:opacity-60">Add screener</button>
+            <button className="min-h-[40px] rounded-full bg-sun-500 px-4 text-sm font-bold text-ink disabled:opacity-60">Add screener</button>
           </form>
         </div>
       </Panel>
@@ -524,7 +523,7 @@ function StaffTestEditor({ id, data, refresh }: { id: string; data: TestDetail; 
             type="button"
             onClick={() => void invite()}
             disabled={!selected.length || saving || Boolean(data.priceAmount && data.paymentStatus !== 'paid')}
-            className="inline-flex min-h-[44px] items-center rounded-xl bg-brand-500 px-4 text-sm font-bold text-ink hover:bg-brand-700 hover:text-white disabled:opacity-60"
+            className="inline-flex min-h-[44px] items-center rounded-full bg-sun-500 px-4 text-sm font-semibold text-ink hover:bg-sun-400 disabled:opacity-60"
           >
             Invite selected ({selected.length})
           </button>
@@ -586,7 +585,7 @@ function StaffTestEditor({ id, data, refresh }: { id: string; data: TestDetail; 
           </select>
           <button
             type="submit"
-            className="inline-flex min-h-[44px] items-center justify-center rounded-xl border border-studio-300 bg-studio-25 px-4 text-sm font-semibold text-ink hover:border-brand-600"
+            className="inline-flex min-h-[44px] items-center justify-center rounded-full border border-cream-300 bg-white px-4 text-sm font-semibold text-ink hover:border-rapid-600"
           >
             Filter
           </button>
@@ -613,7 +612,7 @@ function StaffTestEditor({ id, data, refresh }: { id: string; data: TestDetail; 
           </EmptyState>
         )}
         {candidates.data && candidates.data.length > 0 && (
-          <ul className="rows divide-y divide-studio-200">
+          <ul className="rows divide-y divide-cream-200">
             {candidates.data.map((candidate) => (
               <li key={candidate.id} className="flex items-start gap-3 py-3">
                 <input
@@ -627,23 +626,23 @@ function StaffTestEditor({ id, data, refresh }: { id: string; data: TestDetail; 
                         : current.filter((value) => value !== candidate.id),
                     )
                   }
-                  className="mt-1 h-4 w-4 rounded border-studio-300 text-brand-700 focus:ring-brand-500"
+                  className="mt-1 h-4 w-4 rounded border-cream-300 text-rapid-700 focus:ring-rapid-500"
                 />
                 <div className="min-w-0">
                   <p className="font-semibold text-ink">
                     {candidate.name || candidate.email}
                   </p>
-                  <p className="text-sm text-light-muted">
+                  <p className="text-sm text-ink-soft">
                     {candidate.email} · {candidate.city ?? "—"}
                     {candidate.country ? `, ${candidate.country}` : ""} ·{" "}
                     {candidate.situation?.replaceAll("_", " ") ?? "—"}
                   </p>
-                  <p className="mt-1 text-xs text-light-muted">
+                  <p className="mt-1 text-xs text-ink-soft">
                     {candidate.interests
                       .map((interest) => interest.replaceAll("_", " "))
                       .join(", ")}
                   </p>
-                  {candidate.matchReasons?.length ? <p className="mt-1 text-xs text-brand-700">Matched by: {candidate.matchReasons.map((reason) => reason.replaceAll("_", " ")).join(", ")}</p> : null}
+                  {candidate.matchReasons?.length ? <p className="mt-1 text-xs text-rapid-700">Matched by: {candidate.matchReasons.map((reason) => reason.replaceAll("_", " ")).join(", ")}</p> : null}
                 </div>
               </li>
             ))}
@@ -666,7 +665,7 @@ function StaffTestEditor({ id, data, refresh }: { id: string; data: TestDetail; 
             </p>
           </EmptyState>
         ) : (
-          <ul className="rows divide-y divide-studio-200">
+          <ul className="rows divide-y divide-cream-200">
             {data.invitations.map((invitation) => (
               <li key={invitation.id} className="py-4">
                 <div className="flex flex-wrap items-center justify-between gap-3">
@@ -674,7 +673,7 @@ function StaffTestEditor({ id, data, refresh }: { id: string; data: TestDetail; 
                     <p className="font-semibold text-ink">
                       {invitation.tester.name || invitation.tester.email}
                     </p>
-                    <p className="text-sm text-light-muted">
+                    <p className="text-sm text-ink-soft">
                       {invitation.tester.email}
                     </p>
                   </div>
@@ -690,14 +689,14 @@ function StaffTestEditor({ id, data, refresh }: { id: string; data: TestDetail; 
                     >
                       {invitation.status}
                     </Pill>
-                    {(invitation.status === "accepted" || invitation.status === "completed") && data.taskUrl && <button type="button" disabled={saving} onClick={async () => { setSaving(true); try { await request(`/api/staff/invitations/${invitation.id}/task-action/verify`, { method: 'POST', body: { evidence: 'Verified by staff' } }); setSaved('Task action marked verified.'); } catch { setActionError('Could not verify the task action.'); } finally { setSaving(false); } }} className="inline-flex min-h-[36px] items-center rounded-lg border border-studio-300 px-3 text-xs font-semibold text-ink hover:border-brand-600 disabled:opacity-60">Verify action</button>}
+                    {(invitation.status === "accepted" || invitation.status === "completed") && data.taskUrl && <button type="button" disabled={saving} onClick={async () => { setSaving(true); try { await request(`/api/staff/invitations/${invitation.id}/task-action/verify`, { method: 'POST', body: { evidence: 'Verified by staff' } }); setSaved('Task action marked verified.'); } catch { setActionError('Could not verify the task action.'); } finally { setSaving(false); } }} className="inline-flex min-h-[36px] items-center rounded-full border border-cream-300 px-3 text-xs font-semibold text-ink hover:border-rapid-600 disabled:opacity-60">Verify action</button>}
                     {invitation.status === "completed" &&
                       invitation.rewardStatus === "pending" && (
                         <button
                           type="button"
                           disabled={saving}
                           onClick={() => void markReward(invitation.id)}
-                          className="inline-flex min-h-[36px] items-center rounded-lg border border-studio-300 px-3 text-xs font-semibold text-ink hover:border-brand-600"
+                          className="inline-flex min-h-[36px] items-center rounded-full border border-cream-300 px-3 text-xs font-semibold text-ink hover:border-rapid-600"
                         >
                           Mark reward sent
                         </button>
@@ -733,7 +732,7 @@ function StaffTestEditor({ id, data, refresh }: { id: string; data: TestDetail; 
             type="button"
             onClick={() => void publish()}
             disabled={saving || !data.findings}
-            className="inline-flex min-h-[44px] items-center rounded-xl border border-studio-300 bg-studio-25 px-4 text-sm font-semibold text-ink hover:border-brand-600 disabled:opacity-60"
+            className="inline-flex min-h-[44px] items-center rounded-full border border-cream-300 bg-white px-4 text-sm font-semibold text-ink hover:border-rapid-600 disabled:opacity-60"
           >
             {data.findings?.publishedAt ? "Republish" : "Publish findings"}
           </button>
@@ -803,7 +802,7 @@ function StaffTestEditor({ id, data, refresh }: { id: string; data: TestDetail; 
               {learnings.map((learning, index) => (
                 <div
                   key={index}
-                  className="grid gap-2 rounded-xl border border-studio-200 p-3 sm:grid-cols-[200px_1fr_auto]"
+                  className="grid gap-2 rounded-xl border border-cream-200 p-3 sm:grid-cols-[200px_1fr_auto]"
                 >
                   <input
                     aria-label={`Learning ${index + 1} label`}
@@ -847,7 +846,7 @@ function StaffTestEditor({ id, data, refresh }: { id: string; data: TestDetail; 
                             ),
                       )
                     }
-                    className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-studio-200 text-light-muted hover:text-danger"
+                    className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-cream-200 text-ink-soft hover:text-danger"
                   >
                     <Trash2 size={16} aria-hidden="true" />
                   </button>
@@ -862,25 +861,25 @@ function StaffTestEditor({ id, data, refresh }: { id: string; data: TestDetail; 
                   { label: "", detail: "" },
                 ])
               }
-              className="mt-3 inline-flex min-h-[40px] items-center gap-2 rounded-xl border border-studio-300 px-3 text-sm font-semibold text-ink hover:border-brand-600"
+              className="mt-3 inline-flex min-h-[40px] items-center gap-2 rounded-full border border-cream-300 px-3 text-sm font-semibold text-ink hover:border-rapid-600"
             >
               <Plus size={15} aria-hidden="true" />
               Add learning
             </button>
           </fieldset>
 
-          <button type="button" disabled={saving} onClick={async () => { setSaving(true); try { const draft = await request<{ headline: string; summary: string; limits: string; recommendation: string; learnings: Learning[] }>(`/api/staff/tests/${id}/findings/ai-draft`); setHeadline(draft.headline); setSummary(draft.summary); setLimits(draft.limits); setRecommendation(draft.recommendation); setLearnings(draft.learnings.length ? draft.learnings : [{ label: '', detail: '' }]); setSaved('Draft filled. Review it before saving.'); } catch { setActionError('Could not draft findings.'); } finally { setSaving(false); } }} className="inline-flex min-h-[44px] items-center rounded-xl border border-studio-300 px-4 text-sm font-bold text-ink hover:border-brand-600 disabled:opacity-60">AI draft findings</button>
+          <button type="button" disabled={saving} onClick={async () => { setSaving(true); try { const draft = await request<{ headline: string; summary: string; limits: string; recommendation: string; learnings: Learning[] }>(`/api/staff/tests/${id}/findings/ai-draft`); setHeadline(draft.headline); setSummary(draft.summary); setLimits(draft.limits); setRecommendation(draft.recommendation); setLearnings(draft.learnings.length ? draft.learnings : [{ label: '', detail: '' }]); setSaved('Draft filled. Review it before saving.'); } catch { setActionError('Could not draft findings.'); } finally { setSaving(false); } }} className="inline-flex min-h-[44px] items-center rounded-full border border-cream-300 px-4 text-sm font-semibold text-ink hover:border-rapid-600 disabled:opacity-60">AI draft findings</button>
           <div className="flex flex-wrap gap-3">
             <button
               type="submit"
               disabled={saving}
-              className="inline-flex min-h-[44px] items-center rounded-xl bg-brand-500 px-5 text-sm font-bold text-ink hover:bg-brand-700 hover:text-white disabled:opacity-60"
+              className="inline-flex min-h-[44px] items-center rounded-full bg-sun-500 px-5 text-sm font-semibold text-ink hover:bg-sun-400 disabled:opacity-60"
             >
               Save findings
             </button>
           </div>
           {data.findings?.publishedAt && (
-            <p className="text-sm font-semibold text-brand-700">
+            <p className="text-sm font-semibold text-rapid-700">
               Published {new Date(data.findings.publishedAt).toLocaleString()}
             </p>
           )}

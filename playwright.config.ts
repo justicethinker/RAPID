@@ -10,8 +10,8 @@ import { defineConfig, devices } from '@playwright/test';
  * WebKit (desktop Safari + iPhone Safari) needs GTK/GStreamer system libraries
  * that are not installed in this Ubuntu 24 environment. Those projects are
  * opt-in: install the libraries with
- *   sudo pnpm exec playwright install-deps webkit
- * and run with PLAYWRIGHT_INCLUDE_WEBKIT=1 pnpm e2e.
+ *   sudo npx playwright install-deps webkit
+ * and run with PLAYWRIGHT_INCLUDE_WEBKIT=1 npm run e2e.
  */
 const includeWebkit = process.env.PLAYWRIGHT_INCLUDE_WEBKIT === '1';
 
@@ -40,7 +40,7 @@ export default defineConfig({
       : []),
   ],
   webServer: {
-    command: 'pnpm preview',
+    command: 'npm run preview',
     port: 4173,
     reuseExistingServer: !process.env.CI,
   },

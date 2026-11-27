@@ -1,13 +1,11 @@
 import type { ReactNode } from 'react';
 import { Photo } from '@/components/ui/Photo';
-import { SignalMark } from '@/components/ui/SignalMark';
-
 import type { AuthPhoto } from './authPhotos';
 
 /**
- * The portrait rail shared by the account screens. The content column keeps
- * its original width; the photo adds a 320px column on desktop and becomes a
- * 16:9 band between the intro and the card on smaller screens.
+ * Account screens: the form column on the left and, on large screens, a tall
+ * photo panel with one human line on the right. Small screens keep only the
+ * form so nothing stands between a person and the field they need.
  */
 export function AuthSplit({
   photo,
@@ -22,47 +20,31 @@ export function AuthSplit({
   children: ReactNode;
 }) {
   return (
-    <div className="auth-split grid gap-7 lg:grid-cols-[minmax(0,1fr)_320px] lg:items-start lg:gap-x-14">
-      <div className={`w-full ${width} mx-auto lg:col-start-1 lg:row-start-1`}>
-        {header}
+    <div className="grid gap-7 lg:grid-cols-[minmax(0,1fr)_340px] lg:items-start lg:gap-x-14">
+      <div className={`mx-auto w-full ${width} lg:col-start-1 lg:row-start-1`}>{header}</div>
+
+      <div aria-hidden="true" className="hidden lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:block">
+        <figure className="on-dark relative overflow-hidden rounded-[28px] bg-rapid-900 shadow-elev-3 lg:sticky lg:top-8">
+          <Photo
+            name={photo.name}
+            sizes="340px"
+            alt=""
+            width={photo.width}
+            height={photo.height}
+            priority
+            className="ken-burns aspect-[4/5.2] object-cover"
+          />
+          <span className="pointer-events-none absolute inset-0 bg-gradient-to-t from-rapid-950 via-rapid-950/30 to-transparent" />
+          <figcaption className="absolute inset-x-0 bottom-0 p-6 text-white">
+            <span className="kicker">Real people · Honest feedback</span>
+            <strong className="mt-3 block font-display text-[26px] font-bold leading-[1.08] tracking-[-0.025em]">
+              Your experience <span className="t-serif text-sun-300">makes the difference.</span>
+            </strong>
+          </figcaption>
+        </figure>
       </div>
 
-      <div className="auth-visual lg:col-start-2 lg:row-span-2 lg:row-start-1">
-        <div className="relative mx-auto w-full max-w-[440px] lg:sticky lg:top-8 lg:mx-0 lg:max-w-none">
-          <p className="auth-visual-label">THE RAPID COMMUNITY <span><SignalMark /></span></p>
-          <figure className="auth-portrait relative overflow-hidden border border-studio-200 bg-studio-100 shadow-elev-3">
-            <Photo
-              name={photo.name}
-              sizes="(min-width: 1024px) 320px, (min-width: 480px) 440px, 90vw"
-              alt={photo.alt}
-              width={photo.width}
-              height={photo.height}
-              priority
-              className="aspect-[16/9] object-[center_30%] saturate-[.82] contrast-[1.02] lg:aspect-[4/5] lg:object-center"
-            />
-            <span
-              aria-hidden="true"
-              className="pointer-events-none absolute inset-0 bg-gradient-to-t from-forest-950/65 via-transparent to-transparent"
-            />
-            <span
-              aria-hidden="true"
-              className="absolute left-3 top-3 rounded-full border border-white/25 bg-forest-950/50 px-2.5 py-1 text-[9px] font-extrabold uppercase tracking-[0.12em] text-studio-50 backdrop-blur"
-            >
-              RAPID · Pilot
-            </span>
-            {photo.caption && (
-              <figcaption className="absolute bottom-3 left-3 text-[10px] font-bold text-studio-50">
-                {photo.caption}
-              </figcaption>
-            )}
-          </figure>
-          <div className="auth-visual-note"><span>REAL PEOPLE. HONEST FEEDBACK.</span><strong>Your experience makes the difference.</strong></div>
-        </div>
-      </div>
-
-      <div className={`w-full ${width} mx-auto lg:col-start-1 lg:row-start-2`}>
-        {children}
-      </div>
+      <div className={`mx-auto w-full ${width} lg:col-start-1 lg:row-start-2`}>{children}</div>
     </div>
   );
 }

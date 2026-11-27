@@ -265,7 +265,7 @@ export default function FounderPosts() {
       >
         <Link
           to="/app/founder/startup"
-          className="inline-flex min-h-[44px] items-center rounded-xl border border-studio-300 bg-studio-25 px-4 text-sm font-bold text-ink hover:border-brand-600 hover:bg-studio-50"
+          className="inline-flex min-h-[44px] items-center rounded-full border border-cream-300 bg-white px-4 text-sm font-semibold text-ink hover:border-rapid-600 hover:bg-cream-50"
         >
           Edit startup
         </Link>
@@ -280,7 +280,7 @@ export default function FounderPosts() {
             <p>Posts live on your startup profile. Set that up before you write your first post.</p>
             <Link
               to="/app/founder/startup"
-              className="mt-4 inline-flex min-h-[44px] items-center rounded-xl bg-brand-500 px-5 text-sm font-bold text-ink hover:bg-brand-700 hover:text-white"
+              className="mt-4 inline-flex min-h-[44px] items-center rounded-full bg-sun-500 px-5 text-sm font-semibold text-ink hover:bg-sun-400"
             >
               Set up startup
             </Link>
@@ -291,7 +291,7 @@ export default function FounderPosts() {
       {data && startup && (
         <>
           {notice && (
-            <p role="status" className="rounded-xl border border-brand-200 bg-brand-50 px-4 py-3 text-sm font-semibold text-brand-700">
+            <p role="status" className="rounded-xl border border-rapid-200 bg-rapid-50 px-4 py-3 text-sm font-semibold text-rapid-700">
               {notice}
             </p>
           )}
@@ -301,7 +301,7 @@ export default function FounderPosts() {
             description="A short update is enough: what you built, who it is for, or a question you want early users to answer."
           >
             {formError && (
-              <p role="alert" className="mb-4 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-semibold text-danger">
+              <p role="alert" className="mb-4 rounded-xl border border-danger/30 bg-danger-50 px-4 py-3 text-sm font-semibold text-danger">
                 {formError}
               </p>
             )}
@@ -349,7 +349,7 @@ export default function FounderPosts() {
                   ) : (
                     <span />
                   )}
-                  <span className="shrink-0 text-xs tabular-nums text-studio-600">{body.length}/4000</span>
+                  <span className="shrink-0 text-xs tabular-nums text-ink-faint">{body.length}/4000</span>
                 </div>
               </div>
 
@@ -395,11 +395,11 @@ export default function FounderPosts() {
                       ))}
                     </select>
                     {linkableTests.length === 0 && (
-                      <p className="mt-2 text-xs leading-relaxed text-studio-600">
+                      <p className="mt-2 text-xs leading-relaxed text-ink-faint">
                         You have no validation tests yet.{' '}
                         <Link
                           to="/app/founder/new"
-                          className="font-semibold text-brand-700 underline underline-offset-2"
+                          className="font-semibold text-rapid-700 underline underline-offset-2"
                         >
                           Request validation
                         </Link>{' '}
@@ -479,7 +479,7 @@ export default function FounderPosts() {
                   const editBusy = busyAction === `edit:${post.id}`;
 
                   return (
-                    <li key={post.id} className="rounded-2xl border border-studio-200 bg-studio-50/60 p-4 sm:p-5">
+                    <li key={post.id} className="rounded-2xl border border-cream-200 bg-cream-50/60 p-4 sm:p-5">
                       <div className="flex flex-wrap items-start justify-between gap-3">
                         <div className="min-w-0">
                           <div className="flex flex-wrap items-center gap-2">
@@ -493,12 +493,12 @@ export default function FounderPosts() {
                             {post.moderatedAt && (
                               <Pill tone="negative">Hidden by moderation</Pill>
                             )}
-                            <span className="text-xs text-studio-600">
+                            <span className="text-xs text-ink-faint">
                               {formatDay(post.publishedAt ?? post.createdAt)}
                             </span>
                           </div>
                           {!isEditing && (
-                            <h3 className="mt-2 text-[18px] font-bold tracking-[-0.02em] text-ink">{post.title}</h3>
+                            <h3 className="font-display mt-2 text-[18px] font-bold tracking-[-0.02em] text-ink">{post.title}</h3>
                           )}
                         </div>
                         {!isEditing && (
@@ -508,7 +508,7 @@ export default function FounderPosts() {
                                 type="button"
                                 onClick={() => void publish(post.id)}
                                 disabled={publishing === post.id}
-                                className="inline-flex min-h-[40px] items-center gap-2 rounded-lg bg-brand-500 px-3 text-xs font-bold text-ink hover:bg-brand-600 disabled:opacity-60"
+                                className="inline-flex min-h-[40px] items-center gap-2 rounded-full bg-sun-500 px-3 text-xs font-semibold text-ink hover:bg-sun-400 disabled:opacity-60"
                               >
                                 {publishing === post.id ? (
                                   <Loader2 size={14} className="animate-spin" aria-hidden="true" />
@@ -522,7 +522,7 @@ export default function FounderPosts() {
                               <button
                                 type="button"
                                 onClick={() => startEditing(post)}
-                                className="inline-flex min-h-[40px] items-center gap-2 rounded-lg border border-studio-300 bg-studio-25 px-3 text-xs font-bold text-ink hover:border-brand-600"
+                                className="inline-flex min-h-[40px] items-center gap-2 rounded-full border border-cream-300 bg-white px-3 text-xs font-semibold text-ink hover:border-rapid-600"
                               >
                                 <Pencil size={14} aria-hidden="true" />
                                 Edit
@@ -532,7 +532,7 @@ export default function FounderPosts() {
                               type="button"
                               onClick={() => void changeStatus(post.id, 'archive')}
                               disabled={archiveBusy}
-                              className="inline-flex min-h-[40px] items-center gap-2 rounded-lg px-2 text-xs font-bold text-studio-600 hover:bg-studio-100 hover:text-ink disabled:opacity-60"
+                              className="inline-flex min-h-[40px] items-center gap-2 rounded-full px-2 text-xs font-semibold text-ink-faint hover:bg-cream-100 hover:text-ink disabled:opacity-60"
                             >
                               {archiveBusy ? (
                                 <Loader2 size={14} className="animate-spin" aria-hidden="true" />
@@ -548,7 +548,7 @@ export default function FounderPosts() {
                       {isEditing ? (
                         <form onSubmit={(event) => void saveEdit(event)} noValidate className="mt-4 space-y-4">
                           {editError && (
-                            <p role="alert" className="rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-xs font-semibold text-danger">
+                            <p role="alert" className="rounded-lg border border-danger/30 bg-danger-50 px-3 py-2 text-xs font-semibold text-danger">
                               {editError}
                             </p>
                           )}
@@ -592,7 +592,7 @@ export default function FounderPosts() {
                               ) : (
                                 <span />
                               )}
-                              <span className="shrink-0 text-xs tabular-nums text-studio-600">
+                              <span className="shrink-0 text-xs tabular-nums text-ink-faint">
                                 {editing.body.length}/4000
                               </span>
                             </div>
@@ -722,7 +722,7 @@ export default function FounderPosts() {
                                 setEditError(null);
                               }}
                               disabled={editBusy}
-                              className="min-h-[44px] rounded-xl px-3 text-sm font-bold text-studio-600 hover:text-ink disabled:opacity-60"
+                              className="min-h-[44px] rounded-xl px-3 text-sm font-bold text-ink-faint hover:text-ink disabled:opacity-60"
                             >
                               Cancel
                             </button>
@@ -730,15 +730,15 @@ export default function FounderPosts() {
                         </form>
                       ) : (
                         <>
-                          <p className="mt-3 whitespace-pre-line text-sm leading-relaxed text-light-muted">{post.body}</p>
+                          <p className="mt-3 whitespace-pre-line text-sm leading-relaxed text-ink-soft">{post.body}</p>
                           {post.linkedTest && (
-                            <p className="mt-2 text-xs text-studio-600">
+                            <p className="mt-2 text-xs text-ink-faint">
                               Linked test: {post.linkedTest.title || 'Untitled test'}
                               {post.linkedTest.status ? ` · ${post.linkedTest.status}` : ''}
                             </p>
                           )}
                           {post.eligibility && (
-                            <p className="mt-1 text-xs text-studio-600">
+                            <p className="mt-1 text-xs text-ink-faint">
                               Eligibility: {post.eligibility}
                             </p>
                           )}
@@ -746,7 +746,7 @@ export default function FounderPosts() {
                       )}
 
                       {!isEditing && (
-                        <div className="mt-4 border-t border-studio-200 pt-4">
+                        <div className="mt-4 border-t border-cream-200 pt-4">
                           <PostImageGallery
                             id={`post-images-${post.id}`}
                             images={post.images}
@@ -759,12 +759,12 @@ export default function FounderPosts() {
                       )}
 
                       {!isEditing && post.status === 'published' && shareUrl && (
-                        <div className="mt-4 flex flex-wrap items-center gap-3 border-t border-studio-200 pt-4">
+                        <div className="mt-4 flex flex-wrap items-center gap-3 border-t border-cream-200 pt-4">
                           <a
                             href={shareUrl}
                             target="_blank"
                             rel="noreferrer"
-                            className="text-xs font-bold text-brand-700 underline underline-offset-2"
+                            className="text-xs font-bold text-rapid-700 underline underline-offset-2"
                           >
                             View public post
                           </a>
@@ -772,7 +772,7 @@ export default function FounderPosts() {
                         </div>
                       )}
                       {!isEditing && post.status === 'published' && !shareUrl && (
-                        <p className="mt-4 border-t border-studio-200 pt-4 text-xs text-light-muted">
+                        <p className="mt-4 border-t border-cream-200 pt-4 text-xs text-ink-soft">
                           This post is published, but your startup profile is a draft, so the public link is not live yet.
                         </p>
                       )}
@@ -792,18 +792,18 @@ export default function FounderPosts() {
                 {archivedPosts.map((post) => {
                   const restoreBusy = busyAction === `restore:${post.id}`;
                   return (
-                    <li key={post.id} className="rounded-2xl border border-studio-200 bg-studio-50/60 p-4 sm:p-5">
+                    <li key={post.id} className="rounded-2xl border border-cream-200 bg-cream-50/60 p-4 sm:p-5">
                       <div className="flex flex-wrap items-start justify-between gap-3">
                         <div className="min-w-0">
                           <Pill tone={STATUS_TONE.archived}>{statusLabel(post.status)}</Pill>
-                          <h3 className="mt-2 text-[17px] font-bold tracking-[-0.02em] text-ink">{post.title}</h3>
-                          <p className="mt-1 line-clamp-2 text-sm leading-relaxed text-light-muted">{post.body}</p>
+                          <h3 className="font-display mt-2 text-[17px] font-bold tracking-[-0.02em] text-ink">{post.title}</h3>
+                          <p className="mt-1 line-clamp-2 text-sm leading-relaxed text-ink-soft">{post.body}</p>
                         </div>
                         <button
                           type="button"
                           onClick={() => void changeStatus(post.id, 'restore')}
                           disabled={restoreBusy}
-                          className="inline-flex min-h-[40px] items-center gap-2 rounded-lg border border-studio-300 bg-studio-25 px-3 text-xs font-bold text-ink hover:border-brand-600 disabled:opacity-60"
+                          className="inline-flex min-h-[40px] items-center gap-2 rounded-full border border-cream-300 bg-white px-3 text-xs font-semibold text-ink hover:border-rapid-600 disabled:opacity-60"
                         >
                           {restoreBusy ? (
                             <Loader2 size={14} className="animate-spin" aria-hidden="true" />
@@ -820,7 +820,7 @@ export default function FounderPosts() {
                               key={image.id}
                               src={image.url}
                               alt={image.altText ?? `Image ${index + 1} for ${post.title}`}
-                              className="h-20 w-28 rounded-lg border border-studio-200 object-cover"
+                              className="h-20 w-28 rounded-lg border border-cream-200 object-cover"
                             />
                           ))}
                         </div>

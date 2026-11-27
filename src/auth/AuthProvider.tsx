@@ -10,7 +10,7 @@ import {
 import { Loader2 } from "lucide-react";
 import { ApiError, api } from "@/lib/api";
 
-import { SessionContext, clerkPublishableKey, type Me, type SessionStatus, type SessionValue } from "./session";
+import { SessionContext, accountsEnabled, clerkPublishableKey, type Me, type SessionStatus, type SessionValue } from "./session";
 
 /** Used by the Clerk bridge, which lives in its own chunk. */
 export function SessionValueProvider({
@@ -29,8 +29,8 @@ const ClerkBridge = lazy(() => import("@/auth/ClerkBridge"));
 
 function SessionLoading() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-studio-50">
-      <p className="flex items-center gap-3 text-light-muted">
+    <div className="flex min-h-screen items-center justify-center bg-cream-50">
+      <p role="status" className="flex items-center gap-3 text-ink-soft">
         <Loader2 size={18} className="animate-spin" aria-hidden="true" />
         Loading your account…
       </p>
@@ -116,7 +116,29 @@ function LocalSessionProvider({ children }: { children: ReactNode }) {
  * (and the Clerk SDK) is a separate chunk, so public pages stay on the light
  * bundle.
  */
+const unavailable = async (): Promise<never> => {
+  throw new Error("Accounts are not switched on for this site.");
+};
+
+/** A signed-out session that never calls the API, for builds without accounts. */
+const OFFLINE_SESSION: SessionValue = {
+  mode: "local",
+  status: "signed_out",
+  me: null,
+  error: null,
+  refresh: async () => {},
+  signOut: async () => {},
+  signInDev: unavailable,
+  signInAdminDev: unavailable,
+  signUpDev: unavailable,
+  getToken: async () => null,
+};
+
 export function AuthRoot({ children }: { children: ReactNode }) {
+  if (!accountsEnabled) {
+    return <SessionValueProvider value={OFFLINE_SESSION}>{children}</SessionValueProvider>;
+  }
+
   if (!clerkPublishableKey) {
     return <LocalSessionProvider>{children}</LocalSessionProvider>;
   }

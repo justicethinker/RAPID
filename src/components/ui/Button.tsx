@@ -2,9 +2,9 @@ import type { ButtonHTMLAttributes, ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/cn';
-import { buttonStyles } from '@/components/ui/buttonStyles';
+import { buttonStyles, type ButtonVariant } from '@/components/ui/buttonStyles';
 
-type Variant = 'primary' | 'outline' | 'ghost' | 'inverse';
+type Variant = ButtonVariant;
 type Size = 'sm' | 'md' | 'lg';
 
 
@@ -33,7 +33,7 @@ export function Button({
       aria-disabled={disabled || undefined}
       className={cn(
         buttonStyles({ variant, size, className }),
-        disabled && 'cursor-not-allowed opacity-60 hover:translate-y-0 hover:bg-brand-500 hover:text-ink',
+        disabled && 'cursor-not-allowed opacity-55 hover:translate-y-0 hover:shadow-none',
       )}
       {...props}
     >

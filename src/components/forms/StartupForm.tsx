@@ -96,7 +96,7 @@ export function StartupForm({
   return (
     <form onSubmit={(event) => void onSubmit(event)} noValidate className="space-y-5">
       {error && (
-        <p role="alert" className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-semibold text-danger">
+        <p role="alert" className="rounded-xl border border-danger/30 bg-danger-50 px-4 py-3 text-sm font-semibold text-danger">
           {error}
         </p>
       )}
@@ -145,7 +145,7 @@ export function StartupForm({
           ) : (
             <span />
           )}
-          <span className="shrink-0 text-xs tabular-nums text-studio-600">{description.length}/500</span>
+          <span className="shrink-0 text-xs tabular-nums text-ink-faint">{description.length}/500</span>
         </div>
       </div>
 
@@ -215,16 +215,16 @@ export function StartupForm({
         )}
       </div>
 
-      <label className="flex cursor-pointer items-start gap-3 rounded-xl border border-studio-200 bg-studio-50 p-4">
+      <label className="flex cursor-pointer items-start gap-3 rounded-xl border border-cream-200 bg-cream-50 p-4">
         <input
           type="checkbox"
           checked={publish}
           onChange={(event) => setPublish(event.target.checked)}
-          className="mt-1 h-4 w-4 rounded border-studio-300 accent-brand-700"
+          className="mt-1 h-4 w-4 rounded border-cream-300 accent-rapid-700"
         />
         <span>
           <span className="block text-sm font-semibold text-ink">Publish my startup profile</span>
-          <span className="mt-1 block text-xs leading-relaxed text-light-muted">
+          <span className="mt-1 block text-xs leading-relaxed text-ink-soft">
             Published profiles are visible to anyone with the link. You can switch back to draft at any time.
           </span>
         </span>
@@ -243,7 +243,7 @@ export function StartupForm({
             'Create startup'
           )}
         </Button>
-        <p className="text-xs text-light-muted">
+        <p className="text-xs text-ink-soft">
           You can edit these details later from My startup.
         </p>
       </div>

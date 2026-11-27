@@ -56,11 +56,11 @@ function EmailSignIn() {
 
   if (available === false) {
     return (
-      <div className="rounded-2xl border border-studio-200 bg-studio-50 p-5">
-        <p className="text-sm text-light-muted">
+      <div className="rounded-2xl border border-cream-200 bg-cream-50 p-5">
+        <p className="text-sm text-ink-soft">
           Sign-in isn’t available right now. Email{" "}
           <a
-            className="font-semibold text-brand-700 underline underline-offset-2"
+            className="font-semibold text-rapid-700 underline underline-offset-2"
             href={supportEmailHref}
           >
             {supportEmail}
@@ -73,7 +73,7 @@ function EmailSignIn() {
 
   if (available === null) {
     return (
-      <p className="flex items-center gap-2 text-sm text-light-muted">
+      <p className="flex items-center gap-2 text-sm text-ink-soft">
         <Loader2 size={16} className="animate-spin" aria-hidden="true" />
         Checking sign-in…
       </p>
@@ -119,7 +119,7 @@ function EmailSignIn() {
       >
         Email
       </label>
-      <p className="mt-1 text-sm text-light-muted">
+      <p className="mt-1 text-sm text-ink-soft">
         Use the email on your account.
       </p>
       <input
@@ -138,7 +138,7 @@ function EmailSignIn() {
       <button
         type="submit"
         disabled={pending || !email.trim()}
-        className="sheen mt-5 inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-xl bg-brand-500 px-5 font-semibold text-ink transition-all duration-200 hover:-translate-y-0.5 hover:bg-brand-600 active:scale-[0.99] disabled:opacity-60"
+        className="sheen mt-5 inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-full bg-sun-500 px-5 font-semibold text-ink transition-all duration-200 hover:-translate-y-0.5 hover:bg-sun-400 active:scale-[0.99] disabled:opacity-60"
       >
         {pending ? (
           <>
@@ -154,7 +154,7 @@ function EmailSignIn() {
         <p
           id="signin-error"
           role="alert"
-          className="shake mt-3 text-sm font-semibold text-danger"
+          className="shake mt-3 rounded-xl bg-danger-50 px-3 py-2 text-sm font-semibold text-danger"
         >
           {error}
         </p>
@@ -182,10 +182,11 @@ export default function SignIn() {
         photo={SESSION_PHOTO}
         header={
           <>
-            <h1 className="text-center text-[32px] font-extrabold tracking-[-0.03em] text-ink">
-              Welcome back.
+            <p className="kicker">Sign in</p>
+            <h1 className="mt-4 font-display text-[40px] font-bold leading-[1.02] tracking-[-0.03em] text-ink sm:text-[48px]">
+              Welcome <span className="t-serif text-rapid-700">back.</span>
             </h1>
-            <p className="mx-auto mt-3 max-w-[38ch] text-center text-light-muted">
+            <p className="mt-3 max-w-[40ch] text-[17px] text-ink-soft">
               {clerkPublishableKey
                 ? "Sign in with the email you signed up with, or continue with Google if that’s how you created your account."
                 : "Sign in to manage your startup profile, posts, validation requests and tester invitations."}
@@ -193,19 +194,19 @@ export default function SignIn() {
           </>
         }
       >
-        <div className="rise rounded-2xl border border-studio-200 bg-studio-25 p-5 shadow-elev-1 sm:p-7">
+        <div className="rise rounded-[24px] bg-white p-5 shadow-elev-2 ring-1 ring-cream-200 sm:p-7">
             {/* The session resolves after the first paint. Showing the form
                 during that window flashes sign-in controls at someone who is
                 already signed in, and a redirect follows. */}
             {status === "loading" ? (
-              <p className="flex items-center justify-center gap-2 py-8 text-sm text-light-muted">
+              <p className="flex items-center justify-center gap-2 py-8 text-sm text-ink-soft">
                 <Loader2 size={16} className="animate-spin" aria-hidden="true" />
                 Loading sign-in…
               </p>
             ) : clerkPublishableKey ? (
               <Suspense
                 fallback={
-                  <p className="flex items-center justify-center gap-2 py-8 text-sm text-light-muted">
+                  <p className="flex items-center justify-center gap-2 py-8 text-sm text-ink-soft">
                     <Loader2
                       size={16}
                       className="animate-spin"
@@ -222,16 +223,16 @@ export default function SignIn() {
             )}
         </div>
 
-        <p className="mt-6 text-center text-sm text-light-muted">
+        <p className="mt-6 text-sm text-ink-soft">
           New here?{" "}
           <Link
             to="/sign-up/tester"
-            className="font-semibold text-brand-700 underline underline-offset-2"
+            className="font-semibold text-rapid-700 underline underline-offset-2"
           >
             Create a tester account
           </Link>
           . Founders can{" "}
-          <Link to="/sign-up/founder" className="font-semibold text-brand-700 underline underline-offset-2">
+          <Link to="/sign-up/founder" className="font-semibold text-rapid-700 underline underline-offset-2">
             create a startup profile
           </Link>{" "}
           instead.

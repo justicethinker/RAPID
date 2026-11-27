@@ -4,7 +4,6 @@ import { ShieldCheck, Users, Compass, Rocket } from 'lucide-react';
 import { useSession, type Role } from '@/auth/session';
 import { usePageMeta } from '@/hooks/usePageMeta';
 import { applicationStatus } from '@/pages/app/application-status';
-import { Stagger } from '@/components/motion/Reveal';
 import { useSpotlight } from '@/components/motion/spotlight';
 
 export default function AppHome() {
@@ -19,34 +18,34 @@ export default function AppHome() {
   if (roles.length === 0) {
     return (
       <div className="mx-auto max-w-[620px]">
-        <h1 className="text-[28px] font-extrabold tracking-[-0.03em] text-ink sm:text-[32px]">
+        <h1 className="font-display text-[28px] font-bold tracking-[-0.03em] text-ink sm:text-[32px]">
           This account has no profile yet
         </h1>
-        <p className="mt-3 text-light-muted">
+        <p className="mt-3 text-ink-soft">
           You’re signed in as {me.person.email}. Finish your tester application, or tell us what you want to test.
         </p>
-        <Stagger className="mt-8 grid gap-4 sm:grid-cols-2">
+        <div className="rows mt-8 grid gap-4 sm:grid-cols-2">
           <Link
             to="/sign-up/tester"
-            className="lift card-sheen group rounded-2xl border border-studio-200 bg-studio-25 p-6 transition-colors hover:border-brand-600"
+            className="lift card-sheen group rounded-2xl border border-cream-200 bg-white p-6 transition-colors hover:border-rapid-600"
           >
-            <Users size={22} className="text-brand-700" aria-hidden="true" />
+            <Users size={22} className="text-rapid-700" aria-hidden="true" />
             <span className="mt-4 block text-lg font-bold text-ink">Join as a tester</span>
-            <span className="mt-1 block text-sm text-light-muted">
+            <span className="mt-1 block text-sm text-ink-soft">
               A three-minute application. Then take part in short research tasks.
             </span>
           </Link>
           <Link
             to="/sign-up/founder"
-            className="rounded-2xl border border-studio-200 bg-studio-25 p-6 transition-colors hover:border-brand-600"
+            className="rounded-2xl border border-cream-200 bg-white p-6 transition-colors hover:border-rapid-600"
           >
-            <Compass size={22} className="text-brand-700" aria-hidden="true" />
+            <Compass size={22} className="text-rapid-700" aria-hidden="true" />
             <span className="mt-4 block text-lg font-bold text-ink">Create a founder account</span>
-            <span className="mt-1 block text-sm text-light-muted">
+            <span className="mt-1 block text-sm text-ink-soft">
               Set up a public startup profile and collect early interest.
             </span>
           </Link>
-        </Stagger>
+        </div>
       </div>
     );
   }
@@ -58,14 +57,14 @@ export default function AppHome() {
 
   return (
     <div className="mx-auto max-w-[760px]">
-      <h1 className="text-[28px] font-extrabold tracking-[-0.03em] text-ink sm:text-[32px]">
+      <h1 className="font-display text-[28px] font-bold tracking-[-0.03em] text-ink sm:text-[32px]">
         Where do you want to go?
       </h1>
-      <p className="mt-3 text-light-muted">
+      <p className="mt-3 text-ink-soft">
         This account is set up for more than one role. Each view shows different work.
       </p>
 
-      <Stagger className="mt-8 grid gap-4">
+      <div className="rows mt-8 grid gap-4">
         {me.roles.tester && me.tester && (
           <RoleCard
             to="/app/tester"
@@ -90,7 +89,7 @@ export default function AppHome() {
             description="Review applications and run the pilot."
           />
         )}
-      </Stagger>
+      </div>
     </div>
   );
 }
@@ -112,20 +111,20 @@ function RoleCard({
     <Link
       to={to}
       onPointerMove={onPointerMove}
-      className="lift spotlight group flex items-center justify-between gap-4 rounded-2xl border border-studio-200 bg-studio-25 p-6 transition-colors hover:border-brand-600"
+      className="lift spotlight group flex items-center justify-between gap-4 rounded-2xl border border-cream-200 bg-white p-6 transition-colors hover:border-rapid-600"
     >
       <span className="flex items-center gap-4">
-        <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-50 text-brand-700 transition-transform duration-300 group-hover:-rotate-3 group-hover:scale-105">
+        <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-rapid-50 text-rapid-700 transition-transform duration-300 group-hover:-rotate-3 group-hover:scale-105">
           {icon}
         </span>
         <span>
           <span className="block text-lg font-bold text-ink">{title}</span>
-          <span className="block text-sm text-light-muted">{description}</span>
+          <span className="block text-sm text-ink-soft">{description}</span>
         </span>
       </span>
       <span
         aria-hidden="true"
-        className="text-light-muted transition-transform duration-300 group-hover:translate-x-1"
+        className="text-ink-soft transition-transform duration-300 group-hover:translate-x-1"
       >
         →
       </span>

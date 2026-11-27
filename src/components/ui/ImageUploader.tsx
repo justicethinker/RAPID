@@ -181,20 +181,20 @@ export function ImageUploader({
         onDragOver={onDragOver}
         onDrop={onDrop}
         className={cn(
-          'relative rounded-xl border bg-studio-50 p-4 transition-colors',
+          'relative rounded-xl border bg-cream-50 p-4 transition-colors',
           dragging
-            ? 'border-brand-600 bg-brand-50 ring-2 ring-brand-500/20'
-            : 'border-studio-200',
+            ? 'border-rapid-600 bg-rapid-50 ring-2 ring-rapid-500/20'
+            : 'border-cream-200',
         )}
       >
         {dragging && !pending && (
           <div
             aria-hidden="true"
-            className="pointer-events-none absolute inset-1 z-10 flex items-center justify-center rounded-lg border-2 border-dashed border-brand-600 bg-brand-50/95 p-4 text-center"
+            className="pointer-events-none absolute inset-1 z-10 flex items-center justify-center rounded-lg border-2 border-dashed border-rapid-600 bg-rapid-50/95 p-4 text-center"
           >
             <span>
-              <ImagePlus size={24} className="mx-auto text-brand-700" />
-              <span className="mt-2 block text-sm font-bold text-brand-700">
+              <ImagePlus size={24} className="mx-auto text-rapid-700" />
+              <span className="mt-2 block text-sm font-bold text-rapid-700">
                 Drop to crop and upload
               </span>
             </span>
@@ -206,12 +206,12 @@ export function ImageUploader({
             <AuthedImage
               src={currentUrl}
               alt={alt}
-              className={cn('shrink-0 rounded-lg border border-studio-200 object-cover', previewClassName)}
+              className={cn('shrink-0 rounded-lg border border-cream-200 object-cover', previewClassName)}
             />
           ) : (
             <span
               className={cn(
-                'flex shrink-0 items-center justify-center rounded-lg border border-dashed border-studio-300 bg-studio-25 text-studio-500',
+                'flex shrink-0 items-center justify-center rounded-lg border border-dashed border-cream-300 bg-white text-ink-faint',
                 previewClassName,
               )}
               aria-hidden="true"
@@ -222,7 +222,7 @@ export function ImageUploader({
 
           <div className="min-w-0 flex-1">
             <p className="text-sm font-semibold text-ink">{label}</p>
-            {hint && <p className="mt-1 text-xs leading-relaxed text-light-muted">{hint}</p>}
+            {hint && <p className="mt-1 text-xs leading-relaxed text-ink-soft">{hint}</p>}
             <div className="mt-3 flex flex-wrap items-center gap-2">
               <input
                 ref={input}
@@ -236,7 +236,7 @@ export function ImageUploader({
               <label
                 htmlFor={id}
                 className={cn(
-                  'inline-flex min-h-[40px] cursor-pointer items-center gap-2 rounded-lg border border-studio-300 bg-studio-25 px-3 text-xs font-bold text-ink transition-colors hover:border-brand-600 hover:bg-studio-50',
+                  'inline-flex min-h-[40px] cursor-pointer items-center gap-2 rounded-lg border border-cream-300 bg-white px-3 text-xs font-bold text-ink transition-colors hover:border-rapid-600 hover:bg-cream-50',
                   pending && 'cursor-not-allowed opacity-60',
                 )}
               >
@@ -252,7 +252,7 @@ export function ImageUploader({
                   type="button"
                   onClick={() => void remove()}
                   disabled={pending}
-                  className="inline-flex min-h-[40px] items-center gap-2 rounded-lg px-2 text-xs font-bold text-danger hover:bg-red-50 disabled:opacity-60"
+                  className="inline-flex min-h-[40px] items-center gap-2 rounded-full px-2 text-xs font-semibold text-danger hover:bg-danger-50 disabled:opacity-60"
                 >
                   <Trash2 size={14} aria-hidden="true" />
                   Remove
@@ -269,23 +269,23 @@ export function ImageUploader({
                   aria-valuemax={100}
                   aria-valuenow={progress ?? undefined}
                   aria-valuetext={uploadLabel}
-                  className="h-1.5 overflow-hidden rounded-full bg-studio-200"
+                  className="h-1.5 overflow-hidden rounded-full bg-cream-200"
                 >
                   <span
                     className={cn(
-                      'block h-full rounded-full bg-brand-600 transition-[width] duration-300',
+                      'block h-full rounded-full bg-rapid-600 transition-[width] duration-300',
                       progress === null && 'animate-pulse',
                     )}
                     style={{ width: progress === null ? '12%' : `${Math.max(4, progress)}%` }}
                   />
                 </div>
-                <p role="status" aria-live="polite" className="mt-1.5 text-[11px] font-semibold text-brand-700">
+                <p role="status" aria-live="polite" className="mt-1.5 text-[11px] font-semibold text-rapid-700">
                   {uploadLabel}
                 </p>
               </div>
             )}
 
-            <p className="mt-2 text-[11px] text-studio-600">
+            <p className="mt-2 text-[11px] text-ink-faint">
               PNG, JPEG or WebP · up to 3 MB. Drag a file here or choose one to crop it first.
             </p>
             {error && (

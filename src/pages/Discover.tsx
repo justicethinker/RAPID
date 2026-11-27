@@ -6,6 +6,7 @@ import {
   MessageSquare,
   Search,
   Users,
+  RefreshCw,
 } from 'lucide-react';
 import { PageShell } from '@/components/layout/PageShell';
 import { Container } from '@/components/layout/Container';
@@ -146,19 +147,15 @@ function DiscoverFeed({ q, category, type, params, setParams }: {
 
   return (
     <PageShell>
-      <section className="relative overflow-hidden bg-[#e7efe2]">
+      <section className="relative overflow-hidden bg-cream-100">
         <div
           aria-hidden="true"
           className="paper-grid pointer-events-none absolute inset-x-0 top-0 h-[420px] opacity-55"
         />
         <Container className="relative py-12 sm:py-16 lg:py-20">
-          <p className="studio-eyebrow">
-            <span className="studio-dot" /> DISCOVER
-          </p>
-          <h1 className="t-section mt-4 max-w-[780px] text-ink">
-            See what founders are
-            <br />
-            building right now.
+          <p className="kicker">Discover</p>
+          <h1 className="t-display mt-5 max-w-[860px] text-ink">
+            See what founders are <span className="t-serif text-rapid-700">building right now.</span>
           </h1>
           <p className="lead mt-5 max-w-[58ch]">
             Read public updates from startups, follow the ones you care about and
@@ -168,13 +165,13 @@ function DiscoverFeed({ q, category, type, params, setParams }: {
           <form
             onSubmit={onSubmit}
             role="search"
-            className="mt-8 rounded-2xl border border-[#bfd0b8] bg-[#f8faf2] p-4 shadow-[0_12px_35px_#1d4a2b12] sm:p-5"
+            className="mt-8 rounded-2xl border border-cream-300 bg-cream-50 p-4 shadow-[0_12px_35px_#1d4a2b12] sm:p-5"
           >
             <div className="flex flex-col gap-3 lg:flex-row lg:items-end">
               <div className="min-w-0 flex-1">
                 <label
                   htmlFor="discover-search"
-                  className="block text-[11px] font-bold uppercase tracking-[0.14em] text-[#39544a]"
+                  className="block text-[11px] font-bold uppercase tracking-[0.14em] text-ink-soft"
                 >
                   Search posts
                 </label>
@@ -182,7 +179,7 @@ function DiscoverFeed({ q, category, type, params, setParams }: {
                   <Search
                     size={17}
                     aria-hidden="true"
-                    className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-studio-600"
+                    className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-ink-faint"
                   />
                   <input
                     id="discover-search"
@@ -200,7 +197,7 @@ function DiscoverFeed({ q, category, type, params, setParams }: {
                 <div>
                   <label
                     htmlFor="discover-category"
-                    className="block text-[11px] font-bold uppercase tracking-[0.14em] text-[#39544a]"
+                    className="block text-[11px] font-bold uppercase tracking-[0.14em] text-ink-soft"
                   >
                     Category
                   </label>
@@ -224,7 +221,7 @@ function DiscoverFeed({ q, category, type, params, setParams }: {
                 <div>
                   <label
                     htmlFor="discover-type"
-                    className="block text-[11px] font-bold uppercase tracking-[0.14em] text-[#39544a]"
+                    className="block text-[11px] font-bold uppercase tracking-[0.14em] text-ink-soft"
                   >
                     Post type
                   </label>
@@ -245,7 +242,7 @@ function DiscoverFeed({ q, category, type, params, setParams }: {
 
               <button
                 type="submit"
-                className="inline-flex min-h-[46px] items-center justify-center gap-2 rounded-xl bg-brand-500 px-5 text-sm font-bold text-ink transition-colors hover:bg-brand-600"
+                className="inline-flex min-h-[46px] items-center justify-center gap-2 rounded-full bg-sun-500 px-5 text-sm font-semibold text-ink transition-colors hover:bg-sun-400"
               >
                 Search
                 <ArrowUpRight size={16} aria-hidden="true" />
@@ -259,7 +256,7 @@ function DiscoverFeed({ q, category, type, params, setParams }: {
                   setSearch('');
                   setParams(new URLSearchParams(), { replace: true });
                 }}
-                className="mt-3 text-xs font-semibold text-[#39544a] underline underline-offset-2 hover:text-ink"
+                className="mt-3 text-xs font-semibold text-ink-soft underline underline-offset-2 hover:text-ink"
               >
                 Clear filters
               </button>
@@ -268,37 +265,40 @@ function DiscoverFeed({ q, category, type, params, setParams }: {
         </Container>
       </section>
 
-      <section className="bg-studio-50 py-10 sm:py-14">
+      <section className="bg-cream-50 py-10 sm:py-14">
         <Container>
           {loading && (
-            <p role="status" className="flex items-center gap-2 text-light-muted">
+            <p role="status" className="flex items-center gap-2 text-ink-soft">
               <Loader2 size={17} className="animate-spin" aria-hidden="true" />
               Loading posts…
             </p>
           )}
 
           {!loading && error && (
-            <div
-              role="alert"
-              className="max-w-[560px] rounded-2xl border border-red-200 bg-red-50 p-6 text-danger"
-            >
-              <p className="font-semibold">{error}</p>
-              <button
-                type="button"
-                onClick={() => window.location.reload()}
-                className="mt-4 inline-flex min-h-[44px] items-center rounded-xl border border-red-200 bg-white px-4 text-sm font-semibold"
-              >
-                Try again
-              </button>
+            <div role="alert" className="flex max-w-[640px] gap-4 rounded-[24px] bg-white p-6 shadow-elev-1 ring-1 ring-cream-200 sm:p-8">
+              <span aria-hidden="true" className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-sun-100 text-sun-700">
+                <RefreshCw size={20} />
+              </span>
+              <div>
+                <p className="font-display text-[20px] font-bold tracking-[-0.015em] text-ink">The feed is taking a breather.</p>
+                <p className="mt-1 text-[15px] leading-relaxed text-ink-soft">{error}</p>
+                <button
+                  type="button"
+                  onClick={() => window.location.reload()}
+                  className="mt-4 inline-flex min-h-[44px] items-center rounded-full bg-rapid-900 px-5 text-sm font-semibold text-white transition-colors hover:bg-rapid-800"
+                >
+                  Try again
+                </button>
+              </div>
             </div>
           )}
 
           {!loading && !error && items.length === 0 && (
-            <div className="rounded-2xl border border-studio-200 bg-studio-25 p-8">
-              <h2 className="text-[22px] font-extrabold tracking-[-0.03em] text-ink">
+            <div className="rounded-[24px] bg-white p-8 shadow-elev-1 ring-1 ring-cream-200">
+              <h2 className="font-display text-[22px] font-bold tracking-[-0.03em] text-ink">
                 {filtered ? 'No posts match those filters.' : 'No public posts yet.'}
               </h2>
-              <p className="mt-2 max-w-[55ch] text-sm leading-relaxed text-light-muted">
+              <p className="mt-2 max-w-[55ch] text-sm leading-relaxed text-ink-soft">
                 {filtered
                   ? 'Try a different search, category or post type.'
                   : 'When founders publish an update it will appear here. Check back soon.'}
@@ -311,7 +311,7 @@ function DiscoverFeed({ q, category, type, params, setParams }: {
               {items.map((post) => (
                 <article
                   key={post.id}
-                  className="overflow-hidden rounded-2xl border border-studio-200 bg-studio-25"
+                  className="overflow-hidden rounded-2xl border border-cream-200 bg-white"
                 >
                   <PostImpressionMarker
                     startupId={post.startup.id}
@@ -319,7 +319,7 @@ function DiscoverFeed({ q, category, type, params, setParams }: {
                     source="discover"
                     disabled={post.isOwner}
                   />
-                  <div className="flex flex-wrap items-center justify-between gap-3 border-b border-studio-200/80 px-5 py-4 sm:px-6">
+                  <div className="flex flex-wrap items-center justify-between gap-3 border-b border-cream-200/80 px-5 py-4 sm:px-6">
                     <Link
                       to={`/startup/${post.startup.slug}?ref=discover`}
                       className="group flex min-w-0 items-center gap-3"
@@ -328,30 +328,30 @@ function DiscoverFeed({ q, category, type, params, setParams }: {
                         <img
                           src={post.startup.logoUrl}
                           alt=""
-                          className="h-10 w-10 shrink-0 rounded-xl border border-studio-200 object-cover"
+                          className="h-10 w-10 shrink-0 rounded-xl border border-cream-200 object-cover"
                         />
                       ) : (
                         <span
                           aria-hidden="true"
-                          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand-50 text-sm font-extrabold text-brand-700"
+                          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-rapid-50 text-sm font-extrabold text-rapid-700"
                         >
                           {post.startup.name.charAt(0).toUpperCase()}
                         </span>
                       )}
                       <span className="min-w-0">
-                        <span className="block truncate text-sm font-bold text-ink group-hover:text-brand-700">
+                        <span className="block truncate text-sm font-bold text-ink group-hover:text-rapid-700">
                           {post.startup.name}
                         </span>
-                        <span className="mt-0.5 block text-[11px] font-semibold uppercase tracking-[0.1em] text-studio-600">
+                        <span className="mt-0.5 block text-[11px] font-semibold uppercase tracking-[0.1em] text-ink-faint">
                           {startupCategoryLabel(post.startup.category)}
                         </span>
                       </span>
                     </Link>
                     <div className="flex items-center gap-2">
-                      <span className="rounded-full bg-brand-50 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.1em] text-brand-700">
+                      <span className="rounded-full bg-rapid-50 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.1em] text-rapid-700">
                         {post.kind === 'validation' ? 'Validation' : 'Showcase'}
                       </span>
-                      <span className="text-xs text-studio-600">
+                      <span className="text-xs text-ink-faint">
                         {formatPublished(post.publishedAt)}
                       </span>
                     </div>
@@ -359,20 +359,20 @@ function DiscoverFeed({ q, category, type, params, setParams }: {
 
                   <div className="grid gap-0 md:grid-cols-[minmax(0,1fr)_300px]">
                     <div className="min-w-0 px-5 py-5 sm:px-6 sm:py-6">
-                      <h2 className="text-[24px] font-extrabold leading-[1.12] tracking-[-0.035em] text-ink sm:text-[28px]">
+                      <h2 className="font-display text-[24px] font-bold leading-[1.12] tracking-[-0.035em] text-ink sm:text-[28px]">
                         <Link
                           to={`/startup/${post.startup.slug}?ref=discover#post-${post.id}`}
                           onClick={() => trackPostOpen(post)}
-                          className="hover:text-brand-700"
+                          className="hover:text-rapid-700"
                         >
                           {post.title}
                         </Link>
                       </h2>
-                      <p className="mt-3 whitespace-pre-line text-[15px] leading-[1.7] text-light-muted">
+                      <p className="mt-3 whitespace-pre-line text-[15px] leading-[1.7] text-ink-soft">
                         {excerpt(post.body)}
                       </p>
 
-                      <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs font-semibold text-light-muted">
+                      <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs font-semibold text-ink-soft">
                         <span className="inline-flex items-center gap-1.5">
                           <MessageSquare size={14} aria-hidden="true" />
                           {post.feedbackCount} feedback
@@ -387,7 +387,7 @@ function DiscoverFeed({ q, category, type, params, setParams }: {
                         <Link
                           to={`/startup/${post.startup.slug}?ref=discover#post-${post.id}`}
                           onClick={() => trackPostOpen(post)}
-                          className="inline-flex min-h-[42px] items-center gap-2 rounded-xl bg-brand-500 px-4 text-sm font-bold text-ink transition-colors hover:bg-brand-600"
+                          className="inline-flex min-h-[42px] items-center gap-2 rounded-full bg-sun-500 px-4 text-sm font-semibold text-ink transition-colors hover:bg-sun-400"
                         >
                           Read and respond
                           <ArrowUpRight size={15} aria-hidden="true" />
@@ -400,7 +400,7 @@ function DiscoverFeed({ q, category, type, params, setParams }: {
                     </div>
 
                     {post.images[0] && (
-                      <div className="border-t border-studio-200 md:border-l md:border-t-0">
+                      <div className="border-t border-cream-200 md:border-l md:border-t-0">
                         <img
                           src={post.images[0].url}
                           alt={
@@ -422,7 +422,7 @@ function DiscoverFeed({ q, category, type, params, setParams }: {
                     type="button"
                     onClick={() => void loadMore()}
                     disabled={loadingMore}
-                    className="inline-flex min-h-[46px] items-center gap-2 rounded-xl border border-studio-300 bg-studio-25 px-6 text-sm font-bold text-ink transition-colors hover:border-brand-600 hover:bg-studio-50 disabled:opacity-60"
+                    className="inline-flex min-h-[46px] items-center gap-2 rounded-full border border-cream-300 bg-white px-6 text-sm font-semibold text-ink transition-colors hover:border-rapid-600 hover:bg-cream-50 disabled:opacity-60"
                   >
                     {loadingMore ? (
                       <>

@@ -51,7 +51,7 @@ function isRole(value: string | undefined): value is SignUpRole {
 function Step({ current, detailsLabel = 'Your details' }: { current: 1 | 2; detailsLabel?: string }) {
   return (
     <div className="mb-4">
-      <p className="text-xs font-bold uppercase tracking-[0.14em] text-light-muted">
+      <p className="text-xs font-bold uppercase tracking-[0.14em] text-ink-soft">
         Step {current} of 2 · {current === 1 ? 'Your account' : detailsLabel}
       </p>
       <div className="mt-2 flex gap-1.5" aria-hidden="true">
@@ -59,11 +59,11 @@ function Step({ current, detailsLabel = 'Your details' }: { current: 1 | 2; deta
           <span
             key={step}
             className={`h-1 flex-1 overflow-hidden rounded-full ${
-              step <= current ? 'bg-brand-100' : 'bg-studio-200'
+              step <= current ? 'bg-rapid-100' : 'bg-cream-200'
             }`}
           >
             {step <= current && (
-              <span className="rule-grow block h-full w-full rounded-full bg-brand-500" />
+              <span className="rule-grow block h-full w-full rounded-full bg-sun-500" />
             )}
           </span>
         ))}
@@ -98,11 +98,10 @@ function StepFrame({
         name: role === 'tester' ? 'tester' : 'founder',
         alt:
           role === 'tester'
-            ? 'A participant writing notes during a research conversation'
-            : 'A founder thinking over his notes in a quiet workspace',
+            ? 'Two students laughing while trying an app on a phone on campus'
+            : 'A founder reviewing sticky-note research at her desk',
         width: 1200,
-        height: 1500,
-        caption: 'Illustrative photograph',
+        height: 896,
       }}
       header={
         <>
@@ -110,10 +109,10 @@ function StepFrame({
             current={current}
             detailsLabel={role === 'founder' ? 'Your startup' : 'Your details'}
           />
-          <h1 className="text-[30px] font-extrabold tracking-[-0.03em] text-ink sm:text-[34px]">
+          <h1 className="font-display text-[30px] font-bold tracking-[-0.03em] text-ink sm:text-[34px]">
             {title}
           </h1>
-          <p className="mt-3 text-light-muted">{intro}</p>
+          <p className="mt-3 text-ink-soft">{intro}</p>
         </>
       }
     >
@@ -126,21 +125,21 @@ function AccountProblem() {
   const { error, refresh, signOut } = useSession();
 
   return (
-    <div className="rounded-2xl border border-studio-200 bg-studio-25 p-6">
-      <h2 className="text-lg font-bold text-ink">We could not open your account</h2>
-      <p className="mt-2 text-sm text-light-muted">{error}</p>
+    <div className="rounded-2xl border border-cream-200 bg-white p-6">
+      <h2 className="font-display text-lg font-bold text-ink">We could not open your account</h2>
+      <p className="mt-2 text-sm text-ink-soft">{error}</p>
       <div className="mt-5 flex flex-wrap gap-3">
         <button
           type="button"
           onClick={() => void refresh()}
-          className="inline-flex min-h-[44px] items-center rounded-xl bg-brand-500 px-5 font-semibold text-ink hover:bg-brand-600"
+          className="inline-flex min-h-[44px] items-center rounded-full bg-sun-500 px-5 font-semibold text-ink hover:bg-sun-400"
         >
           Try again
         </button>
         <button
           type="button"
           onClick={() => void signOut()}
-          className="inline-flex min-h-[44px] items-center rounded-xl border border-studio-300 px-5 font-semibold text-ink hover:bg-studio-50"
+          className="inline-flex min-h-[44px] items-center rounded-full border border-cream-300 px-5 font-semibold text-ink hover:bg-cream-50"
         >
           Sign out
         </button>
@@ -157,14 +156,14 @@ function SignedInNote({
   signOut: SessionValue['signOut'];
 }) {
   return (
-    <p className="mb-5 flex flex-wrap items-center justify-between gap-2 rounded-xl border border-studio-200 bg-studio-25 px-4 py-3 text-sm text-light-muted">
+    <p className="mb-5 flex flex-wrap items-center justify-between gap-2 rounded-xl border border-cream-200 bg-white px-4 py-3 text-sm text-ink-soft">
       <span>
         Signed in as <strong className="text-ink">{me.person.email}</strong>
       </span>
       <button
         type="button"
         onClick={() => void signOut()}
-        className="min-h-[40px] font-semibold text-brand-700 underline underline-offset-2"
+        className="min-h-[40px] font-semibold text-rapid-700 underline underline-offset-2"
       >
         Not you?
       </button>
@@ -204,7 +203,7 @@ export default function SignUpRole() {
   if (status === 'loading') {
     return (
       <AuthLayout>
-        <p className="flex items-center justify-center gap-2 py-16 text-sm text-light-muted">
+        <p className="flex items-center justify-center gap-2 py-16 text-sm text-ink-soft">
           <Loader2 size={16} className="animate-spin" aria-hidden="true" />
           Loading your account…
         </p>
@@ -234,11 +233,11 @@ export default function SignUpRole() {
           intro={accountIntro}
           width="max-w-[440px]"
         >
-          <div className="rise rounded-2xl border border-studio-200 bg-studio-25 p-5 shadow-elev-1 sm:p-7">
+          <div className="rise rounded-[24px] bg-white p-5 shadow-elev-2 ring-1 ring-cream-200 sm:p-7">
             {clerkPublishableKey ? (
               <Suspense
                 fallback={
-                  <p className="flex items-center justify-center gap-2 py-8 text-sm text-light-muted">
+                  <p className="flex items-center justify-center gap-2 py-8 text-sm text-ink-soft">
                     <Loader2 size={16} className="animate-spin" aria-hidden="true" />
                     Loading account creation…
                   </p>
@@ -249,7 +248,7 @@ export default function SignUpRole() {
             ) : (
               <Suspense
                 fallback={
-                  <p className="flex items-center justify-center gap-2 py-8 text-sm text-light-muted">
+                  <p className="flex items-center justify-center gap-2 py-8 text-sm text-ink-soft">
                     <Loader2 size={16} className="animate-spin" aria-hidden="true" />
                     Loading…
                   </p>
@@ -260,19 +259,19 @@ export default function SignUpRole() {
             )}
           </div>
 
-          <p className="mt-6 text-center text-sm text-light-muted">
+          <p className="mt-6 text-center text-sm text-ink-soft">
             Already have an account?{' '}
             <Link
               to="/sign-in"
-              className="font-semibold text-brand-700 underline underline-offset-2"
+              className="font-semibold text-rapid-700 underline underline-offset-2"
             >
               Sign in
             </Link>
           </p>
-          <p className="mt-2 text-center text-sm text-light-muted">
+          <p className="mt-2 text-center text-sm text-ink-soft">
             <Link
               to="/sign-up"
-              className="font-semibold text-brand-700 underline underline-offset-2"
+              className="font-semibold text-rapid-700 underline underline-offset-2"
             >
               Choose a different role
             </Link>
@@ -285,7 +284,7 @@ export default function SignUpRole() {
   if (!me) {
     return (
       <AuthLayout>
-        <p className="flex items-center justify-center gap-2 py-16 text-sm text-light-muted">
+        <p className="flex items-center justify-center gap-2 py-16 text-sm text-ink-soft">
           <Loader2 size={16} className="animate-spin" aria-hidden="true" />
           Loading your account…
         </p>
@@ -303,7 +302,7 @@ export default function SignUpRole() {
         width="max-w-[720px]"
       >
         <SignedInNote me={me} signOut={signOut} />
-        <div className="rise rounded-3xl border border-studio-200 bg-studio-25 p-5 sm:p-8">
+        <div className="rise rounded-3xl border border-cream-200 bg-white p-5 sm:p-8">
           {role === 'tester' ? (
             <TesterForm
               account={{

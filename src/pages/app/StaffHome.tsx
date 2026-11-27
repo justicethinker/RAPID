@@ -4,7 +4,6 @@ import { useSession } from "@/auth/session";
 import { usePageMeta } from "@/hooks/usePageMeta";
 import { useApi } from "@/hooks/useApi";
 import { CountUp } from "@/components/motion/CountUp";
-import { Stagger } from "@/components/motion/Reveal";
 import {
   EmptyState,
   ErrorPanel,
@@ -128,7 +127,7 @@ export default function StaffHome() {
           type="button"
           onClick={() => void load()}
           disabled={status === "loading"}
-          className="inline-flex min-h-[44px] items-center gap-2 rounded-xl border border-studio-300 bg-studio-25 px-5 text-sm font-semibold text-ink transition-colors hover:border-brand-600 disabled:opacity-60"
+          className="inline-flex min-h-[44px] items-center gap-2 rounded-full border border-cream-300 bg-white px-5 text-sm font-semibold text-ink transition-colors hover:border-rapid-600 disabled:opacity-60"
         >
           {status === "loading" ? (
             <Loader2 size={16} className="animate-spin" aria-hidden="true" />
@@ -166,7 +165,7 @@ export default function StaffHome() {
             </Panel>
           )}
 
-          <Stagger className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
+          <div className="rows grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
             <Stat
               label="Awaiting review"
               value={
@@ -194,7 +193,7 @@ export default function StaffHome() {
               value={summary.totals.responses}
               hint="Written evidence collected"
             />
-          </Stagger>
+          </div>
 
           <div className="grid items-start gap-4 lg:grid-cols-2">
             <Breakdown
@@ -260,7 +259,7 @@ export default function StaffHome() {
                   type="button"
                   onClick={() => void download(type)}
                   disabled={exporting !== null}
-                  className="inline-flex min-h-[44px] items-center gap-2 rounded-xl border border-studio-300 bg-studio-25 px-4 text-sm font-semibold text-ink transition-colors hover:border-brand-600 disabled:opacity-60"
+                  className="inline-flex min-h-[44px] items-center gap-2 rounded-full border border-cream-300 bg-white px-4 text-sm font-semibold text-ink transition-colors hover:border-rapid-600 disabled:opacity-60"
                 >
                   {exporting === type ? (
                     <Loader2
@@ -300,21 +299,21 @@ function Breakdown({
     <Panel
       title={title}
       action={
-        <span className="text-[11px] font-bold uppercase tracking-[0.14em] text-studio-600 tabular-nums">
+        <span className="text-[11px] font-bold uppercase tracking-[0.14em] text-ink-faint tabular-nums">
           <CountUp value={total} /> total
         </span>
       }
     >
-      <dl className="rows divide-y divide-studio-200">
+      <dl className="rows divide-y divide-cream-200">
         {rows.map(([label, value]) => (
           <div
             key={label}
             className="flex items-baseline justify-between gap-3 py-2.5"
           >
-            <dt className="text-sm text-light-muted">{label}</dt>
+            <dt className="text-sm text-ink-soft">{label}</dt>
             <dd className="flex items-baseline gap-2.5 tabular-nums">
               {total > 0 && (
-                <span className="text-[11px] text-studio-600">
+                <span className="text-[11px] text-ink-faint">
                   {Math.round((value / total) * 100)}%
                 </span>
               )}

@@ -29,7 +29,7 @@ export default function AdminSignUp() {
   if (status === 'loading') {
     return (
       <AuthLayout>
-        <p className="flex items-center justify-center gap-2 py-16 text-sm text-light-muted">
+        <p className="flex items-center justify-center gap-2 py-16 text-sm text-ink-soft">
           <Loader2 size={16} className="animate-spin" aria-hidden="true" />
           Loading your account…
         </p>
@@ -50,10 +50,10 @@ export default function AdminSignUp() {
           photo={STAFF_PHOTO}
           header={
             <>
-              <h1 className="text-[30px] font-extrabold tracking-[-0.03em] text-ink">
+              <h1 className="font-display text-[30px] font-bold tracking-[-0.03em] text-ink">
                 This address is not invited yet
               </h1>
-              <p className="mt-3 text-light-muted">
+              <p className="mt-3 text-ink-soft">
                 {me ? (
                   <>
                     You are signed in as{' '}
@@ -70,13 +70,13 @@ export default function AdminSignUp() {
           <p className="flex flex-wrap gap-3">
             <Link
               to="/admin"
-              className="inline-flex min-h-[48px] items-center rounded-full bg-brand-500 px-6 text-sm font-bold text-ink hover:bg-brand-700 hover:text-white"
+              className="inline-flex min-h-[48px] items-center rounded-full bg-sun-500 px-6 text-sm font-semibold text-ink hover:bg-sun-400"
             >
               Check admin access
             </Link>
             <Link
               to="/sign-up"
-              className="inline-flex min-h-[48px] items-center rounded-full border border-studio-300 px-6 text-sm font-bold text-ink hover:border-brand-600 hover:bg-studio-50"
+              className="inline-flex min-h-[48px] items-center rounded-full border border-cream-300 px-6 text-sm font-semibold text-ink hover:border-rapid-600 hover:bg-cream-50"
             >
               Join as a tester or founder
             </Link>
@@ -93,21 +93,21 @@ export default function AdminSignUp() {
         photo={STAFF_PHOTO}
         header={
           <>
-            <h1 className="text-[30px] font-extrabold tracking-[-0.03em] text-ink sm:text-[34px]">
+            <h1 className="font-display text-[30px] font-bold tracking-[-0.03em] text-ink sm:text-[34px]">
               Create your admin account
             </h1>
-            <p className="mt-3 text-light-muted">
+            <p className="mt-3 text-ink-soft">
               Use the exact email address an admin invited. Access is attached when
               the account signs in — there is nothing else to accept.
             </p>
           </>
         }
       >
-        <div className="pop-in rounded-2xl border border-studio-200 bg-studio-25 p-5 shadow-elev-1 sm:p-7">
+        <div className="pop-in rounded-[24px] bg-white p-5 shadow-elev-2 ring-1 ring-cream-200 sm:p-7">
           {clerkPublishableKey ? (
             <Suspense
               fallback={
-                <p className="flex items-center justify-center gap-2 py-8 text-sm text-light-muted">
+                <p className="flex items-center justify-center gap-2 py-8 text-sm text-ink-soft">
                   <Loader2 size={16} className="animate-spin" aria-hidden="true" />
                   Loading account creation…
                 </p>
@@ -118,7 +118,7 @@ export default function AdminSignUp() {
           ) : (
             <Suspense
               fallback={
-                <p className="flex items-center justify-center gap-2 py-8 text-sm text-light-muted">
+                <p className="flex items-center justify-center gap-2 py-8 text-sm text-ink-soft">
                   <Loader2 size={16} className="animate-spin" aria-hidden="true" />
                   Loading…
                 </p>
@@ -129,19 +129,19 @@ export default function AdminSignUp() {
           )}
         </div>
 
-        <p className="mt-6 text-center text-sm text-light-muted">
+        <p className="mt-6 text-center text-sm text-ink-soft">
           Already have the account?{' '}
           <Link
             to="/admin/sign-in"
-            className="font-semibold text-brand-700 underline underline-offset-2"
+            className="font-semibold text-rapid-700 underline underline-offset-2"
           >
             Sign in
           </Link>
         </p>
-        <p className="mt-2 text-center text-sm text-light-muted">
+        <p className="mt-2 text-center text-sm text-ink-soft">
           <Link
             to="/admin"
-            className="font-semibold text-brand-700 underline underline-offset-2"
+            className="font-semibold text-rapid-700 underline underline-offset-2"
           >
             Back to admin access
           </Link>

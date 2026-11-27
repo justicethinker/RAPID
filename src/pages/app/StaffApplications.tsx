@@ -107,7 +107,7 @@ export default function StaffApplications() {
           </div>
           <button
             type="submit"
-            className="inline-flex min-h-[44px] items-center rounded-xl bg-brand-500 px-5 text-sm font-bold text-ink transition-colors hover:bg-brand-700 hover:text-white"
+            className="inline-flex min-h-[44px] items-center rounded-full bg-sun-500 px-5 text-sm font-semibold text-ink transition-colors hover:bg-sun-400"
           >
             Apply filters
           </button>
@@ -121,7 +121,7 @@ export default function StaffApplications() {
         <Panel
           title="Applicants"
           action={
-            <span className="text-[11px] font-bold uppercase tracking-[0.14em] text-studio-600 tabular-nums">
+            <span className="text-[11px] font-bold uppercase tracking-[0.14em] text-ink-faint tabular-nums">
               {data.length} shown
             </span>
           }
@@ -140,7 +140,7 @@ export default function StaffApplications() {
             <div className="-mx-2 overflow-x-auto">
               <table className="w-full border-collapse text-left text-sm sm:min-w-[680px]">
                 <thead>
-                  <tr className="border-b border-studio-200 text-[10px] uppercase tracking-[0.14em] text-studio-600">
+                  <tr className="border-b border-cream-200 text-[10px] uppercase tracking-[0.14em] text-ink-faint">
                     <th scope="col" className="px-2 py-3 font-bold">
                       Applicant
                     </th>
@@ -162,19 +162,19 @@ export default function StaffApplications() {
                   {data.map((application) => (
                     <tr
                       key={application.personId}
-                      className="border-b border-studio-100 transition-colors last:border-0 hover:bg-studio-50/70"
+                      className="border-b border-cream-100 transition-colors last:border-0 hover:bg-cream-50/70"
                     >
                       <td className="px-2 py-4">
                         <Link
                           to={`/staff/applications/${application.personId}`}
-                          className="font-semibold text-ink underline-offset-4 hover:text-brand-700 hover:underline"
+                          className="font-semibold text-ink underline-offset-4 hover:text-rapid-700 hover:underline"
                         >
                           {application.fullName || "No name"}
                         </Link>
-                        <span className="mt-0.5 block text-[12px] text-studio-600">
+                        <span className="mt-0.5 block text-[12px] text-ink-faint">
                           {application.email}
                         </span>
-                        <span className="mt-1.5 block text-[12px] leading-relaxed text-light-muted sm:hidden">
+                        <span className="mt-1.5 block text-[12px] leading-relaxed text-ink-soft sm:hidden">
                           {application.city ?? "—"}
                           {application.country ? `, ${application.country}` : ""}
                           {" · "}
@@ -183,14 +183,14 @@ export default function StaffApplications() {
                           {shortDate(application.appliedAt)}
                         </span>
                       </td>
-                      <td className="hidden px-2 py-4 text-light-muted sm:table-cell">
+                      <td className="hidden px-2 py-4 text-ink-soft sm:table-cell">
                         {application.city ?? "—"}
                         {application.country ? `, ${application.country}` : ""}
                       </td>
-                      <td className="hidden px-2 py-4 text-light-muted sm:table-cell">
+                      <td className="hidden px-2 py-4 text-ink-soft sm:table-cell">
                         {application.situation?.replaceAll("_", " ") ?? "—"}
                       </td>
-                      <td className="hidden px-2 py-4 text-light-muted tabular-nums sm:table-cell">
+                      <td className="hidden px-2 py-4 text-ink-soft tabular-nums sm:table-cell">
                         {shortDate(application.appliedAt)}
                       </td>
                       <td className="px-2 py-4">

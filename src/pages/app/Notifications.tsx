@@ -57,7 +57,7 @@ export default function Notifications() {
               </p>
             </EmptyState>
           ) : (
-            <ul className="rows divide-y divide-studio-200">
+            <ul className="rows divide-y divide-cream-200">
               {data.map((item) => (
                 <li
                   key={item.id}
@@ -67,17 +67,17 @@ export default function Notifications() {
                     <div className="flex flex-wrap items-center gap-2">
                       {!item.read_at && (
                         <span
-                          className="h-2 w-2 shrink-0 rounded-full bg-brand-500"
+                          className="h-2 w-2 shrink-0 rounded-full bg-sun-500"
                           role="img"
                           aria-label="Unread"
                         />
                       )}
                       <p className="font-semibold text-ink">{item.title}</p>
                     </div>
-                    <p className="mt-1 max-w-[65ch] text-sm text-light-muted">
+                    <p className="mt-1 max-w-[65ch] text-sm text-ink-soft">
                       {item.body}
                     </p>
-                    <p className="mt-1 text-xs text-light-muted">
+                    <p className="mt-1 text-xs text-ink-soft">
                       {new Date(item.created_at).toLocaleString()}
                     </p>
                   </div>
@@ -85,7 +85,7 @@ export default function Notifications() {
                     {item.href && (
                       <Link
                         to={item.href}
-                        className="inline-flex min-h-[36px] items-center rounded-lg bg-studio-100 px-3 text-xs font-semibold text-ink hover:bg-studio-200"
+                        className="inline-flex min-h-[36px] items-center rounded-full bg-cream-100 px-3 text-xs font-semibold text-ink hover:bg-cream-200"
                       >
                         Open
                       </Link>
@@ -94,7 +94,7 @@ export default function Notifications() {
                       <button
                         type="button"
                         onClick={() => void markRead(item.id)}
-                        className="inline-flex min-h-[36px] items-center gap-1 rounded-lg border border-studio-300 px-3 text-xs font-semibold text-ink hover:border-brand-600"
+                        className="inline-flex min-h-[36px] items-center gap-1 rounded-full border border-cream-300 px-3 text-xs font-semibold text-ink hover:border-rapid-600"
                       >
                         <Check size={14} aria-hidden="true" />
                         Mark read

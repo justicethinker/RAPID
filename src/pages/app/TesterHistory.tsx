@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { History as HistoryIcon } from 'lucide-react';
 import { usePageMeta } from '@/hooks/usePageMeta';
+import { buttonStyles } from '@/components/ui/buttonStyles';
 import { useApi } from '@/hooks/useApi';
 import { labelOutcome } from '@/lib/labels';
 import type { TesterHistoryItem } from '@/lib/dashboard-types';
@@ -29,35 +30,36 @@ export default function TesterHistory() {
             <EmptyState
               icon={<HistoryIcon size={20} aria-hidden="true" />}
               title="Nothing here yet"
+              action={<Link to="/app/tester/invitations" className={buttonStyles({ variant: 'outline', size: 'sm' })}>See your invitations</Link>}
             >
               <p>Completed and declined tests will appear here.</p>
             </EmptyState>
           </Panel>
         ) : (
-          <section className="overflow-hidden rounded-2xl border border-studio-200 bg-studio-25">
-            <div className="flex items-center justify-between gap-3 border-b border-studio-200 bg-studio-50/60 px-5 py-3 sm:px-6">
-              <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-studio-600">
+          <section className="overflow-hidden rounded-2xl border border-cream-200 bg-white">
+            <div className="flex items-center justify-between gap-3 border-b border-cream-200 bg-cream-50/60 px-5 py-3 sm:px-6">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-ink-faint">
                 Your record
               </p>
-              <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-studio-600 tabular-nums">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-ink-faint tabular-nums">
                 {data.length} test{data.length === 1 ? '' : 's'}
               </p>
             </div>
 
-            <ul className="rows divide-y divide-studio-200">
+            <ul className="rows divide-y divide-cream-200">
               {data.map((item) => (
                 <li key={item.id}>
                   <Link
                     to={`/app/tester/invitations/${item.id}`}
-                    className="group grid gap-3 px-5 py-5 transition-colors duration-300 hover:bg-studio-50 sm:grid-cols-[132px_1fr] sm:gap-5 sm:px-6"
+                    className="group grid gap-3 px-5 py-5 transition-colors duration-300 hover:bg-cream-50 sm:grid-cols-[132px_1fr] sm:gap-5 sm:px-6"
                   >
-                    <span className="text-[10px] font-bold uppercase tracking-[0.14em] text-studio-600 sm:pt-1">
+                    <span className="text-[11px] font-semibold uppercase tracking-[0.12em] text-ink-faint sm:pt-1">
                       {formatDay(item.submittedAt ?? item.invitedAt)}
                     </span>
 
                     <span className="min-w-0">
                       <span className="flex flex-wrap items-center justify-between gap-3">
-                        <span className="text-[17px] font-bold leading-snug tracking-[-0.01em] text-ink group-hover:text-brand-700">
+                        <span className="text-[17px] font-bold leading-snug tracking-[-0.01em] text-ink group-hover:text-rapid-700">
                           {item.test.title || 'RAPID test'}
                         </span>
                         <Pill tone={invitationTone(item.status)}>
@@ -65,7 +67,7 @@ export default function TesterHistory() {
                         </Pill>
                       </span>
 
-                      <span className="mt-2 flex flex-wrap items-center gap-x-5 gap-y-1 text-xs text-studio-600">
+                      <span className="mt-2 flex flex-wrap items-center gap-x-5 gap-y-1 text-xs text-ink-faint">
                         <span>
                           Outcome ·{' '}
                           {item.outcome ? labelOutcome(item.outcome) : 'No response'}

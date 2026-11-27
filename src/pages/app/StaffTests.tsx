@@ -84,7 +84,7 @@ export default function StaffTests() {
         <Panel
           title="All tests"
           action={
-            <span className="text-[11px] font-bold uppercase tracking-[0.14em] text-studio-600 tabular-nums">
+            <span className="text-[11px] font-bold uppercase tracking-[0.14em] text-ink-faint tabular-nums">
               {data.length} shown
             </span>
           }
@@ -101,7 +101,7 @@ export default function StaffTests() {
               </p>
             </EmptyState>
           ) : (
-            <ul className="rows divide-y divide-studio-200">
+            <ul className="rows divide-y divide-cream-200">
               {data.map((test, index) => (
                 <li key={test.id}>
                   <Link
@@ -110,14 +110,14 @@ export default function StaffTests() {
                   >
                     <span
                       aria-hidden="true"
-                      className="pt-1 text-[10px] font-bold tracking-[0.14em] text-studio-600 tabular-nums"
+                      className="pt-1 text-[10px] font-bold tracking-[0.14em] text-ink-faint tabular-nums"
                     >
                       {String(index + 1).padStart(2, "0")}
                     </span>
 
                     <span className="min-w-0">
                       <span className="flex flex-wrap items-start justify-between gap-3">
-                        <span className="text-[17px] font-bold leading-snug tracking-[-0.01em] text-ink group-hover:text-brand-700">
+                        <span className="text-[17px] font-bold leading-snug tracking-[-0.01em] text-ink group-hover:text-rapid-700">
                           {test.title || "Untitled test"}
                         </span>
                         <Pill tone={tone(test.status)}>
@@ -125,23 +125,23 @@ export default function StaffTests() {
                         </Pill>
                       </span>
 
-                      <span className="mt-1.5 block max-w-[65ch] text-sm leading-relaxed text-light-muted">
+                      <span className="mt-1.5 block max-w-[65ch] text-sm leading-relaxed text-ink-soft">
                         {test.question}
                       </span>
 
-                      <span className="mt-2.5 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-studio-600">
+                      <span className="mt-2.5 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-ink-faint">
                         <span className="font-semibold text-ink">
                           {test.founder.name || test.founder.email}
                         </span>
-                        <span aria-hidden="true" className="h-3 w-px bg-studio-300" />
+                        <span aria-hidden="true" className="h-3 w-px bg-cream-300" />
                         <span className="tabular-nums">
                           {test.counts.invited} invited
                         </span>
-                        <span aria-hidden="true" className="h-3 w-px bg-studio-300" />
+                        <span aria-hidden="true" className="h-3 w-px bg-cream-300" />
                         <span className="tabular-nums">
                           {test.counts.accepted} accepted
                         </span>
-                        <span aria-hidden="true" className="h-3 w-px bg-studio-300" />
+                        <span aria-hidden="true" className="h-3 w-px bg-cream-300" />
                         <span className="tabular-nums">
                           {test.counts.responses} response
                           {test.counts.responses === 1 ? "" : "s"}

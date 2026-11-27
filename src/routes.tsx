@@ -12,6 +12,7 @@ import { ThanksPage } from "./pages/Thanks";
 import NotFound from "./pages/NotFound";
 import { AuthRoot } from "./auth/AuthProvider";
 import { RequireAuth, RequireRole, RequireStaff } from "./auth/Guards";
+import { AccountsGate } from "./auth/AccountsGate";
 
 const AppLayout = lazy(() => import("./pages/app/AppLayout"));
 const AppHome = lazy(() => import("./pages/app/AppHome"));
@@ -47,7 +48,7 @@ const AdminSignUp = lazy(() => import("./pages/AdminSignUp"));
 
 export function AppRoutes() {
   return (
-    <Suspense fallback={<div className="min-h-screen bg-studio-25" />}>
+    <Suspense fallback={<div className="min-h-screen bg-cream-50" />}>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/join" element={<Join />} />
@@ -69,9 +70,9 @@ export function AppRoutes() {
             </AuthRoot>
           }
         >
-          <Route path="/sign-in/*" element={<SignIn />} />
-          <Route path="/sign-up" element={<SignUp />} />
-          <Route path="/sign-up/:role" element={<SignUpRole />} />
+          <Route path="/sign-in/*" element={<AccountsGate><SignIn /></AccountsGate>} />
+          <Route path="/sign-up" element={<AccountsGate><SignUp /></AccountsGate>} />
+          <Route path="/sign-up/:role" element={<AccountsGate><SignUpRole /></AccountsGate>} />
 
           {/* The profile is public, but follow, feedback and reporting need an
               account. Mounting the session provider here lets those actions use
@@ -80,9 +81,9 @@ export function AppRoutes() {
 
           {/* Staff access is invited, never self-served, so it has its own
               door instead of a card in the public sign-up picker. */}
-          <Route path="/admin" element={<Admin />} />
-          <Route path="/admin/sign-in" element={<AdminSignIn />} />
-          <Route path="/admin/sign-up" element={<AdminSignUp />} />
+          <Route path="/admin" element={<AccountsGate><Admin /></AccountsGate>} />
+          <Route path="/admin/sign-in" element={<AccountsGate><AdminSignIn /></AccountsGate>} />
+          <Route path="/admin/sign-up" element={<AccountsGate><AdminSignUp /></AccountsGate>} />
 
           <Route
             path="/app"

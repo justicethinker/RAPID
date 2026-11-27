@@ -4,7 +4,7 @@ import { defineConfig, devices } from '@playwright/test';
  * Signed-in coverage needs the API and Postgres, so it runs against the Vite
  * dev server rather than the static preview used by the public suite.
  *
- *   pnpm e2e:auth
+ *   npm run e2e:auth
  *
  * Requires DATABASE_URL in `.env.local` or the environment. The global setup
  * applies migrations, seeds the local role accounts and clears leftovers. All
@@ -57,7 +57,7 @@ export default defineConfig({
     },
   ],
   webServer: {
-    command: `pnpm exec vite --port ${PORT} --strictPort`,
+    command: `npx vite --port ${PORT} --strictPort`,
     url: `${baseURL}/api/health`,
     reuseExistingServer: !process.env.CI,
     timeout: 120_000,

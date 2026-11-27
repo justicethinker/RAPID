@@ -93,7 +93,7 @@ export default function DevSignUpPanel() {
       <button
         type="submit"
         disabled={pending}
-        className="sheen mt-6 inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-xl bg-brand-500 px-5 font-semibold text-ink transition-all duration-200 hover:-translate-y-0.5 hover:bg-brand-600 active:scale-[0.99] disabled:opacity-60"
+        className="sheen mt-6 inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-full bg-sun-500 px-5 font-semibold text-ink transition-all duration-200 hover:-translate-y-0.5 hover:bg-sun-400 active:scale-[0.99] disabled:opacity-60"
       >
         {pending ? (
           <>

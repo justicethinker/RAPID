@@ -48,3 +48,12 @@ export function useSession(): SessionValue {
   if (!value) throw new Error("useSession must be used inside AuthRoot");
   return value;
 }
+
+/**
+ * Whether accounts can work in this build. Production accounts need Clerk;
+ * local accounts exist only on a developer's machine (the server refuses dev
+ * sign-in on every deployment). A production build with no Clerk key keeps
+ * the public site fully working and shows a friendly notice on account
+ * routes instead of a broken form.
+ */
+export const accountsEnabled = Boolean(clerkPublishableKey) || import.meta.env.DEV;

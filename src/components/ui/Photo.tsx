@@ -1,23 +1,18 @@
 import { cn } from '@/lib/cn';
 
-export type PhotoName =
-  | 'test-session'
-  | 'session'
-  | 'staff'
-  | 'tester'
-  | 'founder'
-  | 'tester-card'
-  | 'founder-card';
+export type PhotoName = 'hero' | 'founder' | 'tester' | 'session' | 'team';
 
-/** Widths generated in `public/images/photos` for each source photo. */
+/**
+ * Widths generated in `public/images/photos` for each source photo. The
+ * photos are illustrative (see docs/PHOTO_CREDITS.md); the footer carries the
+ * single site-wide note saying so.
+ */
 const WIDTHS: Record<PhotoName, number[]> = {
-  'test-session': [900, 1400, 2000],
-  session: [600, 900],
-  staff: [600, 900],
-  tester: [600, 900, 1200],
+  hero: [768, 1280, 1920],
   founder: [600, 900, 1200],
-  'tester-card': [600, 900],
-  'founder-card': [600, 900],
+  tester: [600, 900, 1200],
+  session: [600, 928],
+  team: [600, 928],
 };
 
 interface PhotoProps {
@@ -33,7 +28,7 @@ interface PhotoProps {
 }
 
 /**
- * Licensed photography served as a responsive WebP set. The intrinsic
+ * Illustrative photography served as a responsive WebP set. The intrinsic
  * dimensions keep layout stable before the file arrives, and small screens
  * only download a smaller crop.
  */

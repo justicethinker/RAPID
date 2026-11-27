@@ -18,13 +18,20 @@ export function Logo({ className = '', size = 38, tagline = false }: LogoProps) 
 
   return (
     <span className={`inline-flex items-center gap-2.5 ${className}`}>
-      {/* Official R mark (transparent PNG) */}
-      <img
-        src={MARK_SRC}
-        alt=""
+      {/* Official R mark, masked so it always renders in the brand accent. */}
+      <span
         aria-hidden="true"
-        className="block shrink-0"
-        style={{ height: Math.round(markH), width: Math.round(markH * MARK_ASPECT) }}
+        className="block shrink-0 bg-sun-500"
+        style={{
+          height: Math.round(markH),
+          width: Math.round(markH * MARK_ASPECT),
+          WebkitMaskImage: `url(${MARK_SRC})`,
+          maskImage: `url(${MARK_SRC})`,
+          WebkitMaskSize: '100% 100%',
+          maskSize: '100% 100%',
+          WebkitMaskRepeat: 'no-repeat',
+          maskRepeat: 'no-repeat',
+        }}
       />
 
       {/* Divider (as in the brand lockup) */}
@@ -58,8 +65,8 @@ export function Logo({ className = '', size = 38, tagline = false }: LogoProps) 
             className="mt-1.5 font-bold whitespace-nowrap"
             style={{ fontSize: Math.max(8, size * 0.27), letterSpacing: '0.15em' }}
           >
-            <span className="text-brand-500">VALIDATION</span> THAT DRIVES{' '}
-            <span className="text-brand-500">TRACTION.</span>
+            <span className="text-sun-500">VALIDATION</span> THAT DRIVES{' '}
+            <span className="text-sun-500">TRACTION.</span>
           </span>
         )}
       </span>

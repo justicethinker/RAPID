@@ -91,7 +91,7 @@ export function LoopSteps({ steps, tone = 'dark' }: { steps: LoopStep[]; tone?: 
               <span className="mt-8 block font-display text-[24px] font-bold leading-[1.1] tracking-[-0.02em]">{step.title}</span>
               <span
                 className={cn(
-                  'mt-3 block text-[15px] leading-relaxed',
+                  'mt-3 block text-[15px] leading-relaxed transition-colors duration-500',
                   isActive ? (dark ? 'text-ink-soft' : 'text-rapid-100') : dark ? 'text-rapid-100' : 'text-ink-soft',
                 )}
               >

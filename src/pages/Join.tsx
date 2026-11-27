@@ -165,7 +165,7 @@ export default function Join() {
           </Reveal>
           <Stagger as="ol" className="space-y-4">
             {TERMS.map(({ icon: Icon, title, body }, index) => (
-              <li key={title} className="group flex gap-5 rounded-[24px] bg-white/[0.05] p-6 ring-1 ring-inset ring-white/10 transition-colors hover:bg-white/[0.09] sm:p-8">
+              <li key={title} className="group flex flex-col gap-4 rounded-[24px] bg-white/[0.05] p-6 ring-1 ring-inset ring-white/10 transition-colors hover:bg-white/[0.09] sm:flex-row sm:gap-5 sm:p-8">
                 <span className="font-display text-[56px] font-extrabold leading-[0.8] tracking-[-0.05em] text-white/15 transition-colors group-hover:text-sun-300">
                   0{index + 1}
                 </span>

@@ -385,7 +385,7 @@ h4 {
     .hero-scrim {
       background:
         linear-gradient(180deg, rgb(6 41 31 / 0.55) 0%, transparent 16%),
-        linear-gradient(0deg, rgb(6 41 31 / 0.96) 0%, rgb(6 41 31 / 0.84) 48%, rgb(6 41 31 / 0.35) 78%, rgb(6 41 31 / 0.2) 100%);
+        linear-gradient(0deg, rgb(6 41 31 / 0.96) 0%, rgb(6 41 31 / 0.86) 45%, rgb(6 41 31 / 0.7) 75%, rgb(6 41 31 / 0.55) 100%);
     }
   }
 

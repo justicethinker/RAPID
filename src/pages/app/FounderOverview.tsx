@@ -220,7 +220,7 @@ export default function FounderOverview() {
 
       {data && data.length > 0 && (
         <div className="rows grid gap-4 sm:grid-cols-3">
-          <Stat label="Requests" value={tests.length} />
+          <Stat label="Requests" value={tests.length} hint="Every request you have sent" />
           <Stat label="In progress" value={live} hint="Recruiting, fielding or in review" />
           <Stat label="Published" value={published} hint="Findings you can read" />
         </div>

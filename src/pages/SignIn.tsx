@@ -154,7 +154,7 @@ function EmailSignIn() {
         <p
           id="signin-error"
           role="alert"
-          className="shake mt-3 text-sm font-semibold text-danger"
+          className="shake mt-3 rounded-xl bg-danger-50 px-3 py-2 text-sm font-semibold text-danger"
         >
           {error}
         </p>
@@ -182,10 +182,11 @@ export default function SignIn() {
         photo={SESSION_PHOTO}
         header={
           <>
-            <h1 className="font-display text-center text-[32px] font-bold tracking-[-0.03em] text-ink">
-              Welcome back.
+            <p className="kicker">Sign in</p>
+            <h1 className="mt-4 font-display text-[40px] font-bold leading-[1.02] tracking-[-0.03em] text-ink sm:text-[48px]">
+              Welcome <span className="t-serif text-rapid-700">back.</span>
             </h1>
-            <p className="mx-auto mt-3 max-w-[38ch] text-center text-ink-soft">
+            <p className="mt-3 max-w-[40ch] text-[17px] text-ink-soft">
               {clerkPublishableKey
                 ? "Sign in with the email you signed up with, or continue with Google if that’s how you created your account."
                 : "Sign in to manage your startup profile, posts, validation requests and tester invitations."}
@@ -193,7 +194,7 @@ export default function SignIn() {
           </>
         }
       >
-        <div className="rise rounded-2xl border border-cream-200 bg-white p-5 shadow-elev-1 sm:p-7">
+        <div className="rise rounded-[24px] bg-white p-5 shadow-elev-2 ring-1 ring-cream-200 sm:p-7">
             {/* The session resolves after the first paint. Showing the form
                 during that window flashes sign-in controls at someone who is
                 already signed in, and a redirect follows. */}
@@ -222,7 +223,7 @@ export default function SignIn() {
             )}
         </div>
 
-        <p className="mt-6 text-center text-sm text-ink-soft">
+        <p className="mt-6 text-sm text-ink-soft">
           New here?{" "}
           <Link
             to="/sign-up/tester"

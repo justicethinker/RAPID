@@ -98,11 +98,10 @@ function StepFrame({
         name: role === 'tester' ? 'tester' : 'founder',
         alt:
           role === 'tester'
-            ? 'A participant writing notes during a research conversation'
-            : 'A founder thinking over his notes in a quiet workspace',
+            ? 'Two students laughing while trying an app on a phone on campus'
+            : 'A founder reviewing sticky-note research at her desk',
         width: 1200,
-        height: 1500,
-        caption: 'Illustrative photograph',
+        height: 896,
       }}
       header={
         <>
@@ -234,7 +233,7 @@ export default function SignUpRole() {
           intro={accountIntro}
           width="max-w-[440px]"
         >
-          <div className="rise rounded-2xl border border-cream-200 bg-white p-5 shadow-elev-1 sm:p-7">
+          <div className="rise rounded-[24px] bg-white p-5 shadow-elev-2 ring-1 ring-cream-200 sm:p-7">
             {clerkPublishableKey ? (
               <Suspense
                 fallback={

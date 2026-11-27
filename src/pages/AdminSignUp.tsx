@@ -103,7 +103,7 @@ export default function AdminSignUp() {
           </>
         }
       >
-        <div className="pop-in rounded-2xl border border-cream-200 bg-white p-5 shadow-elev-1 sm:p-7">
+        <div className="pop-in rounded-[24px] bg-white p-5 shadow-elev-2 ring-1 ring-cream-200 sm:p-7">
           {clerkPublishableKey ? (
             <Suspense
               fallback={
